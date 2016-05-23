@@ -15,6 +15,7 @@
 		D003D3296CB33C061D68C18F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A374D0172567CC3A941F0362 /* Foundation.framework */; };
 		DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F455F480F9A35395CB1D85A7 /* Images.xcassets */; };
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
+		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		B7C937EA554B3EA9962016A5 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inventry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inventry/Pods-Inventry.debug.xcconfig"; sourceTree = "<group>"; };
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -76,9 +78,9 @@
 				65CD482A765FB0A25B5E67C3 /* Products */,
 				6D86D5D8E7E4F0B13305D9CE /* Pods */,
 			);
-			indentWidth = 4;
+			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 4;
+			tabWidth = 2;
 			usesTabs = 0;
 		};
 		172A0CB83BA56B97CF1E0CE4 /* Resources */ = {
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				825F635CF5FEF774B0E62269 /* Info.plist */,
+				E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */,
 			);
 			path = "Other-Sources";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			files = (
 				DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */,
 				8652EA4EDC3DA5729678D2C7 /* Main.storyboard in Resources */,
+				E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */,
 				95461CD5D4A9B40E33EF27D4 /* LaunchScreen.xib in Resources */,
 				BB78E846142B27596595A81D /* Settings.bundle in Resources */,
 			);

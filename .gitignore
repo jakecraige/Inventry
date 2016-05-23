@@ -31,3 +31,5 @@ Carthage
 # AppCode specific files
 .idea/
 *.iml
+
+private/

@@ -5,7 +5,11 @@ platform :ios, "9.0"
 use_frameworks!
 
 target "Inventry" do
-  # Application Pods
+  pod "Firebase"
+  pod "Firebase/Auth"
+  pod "Firebase/Crash"
+  pod "Firebase/Database"
+  pod "Firebase/RemoteConfig"
 end
 
 abstract_target :unit_tests do
