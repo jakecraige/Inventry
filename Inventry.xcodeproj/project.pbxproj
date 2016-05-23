@@ -16,11 +16,12 @@
 		DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F455F480F9A35395CB1D85A7 /* Images.xcassets */; };
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
-		E7DA83951CF2A735001320D2 /* NewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* NewProductViewController.swift */; };
+		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Queryable.swift */; };
 		E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839A1CF2B037001320D2 /* Encodable.swift */; };
 		E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */; };
+		E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839E1CF2D606001320D2 /* ProductViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,11 +49,12 @@
 		C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inventry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inventry/Pods-Inventry.debug.xcconfig"; sourceTree = "<group>"; };
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E7DA83941CF2A735001320D2 /* NewProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProductViewController.swift; sourceTree = "<group>"; };
+		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Queryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queryable.swift; sourceTree = "<group>"; };
 		E7DA839A1CF2B037001320D2 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
+		E7DA839E1CF2D606001320D2 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -168,8 +170,9 @@
 			isa = PBXGroup;
 			children = (
 				B7C937EA554B3EA9962016A5 /* AppDelegate.swift */,
-				E7DA83941CF2A735001320D2 /* NewProductViewController.swift */,
+				E7DA83941CF2A735001320D2 /* EditProductViewController.swift */,
 				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
+				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -503,7 +506,8 @@
 				E7DA83991CF2AA4B001320D2 /* Queryable.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
-				E7DA83951CF2A735001320D2 /* NewProductViewController.swift in Sources */,
+				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
+				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 			);
@@ -691,6 +695,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};

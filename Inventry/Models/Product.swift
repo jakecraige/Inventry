@@ -1,7 +1,9 @@
 import Argo
 import Curry
+import Firebase
 
 struct Product {
+  let id: String?
   let name: String
   let isbn: String
   let quantity: Int
@@ -11,7 +13,8 @@ struct Product {
 extension Product: Decodable, Queryable {
   static func decode(json: JSON) -> Decoded<Product> {
     return curry(Product.init)
-      <^> json <| "name"
+      <^> json <|? "id"
+      <*> json <| "name"
       <*> json <| "isbn"
       <*> json <| "quantity"
       <*> json <| "quantity"
