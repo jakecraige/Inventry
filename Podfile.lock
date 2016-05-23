@@ -1,4 +1,6 @@
 PODS:
+  - Argo (3.0.1)
+  - Curry (2.2.0)
   - Firebase (3.2.0):
     - Firebase/Core (= 3.2.0)
   - Firebase/Analytics (3.2.0):
@@ -54,6 +56,8 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
 
 DEPENDENCIES:
+  - Argo
+  - Curry
   - Firebase
   - Firebase/Auth
   - Firebase/Crash
@@ -61,6 +65,8 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
 
 SPEC CHECKSUMS:
+  Argo: 22c5d62b7967020a641468c91dc9488bea9523b8
+  Curry: c22d80fff7f5a4b1bbd531455c3e2dbb099658a3
   Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
   FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
@@ -74,6 +80,6 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
 
-PODFILE CHECKSUM: f1168a9e3a2eca7882203243ad7384b2af21ac7c
+PODFILE CHECKSUM: 5091a2c4d272b992a7c29d1c56a235a5be250150
 
 COCOAPODS: 1.0.0

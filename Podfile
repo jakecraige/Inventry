@@ -10,6 +10,8 @@ target "Inventry" do
   pod "Firebase/Crash"
   pod "Firebase/Database"
   pod "Firebase/RemoteConfig"
+  pod "Argo"
+  pod "Curry"
 end
 
 abstract_target :unit_tests do
