@@ -22,7 +22,7 @@ extension Product: Decodable {
 }
 
 extension Product: Encodable {
-  func encode() -> AnyObject? {
+  func encode() -> AnyObject {
     return [
       "name": name,
       "isbn": isbn,
