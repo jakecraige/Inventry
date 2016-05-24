@@ -6,6 +6,7 @@ protocol Queryable {
   static var ref: FIRDatabaseReference { get }
 
   static func save(obj: Self)
+  static func delete(obj: Self)
   static func observeArray(eventType eventType: FIRDataEventType, block: (([Self]) -> Void)) -> UInt
   static func observeArrayOnce(eventType eventType: FIRDataEventType, block: (([Self]) -> Void))
   static func observeObject(eventType eventType: FIRDataEventType, ref: FIRDatabaseReference, block: ((Self) -> Void)) -> UInt
@@ -30,6 +31,10 @@ extension Queryable {
     } else {
       return Self.ref.childByAutoId()
     }
+  }
+
+  static func delete(obj: Self) {
+    obj.childRef.removeValue()
   }
 }
 

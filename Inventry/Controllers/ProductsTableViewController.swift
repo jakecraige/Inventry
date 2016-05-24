@@ -10,19 +10,7 @@ class ProductsTableViewController: UITableViewController {
   var observers: [UInt] = []
 
   override func viewDidLoad() {
-    Product.observeArrayOnce(eventType: .Value) { self.products = $0 }
-    observers.append(Product.observeObject(eventType: .ChildAdded) { [weak self] product in
-      self?.products.append(product)
-    })
-    observers.append(Product.observeObject(eventType: .ChildChanged) { [weak self] updatedProduct in
-      self?.products = (self?.products ?? []).map { product in
-        if product.id == updatedProduct.id {
-          return updatedProduct
-        } else {
-          return product
-        }
-      }
-    })
+    observers.append(Product.observeArray(eventType: .Value) { self.products = $0 })
   }
 
   deinit {
@@ -64,5 +52,18 @@ extension ProductsTableViewController {
 extension ProductsTableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("viewProduct", sender: indexPath)
+  }
+
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+  }
+
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    switch editingStyle {
+    case .Delete:
+      Product.delete(products[indexPath.row])
+
+    default: break
+    }
   }
 }
