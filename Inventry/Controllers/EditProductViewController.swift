@@ -21,7 +21,7 @@ class EditProductViewController: UITableViewController {
       quantity: Int(quantityTextField.text ?? "") ?? 0,
       price: Float(priceTextField.text ?? "") ?? 0
     )
-    Product.save(product)
+    Database.save(product)
     dismiss()
   }
 

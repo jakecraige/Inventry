@@ -16,9 +16,11 @@
 		DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F455F480F9A35395CB1D85A7 /* Images.xcassets */; };
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
+		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
+		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
-		E7DA83991CF2AA4B001320D2 /* Queryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Queryable.swift */; };
+		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
 		E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839A1CF2B037001320D2 /* Encodable.swift */; };
 		E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */; };
 		E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839E1CF2D606001320D2 /* ProductViewController.swift */; };
@@ -49,9 +51,11 @@
 		C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inventry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inventry/Pods-Inventry.debug.xcconfig"; sourceTree = "<group>"; };
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		E7DA83981CF2AA4B001320D2 /* Queryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queryable.swift; sourceTree = "<group>"; };
+		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
 		E7DA839A1CF2B037001320D2 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		E7DA839E1CF2D606001320D2 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DA83961CF2AA23001320D2 /* Product.swift */,
+				E7444C6E1CF4A433006D7159 /* Database.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -132,7 +137,7 @@
 		5F8AD8B933024B24B6994CD7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E7DA83981CF2AA4B001320D2 /* Queryable.swift */,
+				E7DA83981CF2AA4B001320D2 /* Modelable.swift */,
 				E7DA839A1CF2B037001320D2 /* Encodable.swift */,
 			);
 			path = Protocols;
@@ -245,6 +250,7 @@
 		E8C2B72A211EA864D3A6B68C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E7444C701CF4AD4B006D7159 /* Firebase.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -503,12 +509,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7DA83991CF2AA4B001320D2 /* Queryable.swift in Sources */,
+				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
+				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
+				E7444C6F1CF4A433006D7159 /* Database.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,7 +2,7 @@ import Argo
 import Curry
 import Firebase
 
-struct Product {
+struct Product: Modelable {
   let id: String?
   let name: String
   let isbn: String
@@ -10,7 +10,7 @@ struct Product {
   let price: Float
 }
 
-extension Product: Decodable, Queryable {
+extension Product: Decodable {
   static func decode(json: JSON) -> Decoded<Product> {
     return curry(Product.init)
       <^> json <|? "id"

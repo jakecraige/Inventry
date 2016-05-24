@@ -10,7 +10,7 @@ class ProductsTableViewController: UITableViewController {
   var observers: [UInt] = []
 
   override func viewDidLoad() {
-    observers.append(Product.observeArray(eventType: .Value) { self.products = $0 })
+    observers.append(Database.observeArray(eventType: .Value) { self.products = $0 })
   }
 
   deinit {
@@ -61,7 +61,7 @@ extension ProductsTableViewController {
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     switch editingStyle {
     case .Delete:
-      Product.delete(products[indexPath.row])
+      Database.delete(products[indexPath.row])
 
     default: break
     }
