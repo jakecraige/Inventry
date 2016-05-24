@@ -17,7 +17,7 @@ extension Product: Decodable {
       <*> json <| "name"
       <*> json <| "isbn"
       <*> json <| "quantity"
-      <*> json <| "quantity"
+      <*> json <| "price"
   }
 }
 
