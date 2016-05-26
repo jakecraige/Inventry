@@ -18,6 +18,11 @@
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
+		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
+		E7444C751CF608EB006D7159 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C741CF608EB006D7159 /* Order.swift */; };
+		E7444C771CF6097C006D7159 /* NewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C761CF6097C006D7159 /* NewOrderTableViewController.swift */; };
+		E7444C7B1CF745D8006D7159 /* QuantitySelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7444C7A1CF745D8006D7159 /* QuantitySelectorView.xib */; };
+		E7444C7D1CF7480D006D7159 /* QuantitySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C7C1CF7480D006D7159 /* QuantitySelectorView.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -53,6 +58,11 @@
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
+		E7444C741CF608EB006D7159 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		E7444C761CF6097C006D7159 /* NewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderTableViewController.swift; sourceTree = "<group>"; };
+		E7444C7A1CF745D8006D7159 /* QuantitySelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuantitySelectorView.xib; path = ../../Views/QuantitySelectorView.xib; sourceTree = "<group>"; };
+		E7444C7C1CF7480D006D7159 /* QuantitySelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantitySelectorView.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -121,6 +131,7 @@
 		4683E34364B0C5063EA27A1C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E7444C7C1CF7480D006D7159 /* QuantitySelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,6 +141,7 @@
 			children = (
 				E7DA83961CF2AA23001320D2 /* Product.swift */,
 				E7444C6E1CF4A433006D7159 /* Database.swift */,
+				E7444C741CF608EB006D7159 /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +190,8 @@
 				E7DA83941CF2A735001320D2 /* EditProductViewController.swift */,
 				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
 				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
+				E7444C721CF60812006D7159 /* OrdersTableViewController.swift */,
+				E7444C761CF6097C006D7159 /* NewOrderTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E065678D341C8C9FB3E61A /* LaunchScreen.xib */,
+				E7444C7A1CF745D8006D7159 /* QuantitySelectorView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -356,6 +371,7 @@
 				8652EA4EDC3DA5729678D2C7 /* Main.storyboard in Resources */,
 				E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */,
 				95461CD5D4A9B40E33EF27D4 /* LaunchScreen.xib in Resources */,
+				E7444C7B1CF745D8006D7159 /* QuantitySelectorView.xib in Resources */,
 				BB78E846142B27596595A81D /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,15 +525,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
+				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
 				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
 				E7444C6F1CF4A433006D7159 /* Database.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
+				E7444C771CF6097C006D7159 /* NewOrderTableViewController.swift in Sources */,
+				E7444C7D1CF7480D006D7159 /* QuantitySelectorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
