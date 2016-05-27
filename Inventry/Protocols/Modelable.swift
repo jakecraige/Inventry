@@ -1,7 +1,7 @@
 import Firebase
 import Argo
 
-protocol Modelable: Decodable, Encodable {
+protocol Modelable: Decodable, Encodable, Equatable {
   static var refName: String { get }
   static var ref: FIRDatabaseReference { get }
 
@@ -24,5 +24,13 @@ extension Modelable {
     } else {
       return Self.ref.childByAutoId()
     }
+  }
+}
+
+func == <Model: Modelable>(lhs: Model, rhs: Model) -> Bool {
+  if let lhsId = lhs.id, let rhsId = rhs.id {
+    return lhsId == rhsId
+  } else {
+    return false
   }
 }

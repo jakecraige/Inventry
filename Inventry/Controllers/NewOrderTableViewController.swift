@@ -3,7 +3,7 @@ import UIKit
 class NewOrderTableViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
   var allProducts: [Product] = [] { didSet { tableView.reloadData() } }
-  var checkedProductIds: [String] = [] { didSet { tableView.reloadData() } }
+  var order = Order(id: .None, lineItems: []) { didSet { tableView.reloadData() } }
   var observers: [UInt] = []
   let searchController = UISearchController(searchResultsController: nil)
 
@@ -58,17 +58,25 @@ extension NewOrderTableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath)
     let product = getProduct(atIndexPath: indexPath)
     cell.textLabel?.text = product.name
-    cell.accessoryType = checkedProductIds.contains(product.id ?? "") ? .Checkmark : .None
+
+    if let productId = product.id where order.contains(LineItem(productId: productId)) {
+      cell.accessoryType = .Checkmark
+    } else {
+      cell.accessoryType = .None
+    }
+
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    guard let productId = getProduct(atIndexPath: indexPath).id else { return }
+    let product = getProduct(atIndexPath: indexPath)
+    guard let productId = product.id else { return }
+    let lineItem = LineItem(productId: productId)
 
-    if checkedProductIds.contains(productId) {
-      checkedProductIds = checkedProductIds.filter { $0 != productId }
+    if order.contains(lineItem) {
+      order.remove(lineItem: lineItem)
     } else {
-      checkedProductIds = checkedProductIds + [productId]
+      order.add(lineItem: lineItem)
     }
 
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
