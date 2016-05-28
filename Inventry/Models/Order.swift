@@ -39,12 +39,9 @@ struct Order: Modelable {
     add(lineItem: newLineItem, atIndex: index)
   }
 
-  /// Add line item if it doesn't exist, increment quantity otherwise
-  mutating func addOrIncrement(lineItem lineItem: LineItem) {
+  mutating func increment(lineItem lineItem: LineItem) {
     if let existingItem = find(lineItem: lineItem) {
       replace(existingItem, withLineItem: existingItem.increment())
-    } else {
-      add(lineItem: lineItem)
     }
   }
 

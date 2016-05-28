@@ -73,7 +73,13 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
   private func addOrIncrementProduct(product: Product) {
     guard let productId = product.id else { return }
-    order.addOrIncrement(lineItem: LineItem(productId: productId))
+
+    if let item = order.item(forProduct: product) {
+      guard product.quantity > item.quantity else { return }
+      order.increment(lineItem: item)
+    } else {
+      order.add(lineItem: LineItem(productId: productId))
+    }
   }
 
   private func removeOrDecrement(product: Product) {
@@ -101,29 +107,17 @@ extension OrderChooseProductsTableViewController {
 // MARK: UITableViewDelegate
 extension OrderChooseProductsTableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath)
     let product = getProduct(atIndexPath: indexPath)
-    cell.textLabel?.text = product.name
-
-    if let productId = product.id where order.contains(LineItem(productId: productId)) {
-      let quantity = order.item(forProduct: product)?.quantity ?? 1
-      cell.accessoryType = .Checkmark
-      cell.detailTextLabel?.text = quantity > 1 ? "Qty: \(quantity)" : .None
-    } else {
-      cell.accessoryType = .None
-      cell.detailTextLabel?.text = .None
-    }
-
+    let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as! SelectProductTableViewCell
+    cell.configure(forOrder: order, product: product)
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let product = getProduct(atIndexPath: indexPath)
-    guard let productId = product.id else { return }
-    let lineItem = LineItem(productId: productId)
-    
-    if order.contains(lineItem) {
-      order.remove(lineItem: lineItem)
+
+    if let item = order.item(forProduct: product) {
+      order.remove(lineItem: item)
     } else {
       addOrIncrementProduct(product)
     }
