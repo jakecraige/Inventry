@@ -6,7 +6,7 @@ class ProductViewController: UIViewController {
   var observers: [UInt] = []
 
   @IBOutlet var nameLabel: UILabel!
-  @IBOutlet var isbnLabel: UILabel!
+  @IBOutlet var barcodeLabel: UILabel!
   @IBOutlet var priceLabel: UILabel!
   @IBOutlet var quantityLabel: UILabel!
 
@@ -34,7 +34,7 @@ class ProductViewController: UIViewController {
 
   func updateUI() {
     nameLabel.text = product.name
-    isbnLabel.text = product.isbn
+    barcodeLabel.text = product.barcode
     priceLabel.text = "$\(product.price)"
     quantityLabel.text = "\(product.quantity)"
   }

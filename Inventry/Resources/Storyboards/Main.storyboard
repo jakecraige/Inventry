@@ -92,7 +92,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ISBN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-kv-OTI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Barcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofu-kv-OTI">
                                                     <rect key="frame" x="8" y="8" width="584" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -176,7 +176,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="isbnTextField" destination="ofu-kv-OTI" id="JyK-WZ-XNY"/>
+                        <outlet property="barcodeTextField" destination="ofu-kv-OTI" id="aNj-6M-WUt"/>
                         <outlet property="nameTextField" destination="wIb-ON-RZp" id="VOp-mc-iSL"/>
                         <outlet property="priceTextField" destination="5kV-u5-Poe" id="wbJ-Pp-7cu"/>
                         <outlet property="quantityTextField" destination="AYQ-b1-fG6" id="KMI-yh-MIb"/>
@@ -331,16 +331,16 @@
                                 <rect key="frame" x="20" y="100" width="560" height="77"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ht8-Xr-hS5">
-                                        <rect key="frame" x="0.0" y="0.0" width="151" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="22"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="ISBN:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5b-zq-DHY">
-                                                <rect key="frame" x="0.0" y="0.0" width="41" height="22"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="Barcode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5b-zq-DHY">
+                                                <rect key="frame" x="0.0" y="0.0" width="65" height="22"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuL-JB-99K">
-                                                <rect key="frame" x="51" y="0.0" width="100" height="22"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuL-JB-99K" userLabel="Barcode Label">
+                                                <rect key="frame" x="75" y="0.0" width="100" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -403,7 +403,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="isbnLabel" destination="TuL-JB-99K" id="LTz-W5-gTP"/>
+                        <outlet property="barcodeLabel" destination="TuL-JB-99K" id="97M-eD-lwn"/>
                         <outlet property="nameLabel" destination="dG7-0d-NMg" id="Hk3-zm-YAI"/>
                         <outlet property="priceLabel" destination="2nz-B8-89a" id="gke-D5-uia"/>
                         <outlet property="quantityLabel" destination="oNk-4e-cfG" id="w5Q-71-LBh"/>

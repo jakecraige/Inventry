@@ -5,7 +5,7 @@ class EditProductViewController: UITableViewController {
   var product: Product?
 
   @IBOutlet var nameTextField: UITextField!
-  @IBOutlet var isbnTextField: UITextField!
+  @IBOutlet var barcodeTextField: UITextField!
   @IBOutlet var quantityTextField: UITextField!
   @IBOutlet var priceTextField: UITextField!
 
@@ -17,7 +17,7 @@ class EditProductViewController: UITableViewController {
     let product = Product(
       id: self.product?.id,
       name: nameTextField.text ?? "",
-      isbn: isbnTextField.text ?? "",
+      barcode: barcodeTextField.text ?? "",
       quantity: Int(quantityTextField.text ?? "") ?? 0,
       price: Float(priceTextField.text ?? "") ?? 0
     )
@@ -28,7 +28,7 @@ class EditProductViewController: UITableViewController {
   override func viewDidLoad() {
     if let product = product {
       nameTextField.text = product.name
-      isbnTextField.text = product.isbn
+      barcodeTextField.text = product.barcode
       quantityTextField.text = "\(product.quantity)"
       priceTextField.text = "\(product.price)"
     }
@@ -41,7 +41,7 @@ class EditProductViewController: UITableViewController {
     case "scanBarcodeSegue":
       let navVC = segue.destinationViewController as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
-      vc?.receiveBarcodeCallback = { self.isbnTextField.text = $0 }
+      vc?.receiveBarcodeCallback = { self.barcodeTextField.text = $0 }
     default: break
     }
   }

@@ -5,7 +5,7 @@ import Firebase
 struct Product: Modelable {
   let id: String?
   let name: String
-  let isbn: String
+  let barcode: String
   let quantity: Int
   let price: Float
 }
@@ -15,7 +15,7 @@ extension Product: Decodable {
     return curry(Product.init)
       <^> json <|? "id"
       <*> json <| "name"
-      <*> json <| "isbn"
+      <*> json <| "barcode"
       <*> json <| "quantity"
       <*> json <| "price"
   }
@@ -25,7 +25,7 @@ extension Product: Encodable {
   func encode() -> AnyObject {
     return [
       "name": name,
-      "isbn": isbn,
+      "barcode": barcode,
       "quantity": quantity,
       "price": price,
     ]

@@ -59,7 +59,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   private func addProduct(withBarcode barcode: String) {
-    let product = allProducts.filter { $0.isbn == barcode }.first
+    let product = allProducts.filter { $0.barcode == barcode }.first
     if let product = product {
       addProduct(product)
     } else {
