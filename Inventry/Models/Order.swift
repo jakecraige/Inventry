@@ -5,9 +5,10 @@ struct Order: Modelable {
   let id: String?
   var lineItems: [LineItem] = []
   var paymentToken: String?
+  var charge: Charge?
 
   static func new() -> Order {
-    return self.init(id: .None, lineItems: [], paymentToken: .None)
+    return self.init(id: .None, lineItems: [], paymentToken: .None, charge: .None)
   }
 
   func contains(lineItem: LineItem) -> Bool {
@@ -22,6 +23,10 @@ struct Order: Modelable {
     guard let index = lineItems.indexOf(lineItem) else { return }
     lineItems.removeAtIndex(index)
   }
+
+  func calculateAmount(products: [Product]) -> Cents {
+    return 500
+  }
 }
 
 extension Order: Decodable {
@@ -30,11 +35,16 @@ extension Order: Decodable {
       <^> json <|? "id"
       <*> json <|| "line_items"
       <*> json <|? "payment_token"
+      <*> json <|? "charge"
   }
 }
 
 extension Order: Encodable {
   func encode() -> AnyObject {
-    return [:]
+    var dict = [String: AnyObject]()
+    dict["payment_token"] = paymentToken
+    dict["line_items"] = LineItem.encodeArray(lineItems)
+    dict["charge"] = charge?.encode()
+    return dict
   }
 }

@@ -2,8 +2,10 @@ import Firebase
 import Argo
 
 struct Database<Model: Modelable where Model.DecodedType == Model> {
-  static func save(model: Model) {
-    model.childRef.setValue(model.encode())
+  static func save(model: Model) -> String {
+    let ref = model.childRef
+    ref.setValue(model.encode())
+    return ref.key
   }
 
   static func delete(model: Model) {

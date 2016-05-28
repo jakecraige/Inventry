@@ -7,14 +7,18 @@ class OrderReviewViewController: UITableViewController {
   var order: Order!
 
   @IBAction func placeOrderTapped(sender: UIBarButtonItem) {
-    guard let paymentToken = order.paymentToken else { return }
+    guard let order = order else { return }
 
-    let request = ProcessPaymentRequest(amount: 500, description: "order", token: paymentToken)
-    APIClient().performRequest(request).then {
-      print("DONE!")
-    }.error { error in
-      print("ERROR")
-      print(error)
+    Database.observeArrayOnce(eventType: .Value) { (products: [Product]) in
+      let processor = OrderProcessor(order: order, products: products)
+
+      processor.process().then { order -> Void in
+        print("DONE!")
+        print(order)
+      }.error { error in
+        print("ERROR")
+        print(error)
+      }
     }
   }
 }

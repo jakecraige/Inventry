@@ -2,14 +2,8 @@ import Swish
 
 private let taskUrl = "https://webtask.it.auth0.com/api/run/wt-james_craige-gmail_com-0/process-payment?webtask_no_cache=1"
 
-typealias Cents = Int
-
-enum Currency: String {
-  case USD = "usd"
-}
-
 struct ProcessPaymentRequest: Request {
-  typealias ResponseObject = Void
+  typealias ResponseObject = Charge
 
   let amount: Cents
   let currency: Currency = .USD

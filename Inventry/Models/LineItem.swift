@@ -17,6 +17,14 @@ struct LineItem {
   func decrement() -> LineItem {
     return LineItem(productId: productId, quantity: quantity - 1)
   }
+
+  static func encodeArray(items: [LineItem]) -> AnyObject {
+    return items.reduce([String: AnyObject]()) { dict, item in
+      var mutableDict = dict
+      mutableDict[item.productId] = item.encode()
+      return mutableDict
+    }
+  }
 }
 
 extension LineItem: Decodable {
@@ -31,4 +39,13 @@ extension LineItem: Equatable { }
 
 func == (lhs: LineItem, rhs: LineItem) -> Bool {
   return lhs.productId == rhs.productId
+}
+
+extension LineItem: Encodable {
+  func encode() -> AnyObject {
+    return [
+      "product_id": productId,
+      "quantity": quantity
+    ]
+  }
 }
