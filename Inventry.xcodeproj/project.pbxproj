@@ -27,6 +27,10 @@
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
 		E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */; };
 		E7B7C8F21CF9EC220019BA0D /* PaymentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */; };
+		E7B7C8F41CFA07380019BA0D /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F31CFA07380019BA0D /* Curry.framework */; };
+		E7B7C8F61CFA073C0019BA0D /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F51CFA073C0019BA0D /* Result.framework */; };
+		E7B7C8F81CFA07420019BA0D /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F71CFA07420019BA0D /* Argo.framework */; };
+		E7B7C8FA1CFA07470019BA0D /* Swish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F91CFA07470019BA0D /* Swish.framework */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -71,6 +75,10 @@
 		E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewViewController.swift; sourceTree = "<group>"; };
 		E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentProvider.swift; sourceTree = "<group>"; };
+		E7B7C8F31CFA07380019BA0D /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
+		E7B7C8F51CFA073C0019BA0D /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		E7B7C8F71CFA07420019BA0D /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
+		E7B7C8F91CFA07470019BA0D /* Swish.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swish.framework; path = Carthage/Build/iOS/Swish.framework; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -97,6 +105,10 @@
 			files = (
 				D003D3296CB33C061D68C18F /* Foundation.framework in Frameworks */,
 				A450CDE52A985A8F7C85D073 /* Pods_Inventry.framework in Frameworks */,
+				E7B7C8F41CFA07380019BA0D /* Curry.framework in Frameworks */,
+				E7B7C8F61CFA073C0019BA0D /* Result.framework in Frameworks */,
+				E7B7C8F81CFA07420019BA0D /* Argo.framework in Frameworks */,
+				E7B7C8FA1CFA07470019BA0D /* Swish.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +241,10 @@
 		A4430C81E009E218B8653A26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E7B7C8F91CFA07470019BA0D /* Swish.framework */,
+				E7B7C8F71CFA07420019BA0D /* Argo.framework */,
+				E7B7C8F51CFA073C0019BA0D /* Result.framework */,
+				E7B7C8F31CFA07380019BA0D /* Curry.framework */,
 				A46B373C9CEEBB3E753A79E4 /* iOS */,
 				EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */,
 				A8A8A7B0CBF7990DAC8735DE /* Pods_unit_tests_UnitTests.framework */,
@@ -506,6 +522,10 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Swish.framework",
 			);
 			name = "Copy frameworks (Carthage)";
 			outputPaths = (
@@ -675,6 +695,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -750,6 +774,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;

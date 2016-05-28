@@ -12,8 +12,6 @@ target target_name do
   pod "Firebase/Crash"
   pod "Firebase/Database"
   pod "Firebase/RemoteConfig"
-  pod "Argo"
-  pod "Curry"
   pod "Stripe"
   pod "MTBBarcodeScanner"
   pod "PromiseKit"

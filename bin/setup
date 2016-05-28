@@ -8,5 +8,5 @@ gem install cocoapods
 gem install scan
 
 pod install
-carthage update
+carthage update --platform iOS
 

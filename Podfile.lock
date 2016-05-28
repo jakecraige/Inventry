@@ -1,6 +1,4 @@
 PODS:
-  - Argo (3.0.1)
-  - Curry (2.2.0)
   - Firebase (3.2.0):
     - Firebase/Core (= 3.2.0)
   - Firebase/Analytics (3.2.0):
@@ -79,8 +77,6 @@ PODS:
   - Stripe/Core (7.0.1)
 
 DEPENDENCIES:
-  - Argo
-  - Curry
   - Firebase
   - Firebase/Auth
   - Firebase/Crash
@@ -91,8 +87,6 @@ DEPENDENCIES:
   - Stripe
 
 SPEC CHECKSUMS:
-  Argo: 22c5d62b7967020a641468c91dc9488bea9523b8
-  Curry: c22d80fff7f5a4b1bbd531455c3e2dbb099658a3
   Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
   FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
@@ -110,6 +104,6 @@ SPEC CHECKSUMS:
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
-PODFILE CHECKSUM: d4fde2e21ea2dd0aedfab91b7114bef996df2a5d
+PODFILE CHECKSUM: 64d2396266c303fb31371b26681f7ef8483ecbfc
 
 COCOAPODS: 1.0.0
