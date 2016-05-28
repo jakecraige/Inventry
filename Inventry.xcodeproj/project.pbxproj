@@ -170,14 +170,14 @@
 		569DC04AB8F37C79A52AE3AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E7DA83961CF2AA23001320D2 /* Product.swift */,
-				E7444C6E1CF4A433006D7159 /* Database.swift */,
-				E7444C741CF608EB006D7159 /* Order.swift */,
-				E7444C801CF8C1BF006D7159 /* LineItem.swift */,
-				E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */,
 				E7B7C9041CFA10870019BA0D /* Charge.swift */,
-				E7B7C9061CFA11AD0019BA0D /* OrderProcessor.swift */,
 				E7B7C9081CFA15240019BA0D /* Currency.swift */,
+				E7444C6E1CF4A433006D7159 /* Database.swift */,
+				E7444C801CF8C1BF006D7159 /* LineItem.swift */,
+				E7444C741CF608EB006D7159 /* Order.swift */,
+				E7B7C9061CFA11AD0019BA0D /* OrderProcessor.swift */,
+				E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */,
+				E7DA83961CF2AA23001320D2 /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,8 +185,8 @@
 		5F8AD8B933024B24B6994CD7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E7DA83981CF2AA4B001320D2 /* Modelable.swift */,
 				E7DA839A1CF2B037001320D2 /* Encodable.swift */,
+				E7DA83981CF2AA4B001320D2 /* Modelable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -223,14 +223,14 @@
 			isa = PBXGroup;
 			children = (
 				B7C937EA554B3EA9962016A5 /* AppDelegate.swift */,
+				E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */,
 				E7DA83941CF2A735001320D2 /* EditProductViewController.swift */,
-				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
-				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
-				E7444C721CF60812006D7159 /* OrdersTableViewController.swift */,
 				E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */,
 				E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */,
 				E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */,
-				E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */,
+				E7444C721CF60812006D7159 /* OrdersTableViewController.swift */,
+				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
+				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
