@@ -32,6 +32,7 @@ class EditProductViewController: UITableViewController {
       quantityTextField.text = "\(product.quantity)"
       priceTextField.text = "\(product.price)"
     }
+    nameTextField.becomeFirstResponder()
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
