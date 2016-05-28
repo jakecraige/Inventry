@@ -4,7 +4,9 @@ platform :ios, "9.0"
 
 use_frameworks!
 
-target "Inventry" do
+target_name = "Inventry"
+
+target target_name do
   pod "Firebase"
   pod "Firebase/Auth"
   pod "Firebase/Crash"
@@ -25,8 +27,9 @@ end
 post_install do |installer|
   require "fileutils"
 
+  pods_prefix = "Pods-#{target_name}"
   pods_acknowledgements_path =
-    "Pods/Target Support Files/Pods/Pods-Acknowledgements.plist"
+    "Pods/Target Support Files/#{pods_prefix}/#{pods_prefix}-Acknowledgements.plist"
   settings_bundle_path = Dir.glob("**/*Settings.bundle*").first
 
   if File.file?(pods_acknowledgements_path)
