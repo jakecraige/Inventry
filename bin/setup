@@ -2,6 +2,8 @@
 
 set -e
 
+npm install -g wt-cli
+
 gem install cocoapods
 gem install scan
 

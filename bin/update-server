@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+wt update process-payment ./backend/process-payment.js
