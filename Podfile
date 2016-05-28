@@ -13,6 +13,7 @@ target "Inventry" do
   pod "Argo"
   pod "Curry"
   pod "Stripe"
+  pod "MTBBarcodeScanner"
 end
 
 abstract_target :unit_tests do

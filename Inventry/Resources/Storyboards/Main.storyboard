@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Inventory-->
@@ -414,14 +415,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="productCell" textLabel="2Ps-Op-9pZ" style="IBUITableViewCellStyleDefault" id="6Yw-y0-S3h">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="productCell" textLabel="Uzw-6H-NA0" style="IBUITableViewCellStyleDefault" id="kJG-Gd-v5S">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Yw-y0-S3h" id="nMM-1y-pud">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJG-Gd-v5S" id="eQ7-00-yHO">
                                     <rect key="frame" x="0.0" y="0.0" width="561" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Product Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Ps-Op-9pZ">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Product Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uzw-6H-NA0">
                                             <rect key="frame" x="15" y="0.0" width="546" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -443,11 +444,19 @@
                                 <segue destination="BVw-ho-qdi" kind="unwind" unwindAction="unwindToOrders:" id="CeZ-1J-i87"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="Ews-bW-WrZ">
-                            <connections>
-                                <segue destination="nNq-TX-nrM" kind="show" identifier="paymentSegue" id="doA-Wl-PlS"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Next" id="Ews-bW-WrZ">
+                                <connections>
+                                    <segue destination="nNq-TX-nrM" kind="show" identifier="paymentSegue" id="doA-Wl-PlS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="barcode" style="plain" id="AxA-Hc-Huv" userLabel="Scan Barcode">
+                                <connections>
+                                    <action selector="scanBarcodeTapped:" destination="33J-th-MdT" id="pkL-te-el7"/>
+                                    <segue destination="0qL-i3-QmO" kind="presentation" identifier="scanBarcodeSegue" id="Msk-xg-xb5"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="DZT-yc-lND" id="BJ3-sc-pAd"/>
@@ -465,6 +474,61 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2566" y="930"/>
+        </scene>
+        <!--Scan Barcode-->
+        <scene sceneID="ZbQ-wg-G9t">
+            <objects>
+                <viewController id="80m-3d-vKm" customClass="BarcodeScannerViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E8j-d7-dpL"/>
+                        <viewControllerLayoutGuide type="bottom" id="TLH-Wd-XL1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8G9-eV-Wc4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y7U-jK-jJh">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <subviews>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MW0-QA-B05">
+                                        <rect key="frame" x="0.0" y="266" width="600" height="5"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="5" id="9mt-yL-I9r"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="MW0-QA-B05" firstAttribute="leading" secondItem="Y7U-jK-jJh" secondAttribute="leading" id="Fgn-tf-LGE"/>
+                                    <constraint firstAttribute="trailing" secondItem="MW0-QA-B05" secondAttribute="trailing" id="Jvm-hf-3kn"/>
+                                    <constraint firstItem="MW0-QA-B05" firstAttribute="centerY" secondItem="Y7U-jK-jJh" secondAttribute="centerY" id="VCv-BW-DJV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y7U-jK-jJh" firstAttribute="top" secondItem="E8j-d7-dpL" secondAttribute="bottom" id="KbV-pG-LeO"/>
+                            <constraint firstItem="TLH-Wd-XL1" firstAttribute="top" secondItem="Y7U-jK-jJh" secondAttribute="bottom" id="LQj-Cz-HMn"/>
+                            <constraint firstItem="Y7U-jK-jJh" firstAttribute="leading" secondItem="8G9-eV-Wc4" secondAttribute="leading" id="TbK-ms-jvK"/>
+                            <constraint firstAttribute="trailing" secondItem="Y7U-jK-jJh" secondAttribute="trailing" id="iAH-fS-TM8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan Barcode" id="Mfa-le-s8a">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HK0-xZ-pAJ">
+                            <connections>
+                                <segue destination="BVw-ho-qdi" kind="unwind" identifier="unwindChooseProductsSegue" unwindAction="unwindToChooseProducts:" id="0Up-Bg-vHN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scanBarView" destination="MW0-QA-B05" id="JHl-80-cSh"/>
+                        <outlet property="scannerContainerView" destination="Y7U-jK-jJh" id="Keu-Ed-uj6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mc1-08-SNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3396" y="1768"/>
         </scene>
         <!--Payment-->
         <scene sceneID="ghY-hD-Ktm">
@@ -660,7 +724,28 @@
             </objects>
             <point key="canvasLocation" x="1896" y="930"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sB9-Do-1ft">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0qL-i3-QmO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7H-O0-uJn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="80m-3d-vKm" kind="relationship" relationship="rootViewController" id="r9k-vI-5ln"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g3X-F9-F9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584" y="1768"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="barcode" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vs6-Wx-eTS"/>
     </inferredMetricsTieBreakers>

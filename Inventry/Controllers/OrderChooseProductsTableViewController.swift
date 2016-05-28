@@ -50,8 +50,33 @@ class OrderChooseProductsTableViewController: UITableViewController {
     }
   }
 
+  @IBAction func unwindToChooseProducts(segue: UIStoryboardSegue) {
+    switch segue.sourceViewController {
+    case let vc as BarcodeScannerViewController:
+      if let barcode = vc.scannedBarcode {
+        addProduct(withBarcode: barcode)
+      }
+    default: break
+    }
+  }
+
   private func getProduct(atIndexPath indexPath: NSIndexPath) -> Product {
     return searchControllerActive ? filteredProducts[indexPath.row] : allProducts[indexPath.row]
+  }
+
+  private func addProduct(withBarcode barcode: String) {
+    let product = allProducts.filter { $0.isbn == barcode }.first
+    if let product = product {
+      addProduct(product)
+    } else {
+      print("Couldn't find product with code: \(barcode)")
+    }
+  }
+
+  private func addProduct(product: Product) {
+    guard let productId = product.id else { return }
+    let lineItem = LineItem(productId: productId)
+    order.add(lineItem: lineItem)
   }
 }
 
@@ -72,7 +97,7 @@ extension OrderChooseProductsTableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath)
     let product = getProduct(atIndexPath: indexPath)
     cell.textLabel?.text = product.name
-
+    
     if let productId = product.id where order.contains(LineItem(productId: productId)) {
       cell.accessoryType = .Checkmark
     } else {
@@ -86,13 +111,12 @@ extension OrderChooseProductsTableViewController {
     let product = getProduct(atIndexPath: indexPath)
     guard let productId = product.id else { return }
     let lineItem = LineItem(productId: productId)
-
+    
     if order.contains(lineItem) {
       order.remove(lineItem: lineItem)
     } else {
-      order.add(lineItem: lineItem)
+      addProduct(product)
     }
-
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 }
