@@ -54,6 +54,9 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
+  - Stripe (7.0.1):
+    - Stripe/Core (= 7.0.1)
+  - Stripe/Core (7.0.1)
 
 DEPENDENCIES:
   - Argo
@@ -63,6 +66,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - Firebase/Database
   - Firebase/RemoteConfig
+  - Stripe
 
 SPEC CHECKSUMS:
   Argo: 22c5d62b7967020a641468c91dc9488bea9523b8
@@ -79,7 +83,8 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 3e83269048cfb498dc7ec83ab36813360965c74f
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
-PODFILE CHECKSUM: 5091a2c4d272b992a7c29d1c56a235a5be250150
+PODFILE CHECKSUM: ea81ef8e928516b06919ab6577ad947760e92512
 
 COCOAPODS: 1.0.0
