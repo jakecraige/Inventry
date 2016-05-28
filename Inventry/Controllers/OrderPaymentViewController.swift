@@ -2,6 +2,7 @@ import UIKit
 import Stripe
 
 class OrderPaymentViewController: UITableViewController {
+  @IBOutlet var reviewButton: UIBarButtonItem!
   @IBOutlet var nameField: UITextField!
   @IBOutlet var phoneField: UITextField!
   @IBOutlet var emailField: UITextField!
@@ -17,7 +18,9 @@ class OrderPaymentViewController: UITableViewController {
     emailField.text = ""
     paymentTextField.translatesAutoresizingMaskIntoConstraints = false
     paymentTextField.borderWidth = 0
+    paymentTextField.delegate = self
     creditCardView.addSubview(paymentTextField)
+    nameField.becomeFirstResponder()
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -30,6 +33,40 @@ class OrderPaymentViewController: UITableViewController {
     default: break
     }
   }
+
+  @IBAction func reviewTapped(sender: UIBarButtonItem) {
+    if paymentTextField.valid {
+      validatePayment()
+    } else {
+      performSegueWithIdentifier("reviewSegue", sender: self)
+    }
+  }
+
+  private func validatePayment() {
+    startLoading()
+    PaymentProvier.createToken(paymentTextField.cardParams).then { token -> Void in
+      self.order.paymentToken = token
+      self.performSegueWithIdentifier("reviewSegue", sender: self)
+    }.always {
+      self.stopLoading()
+    }.error { error in
+      print(error)
+    }
+  }
+
+  private func startLoading() {
+    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    let button = UIBarButtonItem(customView: indicator)
+    self.navigationItem.rightBarButtonItem = button
+    indicator.startAnimating()
+  }
+
+  private func stopLoading() {
+    let button = UIBarButtonItem()
+    button.title = "Review"
+    button.enabled = paymentTextField.valid
+    self.navigationItem.rightBarButtonItem = button
+  }
 }
 
 // MARK: UITableViewDelegate
@@ -41,4 +78,7 @@ extension OrderPaymentViewController {
 
 // MARK: STPPaymentCardTextFieldDelegate
 extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
+  func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+    reviewButton.enabled = textField.valid
+  }
 }

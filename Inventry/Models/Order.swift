@@ -4,6 +4,11 @@ import Curry
 struct Order: Modelable {
   let id: String?
   var lineItems: [LineItem] = []
+  var paymentToken: String?
+
+  static func new() -> Order {
+    return self.init(id: .None, lineItems: [], paymentToken: .None)
+  }
 
   func contains(lineItem: LineItem) -> Bool {
     return lineItems.contains(lineItem)
@@ -24,6 +29,7 @@ extension Order: Decodable {
     return curry(Order.init)
       <^> json <|? "id"
       <*> json <|| "line_items"
+      <*> json <|? "payment_token"
   }
 }
 

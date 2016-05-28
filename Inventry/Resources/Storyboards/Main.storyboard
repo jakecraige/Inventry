@@ -660,9 +660,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Payment" id="Y0Q-ln-Mbk">
-                        <barButtonItem key="rightBarButtonItem" title="Review" id="zlP-MZ-lYi">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Review" id="zlP-MZ-lYi">
                             <connections>
-                                <segue destination="Ph3-4g-Vvm" kind="show" identifier="reviewSegue" id="mBl-MN-Mdq"/>
+                                <action selector="reviewTapped:" destination="nNq-TX-nrM" id="Eai-yh-bWh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -671,11 +671,13 @@
                         <outlet property="emailField" destination="Poc-0v-oGW" id="wV6-Ra-u8N"/>
                         <outlet property="nameField" destination="Ljt-LT-LPg" id="lOe-zx-4IJ"/>
                         <outlet property="phoneField" destination="4kC-o3-Czn" id="7m3-Pb-04T"/>
+                        <outlet property="reviewButton" destination="zlP-MZ-lYi" id="BmO-WT-o5T"/>
+                        <segue destination="Ph3-4g-Vvm" kind="show" identifier="reviewSegue" id="z9f-yy-dRH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiJ-dj-vQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3302" y="930"/>
+            <point key="canvasLocation" x="3323" y="930"/>
         </scene>
         <!--Review-->
         <scene sceneID="Vrx-bx-8Ch">

@@ -16,6 +16,7 @@ target target_name do
   pod "Curry"
   pod "Stripe"
   pod "MTBBarcodeScanner"
+  pod "PromiseKit"
 end
 
 abstract_target :unit_tests do

@@ -3,7 +3,7 @@ import UIKit
 class OrderChooseProductsTableViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
   var allProducts: [Product] = [] { didSet { tableView.reloadData() } }
-  var order = Order(id: .None, lineItems: []) { didSet { tableView.reloadData() } }
+  var order = Order.new() { didSet { tableView.reloadData() } }
   var observers: [UInt] = []
   let searchController = UISearchController(searchResultsController: nil)
 
