@@ -6,6 +6,7 @@ class BarcodeScannerViewController: UIViewController {
   @IBOutlet var scanBarView: UIView!
   var scanner: MTBBarcodeScanner!
   var scannedBarcode: String?
+  var receiveBarcodeCallback: ((String) -> Void)?
 
   override func viewDidLoad() {
     scanner = MTBBarcodeScanner(previewView: scannerContainerView)
@@ -20,6 +21,10 @@ class BarcodeScannerViewController: UIViewController {
     }
   }
 
+  @IBAction func cancelTapped(sender: UIBarButtonItem) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
+
   private func startScanning() {
     scanner.startScanningWithResultBlock { [weak self] avCodes in
       guard let `self` = self else { return }
@@ -27,10 +32,10 @@ class BarcodeScannerViewController: UIViewController {
         .flatMap { $0 as? AVMetadataMachineReadableCodeObject }
         .filter { $0.stringValue != nil }
         .map { $0.stringValue as String }
-      self.scannedBarcode = codes.first
-      if let _ = self.scannedBarcode {
+      if let code = codes.first {
         self.scanner.stopScanning()
-        self.performSegueWithIdentifier("unwindChooseProductsSegue", sender: nil)
+        self.receiveBarcodeCallback?(code)
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
   }

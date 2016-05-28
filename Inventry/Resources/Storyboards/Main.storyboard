@@ -162,11 +162,18 @@
                                 <action selector="cancelTapped:" destination="Sr9-D7-AqP" id="2hd-f1-ojt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="DyA-QP-VEJ">
-                            <connections>
-                                <action selector="doneTapped:" destination="Sr9-D7-AqP" id="iLf-v8-wwy"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Done" id="DyA-QP-VEJ">
+                                <connections>
+                                    <action selector="doneTapped:" destination="Sr9-D7-AqP" id="iLf-v8-wwy"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="barcode" style="plain" id="TAw-Ef-oYr">
+                                <connections>
+                                    <segue destination="0qL-i3-QmO" kind="presentation" identifier="scanBarcodeSegue" id="rbk-DM-Lrp"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="isbnTextField" destination="ofu-kv-OTI" id="JyK-WZ-XNY"/>
@@ -517,7 +524,7 @@
                     <navigationItem key="navigationItem" title="Scan Barcode" id="Mfa-le-s8a">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="HK0-xZ-pAJ">
                             <connections>
-                                <segue destination="BVw-ho-qdi" kind="unwind" identifier="unwindChooseProductsSegue" unwindAction="unwindToChooseProducts:" id="0Up-Bg-vHN"/>
+                                <action selector="cancelTapped:" destination="80m-3d-vKm" id="SYE-m8-qLq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -736,10 +743,10 @@
             </objects>
             <point key="canvasLocation" x="1896" y="930"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Scan Barcode Navigation Controller-->
         <scene sceneID="sB9-Do-1ft">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0qL-i3-QmO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0qL-i3-QmO" userLabel="Scan Barcode Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7H-O0-uJn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -760,5 +767,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vs6-Wx-eTS"/>
+        <segue reference="rbk-DM-Lrp"/>
     </inferredMetricsTieBreakers>
 </document>

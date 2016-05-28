@@ -34,6 +34,18 @@ class EditProductViewController: UITableViewController {
     }
   }
 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "scanBarcodeSegue":
+      let navVC = segue.destinationViewController as? UINavigationController
+      let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
+      vc?.receiveBarcodeCallback = { self.isbnTextField.text = $0 }
+    default: break
+    }
+  }
+
   // This can be presented as a modal or within a navigationController, this handles both
   func dismiss() {
     self.navigationController?.popViewControllerAnimated(true)

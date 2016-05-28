@@ -46,16 +46,10 @@ class OrderChooseProductsTableViewController: UITableViewController {
     case "paymentSegue":
       let vc = segue.destinationViewController as? OrderPaymentViewController
       vc?.order = order
-    default: break
-    }
-  }
-
-  @IBAction func unwindToChooseProducts(segue: UIStoryboardSegue) {
-    switch segue.sourceViewController {
-    case let vc as BarcodeScannerViewController:
-      if let barcode = vc.scannedBarcode {
-        addProduct(withBarcode: barcode)
-      }
+    case "scanBarcodeSegue":
+      let navVC = segue.destinationViewController as? UINavigationController
+      let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
+      vc?.receiveBarcodeCallback = { self.addProduct(withBarcode: $0) }
     default: break
     }
   }
