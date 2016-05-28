@@ -35,7 +35,7 @@ class ProductViewController: UIViewController {
   func updateUI() {
     nameLabel.text = product.name
     barcodeLabel.text = product.barcode
-    priceLabel.text = "$\(product.price)"
+    priceLabel.text = PriceFormatter(product).formatted
     quantityLabel.text = "\(product.quantity)"
   }
 }

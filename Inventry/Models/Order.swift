@@ -64,7 +64,11 @@ struct Order: Modelable {
   }
 
   func calculateAmount(products: [Product]) -> Cents {
-    return 500
+    return lineItems.reduce(0) { total, item in
+      guard let product = products.filter({($0.id ?? "") == item.productId}).first else { return total }
+
+      return total + (product.price * item.quantity)
+    }
   }
 }
 

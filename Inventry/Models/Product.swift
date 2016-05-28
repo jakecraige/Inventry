@@ -7,7 +7,8 @@ struct Product: Modelable {
   let name: String
   let barcode: String
   let quantity: Int
-  let price: Float
+  let price: Cents
+  let currency: Currency
 }
 
 extension Product: Decodable {
@@ -18,6 +19,7 @@ extension Product: Decodable {
       <*> json <| "barcode"
       <*> json <| "quantity"
       <*> json <| "price"
+      <*> json <| "currency"
   }
 }
 
@@ -28,6 +30,7 @@ extension Product: Encodable {
       "barcode": barcode,
       "quantity": quantity,
       "price": price,
+      "currency": currency.rawValue,
     ]
   }
 }

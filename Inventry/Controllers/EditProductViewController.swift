@@ -14,12 +14,14 @@ class EditProductViewController: UITableViewController {
   }
 
   @IBAction func doneTapped(sender: UIBarButtonItem) {
+    let price: Cents = Int((Float(priceTextField.text ?? "") ?? 0) * 100)
     let product = Product(
       id: self.product?.id,
       name: nameTextField.text ?? "",
       barcode: barcodeTextField.text ?? "",
       quantity: Int(quantityTextField.text ?? "") ?? 0,
-      price: Float(priceTextField.text ?? "") ?? 0
+      price: price,
+      currency: .USD
     )
     Database.save(product)
     dismiss()
@@ -30,7 +32,7 @@ class EditProductViewController: UITableViewController {
       nameTextField.text = product.name
       barcodeTextField.text = product.barcode
       quantityTextField.text = "\(product.quantity)"
-      priceTextField.text = "\(product.price)"
+      priceTextField.text = "\(PriceFormatter(product).dollarPrice)"
     }
     nameTextField.becomeFirstResponder()
   }

@@ -3,7 +3,12 @@ import UIKit
 class OrderChooseProductsTableViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
   var allProducts: [Product] = [] { didSet { tableView.reloadData() } }
-  var order = Order.new() { didSet { tableView.reloadData() } }
+  var order = Order.new() {
+    didSet {
+      tableView.reloadData()
+      updateNavigationTitle()
+    }
+  }
   var observers: [UInt] = []
   let searchController = UISearchController(searchResultsController: nil)
 
@@ -74,6 +79,11 @@ class OrderChooseProductsTableViewController: UITableViewController {
   private func removeOrDecrement(product: Product) {
     guard let productId = product.id else { return }
     order.removeOrDecrement(lineItem: LineItem(productId: productId))
+  }
+
+  private func updateNavigationTitle() {
+    let amount = order.calculateAmount(allProducts)
+    self.navigationItem.title = PriceFormatter(amount).formatted
   }
 }
 

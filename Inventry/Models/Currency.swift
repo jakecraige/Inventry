@@ -3,7 +3,7 @@ import Argo
 typealias Cents = Int
 
 enum Currency: String {
-  case USD = "usd"
+  case USD
 }
 
 extension Currency: Decodable {
