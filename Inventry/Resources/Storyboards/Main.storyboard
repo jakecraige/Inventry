@@ -703,8 +703,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Review" id="Qd6-Nv-HaP">
-                        <barButtonItem key="rightBarButtonItem" title="Place Order" id="AaA-Lh-hL8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Place Order" id="AaA-Lh-hL8">
+                            <connections>
+                                <action selector="placeOrderTapped:" destination="Ph3-4g-Vvm" id="HiH-TW-uff"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="placeOrderButton" destination="AaA-Lh-hL8" id="enh-jc-wyE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="244-rq-3Lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -31,6 +31,9 @@
 		E7B7C8F61CFA073C0019BA0D /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F51CFA073C0019BA0D /* Result.framework */; };
 		E7B7C8F81CFA07420019BA0D /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F71CFA07420019BA0D /* Argo.framework */; };
 		E7B7C8FA1CFA07470019BA0D /* Swish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F91CFA07470019BA0D /* Swish.framework */; };
+		E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8FC1CFA07C40019BA0D /* ProcessPaymentRequest.swift */; };
+		E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */; };
+		E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9021CFA0A900019BA0D /* Swish.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -79,6 +82,9 @@
 		E7B7C8F51CFA073C0019BA0D /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		E7B7C8F71CFA07420019BA0D /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		E7B7C8F91CFA07470019BA0D /* Swish.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swish.framework; path = Carthage/Build/iOS/Swish.framework; sourceTree = "<group>"; };
+		E7B7C8FC1CFA07C40019BA0D /* ProcessPaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessPaymentRequest.swift; sourceTree = "<group>"; };
+		E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		E7B7C9021CFA0A900019BA0D /* Swish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swish.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 		D4D7E3CD78F68A757D2B07E0 /* Inventry */ = {
 			isa = PBXGroup;
 			children = (
+				E7B7C8FB1CFA07B20019BA0D /* Networking */,
 				E8C2B72A211EA864D3A6B68C /* Extensions */,
 				5F8AD8B933024B24B6994CD7 /* Protocols */,
 				569DC04AB8F37C79A52AE3AF /* Models */,
@@ -289,11 +296,21 @@
 			path = Inventry;
 			sourceTree = "<group>";
 		};
+		E7B7C8FB1CFA07B20019BA0D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E7B7C8FC1CFA07C40019BA0D /* ProcessPaymentRequest.swift */,
+				E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		E8C2B72A211EA864D3A6B68C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				E7444C701CF4AD4B006D7159 /* Firebase.swift */,
 				E7444C821CF8E26E006D7159 /* Swift.swift */,
+				E7B7C9021CFA0A900019BA0D /* Swish.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -559,18 +576,21 @@
 				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
+				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
 				E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
+				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
 				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
 				E7B7C8F21CF9EC220019BA0D /* PaymentProvider.swift in Sources */,
 				E7444C6F1CF4A433006D7159 /* Database.swift in Sources */,
+				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,
