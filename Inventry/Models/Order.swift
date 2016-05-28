@@ -16,13 +16,51 @@ struct Order: Modelable {
     return lineItems.contains(lineItem)
   }
 
-  mutating func add(lineItem lineItem: LineItem) {
-    lineItems.append(lineItem)
+  func item(forProduct product: Product) -> LineItem? {
+    return lineItems.filter { $0.productId == (product.id ?? "") }.first
   }
 
-  mutating func remove(lineItem lineItem: LineItem) {
-    guard let index = lineItems.indexOf(lineItem) else { return }
+  mutating func add(lineItem lineItem: LineItem, atIndex index: Int? = .None) {
+    if let index = index {
+      lineItems.insert(lineItem, atIndex: index)
+    } else {
+      lineItems.append(lineItem)
+    }
+  }
+
+  mutating func remove(lineItem lineItem: LineItem) -> Int? {
+    guard let index = lineItems.indexOf(lineItem) else { return .None }
     lineItems.removeAtIndex(index)
+    return index
+  }
+
+  mutating func replace(oldLineItem: LineItem, withLineItem newLineItem: LineItem) {
+    let index = remove(lineItem: oldLineItem)
+    add(lineItem: newLineItem, atIndex: index)
+  }
+
+  /// Add line item if it doesn't exist, increment quantity otherwise
+  mutating func addOrIncrement(lineItem lineItem: LineItem) {
+    if let existingItem = find(lineItem: lineItem) {
+      replace(existingItem, withLineItem: existingItem.increment())
+    } else {
+      add(lineItem: lineItem)
+    }
+  }
+
+  /// Decrement line item quantity if it exists and is above one, remove otherwise
+  mutating func removeOrDecrement(lineItem lineItem: LineItem) {
+    guard let existingItem = find(lineItem: lineItem) else { return }
+
+    if existingItem.quantity > 1 {
+      replace(existingItem, withLineItem: existingItem.decrement())
+    } else {
+      remove(lineItem: lineItem)
+    }
+  }
+
+  private func find(lineItem lineItem: LineItem) -> LineItem? {
+    return lineItems.filter({$0.productId == lineItem.productId}).first
   }
 
   func calculateAmount(products: [Product]) -> Cents {

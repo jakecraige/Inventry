@@ -49,7 +49,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
     case "scanBarcodeSegue":
       let navVC = segue.destinationViewController as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
-      vc?.receiveBarcodeCallback = { self.addProduct(withBarcode: $0) }
+      vc?.receiveBarcodeCallback = { self.addOrIncrementProduct(withBarcode: $0) }
     default: break
     }
   }
@@ -58,19 +58,22 @@ class OrderChooseProductsTableViewController: UITableViewController {
     return searchControllerActive ? filteredProducts[indexPath.row] : allProducts[indexPath.row]
   }
 
-  private func addProduct(withBarcode barcode: String) {
-    let product = allProducts.filter { $0.barcode == barcode }.first
-    if let product = product {
-      addProduct(product)
+  private func addOrIncrementProduct(withBarcode barcode: String) {
+    if let product = allProducts.filter({$0.barcode == barcode}).first {
+      addOrIncrementProduct(product)
     } else {
       print("Couldn't find product with code: \(barcode)")
     }
   }
 
-  private func addProduct(product: Product) {
+  private func addOrIncrementProduct(product: Product) {
     guard let productId = product.id else { return }
-    let lineItem = LineItem(productId: productId)
-    order.add(lineItem: lineItem)
+    order.addOrIncrement(lineItem: LineItem(productId: productId))
+  }
+
+  private func removeOrDecrement(product: Product) {
+    guard let productId = product.id else { return }
+    order.removeOrDecrement(lineItem: LineItem(productId: productId))
   }
 }
 
@@ -91,11 +94,14 @@ extension OrderChooseProductsTableViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath)
     let product = getProduct(atIndexPath: indexPath)
     cell.textLabel?.text = product.name
-    
+
     if let productId = product.id where order.contains(LineItem(productId: productId)) {
+      let quantity = order.item(forProduct: product)?.quantity ?? 1
       cell.accessoryType = .Checkmark
+      cell.detailTextLabel?.text = quantity > 1 ? "Qty: \(quantity)" : .None
     } else {
       cell.accessoryType = .None
+      cell.detailTextLabel?.text = .None
     }
 
     return cell
@@ -109,9 +115,29 @@ extension OrderChooseProductsTableViewController {
     if order.contains(lineItem) {
       order.remove(lineItem: lineItem)
     } else {
-      addProduct(product)
+      addOrIncrementProduct(product)
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+  }
+
+  override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    let product = getProduct(atIndexPath: indexPath)
+
+    let decrement = UITableViewRowAction(style: .Normal, title: "-1", handler: { _, _ in
+      self.removeOrDecrement(product)
+    })
+    decrement.backgroundColor = .redColor()
+
+    let increment = UITableViewRowAction(style: .Normal, title: "+1", handler: { _, _ in
+      self.addOrIncrementProduct(product)
+    })
+    increment.backgroundColor = .greenColor()
+
+    return [increment, decrement]
   }
 }
 
