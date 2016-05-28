@@ -37,6 +37,7 @@
 		E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9041CFA10870019BA0D /* Charge.swift */; };
 		E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9061CFA11AD0019BA0D /* OrderProcessor.swift */; };
 		E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9081CFA15240019BA0D /* Currency.swift */; };
+		E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C90A1CFA265E0019BA0D /* Customer.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -91,6 +92,7 @@
 		E7B7C9041CFA10870019BA0D /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Charge.swift; sourceTree = "<group>"; };
 		E7B7C9061CFA11AD0019BA0D /* OrderProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderProcessor.swift; sourceTree = "<group>"; };
 		E7B7C9081CFA15240019BA0D /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		E7B7C90A1CFA265E0019BA0D /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				E7B7C9041CFA10870019BA0D /* Charge.swift */,
 				E7B7C9081CFA15240019BA0D /* Currency.swift */,
+				E7B7C90A1CFA265E0019BA0D /* Customer.swift */,
 				E7444C6E1CF4A433006D7159 /* Database.swift */,
 				E7444C801CF8C1BF006D7159 /* LineItem.swift */,
 				E7444C741CF608EB006D7159 /* Order.swift */,
@@ -603,6 +606,7 @@
 				E7444C6F1CF4A433006D7159 /* Database.swift in Sources */,
 				E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */,
 				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
+				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,

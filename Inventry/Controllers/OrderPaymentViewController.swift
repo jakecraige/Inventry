@@ -10,7 +10,7 @@ class OrderPaymentViewController: UITableViewController {
   let paymentTextField = STPPaymentCardTextField()
 
   var order: Order!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     nameField.text = ""
@@ -35,6 +35,11 @@ class OrderPaymentViewController: UITableViewController {
   }
 
   @IBAction func reviewTapped(sender: UIBarButtonItem) {
+    order.customer = Customer(
+      name: nameField.text!,
+      email: emailField.text,
+      phone: phoneField.text
+    )
     if paymentTextField.valid {
       validatePayment()
     } else {
@@ -54,6 +59,11 @@ class OrderPaymentViewController: UITableViewController {
     }
   }
 
+  private func updateReviewButtonEnabled() {
+    let nameFieldPresent = !(nameField.text ?? "").isEmpty
+    reviewButton.enabled = nameFieldPresent && paymentTextField.valid
+  }
+
   private func startLoading() {
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     let button = UIBarButtonItem(customView: indicator)
@@ -67,6 +77,10 @@ class OrderPaymentViewController: UITableViewController {
     button.enabled = paymentTextField.valid
     self.navigationItem.rightBarButtonItem = button
   }
+
+  @IBAction func nameFieldEditingChanged() {
+    updateReviewButtonEnabled()
+  }
 }
 
 // MARK: UITableViewDelegate
@@ -79,6 +93,6 @@ extension OrderPaymentViewController {
 // MARK: STPPaymentCardTextFieldDelegate
 extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
   func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-    reviewButton.enabled = textField.valid
+    updateReviewButtonEnabled()
   }
 }

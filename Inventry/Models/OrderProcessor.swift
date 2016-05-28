@@ -33,7 +33,8 @@ struct OrderProcessor {
       id: id,
       lineItems: self.order.lineItems,
       paymentToken: self.order.paymentToken,
-      charge: charge
+      charge: charge,
+      customer: self.order.customer
     )
     Database.save(updatedOrder)
     return updatedOrder

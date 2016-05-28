@@ -6,9 +6,10 @@ struct Order: Modelable {
   var lineItems: [LineItem] = []
   var paymentToken: String?
   var charge: Charge?
+  var customer: Customer?
 
   static func new() -> Order {
-    return self.init(id: .None, lineItems: [], paymentToken: .None, charge: .None)
+    return self.init(id: .None, lineItems: [], paymentToken: .None, charge: .None, customer: .None)
   }
 
   func contains(lineItem: LineItem) -> Bool {
@@ -36,6 +37,7 @@ extension Order: Decodable {
       <*> json <|| "line_items"
       <*> json <|? "payment_token"
       <*> json <|? "charge"
+      <*> json <|? "customer"
   }
 }
 
@@ -45,6 +47,7 @@ extension Order: Encodable {
     dict["payment_token"] = paymentToken
     dict["line_items"] = LineItem.encodeArray(lineItems)
     dict["charge"] = charge?.encode()
+    dict["customer"] = customer?.encode()
     return dict
   }
 }

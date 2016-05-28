@@ -558,6 +558,9 @@
                                                     <rect key="frame" x="56" y="0.0" width="536" height="43"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="nameFieldEditingChanged" destination="nNq-TX-nrM" eventType="editingChanged" id="eVj-75-9Nz"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
