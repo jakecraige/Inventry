@@ -10,3 +10,12 @@ public func with<T>(item: T, @noescape update: ((inout T) throws -> Void)) rethr
   try update(&this)
   return this
 }
+
+extension CollectionType {
+  func find(@noescape predicate: (Self.Generator.Element) throws -> Bool) rethrows -> Self.Generator.Element? {
+    for item in self where try predicate(item) {
+      return item
+    }
+    return .None
+  }
+}

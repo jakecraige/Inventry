@@ -64,7 +64,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   private func addOrIncrementProduct(withBarcode barcode: String) {
-    if let product = allProducts.filter({$0.barcode == barcode}).first {
+    if let product = allProducts.find({$0.barcode == barcode}) {
       addOrIncrementProduct(product)
     } else {
       print("Couldn't find product with code: \(barcode)")

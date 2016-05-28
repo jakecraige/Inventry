@@ -17,7 +17,7 @@ struct Order: Modelable {
   }
 
   func item(forProduct product: Product) -> LineItem? {
-    return lineItems.filter { $0.productId == (product.id ?? "") }.first
+    return lineItems.find { $0.productId == (product.id ?? "") }
   }
 
   mutating func add(lineItem lineItem: LineItem, atIndex index: Int? = .None) {
@@ -57,12 +57,12 @@ struct Order: Modelable {
   }
 
   private func find(lineItem lineItem: LineItem) -> LineItem? {
-    return lineItems.filter({$0.productId == lineItem.productId}).first
+    return lineItems.find({$0.productId == lineItem.productId})
   }
 
   func calculateAmount(products: [Product]) -> Cents {
     return lineItems.reduce(0) { total, item in
-      guard let product = products.filter({($0.id ?? "") == item.productId}).first else { return total }
+      guard let product = products.find({($0.id ?? "") == item.productId}) else { return total }
 
       return total + (product.price * item.quantity)
     }

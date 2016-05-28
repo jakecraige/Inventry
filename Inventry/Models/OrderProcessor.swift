@@ -5,10 +5,9 @@ import Swish
 struct TokenMissingError: ErrorType { }
 
 struct OrderProcessor {
-  let order: Order
   let products: [Product]
 
-  func process() -> Promise<Order> {
+  func process(order: Order) -> Promise<Order> {
     guard let paymentToken = order.paymentToken else {
       return Promise(error: TokenMissingError())
     }
@@ -24,19 +23,30 @@ struct OrderProcessor {
     let processPayment = APIClient().performRequest(request)
 
     return processPayment.then { charge in
-      return self.updateAndPersistOrder(id, charge: charge)
-    } // then reduce product quantities
+      return self.updateAndPersistOrder(id, order: order, charge: charge)
+    }.then { order in
+      return self.reduceInventoryQuantities(order)
+    }
   }
 
-  private func updateAndPersistOrder(id: String, charge: Charge) -> Order {
+  private func updateAndPersistOrder(id: String, order: Order, charge: Charge) -> Order {
     let updatedOrder = Order(
       id: id,
-      lineItems: self.order.lineItems,
-      paymentToken: self.order.paymentToken,
+      lineItems: order.lineItems,
+      paymentToken: order.paymentToken,
       charge: charge,
-      customer: self.order.customer
+      customer: order.customer
     )
     Database.save(updatedOrder)
     return updatedOrder
+  }
+
+  private func reduceInventoryQuantities(order: Order) -> Order {
+    order.lineItems.forEach { item in
+      if let product = products.find({($0.id ?? "") == item.productId}) {
+        Database.save(product.decrement(by: item.quantity))
+      }
+    }
+    return order
   }
 }
