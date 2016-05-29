@@ -14,6 +14,15 @@ struct PriceFormatter {
     self.currency = product.currency
   }
 
+  init?(_ order: Order) {
+    if let charge = order.charge {
+      self.price = charge.amount
+      self.currency = charge.currency
+    } else {
+      return nil
+    }
+  }
+
   var dollarPrice: Float {
     return Float(price) / 100
   }

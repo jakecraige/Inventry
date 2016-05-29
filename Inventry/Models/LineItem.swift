@@ -1,7 +1,7 @@
 import Argo
 import Curry
 
-struct LineItem {
+struct LineItem: FIRNestedArray {
   let productId: String
   let quantity: Int
 
