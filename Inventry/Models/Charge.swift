@@ -10,7 +10,7 @@ struct Charge {
 extension Charge: Decodable {
   static func decode(json: JSON) -> Decoded<Charge> {
     return curry(Charge.init)
-      <^> json <| "stripe_id"
+      <^> (json <| "stripe_id").or(json <| "id") // Firebase stores as `stripe_id`, API returns `id`
       <*> json <| "amount"
       <*> json <| "currency"
   }
