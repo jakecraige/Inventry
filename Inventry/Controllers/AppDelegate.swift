@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import Stripe
+import FirebaseAuthUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,5 +11,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FIRApp.configure()
     Stripe.setDefaultPublishableKey("pk_test_9t5vFFqvMgBYGscK1XNwPdcj")
     return true
+  }
+
+  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    guard let authUI = FIRAuthUI.authUI(),
+          let sourceApp = sourceApplication else { return false }
+
+    return authUI.handleOpenURL(url, sourceApplication: sourceApp)
   }
 }

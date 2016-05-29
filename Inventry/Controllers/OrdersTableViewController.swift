@@ -5,6 +5,8 @@ class OrdersTableViewController: UITableViewController {
   var observers: [UInt] = []
 
   override func viewDidLoad() {
+    AuthenticationController().present(onViewController: self)
+
     observers.append(Database.observeArray(eventType: .Value) { self.orders = $0 })
   }
 

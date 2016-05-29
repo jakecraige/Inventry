@@ -12,6 +12,7 @@ target target_name do
   pod "Firebase/Crash"
   pod "Firebase/Database"
   pod "Firebase/RemoteConfig"
+  pod "FirebaseUI/Google"
   pod "Stripe"
   pod "MTBBarcodeScanner"
   pod "PromiseKit"

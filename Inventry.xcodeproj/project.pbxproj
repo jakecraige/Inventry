@@ -42,6 +42,7 @@
 		E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9111CFA4EF10019BA0D /* SelectProductTableViewCell.swift */; };
 		E7B7C9141CFA69100019BA0D /* Argo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9131CFA69100019BA0D /* Argo.swift */; };
 		E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */; };
+		E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -101,6 +102,7 @@
 		E7B7C9111CFA4EF10019BA0D /* SelectProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProductTableViewCell.swift; sourceTree = "<group>"; };
 		E7B7C9131CFA69100019BA0D /* Argo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Argo.swift; sourceTree = "<group>"; };
 		E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRNestedArray.swift; sourceTree = "<group>"; };
+		E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				E7444C721CF60812006D7159 /* OrdersTableViewController.swift */,
 				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
 				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
+				E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */,
+				E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
