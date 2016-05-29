@@ -10,7 +10,14 @@ class OrderReviewViewController: UITableViewController {
   var products: [Product] = [] {
     didSet {
       placeOrderButton.enabled = products.count > 0
+      viewModel = OrderReviewViewModel(
+        order: order,
+        products: products
+      )
     }
+  }
+  var viewModel: OrderReviewViewModel? {
+    didSet { tableView.reloadData() }
   }
 
   override func viewDidLoad() {
@@ -62,5 +69,25 @@ class OrderReviewViewController: UITableViewController {
     )
     avc.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in }))
     self.presentViewController(avc, animated: true, completion: nil)
+  }
+}
+
+// MARK: UITableViewDataSource
+extension OrderReviewViewController {
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return viewModel?.lineItems.count ?? 0
+  }
+}
+
+// MARK: UITableViewDelegate
+extension OrderReviewViewController {
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    guard let viewModel = viewModel else {
+      fatalError("We should never reach this when there's no viewModel")
+    }
+    let cell = tableView.dequeueReusableCellWithIdentifier("orderReviewCell", forIndexPath: indexPath)
+    let item = viewModel.lineItem(forIndexPath: indexPath)
+    cell.textLabel?.text = item.product.name
+    return cell
   }
 }
