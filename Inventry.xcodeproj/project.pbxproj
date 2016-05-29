@@ -16,6 +16,13 @@
 		DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F455F480F9A35395CB1D85A7 /* Images.xcassets */; };
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
+		E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */; };
+		E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */; };
+		E718E1FD1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718E1FC1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib */; };
+		E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2001CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift */; };
+		E718E2031CFBA1F70086E2C4 /* LineItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2021CFBA1F70086E2C4 /* LineItemViewModel.swift */; };
+		E718E2051CFBAEE60086E2C4 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */; };
+		E718E2071CFBB2390086E2C4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2061CFBB2390086E2C4 /* Config.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -43,7 +50,7 @@
 		E7B7C9141CFA69100019BA0D /* Argo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9131CFA69100019BA0D /* Argo.swift */; };
 		E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */; };
 		E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */; };
-		E7B7C91E1CFB57AA0019BA0D /* OrderReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C91D1CFB57AA0019BA0D /* OrderReviewViewModel.swift */; };
+		E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C91D1CFB57AA0019BA0D /* OrderViewModel.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -77,6 +84,13 @@
 		C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inventry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inventry/Pods-Inventry.debug.xcconfig"; sourceTree = "<group>"; };
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewTableViewCell.swift; sourceTree = "<group>"; };
+		E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		E718E1FC1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextFieldTableViewCell.xib; sourceTree = "<group>"; };
+		E718E2001CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		E718E2021CFBA1F70086E2C4 /* LineItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineItemViewModel.swift; sourceTree = "<group>"; };
+		E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		E718E2061CFBB2390086E2C4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +118,7 @@
 		E7B7C9131CFA69100019BA0D /* Argo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Argo.swift; sourceTree = "<group>"; };
 		E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRNestedArray.swift; sourceTree = "<group>"; };
 		E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
-		E7B7C91D1CFB57AA0019BA0D /* OrderReviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewViewModel.swift; sourceTree = "<group>"; };
+		E7B7C91D1CFB57AA0019BA0D /* OrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -170,7 +184,8 @@
 		19C28C881D64075BE73EFF30 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E7B7C91D1CFB57AA0019BA0D /* OrderReviewViewModel.swift */,
+				E7B7C91D1CFB57AA0019BA0D /* OrderViewModel.swift */,
+				E718E2021CFBA1F70086E2C4 /* LineItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -179,6 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				E7B7C9111CFA4EF10019BA0D /* SelectProductTableViewCell.swift */,
+				E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */,
+				E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */,
+				E718E2001CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +214,7 @@
 				E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */,
 				E7B7C90F1CFA47160019BA0D /* PriceFormatter.swift */,
 				E7DA83961CF2AA23001320D2 /* Product.swift */,
+				E718E2061CFBB2390086E2C4 /* Config.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E065678D341C8C9FB3E61A /* LaunchScreen.xib */,
+				E718E1FC1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -350,6 +370,7 @@
 			children = (
 				825F635CF5FEF774B0E62269 /* Info.plist */,
 				E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */,
+				E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */,
 			);
 			path = "Other-Sources";
 			sourceTree = "<group>";
@@ -443,10 +464,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */,
+				E718E2051CFBAEE60086E2C4 /* RemoteConfigDefaults.plist in Resources */,
 				8652EA4EDC3DA5729678D2C7 /* Main.storyboard in Resources */,
 				E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */,
 				95461CD5D4A9B40E33EF27D4 /* LaunchScreen.xib in Resources */,
 				BB78E846142B27596595A81D /* Settings.bundle in Resources */,
+				E718E1FD1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,19 +629,23 @@
 				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */,
-				E7B7C91E1CFB57AA0019BA0D /* OrderReviewViewModel.swift in Sources */,
+				E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */,
 				E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */,
+				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
+				E718E2031CFBA1F70086E2C4 /* LineItemViewModel.swift in Sources */,
 				E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */,
 				E7B7C9141CFA69100019BA0D /* Argo.swift in Sources */,
+				E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7B7C9101CFA47160019BA0D /* PriceFormatter.swift in Sources */,
 				E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */,
+				E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */,
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
@@ -628,6 +655,7 @@
 				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
 				E7B7C8F21CF9EC220019BA0D /* PaymentProvider.swift in Sources */,
 				E7444C6F1CF4A433006D7159 /* Database.swift in Sources */,
+				E718E2071CFBB2390086E2C4 /* Config.swift in Sources */,
 				E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */,
 				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
@@ -763,6 +791,7 @@
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inventry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -841,6 +870,7 @@
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inventry.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

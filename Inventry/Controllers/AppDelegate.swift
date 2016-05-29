@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    FIRApp.configure()
+    configureFirebase()
     Stripe.setDefaultPublishableKey("pk_test_9t5vFFqvMgBYGscK1XNwPdcj")
     return true
   }
@@ -18,5 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           let sourceApp = sourceApplication else { return false }
 
     return authUI.handleOpenURL(url, sourceApplication: sourceApp)
+  }
+
+  func configureFirebase() {
+    FIRApp.configure()
+    let config = FIRRemoteConfig.remoteConfig()
+    #if DEBUG
+      config.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
+    #endif
+    config.setDefaultsFromPlistFileName("RemoteConfigDefaults")
+    config.fetchWithCompletionHandler { _ in
+      config.activateFetched()
+      print("Latest remote config activated")
+    }
   }
 }

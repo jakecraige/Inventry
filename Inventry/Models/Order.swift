@@ -1,15 +1,27 @@
 import Argo
 import Curry
 
+private let defaultNotes = ""
+
 struct Order: Modelable {
   let id: String?
   var lineItems: [LineItem] = []
   var paymentToken: String?
   var charge: Charge?
   var customer: Customer?
+  var taxRate: Float // Stored as a decimal 8.25% will be 0.0825
+  var notes: String = defaultNotes
 
   static func new() -> Order {
-    return self.init(id: .None, lineItems: [], paymentToken: .None, charge: .None, customer: .None)
+    return self.init(
+      id: .None,
+      lineItems: [],
+      paymentToken: .None,
+      charge: .None,
+      customer: .None,
+      taxRate: Config.defaultTaxRate,
+      notes: defaultNotes
+    )
   }
 
   func contains(lineItem: LineItem) -> Bool {
@@ -77,6 +89,8 @@ extension Order: Decodable {
       <*> json <|? "payment_token"
       <*> json <|? "charge"
       <*> json <|? "customer"
+      <*> (json <|  "tax_rate").or(.Success(Config.defaultTaxRate))
+      <*> (json <|  "notes").or(.Success(defaultNotes))
   }
 }
 
@@ -87,6 +101,8 @@ extension Order: Encodable {
     dict["line_items"] = LineItem.encodeArray(lineItems)
     dict["charge"] = charge?.encode()
     dict["customer"] = customer?.encode()
+    dict["tax_rate"] = taxRate
+    dict["notes"] = notes
     return dict
   }
 }

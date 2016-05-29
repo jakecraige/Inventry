@@ -1,14 +1,21 @@
 import Foundation
 
-struct LineItemViewModel {
-  let lineItem: LineItem
-  let product: Product
-}
-
-struct OrderReviewViewModel {
+struct OrderViewModel {
   let order: Order
   let products: [Product]
   let lineItems: [LineItemViewModel]
+
+  var subtotal: Cents {
+    return lineItems.reduce(0, combine: { $0 + $1.price })
+  }
+
+  var tax: Cents {
+    return Int(Float(subtotal) * order.taxRate)
+  }
+
+  var total: Cents {
+    return subtotal + tax
+  }
 
   init(order: Order, products: [Product]) {
     self.order = order

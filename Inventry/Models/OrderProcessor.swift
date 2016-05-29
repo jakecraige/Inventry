@@ -5,9 +5,17 @@ import Swish
 struct TokenMissingError: ErrorType { }
 
 struct OrderProcessor {
+  let vm: OrderViewModel
+  let order: Order
   let products: [Product]
 
-  func process(order: Order) -> Promise<Order> {
+  init(vm: OrderViewModel) {
+    self.vm = vm
+    order = vm.order
+    products = vm.products
+  }
+
+  func process() -> Promise<Order> {
     guard let paymentToken = order.paymentToken else {
       return Promise(error: TokenMissingError())
     }
@@ -16,37 +24,37 @@ struct OrderProcessor {
 
     // Charge credit card
     let request = ProcessPaymentRequest(
-      amount: order.calculateAmount(products),
+      amount: vm.total,
       description: "Order: \(id)",
       token: paymentToken
     )
     let processPayment = APIClient().performRequest(request)
 
-    return processPayment.then { charge in
-      return self.updateAndPersistOrder(id, order: order, charge: charge)
-    }.then { order in
-      return self.reduceInventoryQuantities(order)
+    return processPayment.then { charge -> Order in
+      let updatedOrder = self.updateAndPersistOrder(id, charge: charge)
+      self.reduceInventoryQuantities()
+      return updatedOrder
     }
   }
 
-  private func updateAndPersistOrder(id: String, order: Order, charge: Charge) -> Order {
+  private func updateAndPersistOrder(id: String, charge: Charge) -> Order {
     let updatedOrder = Order(
       id: id,
       lineItems: order.lineItems,
       paymentToken: order.paymentToken,
       charge: charge,
-      customer: order.customer
+      customer: order.customer,
+      taxRate: order.taxRate,
+      notes: order.notes
     )
     Database.save(updatedOrder)
     return updatedOrder
   }
 
-  private func reduceInventoryQuantities(order: Order) -> Order {
-    order.lineItems.forEach { item in
-      if let product = products.find({($0.id ?? "") == item.productId}) {
-        Database.save(product.decrement(by: item.quantity))
-      }
+  private func reduceInventoryQuantities() {
+    vm.lineItems.forEach { itemVM in
+      let product = itemVM.product.decrement(by: itemVM.lineItem.quantity)
+      Database.save(product)
     }
-    return order
   }
 }
