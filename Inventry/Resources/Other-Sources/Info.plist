@@ -27,14 +27,14 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.696367787528-shq2aukaqi20k8bdk2tp78kph3e88lvc</string>
+				<string>com.googleusercontent.apps.705578828796-21e7sfifaip4dec6i8pqj5j949ohbc1q</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.inventry.Inventry</string>
+			<string>com.jakecraige.Inventry</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
