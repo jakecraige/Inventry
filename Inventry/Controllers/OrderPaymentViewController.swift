@@ -70,17 +70,12 @@ class OrderPaymentViewController: UITableViewController {
   }
 
   private func startLoading() {
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-    let button = UIBarButtonItem(customView: indicator)
-    self.navigationItem.rightBarButtonItem = button
-    indicator.startAnimating()
+    navigationItem.startLoadingRightButton()
   }
 
   private func stopLoading() {
-    let button = UIBarButtonItem()
-    button.title = "Review"
-    button.enabled = paymentValid
-    self.navigationItem.rightBarButtonItem = button
+    navigationItem.stopLoadingRightButton()
+    navigationItem.rightBarButtonItem?.enabled = paymentValid
   }
 
   @IBAction func nameFieldEditingChanged() {

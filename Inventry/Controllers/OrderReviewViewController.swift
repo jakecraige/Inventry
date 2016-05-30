@@ -27,10 +27,10 @@ class OrderReviewViewController: UITableViewController {
       updateViewModel()
     }
   }
-  var viewModel: OrderViewModel? {
+  var viewModel = OrderViewModel(order: Order.new(), products: []) {
     didSet {
-      guard let oldOrder = oldValue?.order,
-            let newOrder = viewModel?.order else { return tableView.reloadData() }
+      let oldOrder = oldValue.order
+      let newOrder = viewModel.order
 
       // Efficiently reload relevant cells when specific values change. This is kind of gross though.
       // It also prevents losing focus since `tableView.reloadData` reloads the settings cells too
@@ -63,17 +63,22 @@ class OrderReviewViewController: UITableViewController {
   }
 
   @IBAction func placeOrderTapped(sender: UIBarButtonItem) {
-    confirmOkayToChargeCard().then(placeOrder).error { error in
+    navigationItem.startLoadingRightButton()
+    confirmOkayToChargeCard()
+      .then(placeOrder)
+      .then { [weak self] in self?.dismissViewControllerAnimated(true, completion: nil) }
+      .always { [weak self] in self?.navigationItem.stopLoadingRightButton() }
+      .error { error in
       if error is CancelledAlertError {
         // ignore
       } else {
         print(error)
+        self.handleProcessError(error)
       }
     }
   }
 
   private func confirmOkayToChargeCard() -> Promise<Void> {
-    guard let viewModel = viewModel else { fatalError() }
     return Promise { resolve, reject in
       let amount = PriceFormatter(viewModel.total).formatted
       let avc = UIAlertController(
@@ -88,16 +93,11 @@ class OrderReviewViewController: UITableViewController {
     }
   }
 
-  private func placeOrder() {
-    guard let viewModel = viewModel else { return }
+  private func placeOrder() -> Promise<Void> {
     let processor = OrderProcessor(vm: viewModel)
 
-    processor.process().then { order -> Void in
+    return processor.process().then { order -> Void in
       print("Order completed: \(order)")
-      self.dismissViewControllerAnimated(true, completion: nil)
-    }.error { error in
-      print("Error encountered: \(error)")
-      self.handleProcessError(error)
     }
   }
 
@@ -129,7 +129,7 @@ extension OrderReviewViewController {
     guard let section = Section(rawValue: section) else { return 0 }
 
     switch section {
-    case .lineItems: return viewModel?.lineItems.count ?? 0
+    case .lineItems: return viewModel.lineItems.count
     case .settings: return 2
     case .summary: return 1
     }
@@ -143,7 +143,6 @@ extension OrderReviewViewController {
 
     switch section {
     case .lineItems:
-      guard let viewModel = viewModel else { fatalError("We should never reach this when there's no viewModel") }
       let cell = tableView.dequeueReusableCellWithIdentifier("orderReviewCell", forIndexPath: indexPath) as! OrderReviewTableViewCell
       let item = viewModel.lineItem(forIndexPath: indexPath)
       cell.configure(item)
@@ -172,9 +171,7 @@ extension OrderReviewViewController {
 
     case .summary:
       let cell = tableView.dequeueReusableCellWithIdentifier("orderSummaryCell", forIndexPath: indexPath) as! OrderSummaryTableViewCell
-      if let viewModel = viewModel {
-        cell.configure(viewModel)
-      }
+      cell.configure(viewModel)
       return cell
     }
   }
