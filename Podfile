@@ -16,6 +16,7 @@ target target_name do
   pod "Stripe"
   pod "MTBBarcodeScanner"
   pod "PromiseKit/CorePromise"
+  pod "HockeySDK"
 end
 
 abstract_target :unit_tests do

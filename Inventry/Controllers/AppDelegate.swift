@@ -2,6 +2,7 @@ import UIKit
 import Firebase
 import Stripe
 import FirebaseAuthUI
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     configureFirebase()
+    configureHockey()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
     return true
   }
@@ -23,13 +25,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func configureFirebase() {
     FIRApp.configure()
     let config = FIRRemoteConfig.remoteConfig()
-    #if DEBUG
+    if Environment.current == .Development {
       config.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
-    #endif
+    }
     config.setDefaultsFromPlistFileName("RemoteConfigDefaults")
     config.fetchWithCompletionHandler { _ in
       config.activateFetched()
       print("Latest remote config activated")
     }
+  }
+
+  func configureHockey() {
+    guard Environment.isDevelopment else { return }
+
+    let manager = BITHockeyManager.sharedHockeyManager()
+    manager.configureWithIdentifier(Environment.hockeyAppIdentifier)
+    manager.startManager()
+    manager.authenticator.authenticateInstallation()
+    manager.crashManager.crashManagerStatus = .AutoSend
   }
 }

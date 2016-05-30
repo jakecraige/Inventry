@@ -68,6 +68,9 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
+  - HockeySDK (4.0.1):
+    - HockeySDK/AllFeaturesLib (= 4.0.1)
+  - HockeySDK/AllFeaturesLib (4.0.1)
   - MTBBarcodeScanner (2.0.2)
   - PromiseKit/CorePromise (3.2.0)
   - Stripe (7.0.1):
@@ -81,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/RemoteConfig
   - FirebaseUI/Google
+  - HockeySDK
   - MTBBarcodeScanner
   - PromiseKit/CorePromise
   - Stripe
@@ -102,10 +106,11 @@ SPEC CHECKSUMS:
   GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  HockeySDK: 1b69a82782f6a3d4a1c0b1f04dca4bca83fc8c82
   MTBBarcodeScanner: 18ab77ad8dfa31db96446c9325e86122d39425d6
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
-PODFILE CHECKSUM: 837ad5cb57667d5f1a9c31db397764bf4f907b71
+PODFILE CHECKSUM: 9f0211810066ade00b653ea63eaf67d07773d5b8
 
 COCOAPODS: 1.0.0
