@@ -24,15 +24,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text Field Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mAD-V4-Nr5">
-                        <rect key="frame" x="96" y="13" width="296" height="17"/>
+                        <rect key="frame" x="96" y="0.0" width="296" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="leadingMargin" secondItem="92i-L3-u7a" secondAttribute="leading" id="14b-Hs-O0z"/>
+                    <constraint firstAttribute="bottom" secondItem="mAD-V4-Nr5" secondAttribute="bottom" id="7Q6-8w-rAf"/>
                     <constraint firstItem="mAD-V4-Nr5" firstAttribute="baseline" secondItem="92i-L3-u7a" secondAttribute="baseline" id="KPH-ab-9M6"/>
                     <constraint firstItem="92i-L3-u7a" firstAttribute="centerY" secondItem="fy1-JK-A0F" secondAttribute="centerY" id="bbE-dF-zzc"/>
+                    <constraint firstItem="mAD-V4-Nr5" firstAttribute="top" secondItem="fy1-JK-A0F" secondAttribute="top" id="lYd-5f-U4g"/>
                     <constraint firstItem="mAD-V4-Nr5" firstAttribute="leading" secondItem="92i-L3-u7a" secondAttribute="trailing" constant="8" symbolic="YES" id="wIU-IF-Hfg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mAD-V4-Nr5" secondAttribute="trailing" id="zlN-m3-vM0"/>
                 </constraints>
