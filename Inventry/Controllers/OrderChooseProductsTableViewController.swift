@@ -72,6 +72,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   private func addOrIncrementProduct(product: Product) {
+    guard product.quantity > 0 else { return }
     guard let productId = product.id else { return }
 
     if let item = order.item(forProduct: product) {
