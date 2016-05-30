@@ -64,6 +64,7 @@
 		E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96D91CFCC718008B47D4 /* Timestampable.swift */; };
 		E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */; };
 		E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */; };
+		E7EA96E11CFCD06D008B47D4 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96E01CFCD06D008B47D4 /* Environment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		E7EA96D91CFCC718008B47D4 /* Timestampable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestampable.swift; sourceTree = "<group>"; };
 		E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamps.swift; sourceTree = "<group>"; };
+		E7EA96E01CFCD06D008B47D4 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				79059BF56588598CA5EF4F62 /* Controllers */,
 				4683E34364B0C5063EA27A1C /* Views */,
 				172A0CB83BA56B97CF1E0CE4 /* Resources */,
+				E7EA96E01CFCD06D008B47D4 /* Environment.swift */,
 			);
 			path = Inventry;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */,
 				E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */,
 				E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */,
+				E7EA96E11CFCD06D008B47D4 /* Environment.swift in Sources */,
 				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,

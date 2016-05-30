@@ -10,3 +10,4 @@ gem install scan
 pod install
 carthage update --platform iOS
 
+echo "Make sure to get 'Environment.swift' and 'GoogleService-Info.plist' from someone who has the app set up locally"

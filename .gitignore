@@ -33,3 +33,7 @@ Carthage
 *.iml
 
 private/
+
+# Private keys
+Environment.swift
+GoogleService-Info.plist

@@ -9,7 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     configureFirebase()
-    Stripe.setDefaultPublishableKey("pk_test_9t5vFFqvMgBYGscK1XNwPdcj")
+    Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
     return true
   }
 
