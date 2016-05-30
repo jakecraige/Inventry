@@ -2,6 +2,7 @@ import UIKit
 
 enum Storyboard: String {
   case Main
+  case OrderFlow
 }
 
 extension UIStoryboard {

@@ -60,6 +60,7 @@
 		E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839A1CF2B037001320D2 /* Encodable.swift */; };
 		E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */; };
 		E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839E1CF2D606001320D2 /* ProductViewController.swift */; };
+		E7EA96D81CFCA9A6008B47D4 /* OrderFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		E7DA839A1CF2B037001320D2 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		E7DA839E1CF2D606001320D2 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OrderFlow.storyboard; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				B13B28C744797DDC027BFDA2 /* Main.storyboard */,
+				E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				95461CD5D4A9B40E33EF27D4 /* LaunchScreen.xib in Resources */,
 				BB78E846142B27596595A81D /* Settings.bundle in Resources */,
 				E718E1FD1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib in Resources */,
+				E7EA96D81CFCA9A6008B47D4 /* OrderFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
