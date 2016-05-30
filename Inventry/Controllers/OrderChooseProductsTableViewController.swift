@@ -38,6 +38,10 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
     // Empty back button for next screen
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
+    if traitCollection.forceTouchCapability == .Available {
+      registerForPreviewingWithDelegate(self, sourceView: tableView)
+    }
   }
 
   deinit {
@@ -149,5 +153,22 @@ extension OrderChooseProductsTableViewController {
 extension OrderChooseProductsTableViewController: UISearchResultsUpdating {
   func updateSearchResultsForSearchController(searchController: UISearchController) {
     searchQuery = searchController.searchBar.text
+  }
+}
+
+// MARK: UIViewControllerPreviewingDelegate
+extension OrderChooseProductsTableViewController: UIViewControllerPreviewingDelegate {
+  func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    guard let indexPath = tableView.indexPathForRowAtPoint(location),
+          let vc = UIStoryboard.instantiateViewController(withIdentifier: "ViewProduct", fromStoryboard: .Main) as? ProductViewController
+      else { return .None }
+
+    vc.product = getProduct(atIndexPath: indexPath)
+
+    return vc
+  }
+
+  func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+    // Purposely empty since this never gets called because we only do a preview
   }
 }

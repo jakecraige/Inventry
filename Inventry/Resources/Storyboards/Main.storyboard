@@ -222,7 +222,7 @@
         <!--View Product View Controller-->
         <scene sceneID="TAR-q1-X5l">
             <objects>
-                <viewController title="View Product View Controller" id="wVj-xd-CV3" customClass="ProductViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewProduct" title="View Product View Controller" id="wVj-xd-CV3" customClass="ProductViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RQN-g4-Xt6"/>
                         <viewControllerLayoutGuide type="bottom" id="zj3-2C-buj"/>
@@ -792,8 +792,8 @@
         <image name="barcode" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F13-Du-eHW"/>
+        <segue reference="Msk-xg-xb5"/>
+        <segue reference="RmW-ic-rR0"/>
         <segue reference="Vs6-Wx-eTS"/>
-        <segue reference="rbk-DM-Lrp"/>
     </inferredMetricsTieBreakers>
 </document>
