@@ -15,7 +15,7 @@ target target_name do
   pod "FirebaseUI/Google"
   pod "Stripe"
   pod "MTBBarcodeScanner"
-  pod "PromiseKit"
+  pod "PromiseKit/CorePromise"
 end
 
 abstract_target :unit_tests do

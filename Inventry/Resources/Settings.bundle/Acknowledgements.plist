@@ -161,14 +161,6 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>See README.markdown for full license text.</string>
-			<key>Title</key>
-			<string>OMGHTTPURLRQ</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>@see README</string>
 			<key>Title</key>
 			<string>PromiseKit</string>
