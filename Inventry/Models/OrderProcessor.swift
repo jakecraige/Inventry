@@ -45,7 +45,8 @@ struct OrderProcessor {
       charge: charge,
       customer: order.customer,
       taxRate: order.taxRate,
-      notes: order.notes
+      notes: order.notes,
+      timestamps: order.timestamps
     )
     Database.save(updatedOrder)
     return updatedOrder

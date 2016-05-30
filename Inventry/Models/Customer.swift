@@ -17,7 +17,7 @@ extension Customer: Decodable {
 }
 
 extension Customer: Encodable {
-  func encode() -> AnyObject {
+  func encode() -> [String: AnyObject] {
     return [
       "name": name,
       "email": email ?? "",

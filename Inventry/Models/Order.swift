@@ -3,7 +3,7 @@ import Curry
 
 private let defaultNotes = ""
 
-struct Order: Modelable {
+struct Order: Modelable, Timestampable {
   let id: String?
   var lineItems: [LineItem] = []
   var paymentToken: String?
@@ -11,6 +11,7 @@ struct Order: Modelable {
   var customer: Customer?
   var taxRate: Float // Stored as a decimal 8.25% will be 0.0825
   var notes: String = defaultNotes
+  let timestamps: Timestamps?
 
   static func new() -> Order {
     return self.init(
@@ -20,7 +21,8 @@ struct Order: Modelable {
       charge: .None,
       customer: .None,
       taxRate: Config.defaultTaxRate,
-      notes: defaultNotes
+      notes: defaultNotes,
+      timestamps: .None
     )
   }
 
@@ -91,11 +93,12 @@ extension Order: Decodable {
       <*> json <|? "customer"
       <*> (json <|  "tax_rate").or(.Success(Config.defaultTaxRate))
       <*> (json <|  "notes").or(.Success(defaultNotes))
+      <*> json <|? "timestamps"
   }
 }
 
 extension Order: Encodable {
-  func encode() -> AnyObject {
+  func encode() -> [String: AnyObject] {
     var dict = [String: AnyObject]()
     dict["payment_token"] = paymentToken
     dict["line_items"] = LineItem.encodeArray(lineItems)

@@ -35,7 +35,7 @@ extension Product: Decodable {
 }
 
 extension Product: Encodable {
-  func encode() -> AnyObject {
+  func encode() -> [String: AnyObject] {
     return [
       "name": name,
       "barcode": barcode,

@@ -61,6 +61,9 @@
 		E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */; };
 		E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA839E1CF2D606001320D2 /* ProductViewController.swift */; };
 		E7EA96D81CFCA9A6008B47D4 /* OrderFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */; };
+		E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96D91CFCC718008B47D4 /* Timestampable.swift */; };
+		E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */; };
+		E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,9 @@
 		E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		E7DA839E1CF2D606001320D2 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OrderFlow.storyboard; sourceTree = "<group>"; };
+		E7EA96D91CFCC718008B47D4 /* Timestampable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestampable.swift; sourceTree = "<group>"; };
+		E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamps.swift; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				E7B7C90F1CFA47160019BA0D /* PriceFormatter.swift */,
 				E7DA83961CF2AA23001320D2 /* Product.swift */,
 				E718E2061CFBB2390086E2C4 /* Config.swift */,
+				E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +241,7 @@
 				E7DA839A1CF2B037001320D2 /* Encodable.swift */,
 				E7DA83981CF2AA4B001320D2 /* Modelable.swift */,
 				E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */,
+				E7EA96D91CFCC718008B47D4 /* Timestampable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 				E7B7C9131CFA69100019BA0D /* Argo.swift */,
 				E718E2081CFBD8530086E2C4 /* Storyboard.swift */,
 				E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */,
+				E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -666,9 +675,11 @@
 				E718E20D1CFBE5B00086E2C4 /* UINavigationItem.swift in Sources */,
 				E718E2091CFBD8530086E2C4 /* Storyboard.swift in Sources */,
 				E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */,
+				E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */,
 				E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */,
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
+				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,
@@ -680,6 +691,7 @@
 				E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */,
 				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
+				E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,

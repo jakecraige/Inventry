@@ -5,8 +5,10 @@ protocol Modelable: Decodable, Encodable, Equatable {
   static var refName: String { get }
   static var ref: FIRDatabaseReference { get }
 
+  /// The key stored in Firebase. This is also used to tell if an object is persisted or not.
   var id: String? { get }
   var childRef: FIRDatabaseReference { get }
+  var isPersisted: Bool { get }
 }
 
 extension Modelable {
@@ -24,6 +26,10 @@ extension Modelable {
     } else {
       return Self.ref.childByAutoId()
     }
+  }
+
+  var isPersisted: Bool {
+    return id != .None
   }
 }
 

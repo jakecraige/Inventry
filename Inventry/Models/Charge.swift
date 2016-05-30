@@ -17,7 +17,7 @@ extension Charge: Decodable {
 }
 
 extension Charge: Encodable {
-  func encode() -> AnyObject {
+  func encode() -> [String: AnyObject] {
     return [
       "stripe_id": stripeID,
       "amount": amount,

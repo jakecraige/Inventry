@@ -42,7 +42,7 @@ func == (lhs: LineItem, rhs: LineItem) -> Bool {
 }
 
 extension LineItem: Encodable {
-  func encode() -> AnyObject {
+  func encode() -> [String: AnyObject] {
     return [
       "product_id": productId,
       "quantity": quantity

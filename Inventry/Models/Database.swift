@@ -4,7 +4,16 @@ import Argo
 struct Database<Model: Modelable where Model.DecodedType == Model> {
   static func save(model: Model) -> String {
     let ref = model.childRef
-    ref.setValue(model.encode())
+    var values = model.encode()
+
+    if model is Timestampable {
+      values["timestamps/updated_at"] = FIRServerValue.timestamp()
+      if !model.isPersisted {
+        values["timestamps/created_at"] = FIRServerValue.timestamp()
+      }
+    }
+
+    ref.updateChildValues(values)
     return ref.key
   }
 
