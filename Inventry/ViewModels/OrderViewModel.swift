@@ -17,6 +17,8 @@ struct OrderViewModel {
     return subtotal + tax
   }
 
+  var customer: Customer? { return order.customer }
+
   init(order: Order, products: [Product]) {
     self.order = order
     self.products = products

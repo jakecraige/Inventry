@@ -197,7 +197,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfE-dU-E28">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hfE-dU-E28">
                                             <rect key="frame" x="8" y="8" width="584" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-g4-8aT" userLabel="Customer Stack View">
@@ -285,6 +285,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="emailLabel" destination="8cG-YU-FE2" id="rtj-eo-Dqc"/>
+                                    <outlet property="nameLabel" destination="aFo-Dk-ZpX" id="Mfi-8d-E4g"/>
+                                    <outlet property="phoneLabel" destination="z8H-q8-k5o" id="1Vo-bS-419"/>
                                     <outlet property="subtotalLabel" destination="gJK-wf-I7A" id="kKz-jM-nmf"/>
                                     <outlet property="taxLabel" destination="Yox-Ha-6SP" id="mwM-Yo-ale"/>
                                     <outlet property="totalLabel" destination="42E-uZ-m6C" id="LAK-RR-wZo"/>
