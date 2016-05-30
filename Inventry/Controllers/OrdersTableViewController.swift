@@ -16,6 +16,21 @@ class OrdersTableViewController: UITableViewController {
 
   @IBAction func unwindToOrders(sender: UIStoryboardSegue) {
   }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "showOrder":
+      guard let vc = segue.destinationViewController as? OrderReviewViewController,
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPathForCell(cell)
+        else { return }
+
+      vc.order = orders[indexPath.row]
+    default: break
+    }
+  }
 }
 
 // MARK: UITableViewDataSource
@@ -37,9 +52,5 @@ extension OrdersTableViewController {
       cell.detailTextLabel?.text = .None
     }
     return cell
-  }
-
-  override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return false
   }
 }

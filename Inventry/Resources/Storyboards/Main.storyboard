@@ -144,6 +144,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ULh-TG-pd4" kind="show" identifier="showOrder" id="GKi-db-WCd">
+                                        <segue key="commit" inheritsFrom="parent" id="bnI-YK-A9p"/>
+                                        <segue key="preview" inheritsFrom="commit" id="naT-gt-gHT"/>
+                                    </segue>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -401,14 +407,23 @@
                 <viewControllerPlaceholder storyboardName="OrderFlow" id="5Lg-a8-grn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5x-9N-Vbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213.5" y="944"/>
+            <point key="canvasLocation" x="1227.5" y="902"/>
+        </scene>
+        <!--ReviewOrder-->
+        <scene sceneID="3al-t3-bX5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OrderFlow" referencedIdentifier="ReviewOrder" id="ULh-TG-pd4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LSS-rk-4SS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1306.5" y="1024"/>
         </scene>
     </scenes>
     <resources>
         <image name="barcode" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RmW-ic-rR0"/>
+        <segue reference="F13-Du-eHW"/>
         <segue reference="Lht-PF-Qdp"/>
+        <segue reference="GKi-db-WCd"/>
     </inferredMetricsTieBreakers>
 </document>

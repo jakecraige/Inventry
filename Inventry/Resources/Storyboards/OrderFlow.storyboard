@@ -138,7 +138,7 @@
         <!--Review-->
         <scene sceneID="Vrx-bx-8Ch">
             <objects>
-                <tableViewController id="Ph3-4g-Vvm" customClass="OrderReviewViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReviewOrder" id="Ph3-4g-Vvm" customClass="OrderReviewViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="iTe-qh-kfd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +197,30 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="70.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0vc-Un-1So">
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-g4-8aT" userLabel="Customer Stack View">
+                                            <rect key="frame" x="8" y="8" width="153" height="55"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Alex Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFo-Dk-ZpX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="58" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123456790" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8H-q8-k5o">
+                                                    <rect key="frame" x="0.0" y="20" width="75" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="alex.doe@example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-YU-FE2">
+                                                    <rect key="frame" x="0.0" y="40" width="153" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="300" horizontalCompressionResistancePriority="800" misplaced="YES" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0vc-Un-1So" userLabel="Totals Stack View">
                                             <rect key="frame" x="124" y="8" width="108" height="55"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dBk-XH-OLe">
@@ -223,7 +246,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="755" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bEu-wb-DDN">
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bEu-wb-DDN">
                                                     <rect key="frame" x="61" y="0.0" width="48" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$14.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJK-wf-I7A">
@@ -251,6 +274,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="topMargin" secondItem="0vc-Un-1So" secondAttribute="top" id="6DK-9I-hOx"/>
+                                        <constraint firstItem="sSR-g4-8aT" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="0vc-Un-1So" secondAttribute="leading" priority="100" constant="-5" id="FhY-Bz-mau"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="sSR-g4-8aT" secondAttribute="leading" id="RQj-kg-2cd"/>
+                                        <constraint firstItem="sSR-g4-8aT" firstAttribute="top" secondItem="QMo-0v-qne" secondAttribute="topMargin" id="Xkn-V2-zpB"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sSR-g4-8aT" secondAttribute="bottom" id="d4z-Nk-8De"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="0vc-Un-1So" secondAttribute="bottom" id="uBW-Mf-G3k"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="0vc-Un-1So" secondAttribute="trailing" id="wa0-lM-05i"/>
                                     </constraints>
