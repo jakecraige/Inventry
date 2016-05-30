@@ -183,7 +183,5 @@ extension OrderReviewViewController {
     case .lineItems, .settings: return 44
     case .summary: return 71
     }
-
-
   }
 }

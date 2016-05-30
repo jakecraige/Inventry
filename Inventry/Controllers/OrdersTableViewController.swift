@@ -27,6 +27,10 @@ class OrdersTableViewController: UITableViewController {
             let indexPath = tableView.indexPathForCell(cell)
         else { return }
 
+      // Since we're reusing the review order VC, we want to nil the "Place Order" button and
+      // "Review" title
+      vc.navigationItem.rightBarButtonItem = .None
+      vc.navigationItem.title = .None
       vc.order = orders[indexPath.row]
     default: break
     }
