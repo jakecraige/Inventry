@@ -24,6 +24,7 @@
 		E718E2051CFBAEE60086E2C4 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */; };
 		E718E2071CFBB2390086E2C4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2061CFBB2390086E2C4 /* Config.swift */; };
 		E718E2091CFBD8530086E2C4 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2081CFBD8530086E2C4 /* Storyboard.swift */; };
+		E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -93,6 +94,7 @@
 		E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		E718E2061CFBB2390086E2C4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		E718E2081CFBD8530086E2C4 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTableViewCell.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */,
 				E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */,
 				E718E2001CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift */,
+				E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				E7B7C9141CFA69100019BA0D /* Argo.swift in Sources */,
 				E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
+				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
