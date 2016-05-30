@@ -15,6 +15,7 @@
 		D003D3296CB33C061D68C18F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A374D0172567CC3A941F0362 /* Foundation.framework */; };
 		DD4A44012FC6D312E507D63A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F455F480F9A35395CB1D85A7 /* Images.xcassets */; };
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
+		E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
 		E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */; };
 		E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */; };
@@ -91,6 +92,7 @@
 		B7C937EA554B3EA9962016A5 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inventry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inventry/Pods-Inventry.debug.xcconfig"; sourceTree = "<group>"; };
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				E7DA83961CF2AA23001320D2 /* Product.swift */,
 				E718E2061CFBB2390086E2C4 /* Config.swift */,
 				E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */,
+				E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
 				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
+				E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,

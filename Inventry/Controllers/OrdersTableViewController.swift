@@ -8,6 +8,10 @@ class OrdersTableViewController: UITableViewController {
     AuthenticationController().present(onViewController: self)
 
     observers.append(Database.observeArray(eventType: .Value) { [weak self] in self?.orders = $0 })
+
+
+    // Empty back button for next screen
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
 
   deinit {
@@ -28,10 +32,15 @@ class OrdersTableViewController: UITableViewController {
         else { return }
 
       // Since we're reusing the review order VC, we want to nil the "Place Order" button and
-      // "Review" title
+      // change "Review" title
+      let order = orders[indexPath.row]
+      vc.order = order
       vc.navigationItem.rightBarButtonItem = .None
-      vc.navigationItem.title = .None
-      vc.order = orders[indexPath.row]
+      if let createdAt = order.timestamps?.createdAt {
+        vc.navigationItem.title = DateFormatter(createdAt).formatted
+      } else {
+        vc.navigationItem.title = .None
+      }
     default: break
     }
   }
