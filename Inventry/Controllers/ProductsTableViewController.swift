@@ -10,7 +10,7 @@ class ProductsTableViewController: UITableViewController {
   var observers: [UInt] = []
 
   override func viewDidLoad() {
-    observers.append(Database.observeArray(eventType: .Value) { self.products = $0 })
+    observers.append(Database.observeArray(eventType: .Value) { [weak self] in self?.products = $0 })
   }
 
   deinit {
@@ -18,13 +18,14 @@ class ProductsTableViewController: UITableViewController {
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    guard let identifier = segue.identifier,
-          let indexPath = sender as? NSIndexPath
+    guard let identifier = segue.identifier
       else { return }
 
     switch identifier {
     case "viewProduct":
-      guard let vc = segue.destinationViewController as? ProductViewController
+      guard let vc = segue.destinationViewController as? ProductViewController,
+            let cell = sender as? UITableViewCell,
+            let indexPath = tableView.indexPathForCell(cell)
         else { return }
 
       vc.product = products[indexPath.row]
@@ -50,10 +51,6 @@ extension ProductsTableViewController {
 
 // MARK: UITableViewDelegate
 extension ProductsTableViewController {
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("viewProduct", sender: indexPath)
-  }
-
   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     return true
   }

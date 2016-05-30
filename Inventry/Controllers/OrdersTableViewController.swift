@@ -7,7 +7,7 @@ class OrdersTableViewController: UITableViewController {
   override func viewDidLoad() {
     AuthenticationController().present(onViewController: self)
 
-    observers.append(Database.observeArray(eventType: .Value) { self.orders = $0 })
+    observers.append(Database.observeArray(eventType: .Value) { [weak self] in self?.orders = $0 })
   }
 
   deinit {

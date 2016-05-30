@@ -55,7 +55,7 @@ class OrderReviewViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    Database.observeArrayOnce(eventType: .Value) { self.products = $0 }
+    Database.observeArrayOnce(eventType: .Value) { [weak self] in self?.products = $0 }
     tableView.registerNib(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"

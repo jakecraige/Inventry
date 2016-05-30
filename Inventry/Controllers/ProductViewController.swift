@@ -22,7 +22,8 @@ class ProductViewController: UIViewController {
   }
 
   override func viewDidLoad() {
-    observers.append(Database.observeObject(eventType: .Value, ref: product.childRef) { (product: Product) in
+    observers.append(Database.observeObject(eventType: .Value, ref: product.childRef) { [weak self] (product: Product) in
+      guard let `self` = self else { return }
       self.product = product
       self.updateUI()
     })

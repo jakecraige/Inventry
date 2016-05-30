@@ -5,6 +5,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Inventory-->
@@ -32,6 +33,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="wVj-xd-CV3" kind="show" identifier="viewProduct" id="F13-Du-eHW">
+                                        <segue key="commit" inheritsFrom="parent" id="RmW-ic-rR0"/>
+                                        <segue key="preview" inheritsFrom="commit" id="P3G-Il-O4j"/>
+                                    </segue>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,9 +53,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="wVj-xd-CV3" kind="show" identifier="viewProduct" id="jsF-Zm-YuW"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGp-tx-qwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -883,7 +887,8 @@
         <image name="barcode" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vs6-Wx-eTS"/>
         <segue reference="Msk-xg-xb5"/>
+        <segue reference="F13-Du-eHW"/>
+        <segue reference="Vs6-Wx-eTS"/>
     </inferredMetricsTieBreakers>
 </document>
