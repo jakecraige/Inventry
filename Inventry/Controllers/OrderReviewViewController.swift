@@ -156,14 +156,14 @@ extension OrderReviewViewController {
       switch cellType {
       case .taxRate:
         cell.keyboardType = .DecimalPad
-        cell.configure("Tax Rate %", value: "\(order.taxRate * 100)") { [weak self] newValue in
+        cell.configure("Tax Rate %", value: "\(order.taxRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
           if let value = Float(newValue ?? "") {
             self?.order.taxRate = value / 100
           }
         }
       case .notes:
         cell.keyboardType = .Default
-        cell.configure("Notes", value: order.notes) { [weak self] newValue in
+        cell.configure("Notes", value: order.notes, changeEvent: .EditingDidEnd) { [weak self] newValue in
           self?.order.notes = newValue ?? ""
         }
       }

@@ -14,13 +14,13 @@ class FormTextFieldTableViewCell: UITableViewCell {
 
   override func awakeFromNib() {
     textField.delegate = self
-    textField.addTarget(self, action: #selector(textChanged), forControlEvents: .EditingDidEnd)
   }
 
-  func configure(labelText: String, value: String?, onChange: ValueCallback? = .None) {
+  func configure(labelText: String, value: String?, changeEvent: UIControlEvents = .EditingChanged, onChange: ValueCallback? = .None) {
     label.text = labelText
     textField.text = value
     valueCallback = onChange
+    textField.addTarget(self, action: #selector(textChanged), forControlEvents: changeEvent)
   }
 
   @objc private func textChanged() {
