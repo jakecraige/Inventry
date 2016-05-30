@@ -10,7 +10,9 @@ class ProductsTableViewController: UITableViewController {
   var observers: [UInt] = []
 
   override func viewDidLoad() {
-    observers.append(Database.observeArray(eventType: .Value) { [weak self] in self?.products = $0 })
+    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") { [weak self] in
+      self?.products = $0
+    })
   }
 
   deinit {

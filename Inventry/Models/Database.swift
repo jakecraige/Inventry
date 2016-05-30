@@ -1,6 +1,13 @@
 import Firebase
 import Argo
 
+enum SortOrder {
+  /// Ascending - order a..z, 1..9
+  case asc
+  /// Descending order z..a, 9..1
+  case desc
+}
+
 struct Database<Model: Modelable where Model.DecodedType == Model> {
   static func save(model: Model) -> String {
     let ref = model.childRef
@@ -21,27 +28,41 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     model.childRef.removeValue()
   }
 
-  static func observeArray(eventType eventType: FIRDataEventType, ref: FIRDatabaseReference = Model.ref, block: (([Model]) -> Void)) -> UInt {
+  static func observeArray(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) -> UInt {
+    if let orderBy = orderBy {
+      return ref.queryOrderedByChild(orderBy).observeEventType(eventType, withBlock: convertSnapshot(block, sort: sort))
+    } else {
+      return ref.observeEventType(eventType, withBlock: convertSnapshot(block, sort: sort))
+    }
+  }
+
+  static func observeObject(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, block: ((Model) -> Void)) -> UInt {
     return ref.observeEventType(eventType, withBlock: convertSnapshot(block))
   }
 
-  static func observeObject(eventType eventType: FIRDataEventType, ref: FIRDatabaseReference = Model.ref, block: ((Model) -> Void)) -> UInt {
-    return ref.observeEventType(eventType, withBlock: convertSnapshot(block))
+  static func observeArrayOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) {
+    if let orderBy = orderBy {
+      return ref.queryOrderedByChild(orderBy).observeSingleEventOfType(eventType, withBlock: convertSnapshot(block, sort: sort))
+    } else {
+      return ref.observeSingleEventOfType(eventType, withBlock: convertSnapshot(block, sort: sort))
+    }
   }
 
-  static func observeArrayOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseReference = Model.ref, block: (([Model]) -> Void)) {
-    ref.observeSingleEventOfType(eventType, withBlock: convertSnapshot(block))
-  }
-
-  static func observeObjectOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseReference = Model.ref, block: ((Model) -> Void)) {
+  static func observeObjectOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, block: ((Model) -> Void)) {
     ref.observeSingleEventOfType(eventType, withBlock: convertSnapshot(block))
   }
 }
 
 // MARK: Private Methods
 private extension Database {
-  static func convertSnapshot(block: (([Model]) -> Void)) -> ((FIRDataSnapshot) -> Void) {
-    return { snapshot in block(decodeChildren(snapshot)) }
+  static func convertSnapshot(block: (([Model]) -> Void), sort: SortOrder) -> ((FIRDataSnapshot) -> Void) {
+    return { snapshot in
+      let children = decodeChildren(snapshot)
+      switch sort {
+      case .asc: block(children) // Firebase default sort is asc
+      case .desc: block(children.reverse())
+      }
+    }
   }
 
   static func convertSnapshot(block: ((Model) -> Void)) -> ((FIRDataSnapshot) -> Void) {

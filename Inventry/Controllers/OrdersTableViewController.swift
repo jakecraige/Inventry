@@ -7,8 +7,9 @@ class OrdersTableViewController: UITableViewController {
   override func viewDidLoad() {
     AuthenticationController().present(onViewController: self)
 
-    observers.append(Database.observeArray(eventType: .Value) { [weak self] in self?.orders = $0 })
-
+    observers.append(Database.observeArray(eventType: .Value, orderBy: "timestamps/created_at", sort: .desc) { [weak self] in
+      self?.orders = $0
+    })
 
     // Empty back button for next screen
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)

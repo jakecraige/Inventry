@@ -25,8 +25,8 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    observers.append(Database.observeArray(eventType: .Value) { [weak self] (products: [Product]) in
-      self?.allProducts = products
+    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") { [weak self] in
+      self?.allProducts = $0
     })
 
     definesPresentationContext = true
