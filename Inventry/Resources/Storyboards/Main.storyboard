@@ -99,7 +99,7 @@
         <scene sceneID="zt4-bm-Iuw">
             <objects>
                 <navigationController id="4XZ-Qn-EZt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Inventory" id="BcE-Na-wkV"/>
+                    <tabBarItem key="tabBarItem" title="Inventory" image="tab-inventory" id="BcE-Na-wkV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pGJ-HI-YrS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -175,7 +175,7 @@
         <scene sceneID="ShM-lI-TRh">
             <objects>
                 <navigationController id="rmF-k1-sXn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" id="hWQ-zc-bgq"/>
+                    <tabBarItem key="tabBarItem" title="Orders" image="tab-order" id="hWQ-zc-bgq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNb-gD-HL1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -420,6 +420,8 @@
     </scenes>
     <resources>
         <image name="barcode" width="32" height="32"/>
+        <image name="tab-inventory" width="25" height="25"/>
+        <image name="tab-order" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="F13-Du-eHW"/>

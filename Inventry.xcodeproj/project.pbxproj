@@ -17,6 +17,7 @@
 		E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C937EA554B3EA9962016A5 /* AppDelegate.swift */; };
 		E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */; };
 		E7005CE91CFD4AC500B88483 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */; };
+		E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CEA1CFD52F400B88483 /* UIColor.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
 		E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */; };
 		E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */; };
@@ -95,6 +96,7 @@
 		CD73A0495055341D53C6214F /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
+		E7005CEA1CFD52F400B88483 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */,
 				E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */,
 				E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */,
+				E7005CEA1CFD52F400B88483 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,
+				E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
 				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
 				E7B7C8F21CF9EC220019BA0D /* PaymentProvider.swift in Sources */,
