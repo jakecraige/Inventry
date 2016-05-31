@@ -27,6 +27,7 @@ build/
 # Cocoapods
 Pods
 Carthage
+node_modules/
 
 # AppCode specific files
 .idea/

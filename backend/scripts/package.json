@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "csv-parse": "^1.1.0",
+    "firebase": "^3.0.3"
+  }
+}
