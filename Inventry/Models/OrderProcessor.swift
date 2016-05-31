@@ -45,6 +45,7 @@ struct OrderProcessor {
       charge: charge,
       customer: order.customer,
       taxRate: order.taxRate,
+      shippingRate: order.shippingRate,
       notes: order.notes,
       timestamps: order.timestamps
     )

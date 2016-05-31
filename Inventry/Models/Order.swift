@@ -10,6 +10,7 @@ struct Order: Modelable, Timestampable {
   var charge: Charge?
   var customer: Customer?
   var taxRate: Float // Stored as a decimal 8.25% will be 0.0825
+  var shippingRate: Float // Stored as a decimal 8.00% will be 0.08
   var notes: String = defaultNotes
   let timestamps: Timestamps?
 
@@ -21,6 +22,7 @@ struct Order: Modelable, Timestampable {
       charge: .None,
       customer: .None,
       taxRate: Config.defaultTaxRate,
+      shippingRate: Config.defaultShippingRate,
       notes: defaultNotes,
       timestamps: .None
     )
@@ -85,14 +87,16 @@ struct Order: Modelable, Timestampable {
 
 extension Order: Decodable {
   static func decode(json: JSON) -> Decoded<Order> {
-    return curry(Order.init)
+    let new = curry(Order.init)
+    return new
       <^> json <|? "id"
       <*> json <|| "line_items"
       <*> json <|? "payment_token"
       <*> json <|? "charge"
       <*> json <|? "customer"
-      <*> (json <|  "tax_rate").or(.Success(Config.defaultTaxRate))
-      <*> (json <|  "notes").or(.Success(defaultNotes))
+      <*> (json <| "tax_rate").or(.Success(Config.defaultTaxRate))
+      <*> (json <| "shipping_rate").or(.Success(Config.defaultShippingRate))
+      <*> (json <| "notes").or(.Success(defaultNotes))
       <*> json <|? "timestamps"
   }
 }
@@ -105,6 +109,7 @@ extension Order: Encodable {
     dict["charge"] = charge?.encode()
     dict["customer"] = customer?.encode()
     dict["tax_rate"] = taxRate
+    dict["shipping_rate"] = shippingRate
     dict["notes"] = notes
     return dict
   }

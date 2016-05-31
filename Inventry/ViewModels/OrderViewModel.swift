@@ -13,8 +13,12 @@ struct OrderViewModel {
     return Int(Float(subtotal) * order.taxRate)
   }
 
+  var shipping: Cents {
+    return Int(Float(subtotal) * order.shippingRate)
+  }
+
   var total: Cents {
-    return subtotal + tax
+    return subtotal + tax + shipping
   }
 
   var customer: Customer? { return order.customer }

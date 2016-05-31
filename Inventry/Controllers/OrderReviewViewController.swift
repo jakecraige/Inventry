@@ -12,6 +12,7 @@ private let sectionCount = 3
 
 private enum SettingsCell: Int {
   case taxRate
+  case shippingRate
   case notes
 }
 
@@ -36,6 +37,14 @@ class OrderReviewViewController: UITableViewController {
       // It also prevents losing focus since `tableView.reloadData` reloads the settings cells too
       // and causes you to lose focus
       if oldOrder.taxRate != newOrder.taxRate {
+        tableView.reloadRowsAtIndexPaths(
+          [
+            NSIndexPath(forRow: SettingsCell.taxRate.rawValue, inSection: Section.settings.rawValue),
+            NSIndexPath(forRow: 0, inSection: Section.summary.rawValue)
+          ],
+          withRowAnimation: .Automatic
+        )
+      } else if oldOrder.shippingRate != newOrder.shippingRate {
         tableView.reloadRowsAtIndexPaths(
           [
             NSIndexPath(forRow: SettingsCell.taxRate.rawValue, inSection: Section.settings.rawValue),
@@ -130,7 +139,7 @@ extension OrderReviewViewController {
 
     switch section {
     case .lineItems: return viewModel.lineItems.count
-    case .settings: return 2
+    case .settings: return 3
     case .summary: return 1
     }
   }
@@ -160,6 +169,13 @@ extension OrderReviewViewController {
             self?.order.taxRate = value / 100
           }
         }
+      case .shippingRate:
+        cell.keyboardType = .DecimalPad
+        cell.configure("Shipping %", value: "\(order.shippingRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
+          if let value = Float(newValue ?? "") {
+            self?.order.shippingRate = value / 100
+          }
+        }
       case .notes:
         cell.keyboardType = .Default
         cell.configure("Notes", value: order.notes, changeEvent: .EditingDidEnd) { [weak self] newValue in
@@ -176,12 +192,16 @@ extension OrderReviewViewController {
     }
   }
 
+  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
+
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     guard let section = Section(rawValue: indexPath.section) else { return 44 }
 
     switch section {
     case .lineItems, .settings: return 44
-    case .summary: return 71
+    case .summary: return UITableViewAutomaticDimension
     }
   }
 }
