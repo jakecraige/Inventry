@@ -52,13 +52,13 @@ class OrderChooseProductsTableViewController: UITableViewController {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
-    case "paymentSegue":
-      let vc = segue.destinationViewController as? OrderPaymentViewController
-      vc?.order = order
+    case "reviewSegue":
+      let vc = segue.destinationViewController as? OrderReviewViewController
+      vc?.viewModel = OrderViewModel(order: order, products: allProducts)
     case "scanBarcodeSegue":
       let navVC = segue.destinationViewController as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
-      vc?.receiveBarcodeCallback = { self.addOrIncrementProduct(withBarcode: $0) }
+      vc?.receiveBarcodeCallback = { [weak self] in self?.addOrIncrementProduct(withBarcode: $0) }
     default: break
     }
   }

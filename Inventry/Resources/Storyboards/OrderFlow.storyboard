@@ -55,7 +55,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Next" id="Ews-bW-WrZ">
                                 <connections>
-                                    <segue destination="nNq-TX-nrM" kind="show" identifier="paymentSegue" id="doA-Wl-PlS"/>
+                                    <segue destination="Ph3-4g-Vvm" kind="show" identifier="reviewSegue" id="UIf-lE-5yl"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="barcode" id="AxA-Hc-Huv" userLabel="Scan Barcode">
@@ -120,20 +120,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Payment" id="Y0Q-ln-Mbk">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Review" id="zlP-MZ-lYi">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Buy" id="zlP-MZ-lYi" userLabel="Purchase Button">
                             <connections>
-                                <action selector="reviewTapped:" destination="nNq-TX-nrM" id="Eai-yh-bWh"/>
+                                <action selector="buyTapped:" destination="nNq-TX-nrM" id="RZR-Yc-43p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="reviewButton" destination="zlP-MZ-lYi" id="BmO-WT-o5T"/>
-                        <segue destination="Ph3-4g-Vvm" kind="show" identifier="reviewSegue" id="z9f-yy-dRH"/>
+                        <outlet property="buyButton" destination="zlP-MZ-lYi" id="SGo-bc-cwH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiJ-dj-vQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3323" y="930"/>
+            <point key="canvasLocation" x="4059" y="930"/>
         </scene>
         <!--Review-->
         <scene sceneID="Vrx-bx-8Ch">
@@ -313,19 +312,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Review" id="Qd6-Nv-HaP">
-                        <barButtonItem key="rightBarButtonItem" title="Place Order" id="AaA-Lh-hL8">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="AaA-Lh-hL8" userLabel="Next Button">
                             <connections>
-                                <action selector="placeOrderTapped:" destination="Ph3-4g-Vvm" id="HiH-TW-uff"/>
+                                <segue destination="nNq-TX-nrM" kind="show" identifier="paymentSegue" id="esO-t1-QQ3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="placeOrderButton" destination="AaA-Lh-hL8" id="enh-jc-wyE"/>
+                        <outlet property="nextButton" destination="AaA-Lh-hL8" id="rLj-12-eb4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="244-rq-3Lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4048" y="930"/>
+            <point key="canvasLocation" x="3308" y="930"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wi8-eD-bNc">

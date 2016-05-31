@@ -1,7 +1,11 @@
 import Foundation
 
 struct OrderViewModel {
-  let order: Order
+  static func null() -> OrderViewModel {
+    return OrderViewModel(order: Order.new(), products: [])
+  }
+
+  var order: Order
   let products: [Product]
   let lineItems: [LineItemViewModel]
 

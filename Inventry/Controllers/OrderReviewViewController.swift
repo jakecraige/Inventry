@@ -1,8 +1,6 @@
 import UIKit
 import PromiseKit
 
-struct CancelledAlertError: ErrorType {}
-
 private enum Section: Int {
   case lineItems
   case settings
@@ -17,19 +15,11 @@ private enum SettingsCell: Int {
 }
 
 class OrderReviewViewController: UITableViewController {
-  @IBOutlet var placeOrderButton: UIBarButtonItem!
+  @IBOutlet var nextButton: UIBarButtonItem!
 
-  var order: Order! {
-    didSet { updateViewModel() }
-  }
-  var products: [Product] = [] {
+  var viewModel = OrderViewModel.null() {
     didSet {
-      placeOrderButton.enabled = products.count > 0
-      updateViewModel()
-    }
-  }
-  var viewModel = OrderViewModel(order: Order.new(), products: []) {
-    didSet {
+      nextButton.enabled = viewModel.products.count > 0
       let oldOrder = oldValue.order
       let newOrder = viewModel.order
 
@@ -64,67 +54,28 @@ class OrderReviewViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    Database.observeArrayOnce(eventType: .Value) { [weak self] in self?.products = $0 }
+    if viewModel.products.isEmpty {
+      Database.observeArrayOnce(eventType: .Value) { [weak self] (products: [Product]) in
+        guard let `self` = self else { return }
+        self.viewModel = OrderViewModel(order: self.viewModel.order, products: products)
+      }
+    }
+
     tableView.registerNib(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
     )
   }
 
-  @IBAction func placeOrderTapped(sender: UIBarButtonItem) {
-    navigationItem.startLoadingRightButton()
-    confirmOkayToChargeCard()
-      .then(placeOrder)
-      .then { [weak self] in self?.dismissViewControllerAnimated(true, completion: nil) }
-      .always { [weak self] in self?.navigationItem.stopLoadingRightButton() }
-      .error { error in
-      if error is CancelledAlertError {
-        // ignore
-      } else {
-        print(error)
-        self.handleProcessError(error)
-      }
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "paymentSegue":
+      let vc = segue.destinationViewController as? OrderPaymentViewController
+      vc?.viewModel = viewModel
+    default: break
     }
-  }
-
-  private func confirmOkayToChargeCard() -> Promise<Void> {
-    return Promise { resolve, reject in
-      let amount = PriceFormatter(viewModel.total).formatted
-      let avc = UIAlertController(
-        title: "Confirm Purchase",
-        message: "This will charge the credit card \(amount), is that okay?",
-        preferredStyle: .Alert
-      )
-      avc.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { _ in reject(CancelledAlertError()) }))
-      avc.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in resolve() }))
-      
-      self.presentViewController(avc, animated: true, completion: nil)
-    }
-  }
-
-  private func placeOrder() -> Promise<Void> {
-    let processor = OrderProcessor(vm: viewModel)
-
-    return processor.process().then { order -> Void in
-      print("Order completed: \(order)")
-    }
-  }
-
-  private func handleProcessError(error: ErrorType) {
-    let avc = UIAlertController(
-      title: "Uh oh!",
-      message: "We're having trouble placing the order right now. Please try again later.",
-      preferredStyle: .Alert
-    )
-    avc.addAction(UIAlertAction(title: "OK", style: .Default, handler: { _ in }))
-    self.presentViewController(avc, animated: true, completion: nil)
-  }
-
-  private func updateViewModel() {
-    viewModel = OrderViewModel(
-      order: order,
-      products: products
-    )
   }
 }
 
@@ -164,22 +115,22 @@ extension OrderReviewViewController {
       switch cellType {
       case .taxRate:
         cell.keyboardType = .DecimalPad
-        cell.configure("Tax Rate %", value: "\(order.taxRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
+        cell.configure("Tax Rate %", value: "\(viewModel.order.taxRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
           if let value = Float(newValue ?? "") {
-            self?.order.taxRate = value / 100
+            self?.viewModel.order.taxRate = value / 100
           }
         }
       case .shippingRate:
         cell.keyboardType = .DecimalPad
-        cell.configure("Shipping %", value: "\(order.shippingRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
+        cell.configure("Shipping %", value: "\(viewModel.order.shippingRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
           if let value = Float(newValue ?? "") {
-            self?.order.shippingRate = value / 100
+            self?.viewModel.order.shippingRate = value / 100
           }
         }
       case .notes:
         cell.keyboardType = .Default
-        cell.configure("Notes", value: order.notes, changeEvent: .EditingDidEnd) { [weak self] newValue in
-          self?.order.notes = newValue ?? ""
+        cell.configure("Notes", value: viewModel.order.notes, changeEvent: .EditingDidEnd) { [weak self] newValue in
+          self?.viewModel.order.notes = newValue ?? ""
         }
       }
 

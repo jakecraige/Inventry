@@ -1,5 +1,6 @@
 import UIKit
 import Stripe
+import PromiseKit
 
 private enum Cell: Int {
   case name
@@ -10,14 +11,14 @@ private enum Cell: Int {
 private let numberOfCells = 4
 
 class OrderPaymentViewController: UITableViewController {
-  @IBOutlet var reviewButton: UIBarButtonItem!
+  @IBOutlet var buyButton: UIBarButtonItem!
 
-  var order: Order!
-  var name: String? = "" { didSet { updateReviewButtonEnabled() } }
-  var phone: String? = ""
-  var email: String? = ""
+  var viewModel = OrderViewModel.null()
+  var name: String? { didSet { updateReviewButtonEnabled() } }
+  var phone: String?
+  var email: String?
   var paymentValid = false
-  var paymentParams: STPCardParams?
+  var paymentParams = STPCardParams()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,46 +28,64 @@ class OrderPaymentViewController: UITableViewController {
     )
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    guard let identifier = segue.identifier else { return }
+  @IBAction func buyTapped(sender: UIBarButtonItem) {
+    navigationItem.startLoadingRightButton()
 
-    switch identifier {
-    case "reviewSegue":
-      let vc = segue.destinationViewController as? OrderReviewViewController
-      vc?.order = order
-    default: break
-    }
-  }
-
-  @IBAction func reviewTapped(sender: UIBarButtonItem) {
-    order.customer = Customer(
-      name: name!, // Review is disabled until this is set
+    viewModel.order.customer = Customer(
+      name: name!, // Buy is disabled until this is set
       email: email,
       phone: phone
     )
-    if paymentValid {
-      validatePayment()
-    } else {
-      performSegueWithIdentifier("reviewSegue", sender: self)
+
+    validatePaymentMethod()
+      .then(confirmOkayToChargeCard)
+      .then(placeOrder)
+      .then { [weak self] in self?.dismissViewControllerAnimated(true, completion: nil) }
+      .always { [weak self] in self?.navigationItem.stopLoadingRightButton() }
+      .error { error in
+      if error is CancelledAlertError {
+        // ignore
+      } else {
+        print(error)
+        self.handleProcessError(error)
+      }
     }
   }
 
-  private func validatePayment() {
-    guard let params = paymentParams else { return }
-    startLoading()
-    PaymentProvier.createToken(params).then { token -> Void in
-      self.order.paymentToken = token
-      self.performSegueWithIdentifier("reviewSegue", sender: self)
-    }.always {
-      self.stopLoading()
-    }.error { error in
-      print(error)
+  private func validatePaymentMethod() -> Promise<Void> {
+    return PaymentProvier.createToken(paymentParams).then { token in
+      self.viewModel.order.paymentToken = token
     }
+  }
+
+  private func confirmOkayToChargeCard() -> Promise<Void> {
+    let amount = PriceFormatter(viewModel.total).formatted
+    return UIAlertController.okCancel(
+      title: "Confirm Purchase",
+      message: "This will charge the credit card \(amount), is that okay?",
+      presentingVC: self
+    )
+  }
+
+  private func placeOrder() -> Promise<Void> {
+    let processor = OrderProcessor(vm: viewModel)
+
+    return processor.process().then { order -> Void in
+      print("Order completed: \(order)")
+    }
+  }
+
+  private func handleProcessError(error: ErrorType) {
+    UIAlertController.ok(
+      title: "Uh oh!",
+      message: "We're having trouble placing the order right now. Please try again later.",
+      presentingVC: self
+    )
   }
 
   private func updateReviewButtonEnabled() {
     let nameFieldPresent = !(name ?? "").isEmpty
-    reviewButton.enabled = nameFieldPresent && paymentValid
+    buyButton.enabled = nameFieldPresent && paymentValid
   }
 
   private func startLoading() {
