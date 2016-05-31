@@ -25,11 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func configureFirebase() {
     FIRApp.configure()
     let config = FIRRemoteConfig.remoteConfig()
+    let expirationDuration: Double
     if Environment.current == .Development {
       config.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
+      expirationDuration = 0
+    } else {
+      expirationDuration = 3600 // 1hr
     }
     config.setDefaultsFromPlistFileName("RemoteConfigDefaults")
-    config.fetchWithCompletionHandler { _ in
+    config.fetchWithExpirationDuration(expirationDuration) { _ in
       config.activateFetched()
       print("Latest remote config activated")
     }
