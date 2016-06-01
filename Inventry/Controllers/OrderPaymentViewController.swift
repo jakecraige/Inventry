@@ -21,14 +21,15 @@ class OrderPaymentViewController: UITableViewController {
   var paymentValid = Variable(false)
   var paymentParams = STPCardParams()
 
-  var customerName: Observable<String> {
+  var customerName: Driver<String> {
     return store.orderViewModel
       .map { $0.customer?.name ?? "" }
       .distinctUntilChanged()
+      .asDriver(onErrorJustReturn: "")
   }
 
-  var formValid: Observable<Bool> {
-    return Observable.combineLatest(customerName, paymentValid.asObservable()) { name, validPayment in
+  var formValid: Driver<Bool> {
+    return Driver.combineLatest(customerName, paymentValid.asDriver()) { name, validPayment in
       return !name.isEmpty && validPayment
     }
   }
@@ -44,7 +45,7 @@ class OrderPaymentViewController: UITableViewController {
       self?.viewModel = $0
     }.addDisposableTo(disposeBag)
 
-    formValid.bindTo(buyButton.rx_enabled).addDisposableTo(disposeBag)
+    formValid.drive(buyButton.rx_enabled).addDisposableTo(disposeBag)
   }
 
   @IBAction func buyTapped(sender: UIBarButtonItem) {
