@@ -73,6 +73,8 @@ PODS:
   - HockeySDK/AllFeaturesLib (4.0.1)
   - MTBBarcodeScanner (2.0.2)
   - PromiseKit/CorePromise (3.2.0)
+  - RxCocoa (2.5.0):
+    - RxSwift (~> 2.5)
   - RxSwift (2.5.0)
   - Stripe (7.0.1):
     - Stripe/Core (= 7.0.1)
@@ -88,6 +90,7 @@ DEPENDENCIES:
   - HockeySDK
   - MTBBarcodeScanner
   - PromiseKit/CorePromise
+  - RxCocoa
   - RxSwift
   - Stripe
 
@@ -111,9 +114,10 @@ SPEC CHECKSUMS:
   HockeySDK: 1b69a82782f6a3d4a1c0b1f04dca4bca83fc8c82
   MTBBarcodeScanner: 18ab77ad8dfa31db96446c9325e86122d39425d6
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
+  RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
   RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
-PODFILE CHECKSUM: 8c4daeb7de3e3fbd2f6376b48924bd52f024a5bb
+PODFILE CHECKSUM: 30e25dbff74f251d42f1667166ce5eecaf9217d4
 
 COCOAPODS: 1.0.0

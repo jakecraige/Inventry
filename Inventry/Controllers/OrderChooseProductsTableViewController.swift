@@ -28,13 +28,12 @@ class OrderChooseProductsTableViewController: UITableViewController {
       store.dispatch(SetAllProducts(products: $0))
     })
 
-    disposeBag.addDisposable(store.orderViewModel.subscribeNext { [weak self] updatedViewModel in
+    store.orderViewModel.subscribeNext { [weak self] updatedViewModel in
       guard let `self` = self else { return }
       self.viewModel = updatedViewModel
       self.tableView.reloadData()
       self.updateNavigationTitle()
-    })
-
+    }.addDisposableTo(disposeBag)
 
     definesPresentationContext = true
     searchController.searchResultsUpdater = self

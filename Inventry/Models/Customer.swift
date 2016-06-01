@@ -5,6 +5,10 @@ struct Customer {
   let name: String
   let email: String?
   let phone: String?
+
+  static func null() -> Customer {
+    return Customer(name: "", email: .None, phone: .None)
+  }
 }
 
 extension Customer: Decodable {

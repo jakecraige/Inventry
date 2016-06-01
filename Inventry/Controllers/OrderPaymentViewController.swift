@@ -1,6 +1,8 @@
 import UIKit
 import Stripe
 import PromiseKit
+import RxSwift
+import RxCocoa
 
 private enum Cell: Int {
   case name
@@ -13,12 +15,23 @@ private let numberOfCells = 4
 class OrderPaymentViewController: UITableViewController {
   @IBOutlet var buyButton: UIBarButtonItem!
 
+  let disposeBag = DisposeBag()
   var viewModel = OrderViewModel.null()
-  var name: String? { didSet { updateReviewButtonEnabled() } }
-  var phone: String?
-  var email: String?
-  var paymentValid = false
+  var customer: Customer { return viewModel.order.customer ?? Customer.null() }
+  var paymentValid = Variable(false)
   var paymentParams = STPCardParams()
+
+  var customerName: Observable<String> {
+    return store.orderViewModel
+      .map { $0.customer?.name ?? "" }
+      .distinctUntilChanged()
+  }
+
+  var formValid: Observable<Bool> {
+    return Observable.combineLatest(customerName, paymentValid.asObservable()) { name, validPayment in
+      return !name.isEmpty && validPayment
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,16 +39,16 @@ class OrderPaymentViewController: UITableViewController {
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
     )
+
+    store.orderViewModel.subscribeNext { [weak self] in
+      self?.viewModel = $0
+    }.addDisposableTo(disposeBag)
+
+    formValid.bindTo(buyButton.rx_enabled).addDisposableTo(disposeBag)
   }
 
   @IBAction func buyTapped(sender: UIBarButtonItem) {
     navigationItem.startLoadingRightButton()
-
-    viewModel.order.customer = Customer(
-      name: name!, // Buy is disabled until this is set
-      email: email,
-      phone: phone
-    )
 
     validatePaymentMethod()
       .then(confirmOkayToChargeCard)
@@ -54,7 +67,7 @@ class OrderPaymentViewController: UITableViewController {
 
   private func validatePaymentMethod() -> Promise<Void> {
     return PaymentProvier.createToken(paymentParams).then { token in
-      self.viewModel.order.paymentToken = token
+      store.dispatch(UpdateCurrentOrder(paymentToken: token))
     }
   }
 
@@ -81,24 +94,6 @@ class OrderPaymentViewController: UITableViewController {
       message: "We're having trouble placing the order right now. Please try again later.",
       presentingVC: self
     )
-  }
-
-  private func updateReviewButtonEnabled() {
-    let nameFieldPresent = !(name ?? "").isEmpty
-    buyButton.enabled = nameFieldPresent && paymentValid
-  }
-
-  private func startLoading() {
-    navigationItem.startLoadingRightButton()
-  }
-
-  private func stopLoading() {
-    navigationItem.stopLoadingRightButton()
-    navigationItem.rightBarButtonItem?.enabled = paymentValid
-  }
-
-  @IBAction func nameFieldEditingChanged() {
-    updateReviewButtonEnabled()
   }
 }
 
@@ -127,13 +122,13 @@ extension OrderPaymentViewController {
       switch cellType {
       case .name:
         cell.keyboardType = .Default
-        cell.configure("Name", value: name) { [weak self] in self?.name = $0 }
+        cell.configure("Name", value: customer.name) { store.dispatch(UpdateCurrentOrderCustomer(name: $0)) }
       case .phone:
         cell.keyboardType = .NumberPad
-        cell.configure("Phone", value: phone) { [weak self] in self?.phone = $0 }
+        cell.configure("Phone", value: customer.phone) { store.dispatch(UpdateCurrentOrderCustomer(phone: $0))}
       case .email:
         cell.keyboardType = .EmailAddress
-        cell.configure("Email", value: email) { [weak self] in self?.email = $0 }
+        cell.configure("Email", value: customer.email) { store.dispatch(UpdateCurrentOrderCustomer(email: $0))}
       default: fatalError("New cell type that hasn't been handled yet")
       }
       return cell
@@ -144,8 +139,8 @@ extension OrderPaymentViewController {
 // MARK: STPPaymentCardTextFieldDelegate
 extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
   func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-    paymentValid = textField.valid
+    print("card valid \(textField.valid)")
+    paymentValid.value = textField.valid
     paymentParams = textField.cardParams
-    updateReviewButtonEnabled()
   }
 }

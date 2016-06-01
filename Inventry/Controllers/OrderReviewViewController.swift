@@ -56,9 +56,10 @@ class OrderReviewViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    disposeBag.addDisposable(store.orderViewModel.subscribeNext { [weak self] in
+    store.orderViewModel.subscribeNext { [weak self] in
       self?.viewModel = $0
-    })
+    }.addDisposableTo(disposeBag)
+
     tableView.registerNib(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
