@@ -140,7 +140,6 @@ extension OrderPaymentViewController {
 // MARK: STPPaymentCardTextFieldDelegate
 extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
   func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-    print("card valid \(textField.valid)")
     paymentValid.value = textField.valid
     paymentParams = textField.cardParams
   }
