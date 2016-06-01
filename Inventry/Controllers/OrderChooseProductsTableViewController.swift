@@ -23,6 +23,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
+    store.dispatch(ResetCurrentOrder())
     observers.append(Database.observeArray(eventType: .Value, orderBy: "name") {
       store.dispatch(SetAllProducts(products: $0))
     })
@@ -58,9 +59,6 @@ class OrderChooseProductsTableViewController: UITableViewController {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
-    case "reviewSegue":
-      let vc = segue.destinationViewController as? OrderReviewViewController
-      vc?.viewModel = OrderViewModel(order: order, products: products)
     case "scanBarcodeSegue":
       let navVC = segue.destinationViewController as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController

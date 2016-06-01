@@ -27,6 +27,8 @@
 		E7005CFA1CFDFD9400B88483 /* DecrementFromCurrentOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CF91CFDFD9400B88483 /* DecrementFromCurrentOrder.swift */; };
 		E7005CFC1CFDFE0200B88483 /* RemoveFromCurrentOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CFB1CFDFE0200B88483 /* RemoveFromCurrentOrder.swift */; };
 		E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CFD1CFF331F00B88483 /* SetAllProducts.swift */; };
+		E7005D001CFF380E00B88483 /* ResetCurrentOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CFF1CFF380E00B88483 /* ResetCurrentOrder.swift */; };
+		E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005D011CFF397400B88483 /* UpdateCurrentOrder.swift */; };
 		E70AEC7C1CF295BB00778A4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */; };
 		E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */; };
 		E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */; };
@@ -115,6 +117,8 @@
 		E7005CF91CFDFD9400B88483 /* DecrementFromCurrentOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecrementFromCurrentOrder.swift; sourceTree = "<group>"; };
 		E7005CFB1CFDFE0200B88483 /* RemoveFromCurrentOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveFromCurrentOrder.swift; sourceTree = "<group>"; };
 		E7005CFD1CFF331F00B88483 /* SetAllProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAllProducts.swift; sourceTree = "<group>"; };
+		E7005CFF1CFF380E00B88483 /* ResetCurrentOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetCurrentOrder.swift; sourceTree = "<group>"; };
+		E7005D011CFF397400B88483 /* UpdateCurrentOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentOrder.swift; sourceTree = "<group>"; };
 		E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E718E1F21CFB67B80086E2C4 /* OrderReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewTableViewCell.swift; sourceTree = "<group>"; };
 		E718E1F81CFB82240086E2C4 /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 				E7005CF91CFDFD9400B88483 /* DecrementFromCurrentOrder.swift */,
 				E7005CFB1CFDFE0200B88483 /* RemoveFromCurrentOrder.swift */,
 				E7005CFD1CFF331F00B88483 /* SetAllProducts.swift */,
+				E7005CFF1CFF380E00B88483 /* ResetCurrentOrder.swift */,
+				E7005D011CFF397400B88483 /* UpdateCurrentOrder.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -711,6 +717,7 @@
 				E7005CF81CFDFCFD00B88483 /* AddToCurrentOrder.swift in Sources */,
 				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
+				E7005D001CFF380E00B88483 /* ResetCurrentOrder.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
@@ -722,6 +729,7 @@
 				E7005CE91CFD4AC500B88483 /* UIAlertViewController.swift in Sources */,
 				E7005CEF1CFDF76E00B88483 /* Store.swift in Sources */,
 				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
+				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */,
 				E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,

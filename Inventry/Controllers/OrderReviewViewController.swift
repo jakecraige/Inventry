@@ -1,5 +1,6 @@
 import UIKit
 import PromiseKit
+import RxSwift
 
 private enum Section: Int {
   case lineItems
@@ -17,6 +18,7 @@ private enum SettingsCell: Int {
 class OrderReviewViewController: UITableViewController {
   @IBOutlet var nextButton: UIBarButtonItem!
 
+  let disposeBag = DisposeBag()
   var viewModel = OrderViewModel.null() {
     didSet {
       nextButton.enabled = viewModel.products.count > 0
@@ -54,13 +56,9 @@ class OrderReviewViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    if viewModel.products.isEmpty {
-      Database.observeArrayOnce(eventType: .Value) { [weak self] (products: [Product]) in
-        guard let `self` = self else { return }
-        self.viewModel = OrderViewModel(order: self.viewModel.order, products: products)
-      }
-    }
-
+    disposeBag.addDisposable(store.orderViewModel.subscribeNext { [weak self] in
+      self?.viewModel = $0
+    })
     tableView.registerNib(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
@@ -115,22 +113,22 @@ extension OrderReviewViewController {
       switch cellType {
       case .taxRate:
         cell.keyboardType = .DecimalPad
-        cell.configure("Tax Rate %", value: "\(viewModel.order.taxRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
+        cell.configure("Tax Rate %", value: "\(viewModel.order.taxRate * 100)", changeEvent: .EditingDidEnd) { newValue in
           if let value = Float(newValue ?? "") {
-            self?.viewModel.order.taxRate = value / 100
+            store.dispatch(UpdateCurrentOrder(taxRate: value / 100))
           }
         }
       case .shippingRate:
         cell.keyboardType = .DecimalPad
-        cell.configure("Shipping %", value: "\(viewModel.order.shippingRate * 100)", changeEvent: .EditingDidEnd) { [weak self] newValue in
+        cell.configure("Shipping %", value: "\(viewModel.order.shippingRate * 100)", changeEvent: .EditingDidEnd) { newValue in
           if let value = Float(newValue ?? "") {
-            self?.viewModel.order.shippingRate = value / 100
+            store.dispatch(UpdateCurrentOrder(shippingRate: value / 100))
           }
         }
       case .notes:
         cell.keyboardType = .Default
-        cell.configure("Notes", value: viewModel.order.notes, changeEvent: .EditingDidEnd) { [weak self] newValue in
-          self?.viewModel.order.notes = newValue ?? ""
+        cell.configure("Notes", value: viewModel.order.notes, changeEvent: .EditingDidEnd) { newValue in
+          store.dispatch(UpdateCurrentOrder(notes: newValue))
         }
       }
 
