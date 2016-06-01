@@ -1,22 +1,20 @@
 import UIKit
+import RxSwift
 
 class OrderChooseProductsTableViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
-  var allProducts: [Product] = [] { didSet { tableView.reloadData() } }
-  var order = Order.new() {
-    didSet {
-      tableView.reloadData()
-      updateNavigationTitle()
-    }
-  }
+  var viewModel = OrderViewModel.null()
+  var products: [Product] { return viewModel.products }
+  var order: Order { return viewModel.order }
   var observers: [UInt] = []
+  let disposeBag = DisposeBag()
   let searchController = UISearchController(searchResultsController: nil)
 
   var filteredProducts: [Product]  {
     if let query = searchQuery where !query.isEmpty {
-      return allProducts.filter { $0.name.lowercaseString.containsString(query.lowercaseString) }
+      return products.filter { $0.name.lowercaseString.containsString(query.lowercaseString) }
     } else {
-      return allProducts
+      return products
     }
   }
 
@@ -25,9 +23,17 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") { [weak self] in
-      self?.allProducts = $0
+    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") {
+      store.dispatch(SetAllProducts(products: $0))
     })
+
+    disposeBag.addDisposable(store.orderViewModel.subscribeNext { [weak self] updatedViewModel in
+      guard let `self` = self else { return }
+      self.viewModel = updatedViewModel
+      self.tableView.reloadData()
+      self.updateNavigationTitle()
+    })
+
 
     definesPresentationContext = true
     searchController.searchResultsUpdater = self
@@ -54,7 +60,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
     switch identifier {
     case "reviewSegue":
       let vc = segue.destinationViewController as? OrderReviewViewController
-      vc?.viewModel = OrderViewModel(order: order, products: allProducts)
+      vc?.viewModel = OrderViewModel(order: order, products: products)
     case "scanBarcodeSegue":
       let navVC = segue.destinationViewController as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
@@ -64,11 +70,11 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   private func getProduct(atIndexPath indexPath: NSIndexPath) -> Product {
-    return searchControllerActive ? filteredProducts[indexPath.row] : allProducts[indexPath.row]
+    return searchControllerActive ? filteredProducts[indexPath.row] : products[indexPath.row]
   }
 
   private func addOrIncrementProduct(withBarcode barcode: String) {
-    if let product = allProducts.find({$0.barcode == barcode}) {
+    if let product = products.find({$0.barcode == barcode}) {
       addOrIncrementProduct(product)
     } else {
       print("Couldn't find product with code: \(barcode)")
@@ -77,24 +83,21 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
   private func addOrIncrementProduct(product: Product) {
     guard product.quantity > 0 else { return }
-    guard let productId = product.id else { return }
 
     if let item = order.item(forProduct: product) {
       guard product.quantity > item.quantity else { return }
-      order.increment(lineItem: item)
+      store.dispatch(IncrementCurrentOrder(lineItem: item))
     } else {
-      order.add(lineItem: LineItem(productId: productId))
+      store.dispatch(AddToCurrentOrder(product: product))
     }
   }
 
   private func removeOrDecrement(product: Product) {
-    guard let productId = product.id else { return }
-    order.removeOrDecrement(lineItem: LineItem(productId: productId))
+    store.dispatch(DecrementFromCurrentOrder(product: product))
   }
 
   private func updateNavigationTitle() {
-    let amount = order.calculateAmount(allProducts)
-    self.navigationItem.title = PriceFormatter(amount).formatted
+    self.navigationItem.title = PriceFormatter(viewModel.subtotal).formatted
   }
 }
 
@@ -104,7 +107,7 @@ extension OrderChooseProductsTableViewController {
     if searchControllerActive {
       return filteredProducts.count
     } else {
-      return allProducts.count
+      return products.count
     }
   }
 }
@@ -121,8 +124,8 @@ extension OrderChooseProductsTableViewController {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let product = getProduct(atIndexPath: indexPath)
 
-    if let item = order.item(forProduct: product) {
-      order.remove(lineItem: item)
+    if let _ = order.item(forProduct: product) {
+      store.dispatch(RemoveFromCurrentOrder(product: product))
     } else {
       addOrIncrementProduct(product)
     }
