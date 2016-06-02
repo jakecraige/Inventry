@@ -34,7 +34,7 @@ class EditProductViewController: UITableViewController {
       price: price,
       currency: .USD
     )
-    Database.save(product)
+    store.dispatch(SaveProduct(product: product))
     dismiss()
   }
 

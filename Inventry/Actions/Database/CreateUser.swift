@@ -6,7 +6,7 @@ struct CreateUser: DynamicActionType {
   let firUser: FIRUser
 
   func call() -> Observable<String> {
-    let user = User(id: firUser.uid)
+    let user = User(id: firUser.uid, products: [])
 
     return Database.exists(user)
       .filter { exists in !exists }
