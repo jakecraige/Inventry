@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import RxSwift
 
 class ProductsTableViewController: UITableViewController {
   var products: [Product] = [] {
@@ -7,16 +8,12 @@ class ProductsTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  var observers: [UInt] = []
+  var disposeBag = DisposeBag()
 
   override func viewDidLoad() {
-    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") { [weak self] in
+    store.allProducts.subscribeNext { [weak self] in
       self?.products = $0
-    })
-  }
-
-  deinit {
-    observers.forEach { Product.ref.removeObserverWithHandle($0) }
+    }.addDisposableTo(disposeBag)
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

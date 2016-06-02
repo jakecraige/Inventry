@@ -41,6 +41,10 @@
 		E718E2091CFBD8530086E2C4 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2081CFBD8530086E2C4 /* Storyboard.swift */; };
 		E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */; };
 		E718E20D1CFBE5B00086E2C4 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */; };
+		E72D66451CFFDCC40097FEB5 /* FirebaseSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */; };
+		E72D66471CFFDDB70097FEB5 /* UpdateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */; };
+		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
+		E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664A1CFFE2490097FEB5 /* SetOrder.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -132,6 +136,10 @@
 		E718E2081CFBD8530086E2C4 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTableViewCell.swift; sourceTree = "<group>"; };
 		E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
+		E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseSyncController.swift; sourceTree = "<group>"; };
+		E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuth.swift; sourceTree = "<group>"; };
+		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
+		E72D664A1CFFE2490097FEB5 /* SetOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetOrder.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C937EA554B3EA9962016A5 /* AppDelegate.swift */,
+				E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */,
 				E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */,
 				E7DA83941CF2A735001320D2 /* EditProductViewController.swift */,
 				E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */,
@@ -321,7 +330,7 @@
 				E7444C721CF60812006D7159 /* OrdersTableViewController.swift */,
 				E7DA839C1CF2B388001320D2 /* ProductsTableViewController.swift */,
 				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
-				E7B7C91B1CFAA8DB0019BA0D /* AuthenticationController.swift */,
+				E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -398,6 +407,7 @@
 				E7EA96E01CFCD06D008B47D4 /* Environment.swift */,
 				E7005CEE1CFDF76E00B88483 /* Store.swift */,
 				E7005CF01CFDF77700B88483 /* AppState.swift */,
+				E72D66481CFFDF120097FEB5 /* Getters.swift */,
 			);
 			path = Inventry;
 			sourceTree = "<group>";
@@ -413,6 +423,8 @@
 				E7005CFF1CFF380E00B88483 /* ResetCurrentOrder.swift */,
 				E7005D011CFF397400B88483 /* UpdateCurrentOrder.swift */,
 				E7005D031CFF3DA300B88483 /* UpdateCurrentOrderCustomer.swift */,
+				E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */,
+				E72D664A1CFFE2490097FEB5 /* SetOrder.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -725,13 +737,16 @@
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
 				E718E2031CFBA1F70086E2C4 /* LineItemViewModel.swift in Sources */,
+				E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */,
 				E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */,
+				E72D66471CFFDDB70097FEB5 /* UpdateAuth.swift in Sources */,
 				E7B7C9141CFA69100019BA0D /* Argo.swift in Sources */,
 				E718E1F31CFB67B80086E2C4 /* OrderReviewTableViewCell.swift in Sources */,
 				E0D41171D9688D0E4132CD70 /* AppDelegate.swift in Sources */,
 				E7005CE91CFD4AC500B88483 /* UIAlertViewController.swift in Sources */,
 				E7005CEF1CFDF76E00B88483 /* Store.swift in Sources */,
 				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
+				E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */,
 				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */,
 				E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */,
@@ -754,6 +769,7 @@
 				E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */,
 				E7005D041CFF3DA300B88483 /* UpdateCurrentOrderCustomer.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,
+				E72D66451CFFDCC40097FEB5 /* FirebaseSyncController.swift in Sources */,
 				E7005CF31CFDF78100B88483 /* RxSwift.swift in Sources */,
 				E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */,
 				E7005CFC1CFDFE0200B88483 /* RemoveFromCurrentOrder.swift in Sources */,

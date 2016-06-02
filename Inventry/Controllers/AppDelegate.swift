@@ -7,11 +7,14 @@ import HockeySDK
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  
+  var firebaseSyncController: FirebaseSyncController?
+
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     configureFirebase()
     configureHockey()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
+    firebaseSyncController = FirebaseSyncController()
+    firebaseSyncController?.sync()
     return true
   }
 

@@ -33,9 +33,9 @@ class OrdersTableViewController: UITableViewController {
         else { return }
 
       // Since we're reusing the review order VC, we want to nil the "Place Order" button and
-      // change "Review" title
+      // change "Review" title. Note: We're basically abusing this VC and store state
       let order = orders[indexPath.row]
-      vc.viewModel = OrderViewModel(order: order, products: [])
+      store.dispatch(SetOrder(order: order))
       vc.navigationItem.rightBarButtonItem = .None
       if let createdAt = order.timestamps?.createdAt {
         vc.navigationItem.title = DateFormatter(createdAt).formatted
