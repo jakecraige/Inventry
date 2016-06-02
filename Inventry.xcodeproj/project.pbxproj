@@ -45,6 +45,8 @@
 		E72D66471CFFDDB70097FEB5 /* UpdateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
 		E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664A1CFFE2490097FEB5 /* SetOrder.swift */; };
+		E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */; };
+		E72D66521CFFF3A10097FEB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66511CFFF3A10097FEB5 /* User.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -140,6 +142,8 @@
 		E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuth.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
 		E72D664A1CFFE2490097FEB5 /* SetOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetOrder.swift; sourceTree = "<group>"; };
+		E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		E72D66511CFFF3A10097FEB5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				E718E2061CFBB2390086E2C4 /* Config.swift */,
 				E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */,
 				E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */,
+				E72D66511CFFF3A10097FEB5 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 		E7005CF41CFDFC1900B88483 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				E72D664C1CFFF2BB0097FEB5 /* Database */,
 				E7005CF51CFDFC4B00B88483 /* IncrementCurrentOrder.swift */,
 				E7005CF71CFDFCFD00B88483 /* AddToCurrentOrder.swift */,
 				E7005CF91CFDFD9400B88483 /* DecrementFromCurrentOrder.swift */,
@@ -427,6 +433,14 @@
 				E72D664A1CFFE2490097FEB5 /* SetOrder.swift */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		E72D664C1CFFF2BB0097FEB5 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		E7B7C8FB1CFA07B20019BA0D /* Networking */ = {
@@ -749,6 +763,7 @@
 				E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */,
 				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */,
+				E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */,
 				E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
@@ -763,6 +778,7 @@
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
+				E72D66521CFFF3A10097FEB5 /* User.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,

@@ -1,4 +1,5 @@
 import RxSwift
+import Firebase
 
 // MARK: Getters
 extension Store {
@@ -18,5 +19,11 @@ extension Store {
 
   var signedIn: Bool {
     return state.value.user.value != .None
+  }
+
+  var user: Observable<FIRUser> {
+    return state.value.user.asObservable()
+      .filter { $0 != .None }
+      .map { $0! }
   }
 }

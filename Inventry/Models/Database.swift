@@ -1,5 +1,6 @@
 import Firebase
 import Argo
+import RxSwift
 
 enum SortOrder {
   /// Ascending - order a..z, 1..9
@@ -26,6 +27,23 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
 
   static func delete(model: Model) {
     model.childRef.removeValue()
+  }
+
+  static func exists(model: Model) -> Observable<Bool> {
+    return Observable.create { observer in
+      model.childRef.observeSingleEventOfType(
+        .Value,
+        withBlock: { snapshot in
+          observer.onNext(snapshot.exists())
+          observer.onCompleted()
+        },
+        withCancelBlock: { error in
+          observer.onError(error)
+          observer.onCompleted()
+        }
+      )
+      return NopDisposable.instance
+    }
   }
 
   static func observeArray(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) -> UInt {
