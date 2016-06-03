@@ -32,7 +32,8 @@ class EditProductViewController: UITableViewController {
       barcode: barcode ?? "",
       quantity: Int(quantity ?? "") ?? 0,
       price: price,
-      currency: .USD
+      currency: .USD,
+      userId: ""
     )
     store.dispatch(SaveProduct(product: product))
     dismiss()

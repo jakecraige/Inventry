@@ -46,6 +46,21 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     }
   }
 
+  static func allWhere(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref, key: String, value: AnyObject) -> Observable<[Model]> {
+    let query = ref.queryOrderedByChild(key).queryStartingAtValue(value).queryEndingAtValue(value)
+    return Observable.create { observer in
+      let observerHandle = query.observeEventType(
+        eventType,
+        withBlock: { observer.onNext(decodeChildren($0)) },
+        withCancelBlock: { observer.onError($0) }
+      )
+
+      return AnonymousDisposable {
+        query.removeObserverWithHandle(observerHandle)
+      }
+    }
+  }
+
   static func observeArray(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) -> UInt {
     if let orderBy = orderBy {
       return ref.queryOrderedByChild(orderBy).observeEventType(eventType, withBlock: convertSnapshot(block, sort: sort))

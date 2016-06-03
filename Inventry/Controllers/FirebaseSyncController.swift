@@ -18,14 +18,17 @@ class FirebaseSyncController {
       store.dispatch(UpdateAuth(user: user))
     }
 
-    store.user.flatMap { user in
+    store.user.distinctUntilChanged().flatMap { user in
       store.dispatch(CreateUser(firUser: user))
     }.subscribe().addDisposableTo(disposeBag)
   }
 
   private func observeProducts() {
-    Database.observeArray(eventType: .Value, orderBy: "name") {
-      store.dispatch(SetAllProducts(products: $0))
-    }
+    store.user.distinctUntilChanged().flatMap { user in
+      return Database<Product>.allWhere(key: "user_id", value: user.uid)
+    }.subscribeNext { products in
+      let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
+      store.dispatch(SetAllProducts(products: sortedByName))
+    }.addDisposableTo(disposeBag)
   }
 }

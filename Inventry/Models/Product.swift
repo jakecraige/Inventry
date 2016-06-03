@@ -9,6 +9,7 @@ struct Product: Modelable {
   let quantity: Int
   let price: Cents
   let currency: Currency
+  var userId: String
 
   func decrement(by decrementDelta: Int = 1) -> Product {
     return Product(
@@ -17,7 +18,8 @@ struct Product: Modelable {
       barcode: barcode,
       quantity: quantity - decrementDelta,
       price: price,
-      currency: currency
+      currency: currency,
+      userId: userId
     )
   }
 }
@@ -31,6 +33,7 @@ extension Product: Decodable {
       <*> json <| "quantity"
       <*> json <| "price"
       <*> json <| "currency"
+      <*> json <| "user_id"
   }
 }
 
@@ -42,6 +45,7 @@ extension Product: Encodable {
       "quantity": quantity,
       "price": price,
       "currency": currency.rawValue,
+      "user_id": userId
     ]
   }
 }

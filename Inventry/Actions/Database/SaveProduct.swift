@@ -7,11 +7,11 @@ struct SaveProduct: DynamicActionType {
   let dispose = DisposeBag()
 
   func call() {
-    let id = Database.save(product)
+    var product = self.product
     store.user.map { user in
-      Database.save(
-        User(id: user.uid, products: [id])
-      )
+      product.userId = user.uid
+      let id = Database.save(product)
+      Database.save(User(id: user.uid, products: [id]))
     }.subscribe().addDisposableTo(dispose)
   }
 }
