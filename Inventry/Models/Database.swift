@@ -12,7 +12,9 @@ enum SortOrder {
 struct Database<Model: Modelable where Model.DecodedType == Model> {
   static func save(model: Model) -> String {
     let ref = model.childRef
+    print(ref)
     var values = model.encode()
+    print(values)
 
     if model is Timestampable {
       values["timestamps/updated_at"] = FIRServerValue.timestamp()

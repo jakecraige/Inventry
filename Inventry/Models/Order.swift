@@ -13,6 +13,7 @@ struct Order: Modelable, Timestampable {
   var shippingRate: Float // Stored as a decimal 8.00% will be 0.08
   var notes: String = defaultNotes
   let timestamps: Timestamps?
+  var userId: String
 
   static func new() -> Order {
     return self.init(
@@ -24,7 +25,8 @@ struct Order: Modelable, Timestampable {
       taxRate: Config.defaultTaxRate,
       shippingRate: Config.defaultShippingRate,
       notes: defaultNotes,
-      timestamps: .None
+      timestamps: .None,
+      userId: ""
     )
   }
 
@@ -98,6 +100,7 @@ extension Order: Decodable {
       <*> (json <| "shipping_rate").or(.Success(Config.defaultShippingRate))
       <*> (json <| "notes").or(.Success(defaultNotes))
       <*> json <|? "timestamps"
+      <*> json <| "user_id"
   }
 }
 
@@ -111,6 +114,7 @@ extension Order: Encodable {
     dict["tax_rate"] = taxRate
     dict["shipping_rate"] = shippingRate
     dict["notes"] = notes
+    dict["user_id"] = userId
     return dict
   }
 }

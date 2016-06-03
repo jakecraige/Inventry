@@ -4,6 +4,7 @@ import Argo
 struct User: Modelable {
   let id: String?
   var products = [String]()
+  var orders = [String]()
 }
 
 extension User: Decodable {
@@ -11,13 +12,14 @@ extension User: Decodable {
     return curry(User.init)
       <^> json <|? "id"
       <*> { .Success([]) }()
+      <*> { .Success([]) }()
   }
 }
 
 extension User: Encodable {
   func encode() -> [String: AnyObject] {
-    return [
-      "Orders": true,
-    ] + products.FIR_encode(Product.refName)
+    return [:]
+      + products.FIR_encode(Product.refName)
+      + orders.FIR_encode(Order.refName)
   }
 }

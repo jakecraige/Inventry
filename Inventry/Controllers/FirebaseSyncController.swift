@@ -11,6 +11,7 @@ class FirebaseSyncController {
   func sync() {
     observeAuthState()
     observeProducts()
+    observeOrders()
   }
 
   private func observeAuthState() {
@@ -29,6 +30,20 @@ class FirebaseSyncController {
     }.subscribeNext { products in
       let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
       store.dispatch(SetAllProducts(products: sortedByName))
+    }.addDisposableTo(disposeBag)
+  }
+
+  private func observeOrders() {
+    store.user.distinctUntilChanged().flatMap { user in
+      return Database<Order>.allWhere(key: "user_id", value: user.uid)
+    }.subscribeNext { orders in
+      let sortedByCreated = orders.sort { lhs, rhs in
+        guard let lCreated = lhs.timestamps?.createdAt, rCreated = rhs.timestamps?.createdAt
+          else { return true }
+        return lCreated.compare(rCreated) == .OrderedAscending
+      }
+      print(orders)
+      store.dispatch(SetAllOrders(orders: sortedByCreated))
     }.addDisposableTo(disposeBag)
   }
 }

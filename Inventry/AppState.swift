@@ -8,6 +8,9 @@ struct AppState {
   /// All products. Used as an in memory reference
   let allProducts = Variable([Product]())
 
+  /// All orders. Used as an in memory reference
+  let allOrders = Variable([Order]())
+
   /// Currently signed in user
   let user = Variable(FIRAuth.auth()?.currentUser)
 }

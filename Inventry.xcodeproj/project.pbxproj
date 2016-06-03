@@ -48,6 +48,8 @@
 		E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */; };
 		E72D66521CFFF3A10097FEB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66511CFFF3A10097FEB5 /* User.swift */; };
 		E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66531CFFFED20097FEB5 /* SaveProduct.swift */; };
+		E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66581D01D9B30097FEB5 /* SaveOrder.swift */; };
+		E72D665B1D01E20D0097FEB5 /* SetAllOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D665A1D01E20D0097FEB5 /* SetAllOrders.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -146,6 +148,8 @@
 		E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
 		E72D66511CFFF3A10097FEB5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E72D66531CFFFED20097FEB5 /* SaveProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProduct.swift; sourceTree = "<group>"; };
+		E72D66581D01D9B30097FEB5 /* SaveOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveOrder.swift; sourceTree = "<group>"; };
+		E72D665A1D01E20D0097FEB5 /* SetAllOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAllOrders.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +437,7 @@
 				E7005D031CFF3DA300B88483 /* UpdateCurrentOrderCustomer.swift */,
 				E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */,
 				E72D664A1CFFE2490097FEB5 /* SetOrder.swift */,
+				E72D665A1D01E20D0097FEB5 /* SetAllOrders.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 			children = (
 				E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */,
 				E72D66531CFFFED20097FEB5 /* SaveProduct.swift */,
+				E72D66581D01D9B30097FEB5 /* SaveOrder.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				E7005CEF1CFDF76E00B88483 /* Store.swift in Sources */,
 				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
 				E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */,
+				E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */,
 				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */,
 				E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */,
@@ -784,6 +791,7 @@
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
 				E72D66521CFFF3A10097FEB5 /* User.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
+				E72D665B1D01E20D0097FEB5 /* SetAllOrders.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,
 				E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */,

@@ -8,10 +8,10 @@ struct SaveProduct: DynamicActionType {
 
   func call() {
     var product = self.product
-    store.user.map { user in
+    store.user.subscribeNext { user in
       product.userId = user.uid
       let id = Database.save(product)
-      Database.save(User(id: user.uid, products: [id]))
-    }.subscribe().addDisposableTo(dispose)
+      Database.save(User(id: user.uid, products: [id], orders: []))
+    }.addDisposableTo(dispose)
   }
 }

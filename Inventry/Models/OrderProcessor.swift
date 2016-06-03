@@ -1,6 +1,6 @@
 import Foundation
-import PromiseKit
 import Swish
+import RxSwift
 
 struct TokenMissingError: ErrorType { }
 
@@ -15,9 +15,9 @@ struct OrderProcessor {
     products = vm.products
   }
 
-  func process() -> Promise<Order> {
+  func process() -> Observable<Order> {
     guard let paymentToken = order.paymentToken else {
-      return Promise(error: TokenMissingError())
+      return Observable.error(TokenMissingError())
     }
     // Save for an ID to use in the charge description
     let id = Database.save(order)
@@ -28,16 +28,17 @@ struct OrderProcessor {
       description: "Order: \(id)",
       token: paymentToken
     )
-    let processPayment = APIClient().performRequest(request)
+    let processPayment: Observable<Charge> = APIClient().performRequest(request)
 
-    return processPayment.then { charge -> Order in
-      let updatedOrder = self.updateAndPersistOrder(id, charge: charge)
+    return processPayment.flatMap { charge in
+      return self.updateAndPersistOrder(id, charge: charge)
+    }.map { order in
       self.reduceInventoryQuantities()
-      return updatedOrder
+      return order
     }
   }
 
-  private func updateAndPersistOrder(id: String, charge: Charge) -> Order {
+  private func updateAndPersistOrder(id: String, charge: Charge) -> Observable<Order> {
     let updatedOrder = Order(
       id: id,
       lineItems: order.lineItems,
@@ -47,10 +48,10 @@ struct OrderProcessor {
       taxRate: order.taxRate,
       shippingRate: order.shippingRate,
       notes: order.notes,
-      timestamps: order.timestamps
+      timestamps: order.timestamps,
+      userId: order.userId
     )
-    Database.save(updatedOrder)
-    return updatedOrder
+    return store.dispatch(SaveOrder(order: updatedOrder))
   }
 
   private func reduceInventoryQuantities() {

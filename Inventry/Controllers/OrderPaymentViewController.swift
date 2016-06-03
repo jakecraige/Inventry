@@ -84,9 +84,9 @@ class OrderPaymentViewController: UITableViewController {
   private func placeOrder() -> Promise<Void> {
     let processor = OrderProcessor(vm: viewModel)
 
-    return processor.process().then { order -> Void in
+    return processor.process().map { order -> Void in
       print("Order completed: \(order)")
-    }
+    }.asPromise()
   }
 
   private func handleProcessError(error: ErrorType) {

@@ -1,22 +1,17 @@
 import UIKit
+import RxSwift
 
 class OrdersTableViewController: UITableViewController {
   var orders: [Order] = [] { didSet { tableView.reloadData() } }
-  var observers: [UInt] = []
+  let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
     AuthenticationController().present(onViewController: self)
 
-    observers.append(Database.observeArray(eventType: .Value, orderBy: "timestamps/created_at", sort: .desc) { [weak self] in
-      self?.orders = $0
-    })
+    store.allOrders.subscribeNext { [weak self] in self?.orders = $0 }.addDisposableTo(disposeBag)
 
     // Empty back button for next screen
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-  }
-
-  deinit {
-    observers.forEach { Order.ref.removeObserverWithHandle($0) }
   }
 
   @IBAction func unwindToOrders(sender: UIStoryboardSegue) {

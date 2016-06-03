@@ -11,6 +11,10 @@ extension Store {
     return state.value.allProducts.asObservable()
   }
 
+  var allOrders: Observable<[Order]> {
+    return state.value.allOrders.asObservable()
+  }
+
   var orderViewModel: Observable<OrderViewModel> {
     return Observable.combineLatest(order, allProducts) { order, allProducts in
       return OrderViewModel(order: order, products: allProducts)
