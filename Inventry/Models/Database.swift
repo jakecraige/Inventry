@@ -84,12 +84,27 @@ private extension Database {
   }
 
   static func convertSnapshot(block: ((Model) -> Void)) -> ((FIRDataSnapshot) -> Void) {
-    return { snapshot in decode(snapshot.asDictionary).map(block) }
+    return { snapshot in _ = decodeAndLogError(snapshot.asDictionary).map(block) }
   }
 
   static func decodeChildren(snapshot: FIRDataSnapshot) -> [Model] {
     return snapshot.children
       .flatMap { ($0 as? FIRDataSnapshot)?.asDictionary }
-      .flatMap(decode)
+      .flatMap(decodeAndLogError)
+  }
+
+  private static func decodeAndLogError(dict: [String: AnyObject]) -> Model? {
+    switch decode(dict) as Decoded<Model> {
+    case let .Success(obj):
+      return obj
+      
+    case let .Failure(err):
+      print("---------------------------------------------------------------------")
+      print("Decoding Error: Failed to decode a model of type '\(String(Model))'.")
+      print("Dictionary was: \(dict)")
+      print("Error was: \(err)")
+      print("---------------------------------------------------------------------")
+      return .None
+    }
   }
 }
