@@ -37,9 +37,8 @@ class EditProductViewController: UITableViewController {
       currency: .USD,
       userId: ""
     )
-    store.dispatch(SaveProduct(product: product)).subscribeCompleted { [weak self] in
-      self?.dismiss()
-    }.addDisposableTo(disposeBag)
+    store.dispatch(SaveProduct(product: product)).subscribe().addDisposableTo(disposeBag)
+    dismiss()
   }
 
   override func viewDidLoad() {
