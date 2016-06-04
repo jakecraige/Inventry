@@ -37,6 +37,16 @@ class EditProductViewController: UITableViewController {
       currency: .USD,
       userId: ""
     )
+
+    if !product.isPersisted {
+      Analytics.logEvent(.CreateProduct, [
+        kFIRParameterValue: product.price / 100,
+        kFIRParameterCurrency: Currency.USD.rawValue,
+        kFIRParameterQuantity: product.quantity,
+        Analytics.Param.HasBarcode.rawValue: !product.barcode.isEmpty
+      ])
+    }
+
     store.dispatch(SaveProduct(product: product)).subscribe().addDisposableTo(disposeBag)
     dismiss()
   }

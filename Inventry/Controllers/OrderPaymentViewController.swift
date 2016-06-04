@@ -3,6 +3,7 @@ import Stripe
 import PromiseKit
 import RxSwift
 import RxCocoa
+import Firebase
 
 private enum Cell: Int {
   case name
@@ -54,6 +55,7 @@ class OrderPaymentViewController: UITableViewController {
     validatePaymentMethod()
       .then(confirmOkayToChargeCard)
       .then(placeOrder)
+      .then(logOrderPurchase)
       .then { [weak self] in self?.dismissViewControllerAnimated(true, completion: nil) }
       .always { [weak self] in self?.navigationItem.stopLoadingRightButton() }
       .error { error in
@@ -87,6 +89,16 @@ class OrderPaymentViewController: UITableViewController {
     return processor.process().map { order -> Void in
       print("Order completed: \(order)")
     }.asPromise()
+  }
+
+  private func logOrderPurchase() {
+    Analytics.logEvent(.CreateOrder, [
+      kFIRParameterValue: viewModel.subtotal / 100,
+      kFIRParameterCurrency: Currency.USD.rawValue,
+      kFIRParameterShipping: viewModel.shipping / 100,
+      kFIRParameterTax: viewModel.tax / 100,
+      Analytics.Param.HasNotes.rawValue: !viewModel.order.notes.isEmpty
+    ])
   }
 
   private func handleProcessError(error: ErrorType) {
