@@ -19,3 +19,13 @@ extension CollectionType where Generator.Element: FIRNestedArray, Generator.Elem
     }
   }
 }
+
+func decodeFIRArray(json: JSON, key: String) -> Decoded<[String]> {
+  return decodedJSON(json, forKey: key).flatMap { jsonForKey in
+    switch jsonForKey {
+    case let .Object(o): return pure(Array(o.keys))
+    case .Bool: return pure([])
+    default: return .typeMismatch("Object or Bool", actual: jsonForKey)
+    }
+  }
+}

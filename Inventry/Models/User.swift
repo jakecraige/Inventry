@@ -11,8 +11,8 @@ extension User: Decodable {
   static func decode(json: JSON) -> Decoded<User> {
     return curry(User.init)
       <^> json <|? "id"
-      <*> { .Success([]) }()
-      <*> { .Success([]) }()
+      <*> decodeFIRArray(json, key: "Products")
+      <*> decodeFIRArray(json, key: "Orders")
   }
 }
 
