@@ -19,14 +19,14 @@ class FirebaseSyncController {
       store.dispatch(UpdateAuth(user: user))
     }
 
-    store.user.distinctUntilChanged().flatMap { user in
+    store.firUser.distinctUntilChanged().flatMap { user in
       store.dispatch(CreateUser(firUser: user))
     }.subscribe().addDisposableTo(disposeBag)
   }
 
   private func observeProducts() {
-    store.user.distinctUntilChanged().flatMap { user in
-      return Database<Product>.allWhere(key: "user_id", value: user.uid)
+    store.user.flatMap { user in
+      return Database<Product>.find(ids: user.products)
     }.subscribeNext { products in
       let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
       store.dispatch(SetAllProducts(products: sortedByName))
@@ -34,16 +34,19 @@ class FirebaseSyncController {
   }
 
   private func observeOrders() {
-    store.user.distinctUntilChanged().flatMap { user in
-      return Database<Order>.allWhere(key: "user_id", value: user.uid)
+    store.user.flatMap { user in
+      return Database<Order>.find(ids: user.orders)
     }.subscribeNext { orders in
-      let sortedByCreated = orders.sort { lhs, rhs in
-        guard let lCreated = lhs.timestamps?.createdAt, rCreated = rhs.timestamps?.createdAt
-          else { return true }
-        return lCreated.compare(rCreated) == .OrderedAscending
-      }
-      print(orders)
+      let sortedByCreated = self.sortByCreated(orders)
       store.dispatch(SetAllOrders(orders: sortedByCreated))
     }.addDisposableTo(disposeBag)
+  }
+
+  private func sortByCreated<T: Timestampable>(models: [T]) -> [T] {
+    return models.sort { lhs, rhs in
+      guard let lCreated = lhs.timestamps?.createdAt, rCreated = rhs.timestamps?.createdAt
+        else { return true }
+      return lCreated.compare(rCreated) == .OrderedAscending
+    }
   }
 }

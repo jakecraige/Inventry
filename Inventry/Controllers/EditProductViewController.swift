@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import RxSwift
 
 private enum Cell: Int {
   case name
@@ -19,6 +20,7 @@ class EditProductViewController: UITableViewController {
   var barcode: String?
   var quantity: String?
   var price: String?
+  let disposeBag = DisposeBag()
 
   @IBAction func cancelTapped(sender: UIBarButtonItem) {
     dismiss()
@@ -35,8 +37,9 @@ class EditProductViewController: UITableViewController {
       currency: .USD,
       userId: ""
     )
-    store.dispatch(SaveProduct(product: product))
-    dismiss()
+    store.dispatch(SaveProduct(product: product)).subscribeCompleted { [weak self] in
+      self?.dismiss()
+    }.addDisposableTo(disposeBag)
   }
 
   override func viewDidLoad() {

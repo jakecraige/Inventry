@@ -11,46 +11,35 @@ struct OrderProcessor {
 
   init(vm: OrderViewModel) {
     self.vm = vm
-    order = vm.order
     products = vm.products
+    // it needs to have an ID set even though it's not persisted so we can add a note to the payment
+    // with the orderID
+    order = with(vm.order) { $0.id = $0.childRef.key }
   }
 
   func process() -> Observable<Order> {
     guard let paymentToken = order.paymentToken else {
       return Observable.error(TokenMissingError())
     }
-    // Save for an ID to use in the charge description
-    let id = Database.save(order)
 
     // Charge credit card
     let request = ProcessPaymentRequest(
       amount: vm.total,
-      description: "Order: \(id)",
+      description: "Order: \(order.id!)",
       token: paymentToken
     )
     let processPayment: Observable<Charge> = APIClient().performRequest(request)
 
     return processPayment.flatMap { charge in
-      return self.updateAndPersistOrder(id, charge: charge)
+      return self.updateAndPersistOrder(withCharge: charge)
     }.map { order in
       self.reduceInventoryQuantities()
       return order
     }
   }
 
-  private func updateAndPersistOrder(id: String, charge: Charge) -> Observable<Order> {
-    let updatedOrder = Order(
-      id: id,
-      lineItems: order.lineItems,
-      paymentToken: order.paymentToken,
-      charge: charge,
-      customer: order.customer,
-      taxRate: order.taxRate,
-      shippingRate: order.shippingRate,
-      notes: order.notes,
-      timestamps: order.timestamps,
-      userId: order.userId
-    )
+  private func updateAndPersistOrder(withCharge charge: Charge) -> Observable<Order> {
+    let updatedOrder = with(order) { $0.charge = charge }
     return store.dispatch(SaveOrder(order: updatedOrder))
   }
 

@@ -12,9 +12,7 @@ enum SortOrder {
 struct Database<Model: Modelable where Model.DecodedType == Model> {
   static func save(model: Model) -> String {
     let ref = model.childRef
-    print(ref)
     var values = model.encode()
-    print(values)
 
     if model is Timestampable {
       values["timestamps/updated_at"] = FIRServerValue.timestamp()
@@ -48,6 +46,16 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     }
   }
 
+  static func find(
+    eventType eventType: FIRDataEventType = .Value,
+              ref: FIRDatabaseQuery = Model.ref,
+              ids: [String]
+    ) -> Observable<[Model]>
+  {
+    let queries = ids.map { id in observeObject(ref: Model.getChildRef(id)) }
+    return queries.combineLatest { $0 }
+  }
+
   static func allWhere(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref, key: String, value: AnyObject) -> Observable<[Model]> {
     let query = ref.queryOrderedByChild(key).queryStartingAtValue(value).queryEndingAtValue(value)
     return Observable.create { observer in
@@ -63,45 +71,77 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     }
   }
 
-  static func observeArray(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) -> UInt {
-    if let orderBy = orderBy {
-      return ref.queryOrderedByChild(orderBy).observeEventType(eventType, withBlock: convertSnapshot(block, sort: sort))
-    } else {
-      return ref.observeEventType(eventType, withBlock: convertSnapshot(block, sort: sort))
+  static func observeArray(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc) -> Observable<[Model]> {
+    var query = ref
+    return Observable.create { observer in
+      if let orderBy = orderBy {
+        query = ref.queryOrderedByChild(orderBy)
+      }
+
+      let observerHandle = query.observeEventType(
+        eventType,
+        withBlock: { observer.onNext(convertSnapshot($0, sort: sort)) },
+        withCancelBlock: { observer.onError($0) }
+      )
+      return AnonymousDisposable {
+        query.removeObserverWithHandle(observerHandle)
+      }
     }
   }
 
-  static func observeObject(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, block: ((Model) -> Void)) -> UInt {
-    return ref.observeEventType(eventType, withBlock: convertSnapshot(block))
-  }
-
-  static func observeArrayOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc, block: (([Model]) -> Void)) {
-    if let orderBy = orderBy {
-      return ref.queryOrderedByChild(orderBy).observeSingleEventOfType(eventType, withBlock: convertSnapshot(block, sort: sort))
-    } else {
-      return ref.observeSingleEventOfType(eventType, withBlock: convertSnapshot(block, sort: sort))
+  static func observeObject(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref) -> Observable<Model> {
+    return Observable.create { observer in
+      let observerHandle = ref.observeEventType(
+        eventType,
+        withBlock: { _ = convertSnapshot($0).map(observer.onNext) },
+        withCancelBlock: { observer.onError($0) }
+      )
+      return AnonymousDisposable {
+        ref.removeObserverWithHandle(observerHandle)
+      }
     }
   }
 
-  static func observeObjectOnce(eventType eventType: FIRDataEventType, ref: FIRDatabaseQuery = Model.ref, block: ((Model) -> Void)) {
-    ref.observeSingleEventOfType(eventType, withBlock: convertSnapshot(block))
+  static func observeArrayOnce(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref, orderBy: String? = .None, sort: SortOrder = .asc) -> Observable<[Model]> {
+    var query = ref
+    return Observable.create { observer in
+      if let orderBy = orderBy {
+        query = ref.queryOrderedByChild(orderBy)
+      }
+
+      query.observeSingleEventOfType(
+        eventType,
+        withBlock: { observer.onNext(convertSnapshot($0, sort: sort)) },
+        withCancelBlock: { observer.onError($0) }
+      )
+      return NopDisposable.instance
+    }
+  }
+
+  static func observeObjectOnce(eventType eventType: FIRDataEventType = .Value, ref: FIRDatabaseQuery = Model.ref) -> Observable<Model> {
+    return Observable.create { observer in
+      ref.observeSingleEventOfType(
+        eventType,
+        withBlock: { _ = convertSnapshot($0).map(observer.onNext) },
+        withCancelBlock: { observer.onError($0) }
+      )
+      return NopDisposable.instance
+    }
   }
 }
 
 // MARK: Private Methods
 private extension Database {
-  static func convertSnapshot(block: (([Model]) -> Void), sort: SortOrder) -> ((FIRDataSnapshot) -> Void) {
-    return { snapshot in
-      let children = decodeChildren(snapshot)
-      switch sort {
-      case .asc: block(children) // Firebase default sort is asc
-      case .desc: block(children.reverse())
-      }
+  static func convertSnapshot(snapshot: FIRDataSnapshot, sort: SortOrder) -> [Model] {
+    let children = decodeChildren(snapshot)
+    switch sort {
+    case .asc: return children // Firebase default sort is asc
+    case .desc: return children.reverse()
     }
   }
 
-  static func convertSnapshot(block: ((Model) -> Void)) -> ((FIRDataSnapshot) -> Void) {
-    return { snapshot in _ = decodeAndLogError(snapshot.asDictionary).map(block) }
+  static func convertSnapshot(snapshot: FIRDataSnapshot) -> Model? {
+    return decodeAndLogError(snapshot.asDictionary)
   }
 
   static func decodeChildren(snapshot: FIRDataSnapshot) -> [Model] {

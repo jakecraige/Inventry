@@ -4,7 +4,7 @@ import Curry
 private let defaultNotes = ""
 
 struct Order: Modelable, Timestampable {
-  let id: String?
+  var id: String?
   var lineItems: [LineItem] = []
   var paymentToken: String?
   var charge: Charge?

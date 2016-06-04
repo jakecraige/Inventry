@@ -6,11 +6,12 @@ struct SaveOrder: DynamicActionType {
   let order: Order
 
   func call() -> Observable<Order> {
-    var order = self.order
-    return store.user.map { user in
-      order.userId = user.uid
+    return store.user.take(1).map { user in
+      let order = with(self.order) { $0.userId = user.uid }
       let id = Database.save(order)
-      Database.save(User(id: user.uid, products: [], orders: [id]))
+
+      let user = with(user) { $0.orders.append(id) }
+      Database.save(user)
       return order
     }
   }

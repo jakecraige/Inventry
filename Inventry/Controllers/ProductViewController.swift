@@ -1,9 +1,10 @@
 import UIKit
 import Firebase
+import RxSwift
 
 class ProductViewController: UIViewController {
   var product: Product!
-  var observers: [UInt] = []
+  var disposeBag = DisposeBag()
 
   @IBOutlet var nameLabel: UILabel!
   @IBOutlet var barcodeLabel: UILabel!
@@ -22,15 +23,11 @@ class ProductViewController: UIViewController {
   }
 
   override func viewDidLoad() {
-    observers.append(Database.observeObject(eventType: .Value, ref: product.childRef) { [weak self] (product: Product) in
+    Database.observeObject(ref: product.childRef).subscribeNext { [weak self] (product: Product) in
       guard let `self` = self else { return }
       self.product = product
       self.updateUI()
-    })
-  }
-
-  deinit {
-    observers.forEach { Product.ref.removeObserverWithHandle($0) }
+    }.addDisposableTo(disposeBag)
   }
 
   func updateUI() {

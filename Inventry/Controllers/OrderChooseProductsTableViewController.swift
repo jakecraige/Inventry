@@ -24,9 +24,6 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
   override func viewDidLoad() {
     store.dispatch(ResetCurrentOrder())
-    observers.append(Database.observeArray(eventType: .Value, orderBy: "name") {
-      store.dispatch(SetAllProducts(products: $0))
-    })
 
     store.orderViewModel.subscribeNext { [weak self] updatedViewModel in
       guard let `self` = self else { return }

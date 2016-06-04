@@ -4,14 +4,15 @@ import RxSwift
 
 struct SaveProduct: DynamicActionType {
   let product: Product
-  let dispose = DisposeBag()
 
-  func call() {
-    var product = self.product
-    store.user.subscribeNext { user in
-      product.userId = user.uid
+  func call() -> Observable<Product> {
+    return store.user.take(1).map { user in
+      let product = with(self.product) { $0.userId = user.uid }
       let id = Database.save(product)
-      Database.save(User(id: user.uid, products: [id], orders: []))
-    }.addDisposableTo(dispose)
+
+      let user = with(user) { $0.products.append(id) }
+      Database.save(user)
+      return product
+    }
   }
 }

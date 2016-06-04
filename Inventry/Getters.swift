@@ -25,9 +25,14 @@ extension Store {
     return state.value.user.value != .None
   }
 
-  var user: Observable<FIRUser> {
+  var firUser: Observable<FIRUser> {
     return state.value.user.asObservable()
       .filter { $0 != .None }
       .map { $0! }
+  }
+
+  var user: Observable<User> {
+    return firUser
+      .flatMap { Database.observeObject(ref: User.getChildRef($0.uid)) }
   }
 }

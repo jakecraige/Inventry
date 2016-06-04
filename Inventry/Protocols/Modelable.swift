@@ -4,6 +4,7 @@ import Argo
 protocol Modelable: Decodable, Encodable, Equatable {
   static var refName: String { get }
   static var ref: FIRDatabaseReference { get }
+  static func getChildRef(id: String) -> FIRDatabaseReference
 
   /// The key stored in Firebase. This is also used to tell if an object is persisted or not.
   var id: String? { get }
@@ -18,6 +19,10 @@ extension Modelable {
 
   static var ref: FIRDatabaseReference {
     return FIRDatabase.database().reference().child(refName)
+  }
+
+  static func getChildRef(id: String) -> FIRDatabaseReference {
+    return ref.child(id)
   }
 
   var childRef: FIRDatabaseReference {
