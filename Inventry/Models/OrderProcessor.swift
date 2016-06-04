@@ -28,9 +28,8 @@ struct OrderProcessor {
       description: "Order: \(order.id!)",
       token: paymentToken
     )
-    let processPayment: Observable<Charge> = APIClient().performRequest(request)
 
-    return processPayment.flatMap { charge in
+    return APIClient().performRequest(request).flatMap { charge in
       return self.updateAndPersistOrder(withCharge: charge)
     }.map { order in
       self.reduceInventoryQuantities()

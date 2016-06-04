@@ -19,13 +19,13 @@ class FirebaseSyncController {
       store.dispatch(UpdateAuth(user: user))
     }
 
-    store.firUser.distinctUntilChanged().flatMap { user in
+    store.firUser.distinctUntilChanged().subscribeNext { user in
       store.dispatch(CreateUser(firUser: user))
-    }.subscribe().addDisposableTo(disposeBag)
+    }.addDisposableTo(disposeBag)
   }
 
   private func observeProducts() {
-    store.user.flatMap { user in
+    store.user.flatMapLatest { user in
       return Database<Product>.find(ids: user.products)
     }.subscribeNext { products in
       let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
@@ -34,7 +34,7 @@ class FirebaseSyncController {
   }
 
   private func observeOrders() {
-    store.user.flatMap { user in
+    store.user.flatMapLatest { user in
       return Database<Order>.find(ids: user.orders)
     }.subscribeNext { orders in
       let sortedByCreated = self.sortByCreated(orders)

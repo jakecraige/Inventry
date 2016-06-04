@@ -14,6 +14,7 @@ extension APIClient {
     }
   }
 
+  // Return an observable that emits one a single event on success or error on failure
   func performRequest<T: Request>(request: T) -> Observable<T.ResponseObject> {
     return Observable.create { observable in
       let executingRequest = self.performRequest(request) { response in
@@ -25,6 +26,6 @@ extension APIClient {
       }
 
       return AnonymousDisposable { executingRequest.cancel() }
-    }
+    }.single()
   }
 }
