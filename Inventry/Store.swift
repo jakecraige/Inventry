@@ -7,7 +7,7 @@ struct Store: StoreType {
   lazy var user: Observable<User> = {
     return self.firUser
       .flatMapLatest { Database.observeObject(ref: User.getChildRef($0.uid)) }
-      .share()
+      .shareReplay(1)
   }()
 }
 

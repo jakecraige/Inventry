@@ -14,9 +14,9 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     let ref = model.childRef
     var values = model.encode()
 
-    if model is Timestampable {
+    if let tModel = model as? Timestampable {
       values["timestamps/updated_at"] = FIRServerValue.timestamp()
-      if !model.isPersisted {
+      if tModel.timestamps?.createdAt == .None {
         values["timestamps/created_at"] = FIRServerValue.timestamp()
       }
     }

@@ -41,6 +41,7 @@
 		E718E2091CFBD8530086E2C4 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E2081CFBD8530086E2C4 /* Storyboard.swift */; };
 		E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */; };
 		E718E20D1CFBE5B00086E2C4 /* UINavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */; };
+		E72000111D035E90009BAF12 /* DeleteProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000101D035E90009BAF12 /* DeleteProduct.swift */; };
 		E72D66451CFFDCC40097FEB5 /* FirebaseSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */; };
 		E72D66471CFFDDB70097FEB5 /* UpdateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
@@ -141,6 +142,7 @@
 		E718E2081CFBD8530086E2C4 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		E718E20A1CFBDF560086E2C4 /* CreditCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardTableViewCell.swift; sourceTree = "<group>"; };
 		E718E20C1CFBE5B00086E2C4 /* UINavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationItem.swift; sourceTree = "<group>"; };
+		E72000101D035E90009BAF12 /* DeleteProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteProduct.swift; sourceTree = "<group>"; };
 		E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseSyncController.swift; sourceTree = "<group>"; };
 		E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuth.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */,
 				E72D66531CFFFED20097FEB5 /* SaveProduct.swift */,
 				E72D66581D01D9B30097FEB5 /* SaveOrder.swift */,
+				E72000101D035E90009BAF12 /* DeleteProduct.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */,
 				E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */,
 				E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */,
+				E72000111D035E90009BAF12 /* DeleteProduct.swift in Sources */,
 				E7EA96E11CFCD06D008B47D4 /* Environment.swift in Sources */,
 				E7005CF81CFDFCFD00B88483 /* AddToCurrentOrder.swift in Sources */,
 				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,

@@ -9,17 +9,15 @@ extension FIRDataSnapshot {
 }
 
 extension CollectionType where Self.Generator.Element == String {
-  /// Used to encode an array of IDs into {"model/id": true}. The prefix is used to we aren't
-  /// accidentally doing overwrites on existing data.
-  func FIR_encode(refPrefix: String) -> [String: Bool] {
+  /// Used to encode an array of IDs into `{"model": {"id": true}}`.
+  func FIR_encode(refPrefix: String) -> [String: AnyObject] {
     if isEmpty {
       return [refPrefix: true]
     } else {
-      return reduce([:]) { result, key in
-        var dict = result
-        dict["\(refPrefix)/\(key)"] = true
-        return dict
+      let subDict = reduce([:]) { result, key in
+        return result + [key: true]
       }
+      return [refPrefix: subDict]
     }
   }
 }

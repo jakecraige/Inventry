@@ -57,7 +57,8 @@ extension ProductsTableViewController {
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     switch editingStyle {
     case .Delete:
-      Database.delete(products[indexPath.row])
+      store.dispatch(DeleteProduct(product: products[indexPath.row]))
+        .subscribe().addDisposableTo(disposeBag)
 
     default: break
     }
