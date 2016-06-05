@@ -15,8 +15,12 @@ struct CreateUser: DynamicActionType {
       } else {
         return Observable.just(user)
       }
-    }.map { user in
-      return with(user) { $0.stripeConnectAccount = self.connectAccount }
+    }.map { user -> User in
+      if self.connectAccount.isNull {
+        return user
+      } else {
+        return with(user) { $0.stripeConnectAccount = self.connectAccount }
+      }
     }.map { user in
       return Database.save(user)
     }

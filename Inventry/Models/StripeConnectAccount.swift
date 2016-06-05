@@ -10,6 +10,10 @@ struct StripeConnectAccount {
   let tokenType: String
   let livemode: Bool
 
+  var isNull: Bool {
+    return stripeUserID.isEmpty
+  }
+
   static func null() -> StripeConnectAccount {
     return .init(
       stripeUserID: "",
