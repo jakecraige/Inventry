@@ -18,18 +18,20 @@ struct OrderProcessor {
   }
 
   func process() -> Observable<Order> {
+    let (vm, order) = (self.vm, self.order)
     guard let paymentToken = order.paymentToken else {
       return Observable.error(TokenMissingError())
     }
 
-    // Charge credit card
-    let request = ProcessPaymentRequest(
-      amount: vm.total,
-      description: "Order: \(order.id!)",
-      token: paymentToken
-    )
-
-    return APIClient().performRequest(request).flatMap { charge in
+    return store.user.flatMap { user -> Observable<Charge> in
+      let request = ProcessPaymentRequest(
+        amount: vm.total,
+        description: "Order: \(order.id!)",
+        token: paymentToken,
+        accountID: user.stripeConnectAccount.stripeUserID
+      )
+      return APIClient().performRequest(request)
+    }.flatMap { charge in
       return self.updateAndPersistOrder(withCharge: charge)
     }.map { order in
       self.reduceInventoryQuantities()

@@ -18,8 +18,6 @@ export default function(ctx, cb) {
       return cb(err);
     }
 
-    const accessToken = JSON.parse(body).access_token;
-
-    cb(null, {accessToken});
+    cb(null, JSON.parse(body));
   });
 };

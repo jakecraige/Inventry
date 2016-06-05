@@ -4,7 +4,7 @@ import RxSwift
 
 struct CreateUser: DynamicActionType {
   let firUser: FIRUser
-  let stripeAccessToken: String
+  let connectAccount: StripeConnectAccount
 
   func call() -> Observable<String> {
     let user = User(id: firUser.uid)
@@ -16,7 +16,7 @@ struct CreateUser: DynamicActionType {
         return Observable.just(user)
       }
     }.map { user in
-      return with(user) { $0.stripeAccessToken = self.stripeAccessToken }
+      return with(user) { $0.stripeConnectAccount = self.connectAccount }
     }.map { user in
       return Database.save(user)
     }

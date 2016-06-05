@@ -9,6 +9,7 @@ struct ProcessPaymentRequest: Request {
   let currency: Currency = .USD
   let description: String
   let token: String
+  let accountID: String
 
   func build() -> NSURLRequest {
     let request = baseRequest(url: taskUrl, method: .POST)
@@ -17,7 +18,8 @@ struct ProcessPaymentRequest: Request {
       "amount": amount,
       "currency": currency.rawValue,
       "description": description,
-      "token": token
+      "token": token,
+      "accountID": accountID
     ]
 
     return request

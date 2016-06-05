@@ -3,3 +3,4 @@
 set -e
 
 wt update process-payment ./backend/process-payment.js
+wt update stripe-oauth-callback ./backend/stripe-oauth-callback.js

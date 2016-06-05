@@ -9,6 +9,8 @@ export default function(ctx, cb) {
     currency: ctx.body.currency,
     description: ctx.body.description,
     source: ctx.body.token,
+  }, {
+    stripe_account: ctx.body.accountID
   }).then(charge => {
     cb(null, charge);
   }).catch(cb);

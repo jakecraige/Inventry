@@ -42,7 +42,7 @@ class FirebaseSyncController {
     return models.sort { lhs, rhs in
       guard let lCreated = lhs.timestamps?.createdAt, rCreated = rhs.timestamps?.createdAt
         else { return true }
-      return lCreated.compare(rCreated) == .OrderedAscending
+      return lCreated.compare(rCreated) == .OrderedDescending
     }
   }
 }

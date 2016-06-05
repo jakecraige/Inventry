@@ -6,18 +6,23 @@ struct User: Modelable {
   let uid: String
   var products = [String]()
   var orders = [String]()
-  var stripeAccessToken: String
+  var stripeConnectAccount: StripeConnectAccount
 
   var accountSetupComplete: Bool {
-    return !stripeAccessToken.isEmpty
+    return !stripeConnectAccount.stripeUserID.isEmpty
   }
 
-  init(id: String, products: [String] = [], orders: [String] = [], stripeAccessToken: String = "") {
+  init(
+    id: String,
+    products: [String] = [],
+    orders: [String] = [],
+    stripeConnectAccount: StripeConnectAccount = .null()
+  ) {
     self.id = id
     self.uid = id
     self.products = products
     self.orders = orders
-    self.stripeAccessToken = stripeAccessToken
+    self.stripeConnectAccount = stripeConnectAccount
   }
 }
 
@@ -27,15 +32,16 @@ extension User: Decodable {
       <^> json <| "id"
       <*> decodeFIRArray(json, key: "Products")
       <*> decodeFIRArray(json, key: "Orders")
-      <*> (json <| "stripe_access_token").or(.Success(""))
+      <*> (json <| "stripe_connect_account").or(.Success(.null()))
   }
 }
 
 extension User: Encodable {
   func encode() -> [String: AnyObject] {
-    return [:]
+    return [
+      "stripe_connect_account": stripeConnectAccount.encode()
+      ]
       + products.FIR_encode(Product.refName)
       + orders.FIR_encode(Order.refName)
-      + ["stripe_access_token": stripeAccessToken]
   }
 }

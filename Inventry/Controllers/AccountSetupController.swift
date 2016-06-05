@@ -11,7 +11,7 @@ class AccountSetupController: UIViewController {
 
   override func viewDidLoad() {
     let signedIn = store.signedIn
-    let stripeAuthed = store.user.map { !$0.stripeAccessToken.isEmpty }.asDriver(onErrorJustReturn: false).startWith(false)
+    let stripeAuthed = store.user.map { $0.accountSetupComplete }.asDriver(onErrorJustReturn: false).startWith(false)
 
     let signInEnabled = signedIn.map(not)
     let connectStripeEnabled = Driver.combineLatest(signedIn, stripeAuthed.map(not), resultSelector: and)
@@ -28,8 +28,8 @@ class AccountSetupController: UIViewController {
     switch identifier {
     case "connectStripeSegue":
       let vc = segue.destinationViewController as! StripeAuthenticationController
-      vc.accessToken.subscribe(
-        onNext: handleStripeToken,
+      vc.connectAccount.subscribe(
+        onNext: handleConnectedAccount,
         onError: handleStripeError
       ).addDisposableTo(disposeBag)
     default: break
@@ -40,9 +40,9 @@ class AccountSetupController: UIViewController {
     AuthenticationController().present(onViewController: self)
   }
 
-  private func handleStripeToken(token: String) {
+  private func handleConnectedAccount(account: StripeConnectAccount) {
     store.firUser.take(1).flatMap { user in
-      store.dispatch(CreateUser(firUser: user, stripeAccessToken: token))
+      store.dispatch(CreateUser(firUser: user, connectAccount: account))
     }.subscribe().addDisposableTo(disposeBag)
   }
 

@@ -1,10 +1,11 @@
 import UIKit
 import WebKit
 import RxSwift
+import Argo
 
 class StripeAuthenticationController: UIViewController {
   var webView: WKWebView!
-  var accessToken = PublishSubject<String>()
+  var connectAccount = PublishSubject<StripeConnectAccount>()
 
   override func loadView() {
     webView = WKWebView()
@@ -43,15 +44,23 @@ extension StripeAuthenticationController: WKNavigationDelegate {
     webView.evaluateJavaScript("document.body.innerText") { body, error in
       guard let text = body as? String,
                 data = text.dataUsingEncoding(NSUTF8StringEncoding),
-                json = (try? NSJSONSerialization.JSONObjectWithData(data, options: [])) as? NSDictionary
+                json = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
       else { return }
 
-      if let token = json.valueForKey("accessToken") as? String {
-        self.accessToken.onNext(token)
-      } else if let error = error {
-        self.accessToken.onError(error)
+      if let error = error {
+        self.connectAccount.onError(error)
+        self.connectAccount.onCompleted()
+        return
       }
-      self.accessToken.onCompleted()
+
+      switch decode(json) as Decoded<StripeConnectAccount> {
+      case let .Success(account):
+        self.connectAccount.onNext(account)
+      case let .Failure(error):
+        self.connectAccount.onError(error)
+      }
+
+      self.connectAccount.onCompleted()
       self.dismiss()
     }
   }
