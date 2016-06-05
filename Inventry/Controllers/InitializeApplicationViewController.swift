@@ -8,12 +8,14 @@ class InitializeApplicationViewController: UIViewController {
 
   override func viewDidLoad() {
     if store.isSignedIn {
-      store.firUser.flatMap { user in
-        // Verify user exists to prevent decoding errors breaking stuff
-        return store.dispatch(CreateUser(firUser: user, connectAccount: StripeConnectAccount.null()))
-      }.flatMap { userID in
-        return Database<User>.observeObjectOnce(ref: User.getChildRef(userID))
-      }.take(1)
+      store.firUser
+        .timeout(3, scheduler: MainScheduler.instance)
+        .flatMap { user in
+          // Verify user exists to prevent decoding errors breaking stuff
+          return store.dispatch(CreateUser(firUser: user, connectAccount: StripeConnectAccount.null()))
+        }.flatMap { userID in
+          return Database<User>.observeObjectOnce(ref: User.getChildRef(userID))
+        }.take(1)
         .map { $0.accountSetupComplete }
         .subscribe(
           onNext: { accountSetupComplete in
