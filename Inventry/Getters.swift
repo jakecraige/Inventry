@@ -23,16 +23,22 @@ extension Store {
   }
 
   var isSignedIn: Bool {
-    return state.value.user.value != .None
+    return state.value.firUser.value != .None
   }
 
   var signedIn: Driver<Bool> {
-    return state.value.user.asObservable().map { user in
+    return state.value.firUser.asObservable().map { user in
       return user != .None
     }.asDriver(onErrorJustReturn: false)
   }
 
   var firUser: Observable<FIRUser> {
+    return state.value.firUser.asObservable()
+      .filter { $0 != .None }
+      .map { $0! }
+  }
+
+  var user: Observable<User> {
     return state.value.user.asObservable()
       .filter { $0 != .None }
       .map { $0! }

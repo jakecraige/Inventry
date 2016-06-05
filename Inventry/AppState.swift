@@ -11,6 +11,9 @@ struct AppState {
   /// All orders. Used as an in memory reference
   let allOrders = Variable([Order]())
 
+  /// Currently signed in firebase user
+  let firUser = Variable(FIRAuth.auth()?.currentUser)
+
   /// Currently signed in user
-  let user = Variable(FIRAuth.auth()?.currentUser)
+  let user = Variable<User?>(.None)
 }

@@ -49,6 +49,7 @@
 		E720001B1D03947D009BAF12 /* InitializeApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */; };
 		E720001D1D039D98009BAF12 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720001C1D039D98009BAF12 /* AccountSetupController.swift */; };
 		E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */; };
+		E72000231D047DF8009BAF12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000221D047DF8009BAF12 /* SettingsViewController.swift */; };
 		E72D66451CFFDCC40097FEB5 /* FirebaseSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */; };
 		E72D66471CFFDDB70097FEB5 /* UpdateAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
@@ -157,6 +158,7 @@
 		E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializeApplicationViewController.swift; sourceTree = "<group>"; };
 		E720001C1D039D98009BAF12 /* AccountSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
 		E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectAccount.swift; sourceTree = "<group>"; };
+		E72000221D047DF8009BAF12 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseSyncController.swift; sourceTree = "<group>"; };
 		E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuth.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				E72000161D0384B6009BAF12 /* StripeAuthenticationController.swift */,
 				E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */,
 				E720001C1D039D98009BAF12 /* AccountSetupController.swift */,
+				E72000221D047DF8009BAF12 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				E7005CF81CFDFCFD00B88483 /* AddToCurrentOrder.swift in Sources */,
 				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
+				E72000231D047DF8009BAF12 /* SettingsViewController.swift in Sources */,
 				E7005D001CFF380E00B88483 /* ResetCurrentOrder.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,

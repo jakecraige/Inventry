@@ -3,15 +3,18 @@ import Firebase
 import Stripe
 import FirebaseAuthUI
 import HockeySDK
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var firebaseSyncController: FirebaseSyncController?
+  let disposeBag = DisposeBag()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     configureFirebase()
     configureHockey()
+    monitorAuthState()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
     firebaseSyncController = FirebaseSyncController()
     firebaseSyncController?.sync()
@@ -43,12 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func configureHockey() {
-    guard Environment.isDevelopment else { return }
-
     let manager = BITHockeyManager.sharedHockeyManager()
     manager.configureWithIdentifier(Environment.hockeyAppIdentifier)
     manager.startManager()
     manager.authenticator.authenticateInstallation()
     manager.crashManager.crashManagerStatus = .AutoSend
+  }
+
+  func monitorAuthState() {
+    // Skip first one that comes through when starting the app
+    let signedOut = store.signedIn.distinctUntilChanged().skip(1).filter(not)
+    signedOut.driveNext { _ in
+      let vc = UIStoryboard.instantiateInitialViewController(forStoryboard: .Onboarding)
+      self.window?.rootViewController = vc
+      self.window?.makeKeyAndVisible()
+    }.addDisposableTo(disposeBag)
   }
 }
