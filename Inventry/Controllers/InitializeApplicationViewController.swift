@@ -8,9 +8,23 @@ class InitializeApplicationViewController: UIViewController {
 
   override func viewDidLoad() {
     if store.isSignedIn {
-      store.user.take(1).subscribeNext { user in
-        user.accountSetupComplete ? self.startMain() : self.startOnboarding()
-      }.addDisposableTo(disposeBag)
+      store.firUser.flatMap { user in
+        // Verify user exists to prevent decoding errors breaking stuff
+        return store.dispatch(CreateUser(firUser: user, connectAccount: StripeConnectAccount.null()))
+      }.flatMap { userID in
+        return Database<User>.observeObjectOnce(ref: User.getChildRef(userID))
+      }.take(1)
+        .map { $0.accountSetupComplete }
+        .subscribe(
+          onNext: { accountSetupComplete in
+            accountSetupComplete ? self.startMain() : self.startOnboarding()
+          },
+          onError: { error in
+            print(error)
+            _ = try? FIRAuth.auth()?.signOut()
+            self.startOnboarding()
+          }
+        ).addDisposableTo(disposeBag)
     } else {
       startOnboarding()
     }

@@ -9,6 +9,16 @@ enum SortOrder {
   case desc
 }
 
+/// Returned when a reference you try to subscribe to doesn't exist
+struct NullRefError: ErrorType {
+  let message: String
+  var debugDescription: String { return message }
+
+  init(_ ref: FIRDatabaseQuery) {
+    message = "Attempted to observer null reference for \(ref)"
+  }
+}
+
 struct Database<Model: Modelable where Model.DecodedType == Model> {
   static func save(model: Model) -> String {
     let ref = model.childRef
@@ -93,7 +103,13 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     return Observable.create { observer in
       let observerHandle = ref.observeEventType(
         eventType,
-        withBlock: { _ = convertSnapshot($0).map(observer.onNext) },
+        withBlock: { snapshot in
+          if snapshot.exists() {
+            _ = convertSnapshot(snapshot).map(observer.onNext)
+          } else {
+            print(NullRefError(ref))
+          }
+        },
         withCancelBlock: { observer.onError($0) }
       )
       return AnonymousDisposable {
@@ -122,7 +138,13 @@ struct Database<Model: Modelable where Model.DecodedType == Model> {
     return Observable.create { observer in
       ref.observeSingleEventOfType(
         eventType,
-        withBlock: { _ = convertSnapshot($0).map(observer.onNext) },
+        withBlock: { snapshot in
+          if snapshot.exists() {
+            _ = convertSnapshot(snapshot).map(observer.onNext)
+          } else {
+            print(NullRefError(ref))
+          }
+        },
         withCancelBlock: { observer.onError($0) }
       )
       return NopDisposable.instance
