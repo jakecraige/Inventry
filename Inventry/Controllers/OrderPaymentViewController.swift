@@ -49,6 +49,18 @@ class OrderPaymentViewController: UITableViewController {
     formValid.drive(buyButton.rx_enabled).addDisposableTo(disposeBag)
   }
 
+  override func viewWillAppear(animated: Bool) {
+    CardIOUtilities.preload()
+  }
+
+  @IBAction func scanCreditCardTapped(sender: UIBarButtonItem) {
+    let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
+    cardIOVC.modalPresentationStyle = .FormSheet
+    cardIOVC.useCardIOLogo = true
+    cardIOVC.hideCardIOLogo = true
+    presentViewController(cardIOVC, animated: true, completion: nil)
+  }
+
   @IBAction func buyTapped(sender: UIBarButtonItem) {
     navigationItem.startLoadingRightButton()
 
@@ -108,6 +120,17 @@ class OrderPaymentViewController: UITableViewController {
       presentingVC: self
     )
   }
+
+  func setCardParams(number: String, expMonth: UInt, expYear: UInt, cvv: String) {
+    paymentParams.number = number
+    paymentParams.expMonth = expMonth
+    paymentParams.expYear = expYear
+    paymentParams.cvc = cvv
+    tableView.reloadRowsAtIndexPaths(
+      [NSIndexPath(forRow: Cell.creditCard.rawValue, inSection: 0)],
+      withRowAnimation: .Automatic
+    )
+  }
 }
 
 // MARK: UITableViewDataSource
@@ -129,6 +152,7 @@ extension OrderPaymentViewController {
     if cellType == .creditCard {
       let cell = tableView.dequeueReusableCellWithIdentifier("creditCardCell", forIndexPath: indexPath) as! CreditCardTableViewCell
       cell.paymentTextField.delegate = self
+      cell.paymentTextField.cardParams = paymentParams
       return cell
     } else {
       let cell = tableView.dequeueReusableCellWithIdentifier("formTextFieldCell", forIndexPath: indexPath) as! FormTextFieldTableViewCell
@@ -154,5 +178,24 @@ extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
   func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
     paymentValid.value = textField.valid
     paymentParams = textField.cardParams
+  }
+}
+
+extension OrderPaymentViewController: CardIOPaymentViewControllerDelegate {
+  func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController?) {
+    paymentViewController?.dismissViewControllerAnimated(true, completion: .None)
+  }
+
+  func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo?, inPaymentViewController paymentViewController: CardIOPaymentViewController?) {
+    if let info = cardInfo {
+      setCardParams(
+        info.cardNumber,
+        expMonth: info.expiryMonth,
+        expYear: info.expiryYear,
+        cvv: info.cvv
+      )
+    }
+
+    paymentViewController?.dismissViewControllerAnimated(true, completion: .None)
   }
 }

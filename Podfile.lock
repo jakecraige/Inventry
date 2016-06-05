@@ -1,5 +1,6 @@
 PODS:
   - AsyncSwift (1.7.2)
+  - CardIO (5.3.2)
   - Firebase (3.2.0):
     - Firebase/Core (= 3.2.0)
   - Firebase/Analytics (3.2.0):
@@ -83,6 +84,7 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
+  - CardIO
   - Firebase
   - Firebase/Auth
   - Firebase/Crash
@@ -98,6 +100,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
+  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
   FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
@@ -121,6 +124,6 @@ SPEC CHECKSUMS:
   RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
 
-PODFILE CHECKSUM: b4853db659fc65796d4be3ad20708e54d96514ea
+PODFILE CHECKSUM: 1feb3a77fe2df69c9693c5d289350441fe6558bb
 
 COCOAPODS: 1.0.0

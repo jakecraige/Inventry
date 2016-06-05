@@ -20,6 +20,7 @@ target target_name do
   pod "RxSwift"
   pod "RxCocoa"
   pod "AsyncSwift"
+  pod "CardIO"
 end
 
 abstract_target :unit_tests do

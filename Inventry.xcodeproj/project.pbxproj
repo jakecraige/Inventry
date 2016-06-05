@@ -159,6 +159,7 @@
 		E720001C1D039D98009BAF12 /* AccountSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
 		E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectAccount.swift; sourceTree = "<group>"; };
 		E72000221D047DF8009BAF12 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E72000241D04954D009BAF12 /* Inventry-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Inventry-Bridging-Header.h"; sourceTree = "<group>"; };
 		E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseSyncController.swift; sourceTree = "<group>"; };
 		E72D66461CFFDDB70097FEB5 /* UpdateAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuth.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
@@ -445,6 +446,7 @@
 				E7005CEE1CFDF76E00B88483 /* Store.swift */,
 				E7005CF01CFDF77700B88483 /* AppState.swift */,
 				E72D66481CFFDF120097FEB5 /* Getters.swift */,
+				E72000241D04954D009BAF12 /* Inventry-Bridging-Header.h */,
 			);
 			path = Inventry;
 			sourceTree = "<group>";
@@ -576,7 +578,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Inventry;
 				TargetAttributes = {
@@ -967,6 +969,7 @@
 			baseConfigurationReference = 6454E556A2A2CE34327F1EFF /* Pods-Inventry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -983,6 +986,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c4f69bb5-33f2-4e53-acac-55bed4ad4007";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Inventry/Inventry-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1049,6 +1053,7 @@
 			baseConfigurationReference = C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1064,6 +1069,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Inventry/Inventry-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
