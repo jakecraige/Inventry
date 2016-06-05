@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ehd-PT-4Ch">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Dqh-Kc-C3V">
+            <objects>
+                <navigationController id="Ehd-PT-4Ch" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lO2-ru-Gq0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bnI-et-ULB" kind="relationship" relationship="rootViewController" id="r04-wl-1NO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-oe-HX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="369"/>
+        </scene>
+        <!--Account Setup-->
+        <scene sceneID="TPa-bn-yzJ">
+            <objects>
+                <viewController id="bnI-et-ULB" customClass="AccountSetupController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qva-xr-AbV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cQn-5i-wvJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JwV-8D-iCR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wCp-DK-q0t">
+                                <rect key="frame" x="240" y="245" width="120" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqH-de-vpN">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
+                                        <state key="normal" title="1. Sign Up"/>
+                                        <connections>
+                                            <action selector="signUpTapped:" destination="bnI-et-ULB" eventType="touchUpInside" id="XZq-lG-sFP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIb-5l-1ba">
+                                        <rect key="frame" x="0.0" y="40" width="120" height="30"/>
+                                        <state key="normal" title="2. Connect Stripe"/>
+                                        <connections>
+                                            <segue destination="TwU-nj-4rS" kind="show" identifier="connectStripeSegue" id="JA4-kx-D4m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJS-dt-i8v">
+                                        <rect key="frame" x="0.0" y="80" width="120" height="30"/>
+                                        <state key="normal" title="3. Get Started!"/>
+                                        <connections>
+                                            <segue destination="k3I-bS-xcB" kind="presentation" identifier="mainSegue" id="838-Yc-1G3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wCp-DK-q0t" firstAttribute="centerX" secondItem="JwV-8D-iCR" secondAttribute="centerX" id="10K-gR-uv4"/>
+                            <constraint firstItem="wCp-DK-q0t" firstAttribute="centerY" secondItem="JwV-8D-iCR" secondAttribute="centerY" id="3RY-wt-b44"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account Setup" id="OFu-pa-LA1"/>
+                    <connections>
+                        <outlet property="connectStripeButton" destination="HIb-5l-1ba" id="Alk-Q2-tXr"/>
+                        <outlet property="getStartedButton" destination="eJS-dt-i8v" id="TLJ-Aa-7J6"/>
+                        <outlet property="signUpButton" destination="RqH-de-vpN" id="CUb-id-OZI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="noE-De-X3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756" y="369"/>
+        </scene>
+        <!--Stripe-->
+        <scene sceneID="7bo-32-d5Z">
+            <objects>
+                <viewController id="TwU-nj-4rS" customClass="StripeAuthenticationController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F8A-zf-Pi9"/>
+                        <viewControllerLayoutGuide type="bottom" id="7nY-Jh-PvN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WLV-vv-r77">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stripe" id="HUK-tM-nz2">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="PRh-Jf-PvT">
+                            <connections>
+                                <action selector="cancelTapped:" destination="TwU-nj-4rS" id="QCU-Ry-Rkt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ozj-rQ-9d8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="369"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="jEO-My-Hsy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="k3I-bS-xcB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sCs-AP-L6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1124" y="833"/>
+        </scene>
+    </scenes>
+</document>

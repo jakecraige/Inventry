@@ -6,8 +6,6 @@ class OrdersTableViewController: UITableViewController {
   let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
-    AuthenticationController().present(onViewController: self)
-
     store.allOrders.subscribeNext { [weak self] in self?.orders = $0 }.addDisposableTo(disposeBag)
 
     // Empty back button for next screen

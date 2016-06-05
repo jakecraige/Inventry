@@ -31,3 +31,11 @@ func + <K,V>(left: [K:V], right: [K:V]) -> [K:V] {
 
   return dict
 }
+
+func not(value: Bool) -> Bool {
+  return !value
+}
+
+func and(value1: Bool, value2: Bool) -> Bool {
+  return value1 && value2
+}

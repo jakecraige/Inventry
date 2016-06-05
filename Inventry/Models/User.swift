@@ -6,12 +6,18 @@ struct User: Modelable {
   let uid: String
   var products = [String]()
   var orders = [String]()
+  var stripeAccessToken: String
 
-  init(id: String, products: [String] = [], orders: [String] = []) {
+  var accountSetupComplete: Bool {
+    return !stripeAccessToken.isEmpty
+  }
+
+  init(id: String, products: [String] = [], orders: [String] = [], stripeAccessToken: String = "") {
     self.id = id
     self.uid = id
     self.products = products
     self.orders = orders
+    self.stripeAccessToken = stripeAccessToken
   }
 }
 
@@ -21,6 +27,7 @@ extension User: Decodable {
       <^> json <| "id"
       <*> decodeFIRArray(json, key: "Products")
       <*> decodeFIRArray(json, key: "Orders")
+      <*> (json <| "stripe_access_token").or(.Success(""))
   }
 }
 
@@ -29,5 +36,6 @@ extension User: Encodable {
     return [:]
       + products.FIR_encode(Product.refName)
       + orders.FIR_encode(Order.refName)
+      + ["stripe_access_token": stripeAccessToken]
   }
 }

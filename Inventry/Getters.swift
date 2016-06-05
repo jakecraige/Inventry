@@ -1,4 +1,5 @@
 import RxSwift
+import RxCocoa
 import Firebase
 
 // MARK: Getters
@@ -21,8 +22,14 @@ extension Store {
     }
   }
 
-  var signedIn: Bool {
+  var isSignedIn: Bool {
     return state.value.user.value != .None
+  }
+
+  var signedIn: Driver<Bool> {
+    return state.value.user.asObservable().map { user in
+      return user != .None
+    }.asDriver(onErrorJustReturn: false)
   }
 
   var firUser: Observable<FIRUser> {

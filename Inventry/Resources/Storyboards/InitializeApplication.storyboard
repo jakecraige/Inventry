@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4C2-Ao-e44">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Initialize Application Navigation Controller-->
+        <scene sceneID="Aai-jf-hWm">
+            <objects>
+                <navigationController id="4C2-Ao-e44" userLabel="Initialize Application Navigation Controller" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bwa-0A-wex">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="p5I-EI-OQO" kind="relationship" relationship="rootViewController" id="9EW-AX-XrD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q6p-mk-ZJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="453" y="280"/>
+        </scene>
+        <!--Inventry-->
+        <scene sceneID="aSb-D2-oMu">
+            <objects>
+                <viewController id="p5I-EI-OQO" customClass="InitializeApplicationViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Xg-ch-fDv"/>
+                        <viewControllerLayoutGuide type="bottom" id="cfI-JI-Pbd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dkW-He-Yb9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Inventry" id="PfC-cd-mX4"/>
+                    <connections>
+                        <segue destination="rSZ-X7-EmU" kind="show" identifier="mainSegue" action="showDetailViewController:sender:" id="p8g-UR-cds"/>
+                        <segue destination="MoQ-mY-bZs" kind="show" identifier="onboardingSegue" action="showDetailViewController:sender:" id="h2b-i3-MrJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HHk-0q-4Oc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1108" y="280"/>
+        </scene>
+        <!--Onboarding-->
+        <scene sceneID="FP5-AS-A4b">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Onboarding" id="MoQ-mY-bZs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="87j-Up-JSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1595.5" y="404"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="095-qn-HN2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="rSZ-X7-EmU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SUz-KT-IUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1575" y="131"/>
+        </scene>
+    </scenes>
+</document>

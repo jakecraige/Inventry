@@ -4,7 +4,6 @@ import FirebaseGoogleAuthUI
 
 struct AuthenticationController {
   func present(onViewController viewController: UIViewController) {
-    guard !store.signedIn else { return }
     guard let authUI = FIRAuthUI.authUI(),
           let clientID = FIRApp.defaultApp()?.options.clientID,
           let googleUI = FIRGoogleAuthUI(clientID: clientID)

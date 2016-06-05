@@ -19,6 +19,7 @@ target target_name do
   pod "HockeySDK"
   pod "RxSwift"
   pod "RxCocoa"
+  pod "AsyncSwift"
 end
 
 abstract_target :unit_tests do

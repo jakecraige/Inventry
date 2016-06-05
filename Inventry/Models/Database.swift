@@ -141,6 +141,7 @@ private extension Database {
   }
 
   static func convertSnapshot(snapshot: FIRDataSnapshot) -> Model? {
+    guard snapshot.exists() else { return  .None }
     return decodeAndLogError(snapshot.asDictionary)
   }
 
