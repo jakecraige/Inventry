@@ -557,10 +557,10 @@
 				CDAE3F913C5672A57518AFA9 /* Frameworks */,
 				42224315C1C0BD1739D842EC /* Resources */,
 				0D326D042035CA87F050CC55 /* Warn for TODO and FIXME comments */,
-				6666C5592137B3A2FB99C594 /* Set version number */,
 				FBAED617D0A9BB0290719E64 /* Copy frameworks (Carthage) */,
 				FC828C4691A4A9E4E8DA528D /* 📦 Embed Pods Frameworks */,
 				AE189F17D6FE72C327A2EF82 /* 📦 Copy Pods Resources */,
+				E7622AC51D0B2C74008073E7 /* Firebase Upload Symbols */,
 			);
 			buildRules = (
 			);
@@ -692,20 +692,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests-UnitTests/Pods-unit_tests-UnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6666C5592137B3A2FB99C594 /* Set version number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Set version number";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=$(sh /etc/profile; which git)\ngit_release_version=$(\"$git\" describe --tags --always --abbrev=0)\nnumber_of_commits=$(\"$git\" rev-list master --count)\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"$plist\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString ${git_release_version#*v}\" \"$plist\"\n  fi\ndone\n";
-		};
 		90585689F90F803087F1644D /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,6 +721,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Inventry/Pods-Inventry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E7622AC51D0B2C74008073E7 /* Firebase Upload Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase Upload Symbols";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=private/Inventry-a59707411f79.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
 		FBAED617D0A9BB0290719E64 /* Copy frameworks (Carthage) */ = {
 			isa = PBXShellScriptBuildPhase;

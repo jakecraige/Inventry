@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func configureHockey() {
+    guard Environment.current != .Development  else { return }
     let manager = BITHockeyManager.sharedHockeyManager()
     manager.configureWithIdentifier(Environment.hockeyAppIdentifier)
     manager.startManager()
