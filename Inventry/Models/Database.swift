@@ -32,9 +32,9 @@ struct Database {
     model.childRef.removeValue()
   }
 
-  static func exists(query: FIRDatabaseQuery) -> Observable<Bool> {
+  static func exists(ref: FIRDatabaseQuery) -> Observable<Bool> {
     return Observable.create { observer in
-      let observerHandle = query.observeEventType(
+      let observerHandle = ref.observeEventType(
         .Value,
         withBlock: { snapshot in
           observer.onNext(snapshot.exists())
@@ -47,83 +47,78 @@ struct Database {
       )
 
       return AnonymousDisposable {
-        query.removeObserverWithHandle(observerHandle)
+        ref.removeObserverWithHandle(observerHandle)
       }
     }
   }
 
   static func observe(
     eventType: FIRDataEventType = .Value,
-    query: FIRDatabaseQuery
+    ref: FIRDatabaseQuery
   ) -> Observable<FIRDataSnapshot> {
     return Observable.create { observer in
-      let observerHandle = query.observeEventType(
+      let observerHandle = ref.observeEventType(
         eventType,
         withBlock: { observer.onNext($0) },
         withCancelBlock: { observer.onError($0) }
       )
       return AnonymousDisposable {
-        query.removeObserverWithHandle(observerHandle)
+        ref.removeObserverWithHandle(observerHandle)
       }
     }
   }
 
-  // sugar for querying for multiple objects via an array of queries for individual ones
-  static func observe<Model: Modelable where Model.DecodedType == Model>(
+  static func observe<T: Decodable where T == T.DecodedType>(
     eventType: FIRDataEventType = .Value,
-    queries: [FIRDatabaseQuery]
-  ) -> Observable<[Model]> {
-    return queries
-      .map { observe(eventType, query: $0) }
-      .combineLatest { $0 }
-  }
-
-  static func observe<Model: Modelable where Model.DecodedType == Model>(
-    eventType: FIRDataEventType = .Value,
-    query: FIRDatabaseQuery = Model.ref
-  ) -> Observable<[Model]> {
-    return observe(eventType, query: query).map(decodeChildren)
-  }
-
-  static func observe<Model: Modelable where Model.DecodedType == Model>(
-    eventType: FIRDataEventType = .Value,
-    query: FIRDatabaseQuery = Model.ref
-  ) -> Observable<Model> {
-    return observe(eventType, query: query).flatMap { snapshot -> Observable<Model> in
-      let decoded: Decoded<Model> = decodeObject(snapshot)
-      switch decoded {
+    ref: FIRDatabaseQuery
+  ) -> Observable<T> {
+    return observe(eventType, ref: ref).flatMap { snapshot -> Observable<T> in
+      switch decode(snapshot) as Decoded<T> {
       case let .Success(model): return .just(model)
       case let .Failure(error): return .error(error)
       }
     }
   }
+
+  static func observe<T: Decodable where T == T.DecodedType>(
+    eventType: FIRDataEventType = .Value,
+    ref: FIRDatabaseQuery
+  ) -> Observable<[T]> {
+    return observe(eventType, ref: ref).map(decode)
+  }
+
+  // sugar for querying for multiple objects via an array of queries for individual ones
+  static func observe<T: Decodable where T == T.DecodedType>(
+    eventType: FIRDataEventType = .Value,
+    refs: [FIRDatabaseQuery]
+  ) -> Observable<[T]> {
+    return refs
+      .map { observe(eventType, ref: $0) }
+      .combineLatest { $0 }
+  }
 }
 
 // MARK: Private Methods
 private extension Database {
-  static func decodeObject<Model: Modelable where Model.DecodedType == Model>(snapshot: FIRDataSnapshot) -> Decoded<Model> {
-    return decodeAndLogError(snapshot.asDictionary)
-  }
-
-  static func decodeChildren<Model: Modelable where Model.DecodedType == Model>(snapshot: FIRDataSnapshot) -> [Model] {
+  static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> [T] {
     return snapshot.children
-      .flatMap { ($0 as? FIRDataSnapshot)?.asDictionary }
-      .flatMap(decodeAndLogError)
+      .flatMap { $0 as? FIRDataSnapshot }
+      .flatMap(decode)
   }
 
-  private static func decodeAndLogError<Model: Modelable where Model.DecodedType == Model>(dict: [String: AnyObject]) -> Decoded<Model> {
-    let decoded: Decoded<Model> = decode(dict)
+  private static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> Decoded<T> {
+    let decoded: Decoded<T> = Argo.decode(snapshot.value ?? NSNull()) <|> Argo.decode(snapshot.asDictionary)
     if let error = decoded.error {
       print("---------------------------------------------------------------------")
-      print("Decoding Error: Failed to decode a model of type '\(String(Model))'.")
-      print("Dictionary was: \(dict)")
+      print("Decoding Error: Failed to decode type '\(String(T))'.")
+      print("Snapshot was: \(snapshot)")
       print("Error was: \(error)")
       print("---------------------------------------------------------------------")
     }
     return decoded
   }
 
-  private static func decodeAndLogError<Model: Modelable where Model.DecodedType == Model>(dict: [String: AnyObject]) -> Model? {
-    return decodeAndLogError(dict).value
+  private static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> T? {
+    return decode(snapshot).value
   }
 }

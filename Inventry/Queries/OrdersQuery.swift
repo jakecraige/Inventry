@@ -4,8 +4,8 @@ struct OrdersQuery: Query {
   let user: Observable<User>
 
   func build() -> Observable<[Order]> {
-    return user.flatMapLatest { user -> Observable<[Order]> in
-      return Database.observe(queries: user.orders.map(Order.getChildRef))
+    return user.flatMapLatest { user in
+      return Database.observe(refs: user.orders.map(Order.getChildRef))
     }.map(sortByCreated)
   }
 }
