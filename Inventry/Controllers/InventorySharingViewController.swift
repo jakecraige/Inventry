@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import Firebase
 
 final class InventorySharingViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }

@@ -7,7 +7,23 @@ struct CreateUser: DynamicActionType {
   let connectAccount: StripeConnectAccount
 
   func call() -> Observable<String> {
-    let user = User(id: firUser.uid, name: firUser.displayName ?? "")
+    return initializeUsers().map { user, publicUser in
+      Database.save(
+          Database.valuesForUpdate(user, includeRootKey: true) +
+          Database.valuesForUpdate(publicUser, includeRootKey: true)
+      )
+      return user.uid
+    }
+  }
+
+  func initializeUsers() -> Observable<(User, PublicUser)> {
+    return Observable.combineLatest(initializeUser(), initializePublicUser()) { user, publicUser in
+      return (user, publicUser)
+    }
+  }
+
+  func initializeUser() -> Observable<User> {
+    let user = User(id: firUser.uid)
 
     return Database.exists(user.childRef).flatMap { exists -> Observable<User> in
       if exists {
@@ -21,8 +37,11 @@ struct CreateUser: DynamicActionType {
       } else {
         return with(user) { $0.stripeConnectAccount = self.connectAccount }
       }
-    }.map { user in
-      return Database.save(user)
     }
+  }
+
+  func initializePublicUser() -> Observable<PublicUser> {
+    let user = PublicUser(id: firUser.uid, name: firUser.displayName ?? "Unknown Name")
+    return .just(user)
   }
 }

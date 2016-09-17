@@ -2,8 +2,6 @@ import Curry
 import Argo
 
 struct PublicUser: Modelable {
-  static var refName: String = "Users"
-
   let id: String?
   var name: String
 

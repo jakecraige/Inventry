@@ -15,6 +15,25 @@ struct NullRefError: ErrorType {
 struct Database {
   static func save<Model: Modelable where Model.DecodedType == Model>(model: Model) -> String {
     let ref = model.childRef
+
+    let values = valuesForUpdate(model)
+    ref.updateChildValues(values)
+
+    return ref.key
+  }
+
+  static func save(
+    dict: [String: AnyObject],
+    ref: FIRDatabaseReference = FIRDatabase.database().reference()
+  ) {
+    ref.updateChildValues(dict)
+  }
+
+  static func valuesForUpdate<Model: Modelable where Model.DecodedType == Model>(
+    model: Model,
+    includeRootKey: Bool = false,
+    rootKey: String = Model.refName
+  ) -> [String: AnyObject]{
     var values = model.encode()
 
     if let tModel = model as? Timestampable {
@@ -24,8 +43,14 @@ struct Database {
       }
     }
 
-    ref.updateChildValues(values)
-    return ref.key
+    if includeRootKey {
+      return values.reduce([:]) { acc, keyValue in
+        let (key, value) = keyValue
+        return acc + ["\(rootKey)/\(model.childRef.key)/\(key)": value]
+      }
+    } else {
+      return values
+    }
   }
 
   static func delete<Model: Modelable where Model.DecodedType == Model>(model: Model) {
@@ -103,7 +128,11 @@ private extension Database {
   static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> [T] {
     return snapshot.children
       .flatMap { $0 as? FIRDataSnapshot }
-      .flatMap(decode)
+      .flatMap { snapshot in
+        // This guard is a hack because parsing a list of PublicUsers doesn't seem to work without it
+        guard !snapshot.key.isEmpty else { return .None }
+        return decode(snapshot)
+      }
   }
 
   private static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> Decoded<T> {
