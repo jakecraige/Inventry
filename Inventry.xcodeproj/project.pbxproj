@@ -59,6 +59,9 @@
 		E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66531CFFFED20097FEB5 /* SaveProduct.swift */; };
 		E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66581D01D9B30097FEB5 /* SaveOrder.swift */; };
 		E72D665B1D01E20D0097FEB5 /* SetAllOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D665A1D01E20D0097FEB5 /* SetAllOrders.swift */; };
+		E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */; };
+		E73B3E141D7DF593001C19B5 /* PublicUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E131D7DF593001C19B5 /* PublicUser.swift */; };
+		E73B3E161D7DFBD0001C19B5 /* ToggleInventoryPartner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
 		E7444C711CF4AD4B006D7159 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C701CF4AD4B006D7159 /* Firebase.swift */; };
 		E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C721CF60812006D7159 /* OrdersTableViewController.swift */; };
@@ -169,6 +172,9 @@
 		E72D66531CFFFED20097FEB5 /* SaveProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProduct.swift; sourceTree = "<group>"; };
 		E72D66581D01D9B30097FEB5 /* SaveOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveOrder.swift; sourceTree = "<group>"; };
 		E72D665A1D01E20D0097FEB5 /* SetAllOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAllOrders.swift; sourceTree = "<group>"; };
+		E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventorySharingViewController.swift; sourceTree = "<group>"; };
+		E73B3E131D7DF593001C19B5 /* PublicUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicUser.swift; sourceTree = "<group>"; };
+		E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleInventoryPartner.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		E7444C701CF4AD4B006D7159 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		E7444C721CF60812006D7159 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 				E72D66511CFFF3A10097FEB5 /* User.swift */,
 				E72000121D036617009BAF12 /* Analytics.swift */,
 				E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */,
+				E73B3E131D7DF593001C19B5 /* PublicUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +376,7 @@
 				E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */,
 				E720001C1D039D98009BAF12 /* AccountSetupController.swift */,
 				E72000221D047DF8009BAF12 /* SettingsViewController.swift */,
+				E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -477,6 +485,7 @@
 				E72D66531CFFFED20097FEB5 /* SaveProduct.swift */,
 				E72D66581D01D9B30097FEB5 /* SaveOrder.swift */,
 				E72000101D035E90009BAF12 /* DeleteProduct.swift */,
+				E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -734,7 +743,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=private/Inventry-a59707411f79.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
+			shellScript = "exit 0\n# Replace this path with the path to the key you just downloaded\nJSON_FILE=private/Inventry-a59707411f79.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
 		FBAED617D0A9BB0290719E64 /* Copy frameworks (Carthage) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -791,6 +800,7 @@
 				E7005D001CFF380E00B88483 /* ResetCurrentOrder.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,
+				E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
 				E718E2031CFBA1F70086E2C4 /* LineItemViewModel.swift in Sources */,
 				E72000171D0384B6009BAF12 /* StripeAuthenticationController.swift in Sources */,
@@ -843,6 +853,7 @@
 				E718E2071CFBB2390086E2C4 /* Config.swift in Sources */,
 				E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */,
 				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
+				E73B3E141D7DF593001C19B5 /* PublicUser.swift in Sources */,
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
 				E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */,
 				E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */,
@@ -850,6 +861,7 @@
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,
 				E7005CFA1CFDFD9400B88483 /* DecrementFromCurrentOrder.swift in Sources */,
+				E73B3E161D7DFBD0001C19B5 /* ToggleInventoryPartner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,7 +982,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -984,7 +995,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jakecraige.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c4f69bb5-33f2-4e53-acac-55bed4ad4007";
+				PROVISIONING_PROFILE = "99130d74-6d04-4d66-9992-d9c2b83bec10";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Inventry/Inventry-Bridging-Header.h";
 			};
@@ -1055,7 +1066,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

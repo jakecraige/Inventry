@@ -7,7 +7,7 @@ struct CreateUser: DynamicActionType {
   let connectAccount: StripeConnectAccount
 
   func call() -> Observable<String> {
-    let user = User(id: firUser.uid)
+    let user = User(id: firUser.uid, name: firUser.displayName ?? "")
 
     return Database.exists(user).flatMap { exists -> Observable<User> in
       if exists {
