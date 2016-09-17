@@ -11,7 +11,7 @@ struct CreateUser: DynamicActionType {
 
     return Database.exists(user).flatMap { exists -> Observable<User> in
       if exists {
-        return Database.observeObjectOnce(ref: user.childRef)
+        return Database.observeObject(ref: user.childRef).take(1)
       } else {
         return Observable.just(user)
       }

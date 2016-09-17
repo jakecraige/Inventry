@@ -20,16 +20,16 @@ class FirebaseSyncController {
     }
 
     store.firUser
-      .flatMapLatest { Database<User>.observeObject(ref: User.getChildRef($0.uid)) }
+      .flatMapLatest { Database.observeObject(ref: User.getChildRef($0.uid)) }
       .retry()
-      .subscribeNext { user in
-      store.dispatch(UpdateAuth(user: user))
-    }.addDisposableTo(disposeBag)
+      .subscribeNext { (user: User) in
+        store.dispatch(UpdateAuth(user: user))
+      }.addDisposableTo(disposeBag)
   }
 
   private func observeProducts() {
-    store.user.flatMapLatest { user in
-      return Database<Product>.find(ids: user.products)
+    store.user.flatMapLatest { user -> Observable<[Product]> in
+      return Database.find(ids: user.products)
     }.subscribeNext { products in
       let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
       store.dispatch(SetAllProducts(products: sortedByName))
@@ -37,8 +37,8 @@ class FirebaseSyncController {
   }
 
   private func observeOrders() {
-    store.user.flatMapLatest { user in
-      return Database<Order>.find(ids: user.orders)
+    store.user.flatMapLatest { user -> Observable<[Order]> in
+      return Database.find(ids: user.orders)
     }.subscribeNext { orders in
       let sortedByCreated = self.sortByCreated(orders)
       store.dispatch(SetAllOrders(orders: sortedByCreated))

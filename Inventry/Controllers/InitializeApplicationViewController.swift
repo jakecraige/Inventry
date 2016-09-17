@@ -13,8 +13,8 @@ class InitializeApplicationViewController: UIViewController {
         .flatMap { user in
           // Verify user exists to prevent decoding errors breaking stuff
           return store.dispatch(CreateUser(firUser: user, connectAccount: StripeConnectAccount.null()))
-        }.flatMap { userID in
-          return Database<User>.observeObjectOnce(ref: User.getChildRef(userID))
+        }.flatMap { userID -> Observable<User> in
+          return Database.observeObject(ref: User.getChildRef(userID))
         }.take(1)
         .map { $0.accountSetupComplete }
         .subscribe(
