@@ -101,6 +101,12 @@
 		E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */; };
 		E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */; };
 		E7EA96E11CFCD06D008B47D4 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA96E01CFCD06D008B47D4 /* Environment.swift */; };
+		E7EB3BD61D8CC10E007A463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BD51D8CC10E007A463B /* Query.swift */; };
+		E7EB3BD81D8CC5B3007A463B /* OrdersQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BD71D8CC5B3007A463B /* OrdersQuery.swift */; };
+		E7EB3BDA1D8CC838007A463B /* PublicUsersQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BD91D8CC838007A463B /* PublicUsersQuery.swift */; };
+		E7EB3BDC1D8CC8B5007A463B /* UserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BDB1D8CC8B5007A463B /* UserQuery.swift */; };
+		E7EB3BDE1D8CC936007A463B /* ProductQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */; };
+		E7EB3BE01D8CC9F8007A463B /* ProductsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +220,12 @@
 		E7EA96DB1CFCCA9E008B47D4 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		E7EA96DD1CFCCABA008B47D4 /* Timestamps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamps.swift; sourceTree = "<group>"; };
 		E7EA96E01CFCD06D008B47D4 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		E7EB3BD51D8CC10E007A463B /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		E7EB3BD71D8CC5B3007A463B /* OrdersQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersQuery.swift; sourceTree = "<group>"; };
+		E7EB3BD91D8CC838007A463B /* PublicUsersQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicUsersQuery.swift; sourceTree = "<group>"; };
+		E7EB3BDB1D8CC8B5007A463B /* UserQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserQuery.swift; sourceTree = "<group>"; };
+		E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductQuery.swift; sourceTree = "<group>"; };
+		E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsQuery.swift; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -441,6 +453,7 @@
 		D4D7E3CD78F68A757D2B07E0 /* Inventry */ = {
 			isa = PBXGroup;
 			children = (
+				E7EB3BD41D8CC0F5007A463B /* Queries */,
 				E7005CF41CFDFC1900B88483 /* Actions */,
 				E7B7C8FB1CFA07B20019BA0D /* Networking */,
 				E8C2B72A211EA864D3A6B68C /* Extensions */,
@@ -497,6 +510,19 @@
 				E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E7EB3BD41D8CC0F5007A463B /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				E7EB3BD51D8CC10E007A463B /* Query.swift */,
+				E7EB3BD71D8CC5B3007A463B /* OrdersQuery.swift */,
+				E7EB3BD91D8CC838007A463B /* PublicUsersQuery.swift */,
+				E7EB3BDB1D8CC8B5007A463B /* UserQuery.swift */,
+				E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */,
+				E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */,
+			);
+			path = Queries;
 			sourceTree = "<group>";
 		};
 		E8C2B72A211EA864D3A6B68C /* Extensions */ = {
@@ -788,12 +814,14 @@
 			files = (
 				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
+				E7EB3BDC1D8CC8B5007A463B /* UserQuery.swift in Sources */,
 				E7B7C9051CFA10870019BA0D /* Charge.swift in Sources */,
 				E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */,
 				E7B7C91C1CFAA8DB0019BA0D /* AuthenticationController.swift in Sources */,
 				E72000111D035E90009BAF12 /* DeleteProduct.swift in Sources */,
 				E7EA96E11CFCD06D008B47D4 /* Environment.swift in Sources */,
 				E7005CF81CFDFCFD00B88483 /* AddToCurrentOrder.swift in Sources */,
+				E7EB3BE01D8CC9F8007A463B /* ProductsQuery.swift in Sources */,
 				E718E2011CFB9DE20086E2C4 /* OrderSummaryTableViewCell.swift in Sources */,
 				E7B7C9161CFA77510019BA0D /* FIRNestedArray.swift in Sources */,
 				E72000231D047DF8009BAF12 /* SettingsViewController.swift in Sources */,
@@ -830,8 +858,11 @@
 				E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */,
 				E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */,
 				E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */,
+				E7EB3BD81D8CC5B3007A463B /* OrdersQuery.swift in Sources */,
 				E7005CF11CFDF77700B88483 /* AppState.swift in Sources */,
+				E7EB3BDA1D8CC838007A463B /* PublicUsersQuery.swift in Sources */,
 				E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */,
+				E7EB3BDE1D8CC936007A463B /* ProductQuery.swift in Sources */,
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
@@ -857,6 +888,7 @@
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
 				E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */,
 				E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */,
+				E7EB3BD61D8CC10E007A463B /* Query.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,

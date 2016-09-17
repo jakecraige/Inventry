@@ -20,36 +20,24 @@ class FirebaseSyncController {
     }
 
     store.firUser
-      .flatMapLatest { Database.observeObject(ref: User.getChildRef($0.uid)) }
+      .flatMapLatest { UserQuery(id: $0.uid).build() }
       .retry()
-      .subscribeNext { (user: User) in
+      .subscribeNext { user in
         store.dispatch(UpdateAuth(user: user))
       }.addDisposableTo(disposeBag)
   }
 
   private func observeProducts() {
-    store.user.flatMapLatest { user -> Observable<[Product]> in
-      return Database.find(ids: user.products)
-    }.subscribeNext { products in
-      let sortedByName = products.sort { lhs, rhs in lhs.name < rhs.name }
-      store.dispatch(SetAllProducts(products: sortedByName))
-    }.addDisposableTo(disposeBag)
+    ProductsQuery(user: store.user).build()
+      .subscribeNext { products in
+        store.dispatch(SetAllProducts(products: products))
+      }.addDisposableTo(disposeBag)
   }
 
   private func observeOrders() {
-    store.user.flatMapLatest { user -> Observable<[Order]> in
-      return Database.find(ids: user.orders)
-    }.subscribeNext { orders in
-      let sortedByCreated = self.sortByCreated(orders)
-      store.dispatch(SetAllOrders(orders: sortedByCreated))
-    }.addDisposableTo(disposeBag)
-  }
-
-  private func sortByCreated<T: Timestampable>(models: [T]) -> [T] {
-    return models.sort { lhs, rhs in
-      guard let lCreated = lhs.timestamps?.createdAt, rCreated = rhs.timestamps?.createdAt
-        else { return true }
-      return lCreated.compare(rCreated) == .OrderedDescending
-    }
+    OrdersQuery(user: store.user).build()
+      .subscribeNext { orders in
+        store.dispatch(SetAllOrders(orders: orders))
+      }.addDisposableTo(disposeBag)
   }
 }

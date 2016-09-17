@@ -23,7 +23,7 @@ class ProductViewController: UIViewController {
   }
 
   override func viewDidLoad() {
-    Database.observeObject(ref: product.childRef).subscribeNext { [weak self] (product: Product) in
+    ProductQuery(id: product.id!).build().subscribeNext { [weak self] (product: Product) in
       guard let `self` = self else { return }
       self.product = product
       self.updateUI()

@@ -24,7 +24,7 @@ final class InventorySharingViewController: UITableViewController {
     tableView.tableHeaderView = searchController.searchBar
 
     Observable
-      .combineLatest(store.user, Database.observeArray() as Observable<[PublicUser]>) { user, users in
+      .combineLatest(store.user, PublicUsersQuery().build()) { user, users in
         return (user, users)
       }.subscribeNext { [weak self] result in
         self?.currentUser = result.0
