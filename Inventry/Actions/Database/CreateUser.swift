@@ -9,7 +9,7 @@ struct CreateUser: DynamicActionType {
   func call() -> Observable<String> {
     let user = User(id: firUser.uid, name: firUser.displayName ?? "")
 
-    return Database.exists(user).flatMap { exists -> Observable<User> in
+    return Database.exists(user.childRef).flatMap { exists -> Observable<User> in
       if exists {
         return UserQuery(id: user.uid).build().take(1)
       } else {
