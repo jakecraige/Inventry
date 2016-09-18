@@ -163,6 +163,6 @@ private extension Database {
   }
 
   private static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> T? {
-    return decode(snapshot).value
+    return FIRDecode(snapshot).value
   }
 }
