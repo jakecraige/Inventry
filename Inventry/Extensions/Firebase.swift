@@ -9,15 +9,14 @@ extension FIRDataSnapshot {
 }
 
 extension CollectionType where Self.Generator.Element == String {
-  /// Used to encode an array of IDs into `{"model": {"id": true}}`.
-  func FIR_encode(refPrefix: String) -> [String: AnyObject] {
+  /// Used to encode an array of IDs into `{"id": true, "id2": true}`.
+  func FIR_encode() -> [String: AnyObject] {
     if isEmpty {
-      return [refPrefix: true]
+      return [:]
     } else {
-      let subDict = reduce([:]) { result, key in
+      return reduce([:]) { result, key in
         return result + [key: true]
       }
-      return [refPrefix: subDict]
     }
   }
 }

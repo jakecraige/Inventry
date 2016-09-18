@@ -42,6 +42,12 @@ struct CreateUser: DynamicActionType {
 
   func initializePublicUser() -> Observable<PublicUser> {
     let user = PublicUser(id: firUser.uid, name: firUser.displayName ?? "Unknown Name")
-    return .just(user)
+    return Database.exists(user.childRef).flatMap { exists -> Observable<PublicUser> in
+      if exists {
+        return PublicUserQuery(id: user.id!).build().take(1)
+      } else {
+        return Observable.just(user)
+      }
+    }
   }
 }

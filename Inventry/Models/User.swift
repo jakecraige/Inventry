@@ -39,9 +39,9 @@ extension User: Decodable {
 extension User: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "stripe_connect_account": stripeConnectAccount.encode()
+      "stripe_connect_account": stripeConnectAccount.encode(),
+      "Products": products.FIR_encode(),
+      "Orders": orders.FIR_encode()
     ]
-      + products.FIR_encode(Product.refName)
-      + orders.FIR_encode(Order.refName)
   }
 }

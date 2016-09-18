@@ -4,7 +4,7 @@ import Firebase
 
 final class InventorySharingViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
-  var currentUser: User?
+  var currentUser: PublicUser?
   var partners: [PublicUser] = [] { didSet { tableView.reloadData() } }
   var filteredPartners: [PublicUser]  {
     if let query = searchQuery where !query.isEmpty {
@@ -26,10 +26,10 @@ final class InventorySharingViewController: UITableViewController {
 
     Observable
       .combineLatest(store.user, PublicUsersQuery().build()) { user, users in
-        return (user, users)
-      }.subscribeNext { [weak self] result in
-        self?.currentUser = result.0
-        self?.partners = result.1
+        return (user.uid, users)
+      }.subscribeNext { [weak self] id, users in
+        self?.currentUser = users.find { $0.id! == id }
+        self?.partners = users.filter { $0.id! != id }
       }
       .addDisposableTo(disposeBag)
   }
@@ -44,18 +44,17 @@ extension InventorySharingViewController {
     let cell = tableView.dequeueReusableCellWithIdentifier("InventorySharingCell", forIndexPath: indexPath)
     let user = filteredPartners[indexPath.row]
     cell.textLabel?.text = user.name
-    // Switch cell accessory type based on if inventory is shared
-//    if currentUser?.inventoryPartners.contains(user.id!) ?? false {
-//      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-//    } else {
+    if currentUser?.inventorySharedWith.contains(user.id!) ?? false {
+      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+    } else {
       cell.accessoryType = .None
-//    }
+    }
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let partner = filteredPartners[indexPath.row]
-    let action = ToggleInventoryPartner(partner: partner)
+    let action = ToggleInventoryPartner(user: currentUser!, partner: partner)
     store.dispatch(action).subscribe().addDisposableTo(disposeBag)
   }
 }
