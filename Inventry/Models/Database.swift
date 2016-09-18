@@ -77,7 +77,7 @@ struct Database {
     }
   }
 
-  static func observe(
+  static func observeSnapshot(
     eventType: FIRDataEventType = .Value,
     ref: FIRDatabaseQuery
   ) -> Observable<FIRDataSnapshot> {
@@ -97,8 +97,8 @@ struct Database {
     eventType: FIRDataEventType = .Value,
     ref: FIRDatabaseQuery
   ) -> Observable<T> {
-    return observe(eventType, ref: ref).flatMap { snapshot -> Observable<T> in
-      switch decode(snapshot) as Decoded<T> {
+    return observeSnapshot(eventType, ref: ref).flatMap { snapshot -> Observable<T> in
+      switch FIRDecode(snapshot) as Decoded<T> {
       case let .Success(model): return .just(model)
       case let .Failure(error): return .error(error)
       }
@@ -109,7 +109,22 @@ struct Database {
     eventType: FIRDataEventType = .Value,
     ref: FIRDatabaseQuery
   ) -> Observable<[T]> {
-    return observe(eventType, ref: ref).map(decode)
+    return observeSnapshot(eventType, ref: ref).map(FIRDecode)
+  }
+
+  // This is necessary to properly decode the object array format when requesting one structure
+  // like: { "theID": true, "otherID": true }. The main thing is we need to call the decodeFIRArray
+  // function since calling the default Argo decode will fail. I still haven't figured out how to
+  // override it to handle decoding this case properly. It should probably also handle the case of
+  // an array like: { 0: "1234", 1: "4567" }, but I haven't been using that structure yet.
+  static func observe(
+    eventType: FIRDataEventType = .Value,
+    ref: FIRDatabaseQuery
+  ) -> Observable<[String]> {
+    return observeSnapshot(eventType, ref: ref).map { snapshot in
+      guard let value = snapshot.value else { return [] }
+      return decodeFIRArray(JSON(value)) ?? []
+    }
   }
 
   // sugar for querying for multiple objects via an array of queries for individual ones
@@ -125,18 +140,18 @@ struct Database {
 
 // MARK: Private Methods
 private extension Database {
-  static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> [T] {
+  static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> [T] {
     return snapshot.children
       .flatMap { $0 as? FIRDataSnapshot }
       .flatMap { snapshot in
         // This guard is a hack because parsing a list of PublicUsers doesn't seem to work without it
         guard !snapshot.key.isEmpty else { return .None }
-        return decode(snapshot)
+        return FIRDecode(snapshot)
       }
   }
 
-  private static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> Decoded<T> {
-    let decoded: Decoded<T> = Argo.decode(snapshot.value ?? NSNull()) <|> Argo.decode(snapshot.asDictionary)
+  private static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> Decoded<T> {
+    let decoded: Decoded<T> = decode(snapshot.asDictionary) <|> decode(snapshot.value ?? NSNull())
     if let error = decoded.error {
       print("---------------------------------------------------------------------")
       print("Decoding Error: Failed to decode type '\(String(T))'.")
@@ -147,7 +162,7 @@ private extension Database {
     return decoded
   }
 
-  private static func decode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> T? {
+  private static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> T? {
     return decode(snapshot).value
   }
 }

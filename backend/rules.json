@@ -15,7 +15,10 @@
     "Users": {
       "$uid": {
         ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid",
+        "Products": {
+          ".read": "auth !== null && root.child('PublicUsers/'+$uid+'/inventorySharedWith/'+auth.uid).exists()"
+        }
       }
     },
     "PublicUsers": {
