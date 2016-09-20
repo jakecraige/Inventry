@@ -31,8 +31,8 @@ extension User: Decodable {
   static func decode(_ json: JSON) -> Decoded<User> {
     return curry(User.init)
       <^> json <| "id"
-      <*> decodeFIRArray(json: json, key: "Products")
-      <*> decodeFIRArray(json: json, key: "Orders")
+      <*> decodeFIRArray(json: json, key: "Products").or(pure([]))
+      <*> decodeFIRArray(json: json, key: "Orders").or(pure([]))
       <*> (json <| "stripe_connect_account").or(.success(.null()))
   }
 }
