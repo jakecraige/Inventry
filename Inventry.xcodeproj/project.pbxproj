@@ -18,7 +18,6 @@
 		E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */; };
 		E7005CE91CFD4AC500B88483 /* UIAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */; };
 		E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CEA1CFD52F400B88483 /* UIColor.swift */; };
-		E7005CED1CFDF57D00B88483 /* Delta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7005CEC1CFDF57D00B88483 /* Delta.framework */; };
 		E7005CEF1CFDF76E00B88483 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CEE1CFDF76E00B88483 /* Store.swift */; };
 		E7005CF11CFDF77700B88483 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CF01CFDF77700B88483 /* AppState.swift */; };
 		E7005CF31CFDF78100B88483 /* RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7005CF21CFDF78100B88483 /* RxSwift.swift */; };
@@ -73,10 +72,6 @@
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
 		E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */; };
 		E7B7C8F21CF9EC220019BA0D /* PaymentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */; };
-		E7B7C8F41CFA07380019BA0D /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F31CFA07380019BA0D /* Curry.framework */; };
-		E7B7C8F61CFA073C0019BA0D /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F51CFA073C0019BA0D /* Result.framework */; };
-		E7B7C8F81CFA07420019BA0D /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F71CFA07420019BA0D /* Argo.framework */; };
-		E7B7C8FA1CFA07470019BA0D /* Swish.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B7C8F91CFA07470019BA0D /* Swish.framework */; };
 		E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8FC1CFA07C40019BA0D /* ProcessPaymentRequest.swift */; };
 		E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */; };
 		E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C9021CFA0A900019BA0D /* Swish.swift */; };
@@ -137,7 +132,6 @@
 		E7005CE21CFCFDAE00B88483 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewController.swift; sourceTree = "<group>"; };
 		E7005CEA1CFD52F400B88483 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		E7005CEC1CFDF57D00B88483 /* Delta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Delta.framework; path = Carthage/Build/iOS/Delta.framework; sourceTree = "<group>"; };
 		E7005CEE1CFDF76E00B88483 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		E7005CF01CFDF77700B88483 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		E7005CF21CFDF78100B88483 /* RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxSwift.swift; sourceTree = "<group>"; };
@@ -189,14 +183,11 @@
 		E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderChooseProductsTableViewController.swift; sourceTree = "<group>"; };
 		E7444C801CF8C1BF006D7159 /* LineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		E7444C821CF8E26E006D7159 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
+		E7A57F681D91815A00729640 /* Inventry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Inventry.entitlements; path = ../../Inventry.entitlements; sourceTree = "<group>"; };
 		E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPaymentViewController.swift; sourceTree = "<group>"; };
 		E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewViewController.swift; sourceTree = "<group>"; };
 		E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		E7B7C8F11CF9EC220019BA0D /* PaymentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentProvider.swift; sourceTree = "<group>"; };
-		E7B7C8F31CFA07380019BA0D /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
-		E7B7C8F51CFA073C0019BA0D /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		E7B7C8F71CFA07420019BA0D /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
-		E7B7C8F91CFA07470019BA0D /* Swish.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swish.framework; path = Carthage/Build/iOS/Swish.framework; sourceTree = "<group>"; };
 		E7B7C8FC1CFA07C40019BA0D /* ProcessPaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessPaymentRequest.swift; sourceTree = "<group>"; };
 		E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		E7B7C9021CFA0A900019BA0D /* Swish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swish.swift; sourceTree = "<group>"; };
@@ -248,11 +239,6 @@
 			files = (
 				D003D3296CB33C061D68C18F /* Foundation.framework in Frameworks */,
 				A450CDE52A985A8F7C85D073 /* Pods_Inventry.framework in Frameworks */,
-				E7B7C8F41CFA07380019BA0D /* Curry.framework in Frameworks */,
-				E7B7C8F61CFA073C0019BA0D /* Result.framework in Frameworks */,
-				E7B7C8F81CFA07420019BA0D /* Argo.framework in Frameworks */,
-				E7B7C8FA1CFA07470019BA0D /* Swish.framework in Frameworks */,
-				E7005CED1CFDF57D00B88483 /* Delta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,11 +403,6 @@
 		A4430C81E009E218B8653A26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7005CEC1CFDF57D00B88483 /* Delta.framework */,
-				E7B7C8F91CFA07470019BA0D /* Swish.framework */,
-				E7B7C8F71CFA07420019BA0D /* Argo.framework */,
-				E7B7C8F51CFA073C0019BA0D /* Result.framework */,
-				E7B7C8F31CFA07380019BA0D /* Curry.framework */,
 				A46B373C9CEEBB3E753A79E4 /* iOS */,
 				EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */,
 				A8A8A7B0CBF7990DAC8735DE /* Pods_unit_tests_UnitTests.framework */,
@@ -548,6 +529,7 @@
 		F1ED501A1A9E01ADA49EB998 /* Other-Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E7A57F681D91815A00729640 /* Inventry.entitlements */,
 				825F635CF5FEF774B0E62269 /* Info.plist */,
 				E70AEC7B1CF295BB00778A4D /* GoogleService-Info.plist */,
 				E718E2041CFBAEE60086E2C4 /* RemoteConfigDefaults.plist */,
@@ -569,12 +551,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1505D4B07876CAFA554868DB /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				90585689F90F803087F1644D /* 📦 Check Pods Manifest.lock */,
+				90585689F90F803087F1644D /* [CP] Check Pods Manifest.lock */,
 				CEBF10A9D9E7FC385687CC4D /* Sources */,
 				7EDDAB4D8A5280D7A986FE04 /* Frameworks */,
 				C6207C44AAFA72426D370EE0 /* Resources */,
-				270A194465233A6CE266C55C /* 📦 Embed Pods Frameworks */,
-				5A44B7B0C4CCA0D79ACE692D /* 📦 Copy Pods Resources */,
+				270A194465233A6CE266C55C /* [CP] Embed Pods Frameworks */,
+				5A44B7B0C4CCA0D79ACE692D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -590,14 +572,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CEC5E73802D5DBE9BB80432 /* Build configuration list for PBXNativeTarget "Inventry" */;
 			buildPhases = (
-				0D10D394DB850F3331E4196C /* 📦 Check Pods Manifest.lock */,
+				0D10D394DB850F3331E4196C /* [CP] Check Pods Manifest.lock */,
 				BB707A956A9A056D8C68FDD1 /* Sources */,
 				CDAE3F913C5672A57518AFA9 /* Frameworks */,
 				42224315C1C0BD1739D842EC /* Resources */,
 				0D326D042035CA87F050CC55 /* Warn for TODO and FIXME comments */,
-				FBAED617D0A9BB0290719E64 /* Copy frameworks (Carthage) */,
-				FC828C4691A4A9E4E8DA528D /* 📦 Embed Pods Frameworks */,
-				AE189F17D6FE72C327A2EF82 /* 📦 Copy Pods Resources */,
+				FC828C4691A4A9E4E8DA528D /* [CP] Embed Pods Frameworks */,
+				AE189F17D6FE72C327A2EF82 /* [CP] Copy Pods Resources */,
 				E7622AC51D0B2C74008073E7 /* Firebase Upload Symbols */,
 			);
 			buildRules = (
@@ -617,11 +598,18 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Inventry;
 				TargetAttributes = {
 					9538D368E3240AF8C15983C3 = {
 						DevelopmentTeam = H9UWK47P56;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -671,19 +659,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D10D394DB850F3331E4196C /* 📦 Check Pods Manifest.lock */ = {
+		0D10D394DB850F3331E4196C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		0D326D042035CA87F050CC55 /* Warn for TODO and FIXME comments */ = {
@@ -700,14 +688,14 @@
 			shellPath = /bin/sh;
 			shellScript = "KEYWORDS=\"TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:\"\nFILE_EXTENSIONS=\"swift|h|m|mm|c|cpp\"\nfind -E \"${SRCROOT}\" -ipath \"${SRCROOT}/Carthage\" -o -ipath \"${SRCROOT}/pods\" -prune -o \\( -regex \".*\\.($FILE_EXTENSIONS)$\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
 		};
-		270A194465233A6CE266C55C /* 📦 Embed Pods Frameworks */ = {
+		270A194465233A6CE266C55C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,14 +703,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests-UnitTests/Pods-unit_tests-UnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5A44B7B0C4CCA0D79ACE692D /* 📦 Copy Pods Resources */ = {
+		5A44B7B0C4CCA0D79ACE692D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -730,29 +718,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-unit_tests-UnitTests/Pods-unit_tests-UnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		90585689F90F803087F1644D /* 📦 Check Pods Manifest.lock */ = {
+		90585689F90F803087F1644D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AE189F17D6FE72C327A2EF82 /* 📦 Copy Pods Resources */ = {
+		AE189F17D6FE72C327A2EF82 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,33 +762,14 @@
 			shellPath = /bin/sh;
 			shellScript = "exit 0\n# Replace this path with the path to the key you just downloaded\nJSON_FILE=private/Inventry-a59707411f79.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
-		FBAED617D0A9BB0290719E64 /* Copy frameworks (Carthage) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Swish.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Delta.framework",
-			);
-			name = "Copy frameworks (Carthage)";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-		FC828C4691A4A9E4E8DA528D /* 📦 Embed Pods Frameworks */ = {
+		FC828C4691A4A9E4E8DA528D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,6 +784,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */,
 				E7444C731CF60812006D7159 /* OrdersTableViewController.swift in Sources */,
 				E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */,
 				E7EB3BDC1D8CC8B5007A463B /* UserQuery.swift in Sources */,
@@ -846,7 +816,6 @@
 				E7005CE91CFD4AC500B88483 /* UIAlertViewController.swift in Sources */,
 				E7005CEF1CFDF76E00B88483 /* Store.swift in Sources */,
 				E718E20B1CFBDF560086E2C4 /* CreditCardTableViewCell.swift in Sources */,
-				E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */,
 				E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */,
 				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E7005CFE1CFF331F00B88483 /* SetAllProducts.swift in Sources */,
@@ -936,16 +905,20 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -966,6 +939,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1016,14 +990,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6454E556A2A2CE34327F1EFF /* Pods-Inventry.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_ENTITLEMENTS = Inventry/Inventry.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1031,9 +1005,11 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jakecraige.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99130d74-6d04-4d66-9992-d9c2b83bec10";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Inventry/Inventry-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1053,17 +1029,21 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1099,14 +1079,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C56AF8F3F8FCAEC42E5CF8AA /* Pods-Inventry.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Inventry/Inventry.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Inventry/Resources/Other-Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1117,6 +1097,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Inventry/Inventry-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};

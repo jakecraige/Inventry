@@ -1,13 +1,13 @@
 import Argo
 
-extension NSDate: Decodable {
-  public static func decode(json: JSON) -> Decoded<NSDate> {
+extension Date: Decodable {
+  public static func decode(_ json: JSON) -> Decoded<Date> {
     switch json {
-    case let .Number(timestampInMilliseconds):
+    case let .number(timestampInMilliseconds):
       let timestampInSeconds = Double(timestampInMilliseconds) / 1000
-      return pure(NSDate(timeIntervalSince1970: timestampInSeconds))
+      return pure(Date(timeIntervalSince1970: timestampInSeconds))
     default:
-      return .typeMismatch("Number", actual: json)
+      return .typeMismatch(expected: "Number", actual: json)
     }
   }
 }

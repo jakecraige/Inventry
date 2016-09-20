@@ -11,23 +11,23 @@ class ProductViewController: UIViewController {
   @IBOutlet var priceLabel: UILabel!
   @IBOutlet var quantityLabel: UILabel!
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
     case "editProduct":
-      guard let vc = segue.destinationViewController as? EditProductViewController else { return }
+      guard let vc = segue.destination as? EditProductViewController else { return }
       vc.product = product
     default: break
     }
   }
 
   override func viewDidLoad() {
-    ProductQuery(id: product.id!).build().subscribeNext { [weak self] (product: Product) in
+    ProductQuery(id: product.id!).build().subscribe(onNext: { [weak self] (product: Product) in
       guard let `self` = self else { return }
       self.product = product
       self.updateUI()
-    }.addDisposableTo(disposeBag)
+    }).addDisposableTo(disposeBag)
   }
 
   func updateUI() {

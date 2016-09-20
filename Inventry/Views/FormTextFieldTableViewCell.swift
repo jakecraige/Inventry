@@ -6,7 +6,7 @@ class FormTextFieldTableViewCell: UITableViewCell {
   typealias ValueCallback = (String?) -> Void
   var valueCallback: ValueCallback?
 
-  var keyboardType: UIKeyboardType = .Default {
+  var keyboardType: UIKeyboardType = .default {
     didSet {
       textField.keyboardType = keyboardType
     }
@@ -16,20 +16,20 @@ class FormTextFieldTableViewCell: UITableViewCell {
     textField.delegate = self
   }
 
-  func configure(labelText: String, value: String?, changeEvent: UIControlEvents = .EditingChanged, onChange: ValueCallback? = .None) {
+  func configure(_ labelText: String, value: String?, changeEvent: UIControlEvents = .editingChanged, onChange: ValueCallback? = .none) {
     label.text = labelText
     textField.text = value
     valueCallback = onChange
-    textField.addTarget(self, action: #selector(textChanged), forControlEvents: changeEvent)
+    textField.addTarget(self, action: #selector(textChanged), for: changeEvent)
   }
 
-  @objc private func textChanged() {
+  @objc fileprivate func textChanged() {
     valueCallback?(textField.text)
   }
 }
 
 extension FormTextFieldTableViewCell: UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textChanged()
     return false
   }

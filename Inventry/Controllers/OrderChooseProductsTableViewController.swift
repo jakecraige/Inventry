@@ -11,63 +11,63 @@ class OrderChooseProductsTableViewController: UITableViewController {
   let searchController = UISearchController(searchResultsController: nil)
 
   var filteredProducts: [Product]  {
-    if let query = searchQuery where !query.isEmpty {
-      return products.filter { $0.name.lowercaseString.containsString(query.lowercaseString) }
+    if let query = searchQuery , !query.isEmpty {
+      return products.filter { $0.name.lowercased().contains(query.lowercased()) }
     } else {
       return products
     }
   }
 
   var searchControllerActive: Bool {
-    return searchController.active && searchController.searchBar.text != nil
+    return searchController.isActive && searchController.searchBar.text != nil
   }
 
   override func viewDidLoad() {
     store.dispatch(ResetCurrentOrder())
 
-    store.orderViewModel.subscribeNext { [weak self] updatedViewModel in
+    store.orderViewModel.subscribe(onNext: { [weak self] updatedViewModel in
       guard let `self` = self else { return }
       self.viewModel = updatedViewModel
       self.tableView.reloadData()
       self.updateNavigationTitle()
-    }.addDisposableTo(disposeBag)
+    }).addDisposableTo(disposeBag)
 
     definesPresentationContext = true
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Search for a product"
-    searchController.searchBar.searchBarStyle = .Minimal
+    searchController.searchBar.searchBarStyle = .minimal
     searchController.dimsBackgroundDuringPresentation = false
     tableView.tableHeaderView = searchController.searchBar
 
     // Empty back button for next screen
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
-    if traitCollection.forceTouchCapability == .Available {
-      registerForPreviewingWithDelegate(self, sourceView: tableView)
+    if traitCollection.forceTouchCapability == .available {
+      registerForPreviewing(with: self, sourceView: tableView)
     }
   }
 
   deinit {
-    observers.forEach { Product.ref.removeObserverWithHandle($0) }
+    observers.forEach { Product.ref.removeObserver(withHandle: $0) }
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
     case "scanBarcodeSegue":
-      let navVC = segue.destinationViewController as? UINavigationController
+      let navVC = segue.destination as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
       vc?.receiveBarcodeCallback = { [weak self] in self?.addOrIncrementProduct(withBarcode: $0) }
     default: break
     }
   }
 
-  private func getProduct(atIndexPath indexPath: NSIndexPath) -> Product {
-    return searchControllerActive ? filteredProducts[indexPath.row] : products[indexPath.row]
+  fileprivate func getProduct(atIndexPath indexPath: IndexPath) -> Product {
+    return searchControllerActive ? filteredProducts[(indexPath as NSIndexPath).row] : products[(indexPath as NSIndexPath).row]
   }
 
-  private func addOrIncrementProduct(withBarcode barcode: String) {
+  fileprivate func addOrIncrementProduct(withBarcode barcode: String) {
     if let product = products.find({$0.barcode == barcode}) {
       addOrIncrementProduct(product)
     } else {
@@ -75,7 +75,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
     }
   }
 
-  private func addOrIncrementProduct(product: Product) {
+  fileprivate func addOrIncrementProduct(_ product: Product) {
     guard product.quantity > 0 else { return }
 
     if let item = order.item(forProduct: product) {
@@ -86,18 +86,18 @@ class OrderChooseProductsTableViewController: UITableViewController {
     }
   }
 
-  private func removeOrDecrement(product: Product) {
+  fileprivate func removeOrDecrement(_ product: Product) {
     store.dispatch(DecrementFromCurrentOrder(product: product))
   }
 
-  private func updateNavigationTitle() {
+  fileprivate func updateNavigationTitle() {
     self.navigationItem.title = PriceFormatter(viewModel.subtotal).formatted
   }
 }
 
 // MARK: UITableViewDataSource
 extension OrderChooseProductsTableViewController {
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if searchControllerActive {
       return filteredProducts.count
     } else {
@@ -108,14 +108,14 @@ extension OrderChooseProductsTableViewController {
 
 // MARK: UITableViewDelegate
 extension OrderChooseProductsTableViewController {
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let product = getProduct(atIndexPath: indexPath)
-    let cell = tableView.dequeueReusableCellWithIdentifier("productCell", forIndexPath: indexPath) as! SelectProductTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! SelectProductTableViewCell
     cell.configure(forOrder: order, product: product)
     return cell
   }
 
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let product = getProduct(atIndexPath: indexPath)
 
     if let _ = order.item(forProduct: product) {
@@ -123,49 +123,49 @@ extension OrderChooseProductsTableViewController {
     } else {
       addOrIncrementProduct(product)
     }
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
 
-  override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+  override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let product = getProduct(atIndexPath: indexPath)
 
-    let decrement = UITableViewRowAction(style: .Normal, title: "-1", handler: { _, _ in
+    let decrement = UITableViewRowAction(style: .normal, title: "-1", handler: { _, _ in
       self.removeOrDecrement(product)
     })
-    decrement.backgroundColor = .redColor()
+    decrement.backgroundColor = .red
 
-    let increment = UITableViewRowAction(style: .Normal, title: "+1", handler: { _, _ in
+    let increment = UITableViewRowAction(style: .normal, title: "+1", handler: { _, _ in
       self.addOrIncrementProduct(product)
     })
-    increment.backgroundColor = .greenColor()
+    increment.backgroundColor = .green
 
     return [increment, decrement]
   }
 }
 
 extension OrderChooseProductsTableViewController: UISearchResultsUpdating {
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
+  func updateSearchResults(for searchController: UISearchController) {
     searchQuery = searchController.searchBar.text
   }
 }
 
 // MARK: UIViewControllerPreviewingDelegate
 extension OrderChooseProductsTableViewController: UIViewControllerPreviewingDelegate {
-  func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-    guard let indexPath = tableView.indexPathForRowAtPoint(location),
+  func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    guard let indexPath = tableView.indexPathForRow(at: location),
           let vc = UIStoryboard.instantiateViewController(withIdentifier: "ViewProduct", fromStoryboard: .Main) as? ProductViewController
-      else { return .None }
+      else { return .none }
 
     vc.product = getProduct(atIndexPath: indexPath)
 
     return vc
   }
 
-  func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+  func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
     // Purposely empty since this never gets called because we only do a preview
   }
 }

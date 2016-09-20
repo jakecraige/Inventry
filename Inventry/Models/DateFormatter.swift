@@ -1,16 +1,16 @@
 import Foundation
 
 struct DateFormatter {
-  let date: NSDate
+  let date: Date
 
-  init(_ date: NSDate) {
+  init(_ date: Date) {
     self.date = date
   }
 
   var formatted: String {
-    let formatter = NSDateFormatter()
-    formatter.dateStyle = .MediumStyle
-    formatter.timeStyle = .ShortStyle
-    return formatter.stringFromDate(date)
+    let formatter = Foundation.DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    return formatter.string(from: date)
   }
 }

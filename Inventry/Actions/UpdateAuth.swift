@@ -5,7 +5,7 @@ struct UpdateAuth: ActionType {
   let firUser: FIRUser?
   let user: User?
 
-  init(firUser: FIRUser? = .None, user: User? = .None) {
+  init(firUser: FIRUser? = .none, user: User? = .none) {
     self.firUser = firUser
     self.user = user
   }

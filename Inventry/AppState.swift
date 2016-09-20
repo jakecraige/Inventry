@@ -15,5 +15,5 @@ struct AppState {
   let firUser = Variable(FIRAuth.auth()?.currentUser)
 
   /// Currently signed in user
-  let user = Variable<User?>(.None)
+  let user = Variable<User?>(.none)
 }

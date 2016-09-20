@@ -11,16 +11,16 @@ struct ProcessPaymentRequest: Request {
   let token: String
   let accountID: String
 
-  func build() -> NSURLRequest {
-    let request = baseRequest(url: taskUrl, method: .POST)
+  func build() -> URLRequest {
+    var request = baseRequest(url: taskUrl, method: .POST)
 
     request.jsonPayload = [
-      "amount": amount,
-      "currency": currency.rawValue,
-      "description": description,
-      "token": token,
-      "accountID": accountID
-    ]
+      "amount": amount as AnyObject,
+      "currency": currency.rawValue as AnyObject,
+      "description": description as AnyObject,
+      "token": token as AnyObject,
+      "accountID": accountID as AnyObject
+    ] as AnyObject
 
     return request
   }

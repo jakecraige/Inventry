@@ -1,60 +1,53 @@
 PODS:
+  - Argo (3.0.1):
+    - Runes (>= 3.0.0)
   - AsyncSwift (1.7.2)
-  - CardIO (5.3.2)
-  - Firebase (3.2.0):
-    - Firebase/Core (= 3.2.0)
-  - Firebase/Analytics (3.2.0):
-    - FirebaseAnalytics (= 3.2.0)
-  - Firebase/Auth (3.2.0):
-    - Firebase/Analytics (= 3.2.0)
-    - FirebaseAuth (= 3.0.2)
-  - Firebase/Core (3.2.0):
-    - Firebase/Analytics (= 3.2.0)
-  - Firebase/Crash (3.2.0):
-    - Firebase/Analytics (= 3.2.0)
-    - FirebaseCrash (= 1.0.4)
-  - Firebase/Database (3.2.0):
-    - Firebase/Analytics (= 3.2.0)
-    - FirebaseDatabase (= 3.0.1)
-  - Firebase/RemoteConfig (3.2.0):
-    - Firebase/Analytics (= 3.2.0)
-    - FirebaseRemoteConfig (= 1.1.1)
-  - FirebaseAnalytics (3.2.0):
+  - CardIO (5.4.1)
+  - Curry (2.3.2)
+  - Delta (1.0.0)
+  - Firebase (3.6.0):
+    - Firebase/Core (= 3.6.0)
+  - Firebase/Analytics (3.6.0):
+    - FirebaseAnalytics (= 3.4.2)
+  - Firebase/Auth (3.6.0):
+    - Firebase/Analytics
+    - FirebaseAuth (= 3.0.5)
+  - Firebase/Core (3.6.0):
+    - Firebase/Analytics
+  - Firebase/Crash (3.6.0):
+    - Firebase/Analytics
+    - FirebaseCrash (= 1.0.7)
+  - Firebase/Database (3.6.0):
+    - Firebase/Analytics
+    - FirebaseDatabase (= 3.0.3)
+  - Firebase/RemoteConfig (3.6.0):
+    - Firebase/Analytics
+    - FirebaseRemoteConfig (= 1.3.0)
+  - FirebaseAnalytics (3.4.2):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseAuth (3.0.2):
-    - FirebaseAnalytics (~> 3.2)
+    - GoogleUtilities (~> 1.2)
+  - FirebaseAuth (3.0.5):
+    - FirebaseAnalytics (~> 3.3)
     - GoogleNetworkingUtilities (~> 1.2)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseCrash (1.0.4):
+    - GoogleUtilities (~> 1.2)
+  - FirebaseCrash (1.0.7):
     - FirebaseAnalytics (~> 3.2)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseDatabase (3.0.1):
-    - FirebaseAnalytics (~> 3.2)
-  - FirebaseInstanceID (1.0.6)
-  - FirebaseRemoteConfig (1.1.1):
-    - FirebaseAnalytics (~> 3.2)
+    - GoogleUtilities (~> 1.2)
+  - FirebaseDatabase (3.0.3):
+    - FirebaseAnalytics (~> 3.3)
+  - FirebaseInstanceID (1.0.8)
+  - FirebaseRemoteConfig (1.3.0):
+    - FirebaseAnalytics (~> 3.3)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleIPhoneUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseUI/AuthBase (0.4.0):
-    - Firebase/Analytics (~> 3.0)
-    - Firebase/Auth (~> 3.0)
-  - FirebaseUI/Google (0.4.0):
-    - FirebaseUI/AuthBase
-    - GoogleSignIn (~> 4.0)
-  - GoogleAppUtilities (1.1.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleAuthUtilities (2.0.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.2)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleIPhoneUtilities (1.2.1):
@@ -62,68 +55,119 @@ PODS:
     - GoogleUtilities (~> 1.0)
   - GoogleNetworkingUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSignIn (4.0.0):
-    - GoogleAppUtilities (~> 1.1)
-    - GoogleAuthUtilities (~> 2.0)
-    - GoogleNetworkingUtilities (~> 1.2)
-    - GoogleUtilities (~> 1.3)
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - HockeySDK (4.0.1):
-    - HockeySDK/AllFeaturesLib (= 4.0.1)
-  - HockeySDK/AllFeaturesLib (4.0.1)
-  - MTBBarcodeScanner (2.0.2)
-  - PromiseKit/CorePromise (3.2.0)
-  - RxCocoa (2.5.0):
-    - RxSwift (~> 2.5)
-  - RxSwift (2.5.0)
-  - Stripe (7.0.1):
-    - Stripe/Core (= 7.0.1)
-  - Stripe/Core (7.0.1)
+  - HockeySDK (4.1.1):
+    - HockeySDK/DefaultLib (= 4.1.1)
+  - HockeySDK/DefaultLib (4.1.1)
+  - MTBBarcodeScanner (2.1.0)
+  - PromiseKit/CorePromise (4.0.1)
+  - Result (3.0.0)
+  - Runes (3.2.1)
+  - RxCocoa (3.0.0-beta.1):
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxSwift (3.0.0-beta.1)
+  - Stripe (8.0.7)
+  - Swish (1.0.0):
+    - Argo (~> 3.0.0)
+    - Result (~> 3.0.0)
 
 DEPENDENCIES:
-  - AsyncSwift
+  - Argo (from `https://github.com/thoughtbot/Argo.git`, branch `master`)
+  - AsyncSwift (from `https://github.com/duemunk/Async.git`, branch `feature/Swift_3.0`)
   - CardIO
+  - Curry (from `https://github.com/thoughtbot/Curry.git`, branch `master`)
+  - Delta (from `https://github.com/thoughtbot/Delta.git`, branch `swift3`)
   - Firebase
   - Firebase/Auth
   - Firebase/Crash
   - Firebase/Database
   - Firebase/RemoteConfig
-  - FirebaseUI/Google
   - HockeySDK
   - MTBBarcodeScanner
   - PromiseKit/CorePromise
-  - RxCocoa
-  - RxSwift
+  - Result (from `https://github.com/antitypical/Result.git`, tag `3.0.0`)
+  - Runes (from `https://github.com/thoughtbot/Runes.git`, branch `master`)
+  - RxCocoa (= 3.0.0-beta.1)
+  - RxSwift (= 3.0.0-beta.1)
   - Stripe
+  - Swish (from `https://github.com/thoughtbot/Swish.git`, branch `swift-3.0`)
+
+EXTERNAL SOURCES:
+  Argo:
+    :branch: master
+    :git: https://github.com/thoughtbot/Argo.git
+  AsyncSwift:
+    :branch: feature/Swift_3.0
+    :git: https://github.com/duemunk/Async.git
+  Curry:
+    :branch: master
+    :git: https://github.com/thoughtbot/Curry.git
+  Delta:
+    :branch: swift3
+    :git: https://github.com/thoughtbot/Delta.git
+  Result:
+    :git: https://github.com/antitypical/Result.git
+    :tag: 3.0.0
+  Runes:
+    :branch: master
+    :git: https://github.com/thoughtbot/Runes.git
+  Swish:
+    :branch: swift-3.0
+    :git: https://github.com/thoughtbot/Swish.git
+
+CHECKOUT OPTIONS:
+  Argo:
+    :commit: 4b57653f7760bd3eedfd1c1fbc821bde191e603d
+    :git: https://github.com/thoughtbot/Argo.git
+  AsyncSwift:
+    :commit: a12cda2fb96c0cd0c845ab8a8277df60af8f506f
+    :git: https://github.com/duemunk/Async.git
+  Curry:
+    :commit: 408134ffa8dd1c09b0050f65eae300381b934bf6
+    :git: https://github.com/thoughtbot/Curry.git
+  Delta:
+    :commit: 7030d425f82b031c697251a556a627db990e38e6
+    :git: https://github.com/thoughtbot/Delta.git
+  Result:
+    :git: https://github.com/antitypical/Result.git
+    :tag: 3.0.0
+  Runes:
+    :commit: e00cf681ec03a2dbf2b4cd6dd1e24d522f55474b
+    :git: https://github.com/thoughtbot/Runes.git
+  Swish:
+    :commit: 69f0e8a3163ad93ae60a2a7275ed08bf4b5c51a1
+    :git: https://github.com/thoughtbot/Swish.git
 
 SPEC CHECKSUMS:
-  AsyncSwift: 46a78bceb11f0e5bb52747f740d9692ec78d2d7c
-  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
-  Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
-  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
-  FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
-  FirebaseCrash: e3bff070dca75f71e10e4295b18642f77f6d87c9
-  FirebaseDatabase: 34301d11621a83546f39f670d256477ba6f7fcea
-  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
-  FirebaseRemoteConfig: 3260ced812d2adcbb9bcefe0dc78fdce7b8090e6
-  FirebaseUI: 691e0f500c762a4c8b5b6ed93c011e871ecd8aad
-  GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
-  GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
+  Argo: f2e633ac01162010a2c3d8c495a59f5c79abe4d5
+  AsyncSwift: 15c496983f752a3ab8d1be17e64dd4c6f2a31239
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
+  Curry: a018288326c97dd2e4f5b37e527d20749e4663c5
+  Delta: 35694e6e06a7e5d9dd8a25f3b0768ed66c0579c5
+  Firebase: 34187200ef4979dbd485c7aa685ef078bf587c86
+  FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
+  FirebaseAuth: 75a062bbf2d3c97d1e6e55bbc110e13a6853e25d
+  FirebaseCrash: 2efeb3715b76ac843b841529ce413efb67e5fd4d
+  FirebaseDatabase: 750a4a0fe18ef114318876fd654b2d9c671e0992
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  FirebaseRemoteConfig: 981f45d4278281cfefa8f48a6f5c566f2c95ac5a
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
   GoogleNetworkingUtilities: 3e83269048cfb498dc7ec83ab36813360965c74f
-  GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  HockeySDK: 1b69a82782f6a3d4a1c0b1f04dca4bca83fc8c82
-  MTBBarcodeScanner: 18ab77ad8dfa31db96446c9325e86122d39425d6
-  PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
-  RxCocoa: e1b1562e57a554d0fb2aabf9d71b637f177257c7
-  RxSwift: 402b41a50e922a0368fc14cb3bc9f4427920e8ae
-  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
+  HockeySDK: 364679ba00f3447d014dd75cac57e59cc2574318
+  MTBBarcodeScanner: 72b7e81aa5ad9be2d40c1af3f2996083dce9d58f
+  PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
+  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
+  Runes: 6231c760e43f26bd3fe804f15bc08bd1e40e6c46
+  RxCocoa: 8cecf331302b8ae5381bbab1bccba4ede2eae6a8
+  RxSwift: 0823e8d7969c23bfa9ddfb2afa4881e424a1a710
+  Stripe: 2bb9646115745d0ee8c7799e6872c57ba5dc6cc5
+  Swish: 09a5974e365c1609e0f2e9d56d755bcbd74cdb07
 
-PODFILE CHECKSUM: 1feb3a77fe2df69c9693c5d289350441fe6558bb
+PODFILE CHECKSUM: 5146eb6310795d12f4dea4a7be1491861c30e2a7
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.0.rc.2

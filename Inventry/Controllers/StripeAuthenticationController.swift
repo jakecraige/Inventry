@@ -17,34 +17,34 @@ class StripeAuthenticationController: UIViewController {
     super.viewDidLoad()
 
     let clientID = Environment.stripeClientID
-    let url = NSURL(string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=\(clientID)&scope=read_write")!
-    let req = NSURLRequest(URL: url)
-    webView.loadRequest(req)
+    let url = URL(string: "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=\(clientID)&scope=read_write")!
+    let req = URLRequest(url: url)
+    webView.load(req)
   }
 
   var onStripePage: Bool {
-    guard let url = webView.URL else { return false }
+    guard let url = webView.url else { return false }
 
-    return !url.absoluteString.containsString("stripe")
+    return !url.absoluteString.contains("stripe")
   }
 
-  @IBAction func cancelTapped(sender: UIBarButtonItem) {
+  @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
     dismiss()
   }
 
   func dismiss() {
-    navigationController?.popViewControllerAnimated(true)
+    _ = navigationController?.popViewController(animated: true)
   }
 }
 
 extension StripeAuthenticationController: WKNavigationDelegate {
-  func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     guard !onStripePage else { return }
 
     webView.evaluateJavaScript("document.body.innerText") { body, error in
       guard let text = body as? String,
-                data = text.dataUsingEncoding(NSUTF8StringEncoding),
-                json = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+                let data = text.data(using: String.Encoding.utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: [])
       else { return }
 
       if let error = error {
@@ -54,9 +54,9 @@ extension StripeAuthenticationController: WKNavigationDelegate {
       }
 
       switch decode(json) as Decoded<StripeConnectAccount> {
-      case let .Success(account):
+      case let .success(account):
         self.connectAccount.onNext(account)
-      case let .Failure(error):
+      case let .failure(error):
         self.connectAccount.onError(error)
       }
 

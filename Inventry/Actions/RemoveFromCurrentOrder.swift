@@ -6,7 +6,7 @@ struct RemoveFromCurrentOrder: ActionType {
   func reduce(state: AppState) -> AppState {
     guard let productId = product.id else { return state }
 
-    state.order.value.remove(lineItem: LineItem(productId: productId))
+    _ = state.order.value.remove(lineItem: LineItem(productId: productId))
 
     return state
   }

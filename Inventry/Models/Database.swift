@@ -1,9 +1,10 @@
 import Firebase
 import Argo
 import RxSwift
+import Runes
 
 /// Returned when a reference you try to subscribe to doesn't exist
-struct NullRefError: ErrorType {
+struct NullRefError: Error {
   let message: String
   var debugDescription: String { return message }
 
@@ -13,7 +14,7 @@ struct NullRefError: ErrorType {
 }
 
 struct Database {
-  static func save<Model: Modelable where Model.DecodedType == Model>(model: Model) -> String {
+  static func save<Model: Modelable>(_ model: Model) -> String where Model.DecodedType == Model {
     let ref = model.childRef
 
     let values = valuesForUpdate(model)
@@ -23,23 +24,23 @@ struct Database {
   }
 
   static func save(
-    dict: [String: AnyObject],
+    _ dict: [String: AnyObject],
     ref: FIRDatabaseReference = FIRDatabase.database().reference()
   ) {
     ref.updateChildValues(dict)
   }
 
-  static func valuesForUpdate<Model: Modelable where Model.DecodedType == Model>(
-    model: Model,
+  static func valuesForUpdate<Model: Modelable>(
+    _ model: Model,
     includeRootKey: Bool = false,
     rootKey: String = Model.refName
-  ) -> [String: AnyObject]{
+  ) -> [String: AnyObject] where Model.DecodedType == Model{
     var values = model.encode()
 
     if let tModel = model as? Timestampable {
-      values["timestamps/updated_at"] = FIRServerValue.timestamp()
-      if tModel.timestamps?.createdAt == .None {
-        values["timestamps/created_at"] = FIRServerValue.timestamp()
+      values["timestamps/updated_at"] = FIRServerValue.timestamp() as AnyObject?
+      if tModel.timestamps?.createdAt == .none {
+        values["timestamps/created_at"] = FIRServerValue.timestamp() as AnyObject?
       }
     }
 
@@ -53,62 +54,62 @@ struct Database {
     }
   }
 
-  static func delete<Model: Modelable where Model.DecodedType == Model>(model: Model) {
+  static func delete<Model: Modelable>(_ model: Model) where Model.DecodedType == Model {
     model.childRef.removeValue()
   }
 
-  static func exists(ref: FIRDatabaseQuery) -> Observable<Bool> {
+  static func exists(_ ref: FIRDatabaseQuery) -> Observable<Bool> {
     return Observable.create { observer in
-      let observerHandle = ref.observeEventType(
-        .Value,
-        withBlock: { snapshot in
+      let observerHandle = ref.observe(
+        .value,
+        with: { snapshot in
           observer.onNext(snapshot.exists())
           observer.onCompleted()
         },
-        withCancelBlock: { error in
+        withCancel: { error in
           observer.onError(error)
           observer.onCompleted()
         }
       )
 
-      return AnonymousDisposable {
-        ref.removeObserverWithHandle(observerHandle)
+      return Disposables.create {
+        ref.removeObserver(withHandle: observerHandle)
       }
     }
   }
 
   static func observeSnapshot(
-    eventType: FIRDataEventType = .Value,
+    _ eventType: FIRDataEventType = .value,
     ref: FIRDatabaseQuery
   ) -> Observable<FIRDataSnapshot> {
     return Observable.create { observer in
-      let observerHandle = ref.observeEventType(
+      let observerHandle = ref.observe(
         eventType,
-        withBlock: { observer.onNext($0) },
-        withCancelBlock: { observer.onError($0) }
+        with: { observer.onNext($0) },
+        withCancel: { observer.onError($0) }
       )
-      return AnonymousDisposable {
-        ref.removeObserverWithHandle(observerHandle)
+      return Disposables.create {
+        ref.removeObserver(withHandle: observerHandle)
       }
     }
   }
 
-  static func observe<T: Decodable where T == T.DecodedType>(
-    eventType: FIRDataEventType = .Value,
+  static func observe<T: Decodable>(
+    _ eventType: FIRDataEventType = .value,
     ref: FIRDatabaseQuery
-  ) -> Observable<T> {
+  ) -> Observable<T> where T == T.DecodedType {
     return observeSnapshot(eventType, ref: ref).flatMap { snapshot -> Observable<T> in
       switch FIRDecode(snapshot) as Decoded<T> {
-      case let .Success(model): return .just(model)
-      case let .Failure(error): return .error(error)
+      case let .success(model): return .just(model)
+      case let .failure(error): return .error(error)
       }
     }
   }
 
-  static func observe<T: Decodable where T == T.DecodedType>(
-    eventType: FIRDataEventType = .Value,
+  static func observe<T: Decodable>(
+    _ eventType: FIRDataEventType = .value,
     ref: FIRDatabaseQuery
-  ) -> Observable<[T]> {
+  ) -> Observable<[T]> where T == T.DecodedType {
     return observeSnapshot(eventType, ref: ref).map(FIRDecode)
   }
 
@@ -118,20 +119,21 @@ struct Database {
   // override it to handle decoding this case properly. It should probably also handle the case of
   // an array like: { 0: "1234", 1: "4567" }, but I haven't been using that structure yet.
   static func observe(
-    eventType: FIRDataEventType = .Value,
+    _ eventType: FIRDataEventType = .value,
     ref: FIRDatabaseQuery
   ) -> Observable<[String]> {
     return observeSnapshot(eventType, ref: ref).map { snapshot in
       guard let value = snapshot.value else { return [] }
-      return decodeFIRArray(JSON(value)) ?? []
+      return decodeFIRArray(json: JSON(value)) ?? []
     }
   }
 
   // sugar for querying for multiple objects via an array of queries for individual ones
-  static func observe<T: Decodable where T == T.DecodedType>(
-    eventType: FIRDataEventType = .Value,
+  static func observe<T: Decodable>(
+    _ eventType: FIRDataEventType = .value,
     refs: [FIRDatabaseQuery]
-  ) -> Observable<[T]> {
+  ) -> Observable<[T]> where T == T.DecodedType {
+    guard refs.count > 0 else { return .just([]) }
     return refs
       .map { observe(eventType, ref: $0) }
       .combineLatest { $0 }
@@ -140,21 +142,21 @@ struct Database {
 
 // MARK: Private Methods
 private extension Database {
-  static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> [T] {
+  static func FIRDecode<T: Decodable>(_ snapshot: FIRDataSnapshot) -> [T] where T == T.DecodedType {
     return snapshot.children
       .flatMap { $0 as? FIRDataSnapshot }
       .flatMap { snapshot in
         // This guard is a hack because parsing a list of PublicUsers doesn't seem to work without it
-        guard !snapshot.key.isEmpty else { return .None }
+        guard !snapshot.key.isEmpty else { return .none }
         return FIRDecode(snapshot)
       }
   }
 
-  private static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> Decoded<T> {
+  static func FIRDecode<T: Decodable>(_ snapshot: FIRDataSnapshot) -> Decoded<T> where T == T.DecodedType {
     let decoded: Decoded<T> = decode(snapshot.asDictionary) <|> decode(snapshot.value ?? NSNull())
     if let error = decoded.error {
       print("---------------------------------------------------------------------")
-      print("Decoding Error: Failed to decode type '\(String(T))'.")
+      print("Decoding Error: Failed to decode type '\(String(describing: T.self))'.")
       print("Snapshot was: \(snapshot)")
       print("Error was: \(error)")
       print("---------------------------------------------------------------------")
@@ -162,7 +164,7 @@ private extension Database {
     return decoded
   }
 
-  private static func FIRDecode<T: Decodable where T == T.DecodedType>(snapshot: FIRDataSnapshot) -> T? {
+  static func FIRDecode<T: Decodable>(_ snapshot: FIRDataSnapshot) -> T? where T == T.DecodedType {
     return FIRDecode(snapshot).value
   }
 }

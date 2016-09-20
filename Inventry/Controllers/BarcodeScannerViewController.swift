@@ -11,7 +11,7 @@ class BarcodeScannerViewController: UIViewController {
   override func viewDidLoad() {
     scanner = MTBBarcodeScanner(previewView: scannerContainerView)
 
-    MTBBarcodeScanner.requestCameraPermissionWithSuccess { [unowned self] success in
+    MTBBarcodeScanner.requestCameraPermission { [unowned self] success in
       if success {
         self.startScanning()
       } else {
@@ -21,13 +21,14 @@ class BarcodeScannerViewController: UIViewController {
     }
   }
 
-  @IBAction func cancelTapped(sender: UIBarButtonItem) {
-    self.dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+    self.dismiss(animated: true, completion: nil)
   }
 
-  private func startScanning() {
-    scanner.startScanningWithResultBlock { [weak self] avCodes in
-      guard let `self` = self else { return }
+  fileprivate func startScanning() {
+    scanner.startScanning { [weak self] avCodes in
+      guard let `self` = self,
+            let avCodes = avCodes else { return }
       let codes = avCodes
         .flatMap { $0 as? AVMetadataMachineReadableCodeObject }
         .filter { $0.stringValue != nil }
@@ -35,7 +36,7 @@ class BarcodeScannerViewController: UIViewController {
       if let code = codes.first {
         self.scanner.stopScanning()
         self.receiveBarcodeCallback?(code)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
       }
     }
   }

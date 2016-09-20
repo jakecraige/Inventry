@@ -5,7 +5,7 @@ struct UpdateCurrentOrderCustomer: ActionType {
   let phone: String?
   let email: String?
 
-  init(name: String? = .None, phone: String? = .None, email: String? = .None) {
+  init(name: String? = .none, phone: String? = .none, email: String? = .none) {
     self.name = name
     self.phone = phone
     self.email = email

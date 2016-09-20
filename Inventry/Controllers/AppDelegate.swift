@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 import Stripe
-import FirebaseAuthUI
+//import FirebaseAuthUI
 import HockeySDK
 import RxSwift
 
@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var firebaseSyncController: FirebaseSyncController?
   let disposeBag = DisposeBag()
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     configureFirebase()
     configureHockey()
     monitorAuthState()
@@ -21,43 +21,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-    guard let authUI = FIRAuthUI.authUI(),
-          let sourceApp = sourceApplication else { return false }
-
-    return authUI.handleOpenURL(url, sourceApplication: sourceApp)
-  }
+//  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//    guard let authUI = FIRAuthUI.authUI(),
+//          let sourceApp = sourceApplication else { return false }
+//
+//    return authUI.handleOpenURL(url, sourceApplication: sourceApp)
+//  }
 
   func configureFirebase() {
     FIRApp.configure()
     let config = FIRRemoteConfig.remoteConfig()
     let expirationDuration: Double
-    if Environment.current == .Development {
+    if Environment.current == .development {
       config.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
       expirationDuration = 0
     } else {
       expirationDuration = 3600 // 1hr
     }
     config.setDefaultsFromPlistFileName("RemoteConfigDefaults")
-    config.fetchWithExpirationDuration(expirationDuration) { _ in
+    config.fetch(withExpirationDuration: expirationDuration) { _ in
       config.activateFetched()
       print("Latest remote config activated")
     }
   }
 
   func configureHockey() {
-    guard Environment.current != .Development  else { return }
-    let manager = BITHockeyManager.sharedHockeyManager()
-    manager.configureWithIdentifier(Environment.hockeyAppIdentifier)
-    manager.startManager()
+    guard Environment.current != .development  else { return }
+    let manager = BITHockeyManager.shared()
+    manager.configure(withIdentifier: Environment.hockeyAppIdentifier)
+    manager.start()
     manager.authenticator.authenticateInstallation()
-    manager.crashManager.crashManagerStatus = .AutoSend
+    manager.crashManager.crashManagerStatus = .autoSend
   }
 
   func monitorAuthState() {
     // Skip first one that comes through when starting the app
     let signedOut = store.signedIn.distinctUntilChanged().skip(1).filter(not)
-    signedOut.driveNext { _ in
+    signedOut.drive { _ in
       let vc = UIStoryboard.instantiateInitialViewController(forStoryboard: .Onboarding)
       self.window?.rootViewController = vc
       self.window?.makeKeyAndVisible()

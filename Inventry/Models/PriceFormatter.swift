@@ -3,21 +3,25 @@ import Foundation
 struct PriceFormatter {
   let price: Cents
   let currency: Currency
+  let formatter: NumberFormatter
 
   init(_ price: Cents, currency: Currency = .USD) {
     self.price = price
     self.currency = currency
+    self.formatter = createFormatter(forCurrency: currency)
   }
 
   init(_ product: Product) {
     self.price = product.price
     self.currency = product.currency
+    self.formatter = createFormatter(forCurrency: currency)
   }
 
   init?(_ order: Order) {
     if let charge = order.charge {
       self.price = charge.amount
       self.currency = charge.currency
+      self.formatter = createFormatter(forCurrency: charge.currency)
     } else {
       return nil
     }
@@ -28,13 +32,13 @@ struct PriceFormatter {
   }
 
   var formatted: String {
-    return formatter.stringFromNumber(dollarPrice)!
+    return formatter.string(from: NSNumber(value: dollarPrice))!
   }
+}
 
-  private var formatter: NSNumberFormatter {
-    return with(NSNumberFormatter()) {
-      $0.numberStyle = .CurrencyStyle
-      $0.currencyCode = self.currency.rawValue
-    }
-  }
+private func createFormatter(forCurrency currency: Currency) -> NumberFormatter {
+  let formatter = NumberFormatter()
+  formatter.numberStyle = .currency
+  formatter.currencyCode = currency.rawValue
+  return formatter
 }

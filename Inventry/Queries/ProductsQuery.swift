@@ -1,4 +1,5 @@
 import RxSwift
+import Firebase
 
 struct ProductsQuery: Query {
   let user: Observable<User>
@@ -7,21 +8,21 @@ struct ProductsQuery: Query {
     return user.flatMapLatest { user in
       return self.getAllInventory(user)
     }.map { products in
-      return products.sort { $0.name < $1.name }
+      return products.sorted { $0.name < $1.name }
     }
   }
 
-  func getAllInventory(user: User) -> Observable<[Product]> {
+  func getAllInventory(_ user: User) -> Observable<[Product]> {
     return Observable.combineLatest(getInventoryProducts(user), getSharedInventoryProducts(user.uid)) {
       return $0 + $1
     }
   }
 
-  func getInventoryProducts(user: User) -> Observable<[Product]> {
+  func getInventoryProducts(_ user: User) -> Observable<[Product]> {
     return Database.observe(refs: user.products.map(Product.getChildRef))
   }
 
-  func getSharedInventoryProducts(userID: String) -> Observable<[Product]> {
+  func getSharedInventoryProducts(_ userID: String) -> Observable<[Product]> {
     let query = PublicUserQuery(id: userID).build()
 
     return query.flatMapLatest { user in
@@ -32,10 +33,10 @@ struct ProductsQuery: Query {
   }
 
   private func productIDs(forIDs ids: [String]) -> Observable<[String]> {
-    return ids.map { id in
-      return User.getChildRef(id).child("Products")
-    }.map { ref in
+    let refs = ids.map { User.getChildRef($0).child("Products") }
+
+    return Observable.from(refs).flatMap { ref in
       return Database.observe(ref: ref)
-    }.combineLatest { Array($0.flatten()) }
+    }.startWith([])
   }
 }

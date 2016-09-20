@@ -7,15 +7,15 @@ struct ToggleInventoryPartner: DynamicActionType {
   let partner: PublicUser
 
   func call() -> Observable<PublicUser> {
-    let newUser: PublicUser
-    let newPartner: PublicUser
+    var newUser: PublicUser = user
+    var newPartner: PublicUser = partner
 
     if user.inventorySharedWith.contains(partner.id!) {
-      newUser = with(user) { $0.inventorySharedWith = $0.inventorySharedWith.filter { $0 != partner.id! } }
-      newPartner = with(partner) { $0.inventorySharedFrom = $0.inventorySharedFrom.filter { $0 != user.id! } }
+      newUser.inventorySharedWith = user.inventorySharedWith.filter { $0 != partner.id! }
+      newPartner.inventorySharedFrom = partner.inventorySharedFrom.filter { $0 != user.id! }
     } else {
-      newUser = with(user) { $0.inventorySharedWith.append(partner.id!) }
-      newPartner = with(partner) { $0.inventorySharedFrom.append(user.id!) }
+      newUser.inventorySharedWith.append(partner.id!)
+      newPartner.inventorySharedFrom.append(user.id!)
     }
 
     Database.save(

@@ -1,12 +1,12 @@
 import Stripe
 import PromiseKit
 
-private let client = STPAPIClient.sharedClient()
+private let client = STPAPIClient.shared()
 
 struct PaymentProvier {
-  static func createToken(card: STPCardParams) -> Promise<String> {
+  static func createToken(_ card: STPCardParams) -> Promise<String> {
     return Promise { resolve, reject in
-      client.createTokenWithCard(card) { token, error in
+      client.createToken(withCard: card) { token, error in
         if let error = error {
           reject(error)
         }

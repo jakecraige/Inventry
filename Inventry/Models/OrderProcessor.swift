@@ -2,7 +2,7 @@ import Foundation
 import Swish
 import RxSwift
 
-struct TokenMissingError: ErrorType { }
+struct TokenMissingError: Error { }
 
 struct OrderProcessor {
   let vm: OrderViewModel
@@ -14,7 +14,9 @@ struct OrderProcessor {
     products = vm.products
     // it needs to have an ID set even though it's not persisted so we can add a note to the payment
     // with the orderID
-    order = with(vm.order) { $0.id = $0.childRef.key }
+    var newOrder = vm.order
+    newOrder.id = vm.order.childRef.key
+    order = newOrder
   }
 
   func process() -> Observable<Order> {
@@ -30,7 +32,7 @@ struct OrderProcessor {
         token: paymentToken,
         accountID: user.stripeConnectAccount.stripeUserID
       )
-      return APIClient().performRequest(request)
+      return APIClient().performRequest(request: request)
     }.flatMap { charge in
       return self.updateAndPersistOrder(withCharge: charge)
     }.map { order in
@@ -39,15 +41,16 @@ struct OrderProcessor {
     }
   }
 
-  private func updateAndPersistOrder(withCharge charge: Charge) -> Observable<Order> {
-    let updatedOrder = with(order) { $0.charge = charge }
+  fileprivate func updateAndPersistOrder(withCharge charge: Charge) -> Observable<Order> {
+    var updatedOrder = order
+    updatedOrder.charge = charge
     return store.dispatch(SaveOrder(order: updatedOrder))
   }
 
-  private func reduceInventoryQuantities() {
+  fileprivate func reduceInventoryQuantities() {
     vm.lineItems.forEach { itemVM in
       let product = itemVM.product.decrement(by: itemVM.lineItem.quantity)
-      Database.save(product)
+      _ = Database.save(product)
     }
   }
 }

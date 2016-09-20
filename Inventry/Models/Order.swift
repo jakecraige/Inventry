@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 private let defaultNotes = ""
 
@@ -17,20 +18,20 @@ struct Order: Modelable, Timestampable {
 
   static func new() -> Order {
     return self.init(
-      id: .None,
+      id: .none,
       lineItems: [],
-      paymentToken: .None,
-      charge: .None,
-      customer: .None,
+      paymentToken: .none,
+      charge: .none,
+      customer: .none,
       taxRate: Config.defaultTaxRate,
       shippingRate: Config.defaultShippingRate,
       notes: defaultNotes,
-      timestamps: .None,
+      timestamps: .none,
       userId: ""
     )
   }
 
-  func contains(lineItem: LineItem) -> Bool {
+  func contains(_ lineItem: LineItem) -> Bool {
     return lineItems.contains(lineItem)
   }
 
@@ -38,47 +39,47 @@ struct Order: Modelable, Timestampable {
     return lineItems.find { $0.productId == (product.id ?? "") }
   }
 
-  mutating func add(lineItem lineItem: LineItem, atIndex index: Int? = .None) {
+  mutating func add(lineItem: LineItem, atIndex index: Int? = .none) {
     if let index = index {
-      lineItems.insert(lineItem, atIndex: index)
+      lineItems.insert(lineItem, at: index)
     } else {
       lineItems.append(lineItem)
     }
   }
 
-  mutating func remove(lineItem lineItem: LineItem) -> Int? {
-    guard let index = lineItems.indexOf(lineItem) else { return .None }
-    lineItems.removeAtIndex(index)
+  mutating func remove(lineItem: LineItem) -> Int? {
+    guard let index = lineItems.index(of: lineItem) else { return .none }
+    lineItems.remove(at: index)
     return index
   }
 
-  mutating func replace(oldLineItem: LineItem, withLineItem newLineItem: LineItem) {
+  mutating func replace(_ oldLineItem: LineItem, withLineItem newLineItem: LineItem) {
     let index = remove(lineItem: oldLineItem)
     add(lineItem: newLineItem, atIndex: index)
   }
 
-  mutating func increment(lineItem lineItem: LineItem) {
+  mutating func increment(lineItem: LineItem) {
     if let existingItem = find(lineItem: lineItem) {
       replace(existingItem, withLineItem: existingItem.increment())
     }
   }
 
   /// Decrement line item quantity if it exists and is above one, remove otherwise
-  mutating func removeOrDecrement(lineItem lineItem: LineItem) {
+  mutating func removeOrDecrement(lineItem: LineItem) {
     guard let existingItem = find(lineItem: lineItem) else { return }
 
     if existingItem.quantity > 1 {
       replace(existingItem, withLineItem: existingItem.decrement())
     } else {
-      remove(lineItem: lineItem)
+      _ = remove(lineItem: lineItem)
     }
   }
 
-  private func find(lineItem lineItem: LineItem) -> LineItem? {
+  fileprivate func find(lineItem: LineItem) -> LineItem? {
     return lineItems.find({$0.productId == lineItem.productId})
   }
 
-  func calculateAmount(products: [Product]) -> Cents {
+  func calculateAmount(_ products: [Product]) -> Cents {
     return lineItems.reduce(0) { total, item in
       guard let product = products.find({($0.id ?? "") == item.productId}) else { return total }
 
@@ -88,7 +89,7 @@ struct Order: Modelable, Timestampable {
 }
 
 extension Order: Decodable {
-  static func decode(json: JSON) -> Decoded<Order> {
+  static func decode(_ json: JSON) -> Decoded<Order> {
     let new = curry(Order.init)
     return new
       <^> json <|? "id"
@@ -96,9 +97,9 @@ extension Order: Decodable {
       <*> json <|? "payment_token"
       <*> json <|? "charge"
       <*> json <|? "customer"
-      <*> (json <| "tax_rate").or(.Success(Config.defaultTaxRate))
-      <*> (json <| "shipping_rate").or(.Success(Config.defaultShippingRate))
-      <*> (json <| "notes").or(.Success(defaultNotes))
+      <*> (json <| "tax_rate").or(.success(Config.defaultTaxRate))
+      <*> (json <| "shipping_rate").or(.success(Config.defaultShippingRate))
+      <*> (json <| "notes").or(.success(defaultNotes))
       <*> json <|? "timestamps"
       <*> json <| "user_id"
   }
@@ -107,14 +108,14 @@ extension Order: Decodable {
 extension Order: Encodable {
   func encode() -> [String: AnyObject] {
     var dict = [String: AnyObject]()
-    dict["payment_token"] = paymentToken
+    dict["payment_token"] = paymentToken as AnyObject?
     dict["line_items"] = LineItem.encodeArray(lineItems)
-    dict["charge"] = charge?.encode()
-    dict["customer"] = customer?.encode()
-    dict["tax_rate"] = taxRate
-    dict["shipping_rate"] = shippingRate
-    dict["notes"] = notes
-    dict["user_id"] = userId
+    dict["charge"] = charge?.encode() as AnyObject?
+    dict["customer"] = customer?.encode() as AnyObject?
+    dict["tax_rate"] = taxRate as AnyObject?
+    dict["shipping_rate"] = shippingRate as AnyObject?
+    dict["notes"] = notes as AnyObject?
+    dict["user_id"] = userId as AnyObject?
     return dict
   }
 }

@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 struct Customer {
   let name: String
@@ -7,12 +8,12 @@ struct Customer {
   let phone: String?
 
   static func null() -> Customer {
-    return Customer(name: "", email: .None, phone: .None)
+    return Customer(name: "", email: .none, phone: .none)
   }
 }
 
 extension Customer: Decodable {
-  static func decode(json: JSON) -> Decoded<Customer> {
+  static func decode(_ json: JSON) -> Decoded<Customer> {
     return curry(Customer.init)
       <^> json <| "name"
       <*> json <|? "email"
@@ -23,9 +24,9 @@ extension Customer: Decodable {
 extension Customer: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "name": name,
-      "email": email ?? "",
-      "phone": phone ?? ""
+      "name": name as AnyObject,
+      "email": email as AnyObject? ?? "" as AnyObject,
+      "phone": phone as AnyObject? ?? "" as AnyObject
     ]
   }
 }

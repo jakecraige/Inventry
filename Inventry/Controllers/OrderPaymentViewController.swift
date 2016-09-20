@@ -37,56 +37,56 @@ class OrderPaymentViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.registerNib(
+    tableView.register(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
     )
 
-    store.orderViewModel.subscribeNext { [weak self] in
+    store.orderViewModel.subscribe(onNext: { [weak self] in
       self?.viewModel = $0
-    }.addDisposableTo(disposeBag)
+    }).addDisposableTo(disposeBag)
 
-    formValid.drive(buyButton.rx_enabled).addDisposableTo(disposeBag)
+    formValid.drive(buyButton.rx.enabled).addDisposableTo(disposeBag)
   }
 
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     CardIOUtilities.preload()
   }
 
-  @IBAction func scanCreditCardTapped(sender: UIBarButtonItem) {
+  @IBAction func scanCreditCardTapped(_ sender: UIBarButtonItem) {
     let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
-    cardIOVC.modalPresentationStyle = .FormSheet
-    cardIOVC.useCardIOLogo = true
-    cardIOVC.hideCardIOLogo = true
-    presentViewController(cardIOVC, animated: true, completion: nil)
+    cardIOVC?.modalPresentationStyle = .formSheet
+    cardIOVC?.useCardIOLogo = true
+    cardIOVC?.hideCardIOLogo = true
+    present(cardIOVC!, animated: true, completion: nil)
   }
 
-  @IBAction func buyTapped(sender: UIBarButtonItem) {
+  @IBAction func buyTapped(_ sender: UIBarButtonItem) {
     navigationItem.startLoadingRightButton()
 
     validatePaymentMethod()
-      .then(confirmOkayToChargeCard)
-      .then(placeOrder)
-      .then(logOrderPurchase)
-      .then { [weak self] in self?.dismissViewControllerAnimated(true, completion: nil) }
+      .then(execute: confirmOkayToChargeCard)
+      .then(execute: placeOrder)
+      .then(execute: logOrderPurchase)
+      .then { [weak self] in self?.dismiss(animated: true, completion: nil) }
       .always { [weak self] in self?.navigationItem.stopLoadingRightButton() }
-      .error { error in
-      if error is CancelledAlertError {
-        // ignore
-      } else {
-        print(error)
-        self.handleProcessError(error)
-      }
+      .catch { error in
+        if error is CancelledAlertError {
+          // ignore
+        } else {
+          print(error)
+          self.handleProcessError(error)
+        }
     }
   }
 
-  private func validatePaymentMethod() -> Promise<Void> {
+  fileprivate func validatePaymentMethod() -> Promise<Void> {
     return PaymentProvier.createToken(paymentParams).then { token in
       store.dispatch(UpdateCurrentOrder(paymentToken: token))
     }
   }
 
-  private func confirmOkayToChargeCard() -> Promise<Void> {
+  fileprivate func confirmOkayToChargeCard() -> Promise<Void> {
     let amount = PriceFormatter(viewModel.total).formatted
     return UIAlertController.okCancel(
       title: "Confirm Purchase",
@@ -95,7 +95,7 @@ class OrderPaymentViewController: UITableViewController {
     )
   }
 
-  private func placeOrder() -> Promise<Void> {
+  fileprivate func placeOrder() -> Promise<Void> {
     let processor = OrderProcessor(vm: viewModel)
 
     return processor.process().map { order -> Void in
@@ -103,68 +103,68 @@ class OrderPaymentViewController: UITableViewController {
     }.asPromise()
   }
 
-  private func logOrderPurchase() {
+  fileprivate func logOrderPurchase() {
     Analytics.logEvent(.CreateOrder, [
-      kFIRParameterValue: viewModel.subtotal / 100,
-      kFIRParameterCurrency: Currency.USD.rawValue,
-      kFIRParameterShipping: viewModel.shipping / 100,
-      kFIRParameterTax: viewModel.tax / 100,
-      Analytics.Param.HasNotes.rawValue: !viewModel.order.notes.isEmpty
+      kFIRParameterValue: (viewModel.subtotal / 100) as AnyObject,
+      kFIRParameterCurrency: Currency.USD.rawValue as AnyObject,
+      kFIRParameterShipping: (viewModel.shipping / 100) as AnyObject,
+      kFIRParameterTax: (viewModel.tax / 100) as AnyObject,
+      Analytics.Param.HasNotes.rawValue: !viewModel.order.notes.isEmpty as AnyObject
     ])
   }
 
-  private func handleProcessError(error: ErrorType) {
-    UIAlertController.ok(
+  fileprivate func handleProcessError(_ error: Error) {
+    _ = UIAlertController.ok(
       title: "Uh oh!",
       message: "We're having trouble placing the order right now. Please try again later.",
       presentingVC: self
     )
   }
 
-  func setCardParams(number: String, expMonth: UInt, expYear: UInt, cvv: String) {
+  func setCardParams(_ number: String, expMonth: UInt, expYear: UInt, cvv: String) {
     paymentParams.number = number
     paymentParams.expMonth = expMonth
     paymentParams.expYear = expYear
     paymentParams.cvc = cvv
-    tableView.reloadRowsAtIndexPaths(
-      [NSIndexPath(forRow: Cell.creditCard.rawValue, inSection: 0)],
-      withRowAnimation: .Automatic
+    tableView.reloadRows(
+      at: [IndexPath(row: Cell.creditCard.rawValue, section: 0)],
+      with: .automatic
     )
   }
 }
 
 // MARK: UITableViewDataSource
 extension OrderPaymentViewController {
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return numberOfCells
   }
 }
 
 // MARK: UITableViewDelegate
 extension OrderPaymentViewController {
-  override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
     return false
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cellType = Cell(rawValue: indexPath.row) else { fatalError("Unknown cell type") }
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cellType = Cell(rawValue: (indexPath as NSIndexPath).row) else { fatalError("Unknown cell type") }
 
     if cellType == .creditCard {
-      let cell = tableView.dequeueReusableCellWithIdentifier("creditCardCell", forIndexPath: indexPath) as! CreditCardTableViewCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "creditCardCell", for: indexPath) as! CreditCardTableViewCell
       cell.paymentTextField.delegate = self
       cell.paymentTextField.cardParams = paymentParams
       return cell
     } else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("formTextFieldCell", forIndexPath: indexPath) as! FormTextFieldTableViewCell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "formTextFieldCell", for: indexPath) as! FormTextFieldTableViewCell
       switch cellType {
       case .name:
-        cell.keyboardType = .Default
+        cell.keyboardType = .default
         cell.configure("Name", value: customer.name) { store.dispatch(UpdateCurrentOrderCustomer(name: $0)) }
       case .phone:
-        cell.keyboardType = .NumberPad
+        cell.keyboardType = .numberPad
         cell.configure("Phone", value: customer.phone) { store.dispatch(UpdateCurrentOrderCustomer(phone: $0))}
       case .email:
-        cell.keyboardType = .EmailAddress
+        cell.keyboardType = .emailAddress
         cell.configure("Email", value: customer.email) { store.dispatch(UpdateCurrentOrderCustomer(email: $0))}
       default: fatalError("New cell type that hasn't been handled yet")
       }
@@ -175,18 +175,18 @@ extension OrderPaymentViewController {
 
 // MARK: STPPaymentCardTextFieldDelegate
 extension OrderPaymentViewController: STPPaymentCardTextFieldDelegate {
-  func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+  func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
     paymentValid.value = textField.valid
     paymentParams = textField.cardParams
   }
 }
 
 extension OrderPaymentViewController: CardIOPaymentViewControllerDelegate {
-  func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController?) {
-    paymentViewController?.dismissViewControllerAnimated(true, completion: .None)
+  func userDidCancel(_ paymentViewController: CardIOPaymentViewController?) {
+    paymentViewController?.dismiss(animated: true, completion: .none)
   }
 
-  func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo?, inPaymentViewController paymentViewController: CardIOPaymentViewController?) {
+  func userDidProvide(_ cardInfo: CardIOCreditCardInfo?, in paymentViewController: CardIOPaymentViewController?) {
     if let info = cardInfo {
       setCardParams(
         info.cardNumber,
@@ -196,6 +196,6 @@ extension OrderPaymentViewController: CardIOPaymentViewControllerDelegate {
       )
     }
 
-    paymentViewController?.dismissViewControllerAnimated(true, completion: .None)
+    paymentViewController?.dismiss(animated: true, completion: .none)
   }
 }

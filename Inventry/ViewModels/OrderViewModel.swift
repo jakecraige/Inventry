@@ -10,7 +10,7 @@ struct OrderViewModel {
   let lineItems: [LineItemViewModel]
 
   var subtotal: Cents {
-    return lineItems.reduce(0, combine: { $0 + $1.price })
+    return lineItems.reduce(0, { $0 + $1.price })
   }
 
   var tax: Cents {
@@ -31,13 +31,13 @@ struct OrderViewModel {
     self.order = order
     self.products = products
     self.lineItems = order.lineItems.flatMap { item in
-      guard let product = products.find({$0.id == item.productId}) else { return .None }
+      guard let product = products.find({$0.id == item.productId}) else { return .none }
 
       return LineItemViewModel(lineItem: item, product: product)
     }
   }
 
-  func lineItem(forIndexPath indexPath: NSIndexPath) -> LineItemViewModel {
-    return lineItems[indexPath.row]
+  func lineItem(forIndexPath indexPath: IndexPath) -> LineItemViewModel {
+    return lineItems[(indexPath as NSIndexPath).row]
   }
 }

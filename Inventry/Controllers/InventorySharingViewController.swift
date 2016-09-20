@@ -7,8 +7,8 @@ final class InventorySharingViewController: UITableViewController {
   var currentUser: PublicUser?
   var partners: [PublicUser] = [] { didSet { tableView.reloadData() } }
   var filteredPartners: [PublicUser]  {
-    if let query = searchQuery where !query.isEmpty {
-      return partners.filter { $0.name.lowercaseString.containsString(query.lowercaseString) }
+    if let query = searchQuery , !query.isEmpty {
+      return partners.filter { $0.name.lowercased().contains(query.lowercased()) }
     } else {
       return partners
     }
@@ -20,47 +20,47 @@ final class InventorySharingViewController: UITableViewController {
     definesPresentationContext = true
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Search for a user"
-    searchController.searchBar.searchBarStyle = .Minimal
+    searchController.searchBar.searchBarStyle = .minimal
     searchController.dimsBackgroundDuringPresentation = false
     tableView.tableHeaderView = searchController.searchBar
 
     Observable
       .combineLatest(store.user, PublicUsersQuery().build()) { user, users in
         return (user.uid, users)
-      }.subscribeNext { [weak self] id, users in
+      }.subscribe(onNext: { [weak self] id, users in
         self?.currentUser = users.find { $0.id! == id }
         self?.partners = users.filter { $0.id! != id }
-      }
+      })
       .addDisposableTo(disposeBag)
   }
 }
 
 extension InventorySharingViewController {
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return filteredPartners.count
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("InventorySharingCell", forIndexPath: indexPath)
-    let user = filteredPartners[indexPath.row]
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "InventorySharingCell", for: indexPath)
+    let user = filteredPartners[(indexPath as NSIndexPath).row]
     cell.textLabel?.text = user.name
     if currentUser?.inventorySharedWith.contains(user.id!) ?? false {
-      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+      cell.accessoryType = UITableViewCellAccessoryType.checkmark
     } else {
-      cell.accessoryType = .None
+      cell.accessoryType = .none
     }
     return cell
   }
 
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let partner = filteredPartners[indexPath.row]
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let partner = filteredPartners[(indexPath as NSIndexPath).row]
     let action = ToggleInventoryPartner(user: currentUser!, partner: partner)
     store.dispatch(action).subscribe().addDisposableTo(disposeBag)
   }
 }
 
 extension InventorySharingViewController: UISearchResultsUpdating {
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
+  func updateSearchResults(for searchController: UISearchController) {
     searchQuery = searchController.searchBar.text
   }
 }

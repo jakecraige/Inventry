@@ -9,7 +9,7 @@ private enum Cell: Int {
   case price
 
   var label: String {
-    return "\(self)".capitalizedString
+    return "\(self)".capitalized
   }
 }
 private let numberOfCells = 4
@@ -22,11 +22,11 @@ class EditProductViewController: UITableViewController {
   var price: String?
   let disposeBag = DisposeBag()
 
-  @IBAction func cancelTapped(sender: UIBarButtonItem) {
+  @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
     dismiss()
   }
 
-  @IBAction func doneTapped(sender: UIBarButtonItem) {
+  @IBAction func doneTapped(_ sender: UIBarButtonItem) {
     let price: Cents = Int((Float(self.price ?? "") ?? 0) * 100)
     let product = Product(
       id: self.product?.id,
@@ -40,10 +40,10 @@ class EditProductViewController: UITableViewController {
 
     if !product.isPersisted {
       Analytics.logEvent(.CreateProduct, [
-        kFIRParameterValue: product.price / 100,
-        kFIRParameterCurrency: Currency.USD.rawValue,
-        kFIRParameterQuantity: product.quantity,
-        Analytics.Param.HasBarcode.rawValue: !product.barcode.isEmpty
+        kFIRParameterValue: (product.price / 100) as AnyObject,
+        kFIRParameterCurrency: Currency.USD.rawValue as AnyObject,
+        kFIRParameterQuantity: product.quantity as AnyObject,
+        Analytics.Param.HasBarcode.rawValue: !product.barcode.isEmpty as AnyObject
       ])
     }
 
@@ -52,7 +52,7 @@ class EditProductViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
-    tableView.registerNib(
+    tableView.register(
       UINib(nibName: "FormTextFieldTableViewCell", bundle: nil),
       forCellReuseIdentifier: "formTextFieldCell"
     )
@@ -64,12 +64,12 @@ class EditProductViewController: UITableViewController {
     }
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
     case "scanBarcodeSegue":
-      let navVC = segue.destinationViewController as? UINavigationController
+      let navVC = segue.destination as? UINavigationController
       let vc = navVC?.viewControllers.first as? BarcodeScannerViewController
       vc?.receiveBarcodeCallback = { [weak self] code in
         guard let `self` = self else { return }
@@ -81,46 +81,46 @@ class EditProductViewController: UITableViewController {
   }
 
   // This can be presented as a modal or within a navigationController, this handles both
-  private func dismiss() {
-    self.navigationController?.popViewControllerAnimated(true)
-    dismissViewControllerAnimated(true, completion: nil)
+  fileprivate func dismiss() {
+    _ = navigationController?.popViewController(animated: true)
+    dismiss(animated: true, completion: nil)
   }
 
-  private func reloadBarcodeCell() {
-    let indexPath = NSIndexPath(forRow: Cell.barcode.rawValue, inSection: 0)
-    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+  fileprivate func reloadBarcodeCell() {
+    let indexPath = IndexPath(row: Cell.barcode.rawValue, section: 0)
+    tableView.reloadRows(at: [indexPath], with: .automatic)
   }
 }
 
 // MARK: UITableViewDataSource
 extension EditProductViewController {
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return numberOfCells
   }
 }
 
 // MARK: UITableViewDelegate
 extension EditProductViewController {
-  override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
     return false
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    guard let cellType = Cell(rawValue: indexPath.row) else { fatalError() }
-    let cell = tableView.dequeueReusableCellWithIdentifier("formTextFieldCell", forIndexPath: indexPath) as! FormTextFieldTableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cellType = Cell(rawValue: (indexPath as NSIndexPath).row) else { fatalError() }
+    let cell = tableView.dequeueReusableCell(withIdentifier: "formTextFieldCell", for: indexPath) as! FormTextFieldTableViewCell
 
     switch cellType {
     case .name:
-      cell.keyboardType = .Default
+      cell.keyboardType = .default
       cell.configure(cellType.label, value: name) { [weak self] in self?.name = $0 }
     case .barcode:
-      cell.keyboardType = .NumberPad
+      cell.keyboardType = .numberPad
       cell.configure(cellType.label, value: barcode) { [weak self] in self?.barcode = $0 }
     case .quantity:
-      cell.keyboardType = .NumberPad
+      cell.keyboardType = .numberPad
       cell.configure(cellType.label, value: quantity) { [weak self] in self?.quantity = $0 }
     case .price:
-      cell.keyboardType = .DecimalPad
+      cell.keyboardType = .decimalPad
       cell.configure(cellType.label, value: price) { [weak self] in self?.price = $0 }
     }
 

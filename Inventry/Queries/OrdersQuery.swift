@@ -9,4 +9,3 @@ struct OrdersQuery: Query {
     }.map(sortByCreated)
   }
 }
-

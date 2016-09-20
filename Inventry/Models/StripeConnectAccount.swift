@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 struct StripeConnectAccount {
   let stripeUserID: String
@@ -28,7 +29,7 @@ struct StripeConnectAccount {
 }
 
 extension StripeConnectAccount: Decodable {
-  static func decode(json: JSON) -> Decoded<StripeConnectAccount> {
+  static func decode(_ json: JSON) -> Decoded<StripeConnectAccount> {
     return curry(StripeConnectAccount.init)
       <^> json <| "stripe_user_id"
       <*> json <| "stripe_publishable_key"
@@ -43,13 +44,13 @@ extension StripeConnectAccount: Decodable {
 extension StripeConnectAccount: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "stripe_user_id": stripeUserID,
-      "stripe_publishable_key": stripePublishableKey,
-      "access_token": accessToken,
-      "refresh_token": refreshToken,
-      "scope": scope,
-      "token_type": tokenType,
-      "livemode": livemode
+      "stripe_user_id": stripeUserID as AnyObject,
+      "stripe_publishable_key": stripePublishableKey as AnyObject,
+      "access_token": accessToken as AnyObject,
+      "refresh_token": refreshToken as AnyObject,
+      "scope": scope as AnyObject,
+      "token_type": tokenType as AnyObject,
+      "livemode": livemode as AnyObject
     ]
   }
 }

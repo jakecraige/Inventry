@@ -1,6 +1,7 @@
 import Argo
 import Curry
 import Firebase
+import Runes
 
 struct Product: Modelable {
   let id: String?
@@ -25,7 +26,7 @@ struct Product: Modelable {
 }
 
 extension Product: Decodable {
-  static func decode(json: JSON) -> Decoded<Product> {
+  static func decode(_ json: JSON) -> Decoded<Product> {
     return curry(Product.init)
       <^> json <|? "id"
       <*> json <| "name"
@@ -40,12 +41,12 @@ extension Product: Decodable {
 extension Product: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "name": name,
-      "barcode": barcode,
-      "quantity": quantity,
-      "price": price,
-      "currency": currency.rawValue,
-      "user_id": userId
+      "name": name as AnyObject,
+      "barcode": barcode as AnyObject,
+      "quantity": quantity as AnyObject,
+      "price": price as AnyObject,
+      "currency": currency.rawValue as AnyObject,
+      "user_id": userId as AnyObject
     ]
   }
 }

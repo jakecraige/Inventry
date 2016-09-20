@@ -9,7 +9,7 @@ class OrderSummaryTableViewCell: UITableViewCell {
   @IBOutlet var totalLabel: UILabel!
   @IBOutlet var shippingLabel: UILabel!
 
-  func configure(viewModel: OrderViewModel) {
+  func configure(_ viewModel: OrderViewModel) {
     nameLabel.text = viewModel.customer?.name
     phoneLabel.text = viewModel.customer?.phone
     emailLabel.text = viewModel.customer?.email

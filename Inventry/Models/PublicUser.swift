@@ -1,5 +1,6 @@
 import Curry
 import Argo
+import Runes
 
 struct PublicUser: Modelable {
   let id: String?
@@ -16,21 +17,21 @@ struct PublicUser: Modelable {
 }
 
 extension PublicUser: Decodable {
-  static func decode(json: JSON) -> Decoded<PublicUser> {
+  static func decode(_ json: JSON) -> Decoded<PublicUser> {
     return curry(self.init)
       <^> json <| "id"
       <*> json <| "name"
-      <*> decodeFIRArray(json, key: "inventorySharedWith").or(pure([]))
-      <*> decodeFIRArray(json, key: "inventorySharedFrom").or(pure([]))
+      <*> decodeFIRArray(json: json, key: "inventorySharedWith").or(pure([]))
+      <*> decodeFIRArray(json: json, key: "inventorySharedFrom").or(pure([]))
   }
 }
 
 extension PublicUser: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "name": name,
-      "inventorySharedWith": inventorySharedWith.FIR_encode(),
-      "inventorySharedFrom": inventorySharedFrom.FIR_encode(),
+      "name": name as AnyObject,
+      "inventorySharedWith": inventorySharedWith.FIR_encode() as AnyObject,
+      "inventorySharedFrom": inventorySharedFrom.FIR_encode() as AnyObject,
     ]
   }
 }

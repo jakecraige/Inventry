@@ -1,6 +1,7 @@
 import Firebase
 
 struct Analytics {
+  // xxx rename these to match swift API
   enum Events: String {
     case CreateProduct
     case CreateOrder
@@ -15,16 +16,16 @@ struct Analytics {
     case HasNotes
   }
 
-  static func logEvent(event: Events, _ params: [String: NSObject]? = .None) {
+  static func logEvent(_ event: Events, _ params: [String: AnyObject]? = .none) {
     switch event {
     case .CreateOrder:
-      FIRAnalytics.logEventWithName(kFIREventEcommercePurchase, parameters: params)
+      FIRAnalytics.logEvent(withName: kFIREventEcommercePurchase, parameters: params as! [String : NSObject]?)
     default:
-      FIRAnalytics.logEventWithName(event.rawValue, parameters: params)
+      FIRAnalytics.logEvent(withName: event.rawValue, parameters: params as! [String : NSObject]?)
     }
   }
 
-  static func setUserProperty(property: UserProperty, value: String? = .None) {
+  static func setUserProperty(_ property: UserProperty, value: String? = .none) {
     FIRAnalytics.setUserPropertyString(value, forName: property.rawValue)
   }
 }

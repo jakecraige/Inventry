@@ -7,19 +7,19 @@ struct SaveProduct: DynamicActionType {
 
   func call() -> Observable<Product> {
     return store.user.take(1).map { user in
-      let product: Product
+      var product = self.product
 
       // Since multiple users can save a product, we only want to set the user ID if it hasn't
       // already been set.
       if self.product.userId.isEmpty {
-        product = with(self.product) { $0.userId = user.uid }
+        product.userId = user.uid
         let id = Database.save(product)
         
-        let user = with(user) { $0.products.append(id) }
-        Database.save(user)
+        var newUser = user
+        newUser.products.append(id)
+        _ = Database.save(newUser)
       } else {
-        product = self.product
-        Database.save(product)
+        _ = Database.save(product)
       }
 
       return product

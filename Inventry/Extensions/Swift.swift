@@ -5,18 +5,18 @@
 /// of `item`. If `T` is a reference type, `update` uses the
 /// same instance passed in, but it can substitute a different
 /// instance by setting its parameter to a new value.
-public func with<T>(item: T, @noescape update: ((inout T) throws -> Void)) rethrows -> T {
+public func with<T>(_ item: T, update: ((inout T) throws -> Void)) rethrows -> T {
   var this = item
   try update(&this)
   return this
 }
 
-extension CollectionType {
-  func find(@noescape predicate: (Self.Generator.Element) throws -> Bool) rethrows -> Self.Generator.Element? {
+extension Collection {
+  func find(_ predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.Iterator.Element? {
     for item in self where try predicate(item) {
       return item
     }
-    return .None
+    return .none
   }
 }
 
@@ -32,10 +32,10 @@ func + <K,V>(left: [K:V], right: [K:V]) -> [K:V] {
   return dict
 }
 
-func not(value: Bool) -> Bool {
+func not(_ value: Bool) -> Bool {
   return !value
 }
 
-func and(value1: Bool, value2: Bool) -> Bool {
+func and(_ value1: Bool, value2: Bool) -> Bool {
   return value1 && value2
 }

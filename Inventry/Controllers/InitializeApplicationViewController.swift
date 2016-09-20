@@ -2,6 +2,8 @@ import UIKit
 import Async
 import Firebase
 import RxSwift
+import Argo
+import Runes
 
 class InitializeApplicationViewController: UIViewController {
   let disposeBag = DisposeBag()
@@ -32,11 +34,11 @@ class InitializeApplicationViewController: UIViewController {
     }
   }
 
-  private func startOnboarding() {
-    Async.main { self.performSegueWithIdentifier("onboardingSegue", sender: self) }
+  fileprivate func startOnboarding() {
+    Async.main { self.performSegue(withIdentifier: "onboardingSegue", sender: self) }
   }
 
-  private func startMain() {
-    Async.main { self.performSegueWithIdentifier("mainSegue", sender: self) }
+  fileprivate func startMain() {
+    Async.main { self.performSegue(withIdentifier: "mainSegue", sender: self) }
   }
 }

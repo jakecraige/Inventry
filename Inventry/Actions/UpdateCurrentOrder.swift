@@ -8,11 +8,11 @@ struct UpdateCurrentOrder: ActionType {
   let paymentToken: String?
 
   init(
-    shippingRate: Float? = .None,
-    taxRate: Float? = .None,
-    notes: String? = .None,
-    customer: Customer? = .None,
-    paymentToken: String? = .None
+    shippingRate: Float? = .none,
+    taxRate: Float? = .none,
+    notes: String? = .none,
+    customer: Customer? = .none,
+    paymentToken: String? = .none
   ) {
     self.shippingRate = shippingRate
     self.taxRate = taxRate

@@ -6,11 +6,11 @@ class SelectProductTableViewCell: UITableViewCell {
   var moreProductAvailable = true {
     didSet {
       if moreProductAvailable {
-        textLabel?.textColor = .blackColor()
-        detailTextLabel?.textColor = .blackColor()
+        textLabel?.textColor = .black
+        detailTextLabel?.textColor = .black
       } else {
-        textLabel?.textColor = .grayColor()
-        detailTextLabel?.textColor = .grayColor()
+        textLabel?.textColor = .gray
+        detailTextLabel?.textColor = .gray
       }
     }
   }
@@ -23,7 +23,7 @@ class SelectProductTableViewCell: UITableViewCell {
 
   func updateUI() {
     textLabel?.text = product.name
-    detailTextLabel?.text = .None
+    detailTextLabel?.text = .none
 
     if let item = order.item(forProduct: product) {
       check(item)
@@ -32,14 +32,14 @@ class SelectProductTableViewCell: UITableViewCell {
     }
   }
 
-  private func check(item: LineItem) {
+  fileprivate func check(_ item: LineItem) {
     moreProductAvailable = product.quantity > item.quantity
-    accessoryType = .Checkmark
+    accessoryType = .checkmark
     detailTextLabel?.text = "In Order: \(item.quantity) — Left In Stock: \(product.quantity - item.quantity)"
   }
 
-  private func uncheck() {
+  fileprivate func uncheck() {
     moreProductAvailable = product.quantity > 0
-    accessoryType = .None
+    accessoryType = .none
   }
 }

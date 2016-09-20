@@ -5,10 +5,10 @@ import RxSwift
 extension APIClient {
   func performRequest<T: Request>(request: T) -> Promise<T.ResponseObject> {
     return Promise { resolve, reject in
-      self.performRequest(request) { response in
+      _ = self.performRequest(request) { response in
         switch response {
-        case let .Success(value): resolve(value)
-        case let .Failure(error): reject(error)
+        case let .success(value): resolve(value)
+        case let .failure(error): reject(error)
         }
       }
     }
@@ -19,13 +19,13 @@ extension APIClient {
     return Observable.create { observable in
       let executingRequest = self.performRequest(request) { response in
         switch response {
-        case let .Success(value): observable.onNext(value)
-        case let .Failure(error): observable.onError(error)
+        case let .success(value): observable.onNext(value)
+        case let .failure(error): observable.onError(error)
         }
         observable.onCompleted()
       }
 
-      return AnonymousDisposable { executingRequest.cancel() }
+      return Disposables.create { executingRequest.cancel() }
     }.single()
   }
 }

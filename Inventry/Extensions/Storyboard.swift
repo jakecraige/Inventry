@@ -8,10 +8,10 @@ enum Storyboard: String {
 
 extension UIStoryboard {
   static func instantiateInitialViewController(forStoryboard storyboard: Storyboard) -> UIViewController {
-    return UIStoryboard(name: storyboard.rawValue, bundle: .None).instantiateInitialViewController()!
+    return UIStoryboard(name: storyboard.rawValue, bundle: .none).instantiateInitialViewController()!
   }
 
   static func instantiateViewController(withIdentifier identifier: String, fromStoryboard storyboard: Storyboard) -> UIViewController? {
-    return UIStoryboard(name: storyboard.rawValue, bundle: .None).instantiateViewControllerWithIdentifier(identifier)
+    return UIStoryboard(name: storyboard.rawValue, bundle: .none).instantiateViewController(withIdentifier: identifier)
   }
 }

@@ -21,17 +21,17 @@ class AccountSetupController: UIViewController {
     let connectStripeEnabled = Driver.combineLatest(signedIn, stripeAuthed.map(not), resultSelector: and)
     let getStartedEnabled = Driver.combineLatest(signedIn, stripeAuthed, resultSelector: and)
 
-    signInEnabled.drive(signUpButton.rx_enabled).addDisposableTo(disposeBag)
-    connectStripeEnabled.drive(connectStripeButton.rx_enabled).addDisposableTo(disposeBag)
-    getStartedEnabled.drive(getStartedButton.rx_enabled).addDisposableTo(disposeBag)
+    signInEnabled.drive(signUpButton.rx.enabled).addDisposableTo(disposeBag)
+    connectStripeEnabled.drive(connectStripeButton.rx.enabled).addDisposableTo(disposeBag)
+    getStartedEnabled.drive(getStartedButton.rx.enabled).addDisposableTo(disposeBag)
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
 
     switch identifier {
     case "connectStripeSegue":
-      let vc = segue.destinationViewController as! StripeAuthenticationController
+      let vc = segue.destination as! StripeAuthenticationController
       vc.connectAccount.subscribe(
         onNext: handleConnectedAccount,
         onError: handleStripeError
@@ -40,22 +40,22 @@ class AccountSetupController: UIViewController {
     }
   }
 
-  @IBAction func signUpTapped(sender: UIButton) {
+  @IBAction func signUpTapped(_ sender: UIButton) {
     AuthenticationController().present(onViewController: self)
   }
 
-  @IBAction func resetAccountTapped(sender: UIButton) {
+  @IBAction func resetAccountTapped(_ sender: UIButton) {
     _ = try? FIRAuth.auth()?.signOut()
     fatalError("Force a restart")
   }
 
-  private func handleConnectedAccount(account: StripeConnectAccount) {
+  fileprivate func handleConnectedAccount(_ account: StripeConnectAccount) {
     store.firUser.take(1).flatMap { user in
       store.dispatch(CreateUser(firUser: user, connectAccount: account))
     }.subscribe().addDisposableTo(disposeBag)
   }
 
-  private func handleStripeError(error: ErrorType) {
+  fileprivate func handleStripeError(_ error: Error) {
     print(error)
   }
 }

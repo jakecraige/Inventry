@@ -1,35 +1,36 @@
 import Argo
+import Runes
 
-func <|| <A where A: FIRNestedArray, A: Decodable, A == A.DecodedType>(json: JSON, key: String) -> Decoded<[A]> {
+func <|| <A>(json: JSON, key: String) -> Decoded<[A]> where A: FIRNestedArray, A: Decodable, A == A.DecodedType {
   return json <|| [key]
 }
 
-func <|| <A where A: FIRNestedArray, A: Decodable, A == A.DecodedType>(json: JSON, keys: [String]) -> Decoded<[A]> {
+func <|| <A>(json: JSON, keys: [String]) -> Decoded<[A]> where A: FIRNestedArray, A: Decodable, A == A.DecodedType {
   return flatReduce(keys, initial: json, combine: decodedJSON) >>- Array<A>.decode
 }
 
-extension CollectionType where Generator.Element: FIRNestedArray, Generator.Element: Decodable, Generator.Element == Generator.Element.DecodedType {
-  static func decode(j: JSON) -> Decoded<[Generator.Element]> {
+extension Collection where Iterator.Element: FIRNestedArray, Iterator.Element: Decodable, Iterator.Element == Iterator.Element.DecodedType {
+  static func decode(_ j: JSON) -> Decoded<[Iterator.Element]> {
     switch j {
-    case let .Array(a):
+    case let .array(a):
       return sequence(a.map(Generator.Element.decode))
-    case let .Object(o):
+    case let .object(o):
       return sequence(Array(o.keys).flatMap { o[$0].map(Generator.Element.decode) })
-    default: return .typeMismatch("Array", actual: j)
+    default: return .typeMismatch(expected: "Array", actual: j)
     }
   }
 }
 
 func decodeFIRArray(json: JSON, key: String) -> Decoded<[String]> {
   return decodedJSON(json, forKey: key).flatMap { jsonForKey in
-    return decodeFIRArray(jsonForKey)
+    return decodeFIRArray(json: jsonForKey)
   }
 }
 
 func decodeFIRArray(json: JSON) -> Decoded<[String]> {
   switch json {
-  case let .Object(o): return pure(Array(o.keys))
-  case .Bool: return pure([])
-  default: return .typeMismatch("Object or Bool", actual: json)
+  case let .object(o): return pure(Array(o.keys))
+  case .bool: return pure([])
+  default: return .typeMismatch(expected: "Object or Bool", actual: json)
   }
 }

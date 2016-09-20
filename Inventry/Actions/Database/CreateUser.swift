@@ -35,7 +35,9 @@ struct CreateUser: DynamicActionType {
       if self.connectAccount.isNull {
         return user
       } else {
-        return with(user) { $0.stripeConnectAccount = self.connectAccount }
+        var newUser = user
+        newUser.stripeConnectAccount = self.connectAccount
+        return newUser
       }
     }
   }

@@ -1,5 +1,6 @@
 import Curry
 import Argo
+import Runes
 
 struct User: Modelable {
   let id: String?
@@ -27,21 +28,21 @@ struct User: Modelable {
 }
 
 extension User: Decodable {
-  static func decode(json: JSON) -> Decoded<User> {
+  static func decode(_ json: JSON) -> Decoded<User> {
     return curry(User.init)
       <^> json <| "id"
-      <*> decodeFIRArray(json, key: "Products")
-      <*> decodeFIRArray(json, key: "Orders")
-      <*> (json <| "stripe_connect_account").or(.Success(.null()))
+      <*> decodeFIRArray(json: json, key: "Products")
+      <*> decodeFIRArray(json: json, key: "Orders")
+      <*> (json <| "stripe_connect_account").or(.success(.null()))
   }
 }
 
 extension User: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "stripe_connect_account": stripeConnectAccount.encode(),
-      "Products": products.FIR_encode(),
-      "Orders": orders.FIR_encode()
+      "stripe_connect_account": stripeConnectAccount.encode() as AnyObject,
+      "Products": products.FIR_encode() as AnyObject,
+      "Orders": orders.FIR_encode() as AnyObject
     ]
   }
 }

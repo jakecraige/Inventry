@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 struct Charge {
   let stripeID: String
@@ -8,7 +9,7 @@ struct Charge {
 }
 
 extension Charge: Decodable {
-  static func decode(json: JSON) -> Decoded<Charge> {
+  static func decode(_ json: JSON) -> Decoded<Charge> {
     return curry(Charge.init)
       <^> (json <| "stripe_id").or(json <| "id") // Firebase stores as `stripe_id`, API returns `id`
       <*> json <| "amount"
@@ -19,9 +20,9 @@ extension Charge: Decodable {
 extension Charge: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "stripe_id": stripeID,
-      "amount": amount,
-      "currency": currency.rawValue
+      "stripe_id": stripeID as AnyObject,
+      "amount": amount as AnyObject,
+      "currency": currency.rawValue as AnyObject
     ]
   }
 }

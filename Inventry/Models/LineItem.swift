@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 struct LineItem: FIRNestedArray {
   let productId: String
@@ -18,17 +19,17 @@ struct LineItem: FIRNestedArray {
     return LineItem(productId: productId, quantity: quantity - 1)
   }
 
-  static func encodeArray(items: [LineItem]) -> AnyObject {
-    return items.reduce([String: AnyObject]()) { dict, item in
-      var mutableDict = dict
-      mutableDict[item.productId] = item.encode()
-      return mutableDict
+  static func encodeArray(_ items: [LineItem]) -> AnyObject {
+    var dict = [String: AnyObject]()
+    items.forEach { item in
+      dict[item.productId] = item.encode() as AnyObject
     }
+    return dict as AnyObject
   }
 }
 
 extension LineItem: Decodable {
-  static func decode(json: JSON) -> Decoded<LineItem> {
+  static func decode(_ json: JSON) -> Decoded<LineItem> {
     return curry(LineItem.init)
       <^> json <| "product_id"
       <*> json <| "quantity"
@@ -44,8 +45,8 @@ func == (lhs: LineItem, rhs: LineItem) -> Bool {
 extension LineItem: Encodable {
   func encode() -> [String: AnyObject] {
     return [
-      "product_id": productId,
-      "quantity": quantity
+      "product_id": productId as AnyObject,
+      "quantity": quantity as AnyObject
     ]
   }
 }

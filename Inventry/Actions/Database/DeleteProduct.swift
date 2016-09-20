@@ -9,8 +9,10 @@ struct DeleteProduct: DynamicActionType {
     let productId = product.id ?? ""
 
     return store.user.take(1).map { user in
-      let user = with(user) { $0.products = $0.products.filter({ $0 != productId }) }
-      Database.save(user)
+      var newUser = user
+      newUser.products = user.products.filter({ $0 != productId })
+      
+      _ = Database.save(newUser)
       Database.delete(self.product)
     }
   }

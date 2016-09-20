@@ -1,21 +1,32 @@
 import Firebase
-import FirebaseAuthUI
-import FirebaseGoogleAuthUI
+//import FirebaseAuthUI
+//import FirebaseGoogleAuthUI
 
 struct AuthenticationController {
   func present(onViewController viewController: UIViewController) {
-    guard let authUI = FIRAuthUI.authUI(),
-          let clientID = FIRApp.defaultApp()?.options.clientID,
-          let googleUI = FIRGoogleAuthUI(clientID: clientID)
-    else { return }
-
-    authUI.signInProviders = [googleUI]
-    authUI.signInWithEmailHidden = false
-
-    viewController.presentViewController(
-      authUI.authViewController(),
+    viewController.present(
+      signInViewController(),
       animated: true,
       completion: nil
     )
   }
+
+  // Temporary solution since FirebaseUI doesn't support Swift 3 yet.
+  private func signInViewController() -> UIViewController {
+    let vc = UIAlertController(title: "Sign in", message: "Please enter your email and password", preferredStyle: .alert)
+    
+    vc.addTextField { $0.placeholder = "email" }
+    vc.addTextField { $0.placeholder = "password"; $0.isSecureTextEntry = true }
+    vc.addAction(UIAlertAction(title: "Sign in", style: .default, handler: { _ in
+      let (email, password) = (vc.textFields?[0].text ?? "", vc.textFields?[1].text ?? "")
+      FIRAuth.auth()?.signIn(withEmail: email, password: password) { _, error in
+        if let error = error {
+          print("Sign in error: \(error)")
+        }
+      }
+    }))
+
+    return vc
+  }
+  
 }
