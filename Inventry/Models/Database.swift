@@ -14,15 +14,52 @@ struct NullRefError: Error {
 }
 
 struct Database {
+  static func observeSave<Model: Modelable>(_ model: Model) -> Observable<Model> where Model.DecodedType == Model  {
+    let ref = model.childRef
+
+    let values = valuesForUpdate(model)
+
+    return Observable.create { observer in
+      ref.updateChildValues(values) { error, _ in
+        if let error = error {
+          observer.onError(error)
+        } else {
+          observer.onNext(model)
+          observer.onCompleted()
+        }
+      }
+
+      return Disposables.create()
+    }
+  }
+
   static func save<Model: Modelable>(_ model: Model) -> String where Model.DecodedType == Model {
     let ref = model.childRef
 
     let values = valuesForUpdate(model)
     ref.updateChildValues(values)
-
-    return ref.key
+    
+    return model.childRef.key
   }
 
+  static func observeSave(
+    _ dict: [String: AnyObject],
+    ref: FIRDatabaseReference = FIRDatabase.database().reference()
+  ) -> Observable<Void> {
+    return Observable.create { observer in
+      ref.updateChildValues(dict) { error, _ in
+        if let error = error {
+          observer.onError(error)
+        } else {
+          observer.onNext()
+          observer.onCompleted()
+        }
+      }
+
+      return Disposables.create()
+    }
+  }
+  
   static func save(
     _ dict: [String: AnyObject],
     ref: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -33,6 +70,7 @@ struct Database {
   static func valuesForUpdate<Model: Modelable>(
     _ model: Model,
     includeRootKey: Bool = false,
+    selectKeys: [String]? = .none,
     rootKey: String = Model.refName
   ) -> [String: AnyObject] where Model.DecodedType == Model{
     var values = model.encode()
@@ -45,10 +83,14 @@ struct Database {
     }
 
     if includeRootKey {
-      return values.reduce([:]) { acc, keyValue in
+      values = values.reduce([:]) { acc, keyValue in
         let (key, value) = keyValue
         return acc + ["\(rootKey)/\(model.childRef.key)/\(key)": value]
       }
+    }
+
+    if let keysToSelect = selectKeys {
+      return values.select(keys: keysToSelect, partialMatching: true)
     } else {
       return values
     }

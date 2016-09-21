@@ -68,6 +68,7 @@
 		E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */; };
 		E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C801CF8C1BF006D7159 /* LineItem.swift */; };
 		E7444C831CF8E26E006D7159 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C821CF8E26E006D7159 /* Swift.swift */; };
+		E7A57F6A1D919DC400729640 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A57F691D919DC400729640 /* Dictionary.swift */; };
 		E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */; };
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
 		E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */; };
@@ -184,6 +185,7 @@
 		E7444C801CF8C1BF006D7159 /* LineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		E7444C821CF8E26E006D7159 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		E7A57F681D91815A00729640 /* Inventry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Inventry.entitlements; path = ../../Inventry.entitlements; sourceTree = "<group>"; };
+		E7A57F691D919DC400729640 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPaymentViewController.swift; sourceTree = "<group>"; };
 		E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewViewController.swift; sourceTree = "<group>"; };
 		E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				E7005CE81CFD4AC500B88483 /* UIAlertViewController.swift */,
 				E7005CEA1CFD52F400B88483 /* UIColor.swift */,
 				E7005CF21CFDF78100B88483 /* RxSwift.swift */,
+				E7A57F691D919DC400729640 /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				E718E1F91CFB82240086E2C4 /* FormTextFieldTableViewCell.swift in Sources */,
 				E7EB3BDE1D8CC936007A463B /* ProductQuery.swift in Sources */,
 				E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */,
+				E7A57F6A1D919DC400729640 /* Dictionary.swift in Sources */,
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
 				E72D66521CFFF3A10097FEB5 /* User.swift in Sources */,

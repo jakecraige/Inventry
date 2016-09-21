@@ -7,8 +7,8 @@ struct ToggleInventoryPartner: DynamicActionType {
   let partner: PublicUser
 
   func call() -> Observable<PublicUser> {
-    var newUser: PublicUser = user
-    var newPartner: PublicUser = partner
+    var newUser = user
+    var newPartner = partner
 
     if user.inventorySharedWith.contains(partner.id!) {
       newUser.inventorySharedWith = user.inventorySharedWith.filter { $0 != partner.id! }
@@ -18,11 +18,18 @@ struct ToggleInventoryPartner: DynamicActionType {
       newPartner.inventorySharedFrom.append(user.id!)
     }
 
-    Database.save(
-      Database.valuesForUpdate(newUser, includeRootKey: true) +
-      Database.valuesForUpdate(newPartner, includeRootKey: true)
-    )
-
-    return .just(newUser)
+    return Database.observeSave(newUser)
+      .flatMap { _ -> Observable<Void> in
+        // We need to use valuesForUpdate here because we can only update a subset of the record
+        // due to the security rules
+        let values = Database.valuesForUpdate(
+          newPartner,
+          includeRootKey: true,
+          selectKeys: ["inventorySharedFrom"]
+        )
+        return Database.observeSave(values)
+      }.map {
+        return newUser
+      }
   }
 }
