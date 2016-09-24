@@ -38,7 +38,7 @@ struct Database {
 
     let values = valuesForUpdate(model)
     ref.updateChildValues(values)
-    
+
     return model.childRef.key
   }
 
@@ -59,7 +59,7 @@ struct Database {
       return Disposables.create()
     }
   }
-  
+
   static func save(
     _ dict: [String: AnyObject],
     ref: FIRDatabaseReference = FIRDatabase.database().reference()
