@@ -35,3 +35,9 @@ extension PublicUser: Encodable {
     ]
   }
 }
+
+extension PublicUser: Hashable {
+  var hashValue: Int {
+    return "PublicUser\(id ?? name)".hashValue
+  }
+}
