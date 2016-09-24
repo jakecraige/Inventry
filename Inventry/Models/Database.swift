@@ -39,7 +39,7 @@ struct Database {
     let values = valuesForUpdate(model)
     ref.updateChildValues(values)
 
-    return model.childRef.key
+    return ref.key
   }
 
   static func observeSave(
