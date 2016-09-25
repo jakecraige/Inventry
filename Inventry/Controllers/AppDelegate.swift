@@ -49,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     guard Environment.current != .development  else { return }
     let manager = BITHockeyManager.shared()
     manager.configure(withIdentifier: Environment.hockeyAppIdentifier)
+    manager.isCrashManagerDisabled = true
     manager.start()
     manager.authenticator.authenticateInstallation()
-    manager.crashManager.crashManagerStatus = .autoSend
   }
 
   func monitorAuthState() {
