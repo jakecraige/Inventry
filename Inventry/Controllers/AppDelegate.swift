@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 import Stripe
-//import FirebaseAuthUI
+import FirebaseAuthUI
 import HockeySDK
 import RxSwift
 
@@ -21,12 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-//  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//    guard let authUI = FIRAuthUI.authUI(),
-//          let sourceApp = sourceApplication else { return false }
-//
-//    return authUI.handleOpenURL(url, sourceApplication: sourceApp)
-//  }
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    guard let authUI = FIRAuthUI.default() else { return false }
+
+    return authUI.handleOpen(url, sourceApplication: options[.sourceApplication] as! String?)
+  }
 
   func configureFirebase() {
     FIRApp.configure()
