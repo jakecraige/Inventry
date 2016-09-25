@@ -9,10 +9,12 @@ class AccountSetupController: UIViewController {
   @IBOutlet var signUpButton: UIButton!
   @IBOutlet var connectStripeButton: UIButton!
   @IBOutlet var getStartedButton: UIButton!
+  let userSignedIn = PublishSubject<User>()
 
   override func viewDidLoad() {
     let signedIn = store.signedIn
-    let stripeAuthed = store.user
+    let user = store.firUser.flatMapLatest { UserQuery(id: $0.uid).build() }.retry().shareReplay(1)
+    let stripeAuthed = user
       .map { $0.accountSetupComplete }
       .asDriver(onErrorJustReturn: false)
       .startWith(false)
@@ -24,6 +26,11 @@ class AccountSetupController: UIViewController {
     signInEnabled.drive(signUpButton.rx.enabled).addDisposableTo(disposeBag)
     connectStripeEnabled.drive(connectStripeButton.rx.enabled).addDisposableTo(disposeBag)
     getStartedEnabled.drive(getStartedButton.rx.enabled).addDisposableTo(disposeBag)
+    
+    getStartedButton.rx.controlEvent(.touchUpInside)
+      .flatMapLatest { return user }
+      .bindTo(userSignedIn)
+      .addDisposableTo(disposeBag)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -44,8 +44,6 @@
 		E72000131D036617009BAF12 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000121D036617009BAF12 /* Analytics.swift */; };
 		E72000151D038420009BAF12 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72000141D038420009BAF12 /* Onboarding.storyboard */; };
 		E72000171D0384B6009BAF12 /* StripeAuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000161D0384B6009BAF12 /* StripeAuthenticationController.swift */; };
-		E72000191D0393E2009BAF12 /* InitializeApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72000181D0393E2009BAF12 /* InitializeApplication.storyboard */; };
-		E720001B1D03947D009BAF12 /* InitializeApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */; };
 		E720001D1D039D98009BAF12 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E720001C1D039D98009BAF12 /* AccountSetupController.swift */; };
 		E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */; };
 		E72000231D047DF8009BAF12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000221D047DF8009BAF12 /* SettingsViewController.swift */; };
@@ -88,6 +86,10 @@
 		E7B7C91E1CFB57AA0019BA0D /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C91D1CFB57AA0019BA0D /* OrderViewModel.swift */; };
 		E7C042991D9815FA000A02AB /* UpdateAuthFIRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C042981D9815FA000A02AB /* UpdateAuthFIRUser.swift */; };
 		E7C0429B1D981604000A02AB /* UpdateAuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C0429A1D981604000A02AB /* UpdateAuthUser.swift */; };
+		E7C0429D1D982B75000A02AB /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C0429C1D982B75000A02AB /* ApplicationController.swift */; };
+		E7C0429F1D982B84000A02AB /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */; };
+		E7C042A11D982C86000A02AB /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C042A01D982C86000A02AB /* NSError.swift */; };
+		E7C042A31D982E80000A02AB /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C042A21D982E80000A02AB /* ViewControllerContainer.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -161,8 +163,6 @@
 		E72000121D036617009BAF12 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		E72000141D038420009BAF12 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		E72000161D0384B6009BAF12 /* StripeAuthenticationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeAuthenticationController.swift; sourceTree = "<group>"; };
-		E72000181D0393E2009BAF12 /* InitializeApplication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InitializeApplication.storyboard; sourceTree = "<group>"; };
-		E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializeApplicationViewController.swift; sourceTree = "<group>"; };
 		E720001C1D039D98009BAF12 /* AccountSetupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; };
 		E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeConnectAccount.swift; sourceTree = "<group>"; };
 		E72000221D047DF8009BAF12 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +207,10 @@
 		E7B7C91D1CFB57AA0019BA0D /* OrderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		E7C042981D9815FA000A02AB /* UpdateAuthFIRUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuthFIRUser.swift; sourceTree = "<group>"; };
 		E7C0429A1D981604000A02AB /* UpdateAuthUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAuthUser.swift; sourceTree = "<group>"; };
+		E7C0429C1D982B75000A02AB /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
+		E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
+		E7C042A01D982C86000A02AB /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		E7C042A21D982E80000A02AB /* ViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 				E7DA83981CF2AA4B001320D2 /* Modelable.swift */,
 				E7B7C9151CFA77510019BA0D /* FIRNestedArray.swift */,
 				E7EA96D91CFCC718008B47D4 /* Timestampable.swift */,
+				E7C042A21D982E80000A02AB /* ViewControllerContainer.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -359,7 +364,6 @@
 				B13B28C744797DDC027BFDA2 /* Main.storyboard */,
 				E7EA96D71CFCA9A6008B47D4 /* OrderFlow.storyboard */,
 				E72000141D038420009BAF12 /* Onboarding.storyboard */,
-				E72000181D0393E2009BAF12 /* InitializeApplication.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -379,10 +383,11 @@
 				E7DA839E1CF2D606001320D2 /* ProductViewController.swift */,
 				E72D66441CFFDCC40097FEB5 /* FirebaseSyncController.swift */,
 				E72000161D0384B6009BAF12 /* StripeAuthenticationController.swift */,
-				E720001A1D03947D009BAF12 /* InitializeApplicationViewController.swift */,
 				E720001C1D039D98009BAF12 /* AccountSetupController.swift */,
 				E72000221D047DF8009BAF12 /* SettingsViewController.swift */,
 				E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */,
+				E7C0429C1D982B75000A02AB /* ApplicationController.swift */,
+				E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 				E7005CEA1CFD52F400B88483 /* UIColor.swift */,
 				E7005CF21CFDF78100B88483 /* RxSwift.swift */,
 				E7A57F691D919DC400729640 /* Dictionary.swift */,
+				E7C042A01D982C86000A02AB /* NSError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -653,7 +659,6 @@
 				BB78E846142B27596595A81D /* Settings.bundle in Resources */,
 				E72000151D038420009BAF12 /* Onboarding.storyboard in Resources */,
 				E718E1FD1CFB843D0086E2C4 /* FormTextFieldTableViewCell.xib in Resources */,
-				E72000191D0393E2009BAF12 /* InitializeApplication.storyboard in Resources */,
 				E7EA96D81CFCA9A6008B47D4 /* OrderFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -814,6 +819,8 @@
 				E7C0429B1D981604000A02AB /* UpdateAuthUser.swift in Sources */,
 				E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
+				E7C042A11D982C86000A02AB /* NSError.swift in Sources */,
+				E7C0429F1D982B84000A02AB /* ApplicationViewController.swift in Sources */,
 				E718E2031CFBA1F70086E2C4 /* LineItemViewModel.swift in Sources */,
 				E72000171D0384B6009BAF12 /* StripeAuthenticationController.swift in Sources */,
 				E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */,
@@ -833,7 +840,6 @@
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E7A57F6C1D96B6C300729640 /* ProductsGroupedByUserQuery.swift in Sources */,
-				E720001B1D03947D009BAF12 /* InitializeApplicationViewController.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7B7C9101CFA47160019BA0D /* PriceFormatter.swift in Sources */,
 				E7C042991D9815FA000A02AB /* UpdateAuthFIRUser.swift in Sources */,
@@ -875,8 +881,10 @@
 				E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */,
 				E7EB3BD61D8CC10E007A463B /* Query.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
+				E7C042A31D982E80000A02AB /* ViewControllerContainer.swift in Sources */,
 				E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */,
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,
+				E7C0429D1D982B75000A02AB /* ApplicationController.swift in Sources */,
 				E7005CFA1CFDFD9400B88483 /* DecrementFromCurrentOrder.swift in Sources */,
 				E73B3E161D7DFBD0001C19B5 /* ToggleInventoryPartner.swift in Sources */,
 			);

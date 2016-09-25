@@ -7,11 +7,17 @@ enum Storyboard: String {
 }
 
 extension UIStoryboard {
-  static func instantiateInitialViewController(forStoryboard storyboard: Storyboard) -> UIViewController {
-    return UIStoryboard(name: storyboard.rawValue, bundle: .none).instantiateInitialViewController()!
+  static func initialViewController<VCType: UIViewController>(storyboard: Storyboard) -> VCType {
+    return UIStoryboard(
+      name: storyboard.rawValue,
+      bundle: .none
+    ).instantiateInitialViewController() as! VCType
   }
 
-  static func instantiateViewController(withIdentifier identifier: String, fromStoryboard storyboard: Storyboard) -> UIViewController? {
-    return UIStoryboard(name: storyboard.rawValue, bundle: .none).instantiateViewController(withIdentifier: identifier)
+  static func instantiateViewController(withIdentifier identifier: String, fromStoryboard storyboard: Storyboard) -> UIViewController {
+    return UIStoryboard(
+      name: storyboard.rawValue,
+      bundle: .none
+    ).instantiateViewController(withIdentifier: identifier)
   }
 }

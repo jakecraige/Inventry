@@ -5,6 +5,8 @@ import FirebaseAuthUI
 import HockeySDK
 import RxSwift
 
+let applicationViewController = ApplicationViewController()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
@@ -14,10 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     configureFirebase()
     configureHockey()
-    monitorAuthState()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
     firebaseSyncController = FirebaseSyncController()
     firebaseSyncController?.sync()
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+    if let window = window {
+      window.rootViewController = applicationViewController
+      window.makeKeyAndVisible()
+    }
+
     return true
   }
 
@@ -51,15 +59,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     manager.isCrashManagerDisabled = true
     manager.start()
     manager.authenticator.authenticateInstallation()
-  }
-
-  func monitorAuthState() {
-    // Skip first one that comes through when starting the app
-    let signedOut = store.signedIn.distinctUntilChanged().skip(1).filter(not)
-    signedOut.drive(onNext: { _ in
-      let vc = UIStoryboard.instantiateInitialViewController(forStoryboard: .Onboarding)
-      self.window?.rootViewController = vc
-      self.window?.makeKeyAndVisible()
-    }).addDisposableTo(disposeBag)
   }
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ehd-PT-4Ch">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ehd-PT-4Ch">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="Dqh-Kc-C3V">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-oe-HX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Ehd-PT-4Ch" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lO2-ru-Gq0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -17,7 +19,6 @@
                         <segue destination="bnI-et-ULB" kind="relationship" relationship="rootViewController" id="r04-wl-1NO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-oe-HX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="48" y="369"/>
         </scene>
@@ -30,44 +31,36 @@
                         <viewControllerLayoutGuide type="bottom" id="cQn-5i-wvJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JwV-8D-iCR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wCp-DK-q0t">
-                                <rect key="frame" x="240" y="245" width="120" height="110"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqH-de-vpN">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
                                         <state key="normal" title="1. Sign Up"/>
                                         <connections>
                                             <action selector="signUpTapped:" destination="bnI-et-ULB" eventType="touchUpInside" id="XZq-lG-sFP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIb-5l-1ba">
-                                        <rect key="frame" x="0.0" y="40" width="120" height="30"/>
                                         <state key="normal" title="2. Connect Stripe"/>
                                         <connections>
                                             <segue destination="TwU-nj-4rS" kind="show" identifier="connectStripeSegue" id="JA4-kx-D4m"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJS-dt-i8v">
-                                        <rect key="frame" x="0.0" y="80" width="120" height="30"/>
                                         <state key="normal" title="3. Get Started!"/>
-                                        <connections>
-                                            <segue destination="k3I-bS-xcB" kind="presentation" identifier="mainSegue" id="838-Yc-1G3"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-Qv-cgo">
-                                <rect key="frame" x="20" y="562" width="560" height="30"/>
                                 <state key="normal" title="(DEV) Reset Account"/>
                                 <connections>
                                     <action selector="resetAccountTapped:" destination="bnI-et-ULB" eventType="touchUpInside" id="78E-ya-txf"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wCp-DK-q0t" firstAttribute="centerX" secondItem="JwV-8D-iCR" secondAttribute="centerX" id="10K-gR-uv4"/>
                             <constraint firstItem="wCp-DK-q0t" firstAttribute="centerY" secondItem="JwV-8D-iCR" secondAttribute="centerY" id="3RY-wt-b44"/>
@@ -97,9 +90,9 @@
                         <viewControllerLayoutGuide type="bottom" id="7nY-Jh-PvN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WLV-vv-r77">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Stripe" id="HUK-tM-nz2">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PRh-Jf-PvT">
@@ -112,14 +105,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozj-rQ-9d8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="369"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="jEO-My-Hsy">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="k3I-bS-xcB" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sCs-AP-L6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1124" y="833"/>
         </scene>
     </scenes>
 </document>
