@@ -90,6 +90,7 @@
 		E7C0429F1D982B84000A02AB /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */; };
 		E7C042A11D982C86000A02AB /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C042A01D982C86000A02AB /* NSError.swift */; };
 		E7C042A31D982E80000A02AB /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C042A21D982E80000A02AB /* ViewControllerContainer.swift */; };
+		E7DA2A061D987D1A002F8930 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA2A051D987D1A002F8930 /* Styles.swift */; };
 		E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83941CF2A735001320D2 /* EditProductViewController.swift */; };
 		E7DA83971CF2AA23001320D2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83961CF2AA23001320D2 /* Product.swift */; };
 		E7DA83991CF2AA4B001320D2 /* Modelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA83981CF2AA4B001320D2 /* Modelable.swift */; };
@@ -211,6 +212,7 @@
 		E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
 		E7C042A01D982C86000A02AB /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		E7C042A21D982E80000A02AB /* ViewControllerContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
+		E7DA2A051D987D1A002F8930 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		E7DA83941CF2A735001320D2 /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		E7DA83961CF2AA23001320D2 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E7DA83981CF2AA4B001320D2 /* Modelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modelable.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 		D4D7E3CD78F68A757D2B07E0 /* Inventry */ = {
 			isa = PBXGroup;
 			children = (
+				E7DA2A041D987D00002F8930 /* Globals */,
 				E7EB3BD41D8CC0F5007A463B /* Queries */,
 				E7005CF41CFDFC1900B88483 /* Actions */,
 				E7B7C8FB1CFA07B20019BA0D /* Networking */,
@@ -505,6 +508,14 @@
 				E7B7C9001CFA096C0019BA0D /* RequestFactory.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E7DA2A041D987D00002F8930 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				E7DA2A051D987D1A002F8930 /* Styles.swift */,
+			);
+			path = Globals;
 			sourceTree = "<group>";
 		};
 		E7EB3BD41D8CC0F5007A463B /* Queries */ = {
@@ -879,6 +890,7 @@
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
 				E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */,
 				E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */,
+				E7DA2A061D987D1A002F8930 /* Styles.swift in Sources */,
 				E7EB3BD61D8CC10E007A463B /* Query.swift in Sources */,
 				E7DA839B1CF2B037001320D2 /* Encodable.swift in Sources */,
 				E7C042A31D982E80000A02AB /* ViewControllerContainer.swift in Sources */,
