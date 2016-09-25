@@ -769,7 +769,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exit 0\n# Replace this path with the path to the key you just downloaded\nJSON_FILE=private/Inventry-a59707411f79.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
+			shellScript = "exit 0 # This is useful in dev since it's not useful to create/upload these on every build\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym private/Inventry-a59707411f79.json";
 		};
 		FC828C4691A4A9E4E8DA528D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
