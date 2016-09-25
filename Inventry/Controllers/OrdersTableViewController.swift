@@ -6,6 +6,8 @@ class OrdersTableViewController: UITableViewController {
   let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
+    super.viewDidLoad()
+
     store.allOrders
       .subscribe(onNext: { [weak self] in
         self?.orders = $0
@@ -14,6 +16,7 @@ class OrdersTableViewController: UITableViewController {
 
     // Empty back button for next screen
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    tableView.tableFooterView = UIView()
   }
 
   @IBAction func unwindToOrders(_ sender: UIStoryboardSegue) {

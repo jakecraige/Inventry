@@ -11,11 +11,15 @@ class ProductsTableViewController: UITableViewController {
   var disposeBag = DisposeBag()
 
   override func viewDidLoad() {
+    super.viewDidLoad()
+
     ProductsGroupedByUserQuery(user: store.user).build()
       .subscribe(onNext: { [weak self] in
         self?.groupedProducts = $0
       })
       .addDisposableTo(disposeBag)
+
+    tableView.tableFooterView = UIView()
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

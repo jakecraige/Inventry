@@ -29,6 +29,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   override func viewDidLoad() {
+    super.viewDidLoad()
     store.dispatch(ResetCurrentOrder())
 
     store.orderViewModel.subscribe(onNext: { [weak self] updatedViewModel in
@@ -53,6 +54,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
     // Empty back button for next screen
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    tableView.tableFooterView = UIView()
 
     if traitCollection.forceTouchCapability == .available {
       registerForPreviewing(with: self, sourceView: tableView)

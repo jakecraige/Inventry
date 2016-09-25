@@ -9,6 +9,12 @@ private enum Cell: Int {
 }
 
 class SettingsViewController: UITableViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    tableView.tableFooterView = UIView()
+  }
+
   @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
     do {
       try FIRAuth.auth()?.signOut()

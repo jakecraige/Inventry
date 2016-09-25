@@ -17,12 +17,15 @@ final class InventorySharingViewController: UITableViewController {
   let disposeBag = DisposeBag()
 
   override func viewDidLoad() {
+    super.viewDidLoad()
+
     definesPresentationContext = true
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Search for a user"
     searchController.searchBar.searchBarStyle = .minimal
     searchController.dimsBackgroundDuringPresentation = false
     tableView.tableHeaderView = searchController.searchBar
+    tableView.tableFooterView = UIView()
 
     Observable
       .combineLatest(store.user, PublicUsersQuery().build()) { user, users in
