@@ -9,15 +9,8 @@ class FirebaseSyncController {
   let disposeBag = DisposeBag()
 
   func sync() {
-    observeAuthState()
     observeProducts()
     observeOrders()
-  }
-
-  private func observeAuthState() {
-    FIRAuth.auth()?.addStateDidChangeListener { _, firUser in
-      store.dispatch(UpdateAuthFIRUser(firUser: firUser))
-    }
   }
 
   private func observeProducts() {
