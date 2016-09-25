@@ -64,6 +64,14 @@ extension ProductsTableViewController {
     return true
   }
 
+  override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    if FIRAuth.auth()?.currentUser?.uid == product(atIndexPath: indexPath).userId {
+      return .delete
+    } else {
+      return .none
+    }
+  }
+
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     switch editingStyle {
     case .delete:
