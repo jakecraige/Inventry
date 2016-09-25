@@ -56,10 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func monitorAuthState() {
     // Skip first one that comes through when starting the app
     let signedOut = store.signedIn.distinctUntilChanged().skip(1).filter(not)
-    signedOut.drive { _ in
+    signedOut.drive(onNext: { _ in
       let vc = UIStoryboard.instantiateInitialViewController(forStoryboard: .Onboarding)
       self.window?.rootViewController = vc
       self.window?.makeKeyAndVisible()
-    }.addDisposableTo(disposeBag)
+    }).addDisposableTo(disposeBag)
   }
 }

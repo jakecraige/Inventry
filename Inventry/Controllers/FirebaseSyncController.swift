@@ -16,14 +16,14 @@ class FirebaseSyncController {
 
   private func observeAuthState() {
     FIRAuth.auth()?.addStateDidChangeListener { _, firUser in
-      store.dispatch(UpdateAuth(firUser: firUser))
+      store.dispatch(UpdateAuthFIRUser(firUser: firUser))
     }
 
     store.firUser
       .flatMapLatest { UserQuery(id: $0.uid).build() }
       .retry()
       .subscribe(onNext: { user in
-        store.dispatch(UpdateAuth(user: user))
+        store.dispatch(UpdateAuthUser(user: user))
       }).addDisposableTo(disposeBag)
   }
 
