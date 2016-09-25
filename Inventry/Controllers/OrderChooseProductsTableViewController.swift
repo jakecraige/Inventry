@@ -6,15 +6,21 @@ class OrderChooseProductsTableViewController: UITableViewController {
   var viewModel = OrderViewModel.null()
   var products: [Product] { return viewModel.products }
   var order: Order { return viewModel.order }
-  var observers: [UInt] = []
   let disposeBag = DisposeBag()
   let searchController = UISearchController(searchResultsController: nil)
 
-  var filteredProducts: [Product]  {
-    if let query = searchQuery , !query.isEmpty {
-      return products.filter { $0.name.lowercased().contains(query.lowercased()) }
+  var _groupedProducts: [PublicUser: [Product]] = [:] {
+    didSet { tableView.reloadData() }
+  }
+  var filteredGroupedProducts: [PublicUser: [Product]]  {
+    if let query = searchQuery, !query.isEmpty {
+      return _groupedProducts.reduce([:]) { acc, keyValue in
+        let (key, value) = keyValue
+        let products = value.filter { $0.name.lowercased().contains(query.lowercased()) }
+        return acc + [key: products]
+      }
     } else {
-      return products
+      return _groupedProducts
     }
   }
 
@@ -32,6 +38,12 @@ class OrderChooseProductsTableViewController: UITableViewController {
       self.updateNavigationTitle()
     }).addDisposableTo(disposeBag)
 
+    ProductsGroupedByUserQuery(user: store.user).build()
+      .subscribe(onNext: { [weak self] in
+        self?._groupedProducts = $0
+      })
+      .addDisposableTo(disposeBag)
+
     definesPresentationContext = true
     searchController.searchResultsUpdater = self
     searchController.searchBar.placeholder = "Search for a product"
@@ -47,10 +59,6 @@ class OrderChooseProductsTableViewController: UITableViewController {
     }
   }
 
-  deinit {
-    observers.forEach { Product.ref.removeObserver(withHandle: $0) }
-  }
-
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else { return }
 
@@ -61,10 +69,6 @@ class OrderChooseProductsTableViewController: UITableViewController {
       vc?.receiveBarcodeCallback = { [weak self] in self?.addOrIncrementProduct(withBarcode: $0) }
     default: break
     }
-  }
-
-  fileprivate func getProduct(atIndexPath indexPath: IndexPath) -> Product {
-    return searchControllerActive ? filteredProducts[(indexPath as NSIndexPath).row] : products[(indexPath as NSIndexPath).row]
   }
 
   fileprivate func addOrIncrementProduct(withBarcode barcode: String) {
@@ -97,26 +101,30 @@ class OrderChooseProductsTableViewController: UITableViewController {
 
 // MARK: UITableViewDataSource
 extension OrderChooseProductsTableViewController {
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return filteredGroupedProducts.keys.count
+  }
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if searchControllerActive {
-      return filteredProducts.count
-    } else {
-      return products.count
-    }
+    return products(atSection: section).count
+  }
+
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return user(atSection: section).name
   }
 }
 
 // MARK: UITableViewDelegate
 extension OrderChooseProductsTableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let product = getProduct(atIndexPath: indexPath)
+    let product = self.product(atIndexPath: indexPath)
     let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! SelectProductTableViewCell
     cell.configure(forOrder: order, product: product)
     return cell
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let product = getProduct(atIndexPath: indexPath)
+    let product = self.product(atIndexPath: indexPath)
 
     if let _ = order.item(forProduct: product) {
       store.dispatch(RemoveFromCurrentOrder(product: product))
@@ -131,7 +139,7 @@ extension OrderChooseProductsTableViewController {
   }
 
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    let product = getProduct(atIndexPath: indexPath)
+    let product = self.product(atIndexPath: indexPath)
 
     let decrement = UITableViewRowAction(style: .normal, title: "-1", handler: { _, _ in
       self.removeOrDecrement(product)
@@ -160,12 +168,26 @@ extension OrderChooseProductsTableViewController: UIViewControllerPreviewingDele
           let vc = UIStoryboard.instantiateViewController(withIdentifier: "ViewProduct", fromStoryboard: .Main) as? ProductViewController
       else { return .none }
 
-    vc.product = getProduct(atIndexPath: indexPath)
+    vc.product = product(atIndexPath: indexPath)
 
     return vc
   }
 
   func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
     // Purposely empty since this never gets called because we only do a preview
+  }
+}
+
+private extension OrderChooseProductsTableViewController {
+  func user(atSection section: Int) -> PublicUser {
+    return Array(filteredGroupedProducts.keys)[section]
+  }
+
+  func products(atSection section: Int) -> [Product] {
+    return filteredGroupedProducts[user(atSection: section)] ?? []
+  }
+
+  func product(atIndexPath indexPath: IndexPath) -> Product {
+    return filteredGroupedProducts[user(atSection: indexPath.section)]![indexPath.row]
   }
 }
