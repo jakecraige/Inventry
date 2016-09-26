@@ -2,14 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ehd-PT-4Ch">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="Dqh-Kc-C3V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-oe-HX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Ehd-PT-4Ch" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lO2-ru-Gq0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -19,6 +17,7 @@
                         <segue destination="bnI-et-ULB" kind="relationship" relationship="rootViewController" id="r04-wl-1NO"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZ4-oe-HX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="48" y="369"/>
         </scene>
@@ -53,21 +52,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-Qv-cgo">
-                                <state key="normal" title="(DEV) Reset Account"/>
-                                <connections>
-                                    <action selector="resetAccountTapped:" destination="bnI-et-ULB" eventType="touchUpInside" id="78E-ya-txf"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wCp-DK-q0t" firstAttribute="centerX" secondItem="JwV-8D-iCR" secondAttribute="centerX" id="10K-gR-uv4"/>
                             <constraint firstItem="wCp-DK-q0t" firstAttribute="centerY" secondItem="JwV-8D-iCR" secondAttribute="centerY" id="3RY-wt-b44"/>
-                            <constraint firstItem="cQn-5i-wvJ" firstAttribute="top" secondItem="TYh-Qv-cgo" secondAttribute="bottom" constant="8" id="81G-0e-X74"/>
-                            <constraint firstItem="TYh-Qv-cgo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wCp-DK-q0t" secondAttribute="bottom" constant="10" id="UF3-sc-LF8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TYh-Qv-cgo" secondAttribute="trailing" id="VMI-QS-MXJ"/>
-                            <constraint firstItem="TYh-Qv-cgo" firstAttribute="leading" secondItem="JwV-8D-iCR" secondAttribute="leadingMargin" id="hFV-9d-sGL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Account Setup" id="OFu-pa-LA1"/>

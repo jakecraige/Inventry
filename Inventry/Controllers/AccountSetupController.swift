@@ -51,11 +51,6 @@ class AccountSetupController: UIViewController {
     AuthenticationController().present(onViewController: self)
   }
 
-  @IBAction func resetAccountTapped(_ sender: UIButton) {
-    _ = try? FIRAuth.auth()?.signOut()
-    fatalError("Force a restart")
-  }
-
   fileprivate func handleConnectedAccount(_ account: StripeConnectAccount) {
     store.firUser.take(1).flatMap { user in
       store.dispatch(CreateUser(firUser: user, connectAccount: account))
