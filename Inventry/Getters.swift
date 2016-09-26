@@ -26,6 +26,7 @@ extension Store {
     return state.value.firUser.asObservable()
       .filter { $0 != .none }
       .map { $0! }
+      .distinctUntilChanged()
   }
 
   var user: Observable<User> {
