@@ -33,6 +33,8 @@ struct ProductsQuery: Query {
   }
 
   private func productIDs(forIDs ids: [String]) -> Observable<[String]> {
+    guard !ids.isEmpty else { return .just([]) }
+
     let refs = ids.map { User.getChildRef($0).child("Products") }
 
     return Observable.from(refs).flatMap { ref in
