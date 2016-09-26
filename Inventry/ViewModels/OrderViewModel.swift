@@ -2,11 +2,10 @@ import Foundation
 
 struct OrderViewModel {
   static func null() -> OrderViewModel {
-    return OrderViewModel(order: Order.new(), products: [])
+    return OrderViewModel(order: Order.new())
   }
 
   var order: Order
-  let products: [Product]
   let lineItems: [LineItemViewModel]
 
   var subtotal: Cents {
@@ -27,17 +26,12 @@ struct OrderViewModel {
 
   var customer: Customer? { return order.customer }
 
-  init(order: Order, products: [Product]) {
+  init(order: Order) {
     self.order = order
-    self.products = products
-    self.lineItems = order.lineItems.flatMap { item in
-      guard let product = products.find({$0.id == item.productId}) else { return .none }
-
-      return LineItemViewModel(lineItem: item, product: product)
-    }
+    self.lineItems = order.lineItems.map(LineItemViewModel.init)
   }
 
   func lineItem(forIndexPath indexPath: IndexPath) -> LineItemViewModel {
-    return lineItems[(indexPath as NSIndexPath).row]
+    return lineItems[indexPath.row]
   }
 }

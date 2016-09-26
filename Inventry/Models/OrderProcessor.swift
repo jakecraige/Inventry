@@ -9,9 +9,9 @@ struct OrderProcessor {
   let order: Order
   let products: [Product]
 
-  init(vm: OrderViewModel) {
+  init(vm: OrderViewModel, products: [Product]) {
     self.vm = vm
-    products = vm.products
+    self.products = products
     // it needs to have an ID set even though it's not persisted so we can add a note to the payment
     // with the orderID
     var newOrder = vm.order
@@ -49,8 +49,12 @@ struct OrderProcessor {
 
   fileprivate func reduceInventoryQuantities() {
     vm.lineItems.forEach { itemVM in
-      let product = itemVM.product.decrement(by: itemVM.lineItem.quantity)
-      _ = Database.save(product)
+      if let product = products.find({ $0.id == itemVM.lineItem.productId }) {
+        let updatedProduct = product.decrement(by: itemVM.lineItem.quantity)
+        _ = Database.save(updatedProduct)
+      } else {
+        print("Unable to find product \(itemVM.lineItem.productId)!...")
+      }
     }
   }
 }

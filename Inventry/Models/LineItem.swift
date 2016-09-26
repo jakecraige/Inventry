@@ -5,18 +5,42 @@ import Runes
 struct LineItem: FIRNestedArray {
   let productId: String
   let quantity: Int
+  let name: String
+  let price: Cents
+  let currency: Currency
 
-  init(productId: String, quantity: Int = 1) {
-    self.productId = productId
-    self.quantity = quantity
+  static func from(product: Product) -> LineItem {
+    guard let productID = product.id else {
+      fatalError("Attempted to add non-saved product to an order.")
+    }
+
+    return LineItem(
+      productId: productID,
+      quantity: 1,
+      name: product.name,
+      price: product.price,
+      currency: product.currency
+    )
   }
 
   func increment() -> LineItem {
-    return LineItem(productId: productId, quantity: quantity + 1)
+    return LineItem(
+      productId: productId,
+      quantity: quantity + 1,
+      name: name,
+      price: price,
+      currency: currency
+    )
   }
 
   func decrement() -> LineItem {
-    return LineItem(productId: productId, quantity: quantity - 1)
+    return LineItem(
+      productId: productId,
+      quantity: quantity - 1,
+      name: name,
+      price: price,
+      currency: currency
+    )
   }
 
   static func encodeArray(_ items: [LineItem]) -> AnyObject {
@@ -33,6 +57,9 @@ extension LineItem: Decodable {
     return curry(LineItem.init)
       <^> json <| "product_id"
       <*> json <| "quantity"
+      <*> json <| "name"
+      <*> json <| "price"
+      <*> json <| "currency"
   }
 }
 
@@ -46,7 +73,10 @@ extension LineItem: Encodable {
   func encode() -> [String: AnyObject] {
     return [
       "product_id": productId as AnyObject,
-      "quantity": quantity as AnyObject
+      "quantity": quantity as AnyObject,
+      "name": name as AnyObject,
+      "price": price as AnyObject,
+      "currency": currency.rawValue as AnyObject,
     ]
   }
 }

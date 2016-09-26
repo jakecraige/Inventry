@@ -4,7 +4,6 @@ import RxSwift
 class OrderChooseProductsTableViewController: UITableViewController {
   var searchQuery: String? { didSet { tableView.reloadData() } }
   var viewModel = OrderViewModel.null()
-  var products: [Product] { return viewModel.products }
   var order: Order { return viewModel.order }
   let disposeBag = DisposeBag()
   let searchController = UISearchController(searchResultsController: nil)
@@ -22,6 +21,9 @@ class OrderChooseProductsTableViewController: UITableViewController {
     } else {
       return _groupedProducts
     }
+  }
+  var products: [Product] {
+    return Array(filteredGroupedProducts.map { $0.value }.joined())
   }
 
   var searchControllerActive: Bool {

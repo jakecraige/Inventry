@@ -8,7 +8,7 @@ class OrdersTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    store.allOrders
+    OrdersQuery(user: store.user).build()
       .subscribe(onNext: { [weak self] in
         self?.orders = $0
       })

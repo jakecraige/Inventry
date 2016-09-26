@@ -6,7 +6,6 @@ import Stripe
 
 final class ApplicationController {
   var application: UIApplication!
-  var firebaseSyncController: FirebaseSyncController!
 
   /// This is expected to be called before calling any other methods on this object.
   func initialSetup(application: UIApplication) {
@@ -61,8 +60,6 @@ private extension ApplicationController {
 private extension ApplicationController {
   func configureObservers() {
     observeFirebaseAuthState()
-    firebaseSyncController = FirebaseSyncController()
-    firebaseSyncController.sync()
   }
   
   func observeFirebaseAuthState() {

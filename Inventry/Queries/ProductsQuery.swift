@@ -37,6 +37,6 @@ struct ProductsQuery: Query {
 
     return Observable.from(refs).flatMap { ref in
       return Database.observe(ref: ref)
-    }.startWith([])
+    }
   }
 }

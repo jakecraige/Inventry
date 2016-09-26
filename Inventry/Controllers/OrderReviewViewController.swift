@@ -21,7 +21,7 @@ class OrderReviewViewController: UITableViewController {
   let disposeBag = DisposeBag()
   var viewModel = OrderViewModel.null() {
     didSet {
-      nextButton.isEnabled = viewModel.products.count > 0
+      nextButton.isEnabled = viewModel.lineItems.count > 0
       let oldOrder = oldValue.order
       let newOrder = viewModel.order
 

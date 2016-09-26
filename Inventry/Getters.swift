@@ -8,18 +8,8 @@ extension Store {
     return state.value.order.asObservable()
   }
 
-  var allProducts: Observable<[Product]> {
-    return state.value.allProducts.asObservable()
-  }
-
-  var allOrders: Observable<[Order]> {
-    return state.value.allOrders.asObservable()
-  }
-
   var orderViewModel: Observable<OrderViewModel> {
-    return Observable.combineLatest(order, allProducts) { order, allProducts in
-      return OrderViewModel(order: order, products: allProducts)
-    }
+    return order.map(OrderViewModel.init)
   }
 
   var isSignedIn: Bool {

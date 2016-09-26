@@ -6,8 +6,8 @@ class OrderReviewTableViewCell: UITableViewCell {
   @IBOutlet var priceLabel: UILabel!
 
   func configure(_ vm: LineItemViewModel) {
-    nameLabel.text = vm.product.name
-    quantityLabel.text = "Qty: \(vm.lineItem.quantity)"
+    nameLabel.text = vm.name
+    quantityLabel.text = "Qty: \(vm.quantity)"
     priceLabel.text = vm.formattedPrice
   }
 }

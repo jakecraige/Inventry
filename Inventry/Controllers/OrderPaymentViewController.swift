@@ -96,11 +96,15 @@ class OrderPaymentViewController: UITableViewController {
   }
 
   fileprivate func placeOrder() -> Promise<Void> {
-    let processor = OrderProcessor(vm: viewModel)
+    let productsQuery = ProductsQuery(user: store.user).build()
 
-    return processor.process().map { order -> Void in
-      print("Order completed: \(order)")
-    }.asPromise()
+    return productsQuery
+      .flatMap { [viewModel = viewModel] products -> Observable<Order> in
+        let processor = OrderProcessor(vm: viewModel, products: products)
+        return processor.process()
+      }
+      .map { _ in }
+      .asPromise()
   }
 
   fileprivate func logOrderPurchase() {
