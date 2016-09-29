@@ -38,3 +38,4 @@ private/
 # Private keys
 Environment.swift
 GoogleService-Info.plist
+ServiceAccount.json

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+CONFIGURATIONS_PATH="$SRCROOT/Inventry/Resources/Other-Sources"
+FIR_CONFIG_PATH="$CONFIGURATIONS_PATH/GoogleService-Info.plist"
+FIR_SERVICE_ACCOUNT_PATH="$CONFIGURATIONS_PATH/ServiceAccount.json"
+
+if [ "$CONFIGURATION" = "Debug" ]; then
+  ENV_CONFIG_PATH="$SRCROOT/private/GoogleService-Info-Dev.plist"
+  ENV_SERVICE_ACCOUNT_PATH="$SRCROOT/private/FIRServiceAccounts-Dev.json"
+  GOOGLE_APP_ID="1:29141015625:ios:45d3f93f1732bea9"
+  UPLOAD_SYMBOLS=false
+else
+  ENV_CONFIG_PATH="$SRCROOT/private/GoogleService-Info-Prod.plist"
+  ENV_SERVICE_ACCOUNT_PATH="$SRCROOT/private/FIRServiceAccounts-Prod.json"
+  GOOGLE_APP_ID="1:705578828796:ios:45d3f93f1732bea9"
+  UPLOAD_SYMBOLS=true
+fi
+
+echo "Copying $ENV_CONFIG_PATH to $FIR_CONFIG_PATH"
+cp "$ENV_CONFIG_PATH" "$FIR_CONFIG_PATH"
+
+echo "Copying $FIR_CONFIG_PATH to $TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH"
+cp "$FIR_CONFIG_PATH" "$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/"
+
+echo "Copying $ENV_SERVICE_ACCOUNT_PATH to $FIR_SERVICE_ACCOUNT_PATH"
+cp "$ENV_SERVICE_ACCOUNT_PATH" "$FIR_SERVICE_ACCOUNT_PATH"
+
+if [ "$UPLOAD_SYMBOLS" = true ]; then
+  echo "Uploading symbols for crash reporting to Firebase..."
+  "${PODS_ROOT}"/FirebaseCrash/upload-sym "$FIR_SERVICE_ACCOUNT_PATH"
+else
+  echo "Skipping uploading symbols to Firebase..."
+fi

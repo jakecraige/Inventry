@@ -36,6 +36,14 @@
 			<key>CFBundleURLName</key>
 			<string>com.jakecraige.Inventry</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.29141015625-t8f32knatubgju4csvu7rp7c6vcdgmuf</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0.0.1</string>

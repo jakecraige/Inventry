@@ -596,7 +596,7 @@
 				0D326D042035CA87F050CC55 /* Warn for TODO and FIXME comments */,
 				FC828C4691A4A9E4E8DA528D /* [CP] Embed Pods Frameworks */,
 				AE189F17D6FE72C327A2EF82 /* [CP] Copy Pods Resources */,
-				E7622AC51D0B2C74008073E7 /* Firebase Upload Symbols */,
+				E7F73E371D9D613D002E6C0B /* Firebase Config */,
 			);
 			buildRules = (
 			);
@@ -764,19 +764,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Inventry/Pods-Inventry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E7622AC51D0B2C74008073E7 /* Firebase Upload Symbols */ = {
+		E7F73E371D9D613D002E6C0B /* Firebase Config */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Firebase Upload Symbols";
+			name = "Firebase Config";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exit 0 # This is useful in dev since it's not useful to create/upload these on every build\nGOOGLE_APP_ID=1:705578828796:ios:45d3f93f1732bea9\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym private/Inventry-a59707411f79.json";
+			shellScript = bin/firebase_config;
 		};
 		FC828C4691A4A9E4E8DA528D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
