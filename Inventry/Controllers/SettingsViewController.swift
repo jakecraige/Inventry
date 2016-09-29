@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import HockeySDK
 import MessageUI
 
 private enum Cell: Int {

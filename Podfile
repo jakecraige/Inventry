@@ -16,7 +16,6 @@ target target_name do
   pod "Stripe"
   pod "MTBBarcodeScanner"
   pod "PromiseKit/CorePromise"
-  pod "HockeySDK"
   pod "RxSwift", "3.0.0-beta.1"
   pod "RxCocoa", "3.0.0-beta.1"
   pod "AsyncSwift", git: "https://github.com/duemunk/Async.git", branch: "feature/Swift_3.0"

@@ -1,7 +1,6 @@
 import UIKit
 import RxSwift
 import Firebase
-import HockeySDK
 import Stripe
 
 final class ApplicationController {
@@ -25,7 +24,6 @@ final class ApplicationController {
 private extension ApplicationController {
   func configureServices() {
     configureFirebase()
-    configureHockey()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
   }
   
@@ -44,15 +42,6 @@ private extension ApplicationController {
       config.activateFetched()
       print("Latest remote config activated")
     }
-  }
-
-  func configureHockey() {
-    guard Environment.current != .development  else { return }
-    let manager = BITHockeyManager.shared()
-    manager.configure(withIdentifier: Environment.hockeyAppIdentifier)
-    manager.isCrashManagerDisabled = true
-    manager.start()
-    manager.authenticator.authenticateInstallation()
   }
 }
 
