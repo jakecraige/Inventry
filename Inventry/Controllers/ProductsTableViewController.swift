@@ -2,6 +2,11 @@ import UIKit
 import Firebase
 import RxSwift
 
+private enum ViewState: Int {
+  case lists
+  case inventory
+}
+
 class ProductsTableViewController: UITableViewController {
   var groupedProducts: [PublicUser: [Product]] = [:] {
     didSet {
@@ -9,6 +14,10 @@ class ProductsTableViewController: UITableViewController {
     }
   }
   var disposeBag = DisposeBag()
+  fileprivate var viewState = Variable(ViewState.lists)
+
+  @IBOutlet var segmentedControl: UISegmentedControl!
+  @IBOutlet var addButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -18,6 +27,27 @@ class ProductsTableViewController: UITableViewController {
         self?.groupedProducts = $0
       })
       .addDisposableTo(disposeBag)
+
+    segmentedControl.rx.value
+      .map { ViewState(rawValue: $0)! }
+      .bindTo(viewState)
+      .addDisposableTo(disposeBag)
+
+    viewState.asDriver()
+      .drive(onNext: { [weak self] _ in self?.tableView.reloadData() })
+      .addDisposableTo(disposeBag)
+
+    addButton.rx.tap
+        .subscribe(onNext: { [weak self] in
+          guard let `self` = self else { return }
+          switch self.viewState.value {
+          case .lists:
+            self.performSegue(withIdentifier: "addList", sender: self)
+          case .inventory:
+            self.performSegue(withIdentifier: "addProduct", sender: self)
+          }
+        })
+        .addDisposableTo(disposeBag)
 
     tableView.tableFooterView = UIView()
   }
@@ -42,11 +72,21 @@ class ProductsTableViewController: UITableViewController {
 // MARK: UITableViewDataSource
 extension ProductsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return groupedProducts.keys.count
+    switch viewState.value {
+    case .lists:
+      return 0
+    case .inventory:
+      return groupedProducts.keys.count
+    }
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return products(atSection: section).count
+    switch viewState.value {
+    case .lists:
+      return 0
+    case .inventory:
+      return products(atSection: section).count
+    }
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,7 +98,12 @@ extension ProductsTableViewController {
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return user(atSection: section).name
+    switch viewState.value {
+    case .lists:
+      return .none
+    case .inventory:
+      return user(atSection: section).name
+    }
   }
 }
 
