@@ -17,7 +17,10 @@ struct ListProduct: FIRNestedArray {
 
 extension ListProduct: Encodable {
   func encode() -> [String : AnyObject] {
-    return ["quantity": quantity as AnyObject]
+    return [
+      "product": product as AnyObject,
+      "quantity": quantity as AnyObject,
+    ]
   }
 }
 
@@ -64,7 +67,7 @@ extension List: Decodable {
       <*> json <| "name"
       <*> json <| "user_id"
       <*> json <|| "products"
-      <*> json <|| "users"
+      <*> decodeFIRArray(json: json, key: "users")
       <*> json <|? "timestamps"
   }
 }

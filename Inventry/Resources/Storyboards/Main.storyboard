@@ -49,11 +49,11 @@
                     <navigationItem key="navigationItem" id="LKT-86-k2p">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="mDo-XL-clx">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Lists"/>
-                                <segment title="All"/>
+                                <segment title="Products"/>
                             </segments>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="JWs-eA-rQk"/>
@@ -112,7 +112,7 @@
             <objects>
                 <navigationController id="4XZ-Qn-EZt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Inventory" image="tab-inventory" id="BcE-Na-wkV"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pGJ-HI-YrS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pGJ-HI-YrS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -259,7 +259,7 @@
             <objects>
                 <navigationController id="rmF-k1-sXn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="tab-order" id="hWQ-zc-bgq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mNb-gD-HL1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNb-gD-HL1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -334,7 +334,7 @@
             <objects>
                 <navigationController title="New Product Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="wVl-py-Mbp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sya-Dc-hB3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sya-Dc-hB3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -413,7 +413,7 @@
         <scene sceneID="QY8-T7-0zK">
             <objects>
                 <navigationController id="srt-mY-TPo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fhw-dT-Z4F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fhw-dT-Z4F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -576,7 +576,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ScanBarcode" automaticallyAdjustsScrollViewInsets="NO" id="0qL-i3-QmO" userLabel="Scan Barcode Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="a7H-O0-uJn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7H-O0-uJn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -611,7 +611,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c19-h0-YBt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="tab-settings" id="feH-DM-cvl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cyT-2W-Tds">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cyT-2W-Tds">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

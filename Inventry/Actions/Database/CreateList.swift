@@ -10,8 +10,8 @@ struct CreateList: DynamicActionType {
     return store.user.single().map { user in
       return (user, self.initializeList(user: user))
     }.flatMap { user, list in
-      return Database.observeSave(list).debug("saveList").flatMap { list in
-        return self.updateDenormalized(list: list, user: user).debug("update denomarlize")
+      return Database.observeSave(list).flatMap { list in
+        return self.updateDenormalized(list: list, user: user)
       }
     }
   }

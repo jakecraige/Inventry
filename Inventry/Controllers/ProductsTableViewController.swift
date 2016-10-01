@@ -13,6 +13,7 @@ class ProductsTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
+  var lists = Variable([List]())
   var disposeBag = DisposeBag()
   fileprivate var viewState = Variable(ViewState.lists)
 
@@ -28,12 +29,19 @@ class ProductsTableViewController: UITableViewController {
       })
       .addDisposableTo(disposeBag)
 
+    ListsQuery(user: store.user).build()
+      .bindTo(lists)
+      .addDisposableTo(disposeBag)
+
     segmentedControl.rx.value
       .map { ViewState(rawValue: $0)! }
       .bindTo(viewState)
       .addDisposableTo(disposeBag)
 
     viewState.asDriver()
+      .drive(onNext: { [weak self] _ in self?.tableView.reloadData() })
+      .addDisposableTo(disposeBag)
+    lists.asDriver()
       .drive(onNext: { [weak self] _ in self?.tableView.reloadData() })
       .addDisposableTo(disposeBag)
 
@@ -74,7 +82,7 @@ extension ProductsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
     switch viewState.value {
     case .lists:
-      return 0
+      return 1
     case .inventory:
       return groupedProducts.keys.count
     }
@@ -83,7 +91,7 @@ extension ProductsTableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch viewState.value {
     case .lists:
-      return 0
+      return lists.value.count
     case .inventory:
       return products(atSection: section).count
     }
@@ -92,7 +100,12 @@ extension ProductsTableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "productCell")!
 
-    cell.textLabel?.text = product(atIndexPath: indexPath).name
+    switch viewState.value {
+    case .lists:
+      cell.textLabel?.text = lists.value[indexPath.row].name
+    case .inventory:
+      cell.textLabel?.text = product(atIndexPath: indexPath).name
+    }
 
     return cell
   }
