@@ -2,22 +2,14 @@ import UIKit
 import Firebase
 import RxSwift
 
-private enum ViewState: Int {
-  case lists
-  case inventory
-}
-
 class ProductsTableViewController: UITableViewController {
   var groupedProducts: [PublicUser: [Product]] = [:] {
     didSet {
       tableView.reloadData()
     }
   }
-  var lists = Variable([List]())
   var disposeBag = DisposeBag()
-  fileprivate var viewState = Variable(ViewState.lists)
 
-  @IBOutlet var segmentedControl: UISegmentedControl!
   @IBOutlet var addButton: UIBarButtonItem!
 
   override func viewDidLoad() {
@@ -28,34 +20,6 @@ class ProductsTableViewController: UITableViewController {
         self?.groupedProducts = $0
       })
       .addDisposableTo(disposeBag)
-
-    ListsQuery(user: store.user).build()
-      .bindTo(lists)
-      .addDisposableTo(disposeBag)
-
-    segmentedControl.rx.value
-      .map { ViewState(rawValue: $0)! }
-      .bindTo(viewState)
-      .addDisposableTo(disposeBag)
-
-    viewState.asDriver()
-      .drive(onNext: { [weak self] _ in self?.tableView.reloadData() })
-      .addDisposableTo(disposeBag)
-    lists.asDriver()
-      .drive(onNext: { [weak self] _ in self?.tableView.reloadData() })
-      .addDisposableTo(disposeBag)
-
-    addButton.rx.tap
-        .subscribe(onNext: { [weak self] in
-          guard let `self` = self else { return }
-          switch self.viewState.value {
-          case .lists:
-            self.performSegue(withIdentifier: "addList", sender: self)
-          case .inventory:
-            self.performSegue(withIdentifier: "addProduct", sender: self)
-          }
-        })
-        .addDisposableTo(disposeBag)
 
     tableView.tableFooterView = UIView()
   }
@@ -80,43 +44,23 @@ class ProductsTableViewController: UITableViewController {
 // MARK: UITableViewDataSource
 extension ProductsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
-    switch viewState.value {
-    case .lists:
-      return 1
-    case .inventory:
-      return groupedProducts.keys.count
-    }
+    return groupedProducts.keys.count
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch viewState.value {
-    case .lists:
-      return lists.value.count
-    case .inventory:
-      return products(atSection: section).count
-    }
+    return products(atSection: section).count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "productCell")!
 
-    switch viewState.value {
-    case .lists:
-      cell.textLabel?.text = lists.value[indexPath.row].name
-    case .inventory:
-      cell.textLabel?.text = product(atIndexPath: indexPath).name
-    }
+    cell.textLabel?.text = product(atIndexPath: indexPath).name
 
     return cell
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    switch viewState.value {
-    case .lists:
-      return .none
-    case .inventory:
-      return user(atSection: section).name
-    }
+    return user(atSection: section).name
   }
 }
 
