@@ -24,7 +24,9 @@ struct Database {
         if let error = error {
           observer.onError(error)
         } else {
-          observer.onNext(model)
+          var modelWithId = model
+          modelWithId.id = ref.key
+          observer.onNext(modelWithId)
           observer.onCompleted()
         }
       }

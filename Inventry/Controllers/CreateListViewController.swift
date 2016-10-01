@@ -18,7 +18,7 @@ struct NewList {
     if let existingIndex = index(of: product) {
       products.remove(at: existingIndex)
     } else {
-      products.append(ListProduct(product: product, quantity: 1))
+      products.append(ListProduct(product: product.id!, quantity: 1))
     }
   }
 
@@ -34,7 +34,7 @@ struct NewList {
     if let existingIndex = index(of: product) {
       products[existingIndex].quantity += 1
     } else {
-      products.append(ListProduct(product: product, quantity: 1))
+      products.append(ListProduct(product: product.id!, quantity: 1))
     }
   }
 
@@ -50,18 +50,7 @@ struct NewList {
   }
 
   func index(of product: Product) -> Int? {
-    return products.map { $0.product }.index(of: product)
-  }
-}
-
-struct ListProduct {
-  let product: Product
-  var quantity: Int
-}
-
-extension ListProduct: Equatable {
-  static func == (lhs: ListProduct, rhs: ListProduct) -> Bool {
-    return lhs.product == rhs.product
+    return products.map { $0.product }.index(of: product.id!)
   }
 }
 
@@ -178,10 +167,28 @@ extension CreateListChooseProductsViewController {
     )
     alert.addTextField { $0.placeholder = "List name" }
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in }))
-    alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { _ in
+    alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
       let textField = alert.textFields![0]
-      print("Create with name", textField.text)
+      self?.createList(name: textField.text ?? "Untitled list")
     }))
     present(alert, animated: true, completion: .none)
+  }
+
+  func createList(name: String) {
+    let action = CreateList(name: name, newList: list.value)
+    navigationItem.startLoadingRightButton()
+    _ = store.dispatch(action).takeUntil(rx.deallocated)
+      .single()
+      .subscribe(
+        onNext: { _ in
+          print("list created!")
+        },
+        onError: { error in
+          print("Error!!", error)
+        },
+        onCompleted: { [weak self] in
+          self?.navigationItem.stopLoadingRightButton()
+        }
+    )
   }
 }

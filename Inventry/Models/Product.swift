@@ -4,13 +4,14 @@ import Firebase
 import Runes
 
 struct Product: Modelable {
-  let id: String?
+  var id: String?
   let name: String
   let barcode: String
   let quantity: Int
   let price: Cents
   let currency: Currency
   var userId: String
+  var users: [String] = []
 
   func decrement(by decrementDelta: Int = 1) -> Product {
     return Product(
@@ -20,7 +21,21 @@ struct Product: Modelable {
       quantity: quantity - decrementDelta,
       price: price,
       currency: currency,
-      userId: userId
+      userId: userId,
+      users: users
+    )
+  }
+
+  static func fromID(id: String) -> Product {
+    return Product(
+      id: id,
+      name: "",
+      barcode: "",
+      quantity: 0,
+      price: 0,
+      currency: Currency.USD,
+      userId: "",
+      users: []
     )
   }
 }
@@ -35,6 +50,7 @@ extension Product: Decodable {
       <*> json <| "price"
       <*> json <| "currency"
       <*> json <| "user_id"
+      <*> decodeFIRArray(json: json, key: "users").or(pure([]))
   }
 }
 
@@ -46,7 +62,8 @@ extension Product: Encodable {
       "quantity": quantity as AnyObject,
       "price": price as AnyObject,
       "currency": currency.rawValue as AnyObject,
-      "user_id": userId as AnyObject
+      "user_id": userId as AnyObject,
+      "users": users.FIR_encode() as AnyObject
     ]
   }
 }

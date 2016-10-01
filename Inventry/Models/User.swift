@@ -3,10 +3,11 @@ import Argo
 import Runes
 
 struct User: Modelable {
-  let id: String?
+  var id: String?
   let uid: String
   var products = [String]()
   var orders = [String]()
+  var lists = [String]()
   var stripeConnectAccount: StripeConnectAccount
 
   var accountSetupComplete: Bool {
@@ -17,12 +18,14 @@ struct User: Modelable {
     id: String,
     products: [String] = [],
     orders: [String] = [],
+    lists: [String] = [],
     stripeConnectAccount: StripeConnectAccount = .null()
   ) {
     self.id = id
     self.uid = id
     self.products = products
     self.orders = orders
+    self.lists = lists
     self.stripeConnectAccount = stripeConnectAccount
   }
 }
@@ -33,6 +36,7 @@ extension User: Decodable {
       <^> json <| "id"
       <*> decodeFIRArray(json: json, key: "Products").or(pure([]))
       <*> decodeFIRArray(json: json, key: "Orders").or(pure([]))
+      <*> decodeFIRArray(json: json, key: "Lists").or(pure([]))
       <*> (json <| "stripe_connect_account").or(.success(.null()))
   }
 }
@@ -42,7 +46,8 @@ extension User: Encodable {
     return [
       "stripe_connect_account": stripeConnectAccount.encode() as AnyObject,
       "Products": products.FIR_encode() as AnyObject,
-      "Orders": orders.FIR_encode() as AnyObject
+      "Orders": orders.FIR_encode() as AnyObject,
+      "Lists": lists.FIR_encode() as AnyObject
     ]
   }
 }

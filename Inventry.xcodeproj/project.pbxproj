@@ -47,6 +47,8 @@
 		E72000211D03CF06009BAF12 /* StripeConnectAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */; };
 		E72000231D047DF8009BAF12 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72000221D047DF8009BAF12 /* SettingsViewController.swift */; };
 		E72B55DF1D9F0C67004C0344 /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55DE1D9F0C67004C0344 /* CreateListViewController.swift */; };
+		E72B55E11D9FFD37004C0344 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E01D9FFD37004C0344 /* List.swift */; };
+		E72B55E31D9FFEFD004C0344 /* CreateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E21D9FFEFD004C0344 /* CreateList.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
 		E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664A1CFFE2490097FEB5 /* SetOrder.swift */; };
 		E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */; };
@@ -166,6 +168,8 @@
 		E72000221D047DF8009BAF12 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E72000241D04954D009BAF12 /* Inventry-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Inventry-Bridging-Header.h"; sourceTree = "<group>"; };
 		E72B55DE1D9F0C67004C0344 /* CreateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
+		E72B55E01D9FFD37004C0344 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		E72B55E21D9FFEFD004C0344 /* CreateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateList.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
 		E72D664A1CFFE2490097FEB5 /* SetOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetOrder.swift; sourceTree = "<group>"; };
 		E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 				E72000121D036617009BAF12 /* Analytics.swift */,
 				E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */,
 				E73B3E131D7DF593001C19B5 /* PublicUser.swift */,
+				E72B55E01D9FFD37004C0344 /* List.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				E72D66581D01D9B30097FEB5 /* SaveOrder.swift */,
 				E72000101D035E90009BAF12 /* DeleteProduct.swift */,
 				E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */,
+				E72B55E21D9FFEFD004C0344 /* CreateList.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -850,6 +856,7 @@
 				E7C042991D9815FA000A02AB /* UpdateAuthFIRUser.swift in Sources */,
 				E718E20D1CFBE5B00086E2C4 /* UINavigationItem.swift in Sources */,
 				E718E2091CFBD8530086E2C4 /* Storyboard.swift in Sources */,
+				E72B55E31D9FFEFD004C0344 /* CreateList.swift in Sources */,
 				E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */,
 				E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */,
 				E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */,
@@ -863,6 +870,7 @@
 				E7B7C8FD1CFA07C40019BA0D /* ProcessPaymentRequest.swift in Sources */,
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
 				E72D66521CFFF3A10097FEB5 /* User.swift in Sources */,
+				E72B55E11D9FFD37004C0344 /* List.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,

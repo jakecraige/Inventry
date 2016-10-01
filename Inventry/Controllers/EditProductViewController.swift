@@ -35,7 +35,8 @@ class EditProductViewController: UITableViewController {
       quantity: Int(quantity ?? "") ?? 0,
       price: price,
       currency: .USD,
-      userId: self.product?.userId ?? ""
+      userId: self.product?.userId ?? "",
+      users: []
     )
 
     if !product.isPersisted {

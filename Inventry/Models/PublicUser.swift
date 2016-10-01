@@ -3,7 +3,7 @@ import Argo
 import Runes
 
 struct PublicUser: Modelable {
-  let id: String?
+  var id: String?
   var name: String
   var inventorySharedWith: [String]
   var inventorySharedFrom: [String]

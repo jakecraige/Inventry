@@ -7,7 +7,7 @@ protocol Modelable: Decodable, Encodable, Equatable {
   static func getChildRef(_ id: String) -> FIRDatabaseReference
 
   /// The key stored in Firebase. This is also used to tell if an object is persisted or not.
-  var id: String? { get }
+  var id: String? { get set }
   var childRef: FIRDatabaseReference { get }
   var isPersisted: Bool { get }
 }
