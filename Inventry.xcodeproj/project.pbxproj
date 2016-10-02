@@ -51,6 +51,7 @@
 		E72B55E31D9FFEFD004C0344 /* CreateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E21D9FFEFD004C0344 /* CreateList.swift */; };
 		E72B55E51DA013BC004C0344 /* ListsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E41DA013BC004C0344 /* ListsQuery.swift */; };
 		E72B55E71DA01897004C0344 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E61DA01897004C0344 /* ListsViewController.swift */; };
+		E72B55E91DA13C8E004C0344 /* DeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E81DA13C8E004C0344 /* DeleteList.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
 		E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664A1CFFE2490097FEB5 /* SetOrder.swift */; };
 		E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */; };
@@ -174,6 +175,7 @@
 		E72B55E21D9FFEFD004C0344 /* CreateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateList.swift; sourceTree = "<group>"; };
 		E72B55E41DA013BC004C0344 /* ListsQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsQuery.swift; sourceTree = "<group>"; };
 		E72B55E61DA01897004C0344 /* ListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
+		E72B55E81DA13C8E004C0344 /* DeleteList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteList.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
 		E72D664A1CFFE2490097FEB5 /* SetOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetOrder.swift; sourceTree = "<group>"; };
 		E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				E72000101D035E90009BAF12 /* DeleteProduct.swift */,
 				E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */,
 				E72B55E21D9FFEFD004C0344 /* CreateList.swift */,
+				E72B55E81DA13C8E004C0344 /* DeleteList.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,
 				E7005CEB1CFD52F400B88483 /* UIColor.swift in Sources */,
+				E72B55E91DA13C8E004C0344 /* DeleteList.swift in Sources */,
 				E72000131D036617009BAF12 /* Analytics.swift in Sources */,
 				E7005D041CFF3DA300B88483 /* UpdateCurrentOrderCustomer.swift in Sources */,
 				E7DA83971CF2AA23001320D2 /* Product.swift in Sources */,

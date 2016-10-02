@@ -41,3 +41,13 @@ extension FIRUser {
     }
   }
 }
+
+extension FIRDatabaseQuery {
+  var fullPath: String {
+    return URL(string: ref.url)?.path ?? ""
+  }
+
+  var removalDict: [String: AnyObject] {
+    return [fullPath: NSNull()]
+  }
+}

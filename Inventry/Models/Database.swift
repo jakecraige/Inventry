@@ -45,7 +45,7 @@ struct Database {
   }
 
   static func observeSave(
-    _ dict: [String: AnyObject],
+    _ dict: [AnyHashable: Any],
     ref: FIRDatabaseReference = FIRDatabase.database().reference()
   ) -> Observable<Void> {
     return Observable.create { observer in
@@ -63,7 +63,7 @@ struct Database {
   }
 
   static func save(
-    _ dict: [String: AnyObject],
+    _ dict: [AnyHashable: Any],
     ref: FIRDatabaseReference = FIRDatabase.database().reference()
   ) {
     ref.updateChildValues(dict)

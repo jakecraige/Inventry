@@ -5,7 +5,10 @@ import RxSwift
 struct CreateList: DynamicActionType {
   let name: String
   let newList: NewList
-  
+
+  // 1. Create list
+  // 2. Add user(s) products access
+  // 3. Add user(s) list access
   func call() -> Observable<List> {
     return store.user.take(1).map { user in
       return (user, self.initializeList(user: user))
