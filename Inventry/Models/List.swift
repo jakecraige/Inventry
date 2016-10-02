@@ -66,8 +66,8 @@ extension List: Decodable {
       <^> json <|? "id"
       <*> json <| "name"
       <*> json <| "user_id"
-      <*> json <|| "products"
-      <*> decodeFIRArray(json: json, key: "users")
+      <*> (json <|| "products").or(pure([]))
+      <*> decodeFIRArray(json: json, key: "users").or(pure([]))
       <*> json <|? "timestamps"
   }
 }

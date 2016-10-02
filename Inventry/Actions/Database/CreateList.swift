@@ -7,7 +7,7 @@ struct CreateList: DynamicActionType {
   let newList: NewList
   
   func call() -> Observable<List> {
-    return store.user.single().map { user in
+    return store.user.take(1).map { user in
       return (user, self.initializeList(user: user))
     }.flatMap { user, list in
       return Database.observeSave(list).flatMap { list in
@@ -28,12 +28,11 @@ struct CreateList: DynamicActionType {
   }
 
   private func updateDenormalized(list: List, user: User) -> Observable<List> {
-    let dict = updateDictionary(list: list, user: user)
+    let dict = updateDictionary(list: list, user: user).deepFlatten()
     return Database.observeSave(dict).map { _ in list }
   }
   
   private func updateDictionary(list: List, user: User) -> [String: AnyObject] {
-    let listValues = Database.valuesForUpdate(list, includeRootKey: true)
     let newUserVal = addToUserList(list: list, user: user)
     let newUserListsVal = newList.users.reduce([:]) { acc, puser in
       return acc + addToUserList(list: list, userId: puser.id!)
@@ -42,7 +41,7 @@ struct CreateList: DynamicActionType {
       return acc + addToUsersToProduct(productId: listProduct.product, users: newList.users)
     }
     
-    let updates = listValues + newUserVal + newUserListsVal + newProductsUsersList
+    let updates = newUserVal + newUserListsVal + newProductsUsersList
     return updates
   }
 

@@ -29,4 +29,19 @@ extension Dictionary where Key: _StringContaining, Value: AnyObject {
       return acc
     }
   }
+
+  func deepFlatten(keyPrefix: String = "") -> [String: AnyObject] {
+    return reduce([:]) { acc, keyValue in
+        let (key, value) = (keyValue.0.asString, keyValue.1)
+        let newKey = [keyPrefix, key]
+          .filter { !$0.isEmpty }
+          .joined(separator: "/")
+
+        if let value = value as? [String: AnyObject] {
+            return acc + value.deepFlatten(keyPrefix: newKey)
+        } else {
+            return acc + [newKey: value]
+        }
+    }
+  }
 }
