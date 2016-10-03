@@ -75,6 +75,11 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - MTBBarcodeScanner (2.1.0)
   - PromiseKit/CorePromise (4.0.1)
+  - Realm (2.0.1):
+    - Realm/Headers (= 2.0.1)
+  - Realm/Headers (2.0.1)
+  - RealmSwift (2.0.1):
+    - Realm (= 2.0.1)
   - Result (3.0.0)
   - Runes (3.2.1)
   - RxCocoa (3.0.0-beta.1):
@@ -99,6 +104,7 @@ DEPENDENCIES:
   - FirebaseUI/Google (= 0.5.6-rc3)
   - MTBBarcodeScanner
   - PromiseKit/CorePromise
+  - RealmSwift (= 2.0.1)
   - Result (from `https://github.com/antitypical/Result.git`, tag `3.0.0`)
   - Runes (from `https://github.com/thoughtbot/Runes.git`, branch `master`)
   - RxCocoa (= 3.0.0-beta.1)
@@ -176,6 +182,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   MTBBarcodeScanner: 72b7e81aa5ad9be2d40c1af3f2996083dce9d58f
   PromiseKit: ae9e7f97ee758e23f7b9c5e80380a2e78d6338c5
+  Realm: 0557ee0e4ab4f0936c90e370056d1ed6265f93d6
+  RealmSwift: 64e00af79bdcd7d2a7a23fdc1cb3faf22b80ae4c
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   Runes: 6231c760e43f26bd3fe804f15bc08bd1e40e6c46
   RxCocoa: 8cecf331302b8ae5381bbab1bccba4ede2eae6a8
@@ -183,6 +191,6 @@ SPEC CHECKSUMS:
   Stripe: 2bb9646115745d0ee8c7799e6872c57ba5dc6cc5
   Swish: 09a5974e365c1609e0f2e9d56d755bcbd74cdb07
 
-PODFILE CHECKSUM: fef1b65f67e67a1a5800063f652d0b7b0b44b93e
+PODFILE CHECKSUM: 4a4890b3c7c21b3ef8e964e1bbe2e4f80d1d6079
 
 COCOAPODS: 1.1.0.rc.2

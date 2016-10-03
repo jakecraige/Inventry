@@ -2,6 +2,9 @@ import UIKit
 import RxSwift
 import Firebase
 import Stripe
+import RealmSwift
+
+var realm: Realm!
 
 final class ApplicationController {
   var application: UIApplication!
@@ -25,6 +28,7 @@ private extension ApplicationController {
   func configureServices() {
     configureFirebase()
     Stripe.setDefaultPublishableKey(Environment.stripeApiKey)
+    configureRealm()
   }
   
   func configureFirebase() {
@@ -43,6 +47,26 @@ private extension ApplicationController {
       print("Latest remote config activated")
     }
   }
+
+  func configureRealm() {
+    let serverURL = URL(string: "http://localhost:9080")!
+    let credential = Credential.usernamePassword(
+      username: "devuser@example.com",
+      password: "Password1",
+      actions: [.useExistingAccount]
+    )
+    RealmSwift.User.authenticate(with: credential, server: serverURL) { user, error in
+      if let user = user {
+        let syncURL = URL(string: "realm://localhost:9080/~/public")!
+        let config = Realm.Configuration(syncConfiguration: (user, syncURL))
+        realm = try! Realm(configuration: config)
+        print("Realm setup")
+        self.seedRealm()
+      } else if let error = error {
+        print("Error", error)
+      }
+    }
+  }
 }
 
 // MARK: Observers
@@ -54,6 +78,21 @@ private extension ApplicationController {
   func observeFirebaseAuthState() {
     FIRAuth.auth()?.addStateDidChangeListener { _, firUser in
       store.dispatch(UpdateAuthFIRUser(firUser: firUser))
+    }
+  }
+}
+
+private extension ApplicationController {
+  func seedRealm() {
+    let user = RUser()
+    user.name = "Jake Craige"
+    let product = RProduct()
+    product.name = "The Great Gatsby"
+    product.quantity = 10
+    product.user = user
+    user.products.append(product)
+    try! realm.write {
+      realm.add([product, user])
     }
   }
 }

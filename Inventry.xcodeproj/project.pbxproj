@@ -52,6 +52,7 @@
 		E72B55E51DA013BC004C0344 /* ListsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E41DA013BC004C0344 /* ListsQuery.swift */; };
 		E72B55E71DA01897004C0344 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E61DA01897004C0344 /* ListsViewController.swift */; };
 		E72B55E91DA13C8E004C0344 /* DeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55E81DA13C8E004C0344 /* DeleteList.swift */; };
+		E72B55EB1DA17432004C0344 /* TestRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B55EA1DA17432004C0344 /* TestRealm.swift */; };
 		E72D66491CFFDF120097FEB5 /* Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66481CFFDF120097FEB5 /* Getters.swift */; };
 		E72D664B1CFFE2490097FEB5 /* SetOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664A1CFFE2490097FEB5 /* SetOrder.swift */; };
 		E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */; };
@@ -176,6 +177,7 @@
 		E72B55E41DA013BC004C0344 /* ListsQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsQuery.swift; sourceTree = "<group>"; };
 		E72B55E61DA01897004C0344 /* ListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		E72B55E81DA13C8E004C0344 /* DeleteList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteList.swift; sourceTree = "<group>"; };
+		E72B55EA1DA17432004C0344 /* TestRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRealm.swift; sourceTree = "<group>"; };
 		E72D66481CFFDF120097FEB5 /* Getters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Getters.swift; sourceTree = "<group>"; };
 		E72D664A1CFFE2490097FEB5 /* SetOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetOrder.swift; sourceTree = "<group>"; };
 		E72D664F1CFFF36E0097FEB5 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				E72000201D03CF06009BAF12 /* StripeConnectAccount.swift */,
 				E73B3E131D7DF593001C19B5 /* PublicUser.swift */,
 				E72B55E01D9FFD37004C0344 /* List.swift */,
+				E72B55EA1DA17432004C0344 /* TestRealm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				E7005D001CFF380E00B88483 /* ResetCurrentOrder.swift in Sources */,
 				E7EB3BE41D8E1F30007A463B /* PublicUserQuery.swift in Sources */,
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
+				E72B55EB1DA17432004C0344 /* TestRealm.swift in Sources */,
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,
 				E7C0429B1D981604000A02AB /* UpdateAuthUser.swift in Sources */,
 				E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */,

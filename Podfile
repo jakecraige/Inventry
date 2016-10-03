@@ -13,6 +13,7 @@ target target_name do
   pod "Firebase/Database"
   pod "Firebase/RemoteConfig"
   pod "FirebaseUI/Google", "0.5.6-rc3"
+  pod "RealmSwift", "2.0.1"
   pod "Stripe"
   pod "MTBBarcodeScanner"
   pod "PromiseKit/CorePromise"
@@ -50,5 +51,11 @@ post_install do |installer|
       remove_destination: true
     )
   end
-end
 
+  # From Realm Install Directions
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+  end
+end
