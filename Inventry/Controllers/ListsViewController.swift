@@ -18,6 +18,20 @@ final class ListsViewController: UITableViewController {
       }
   }
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "showList":
+      guard let indexPath = tableView.indexPathForSelectedRow,
+            let list: List = try? tableView.rx.model(indexPath) else { return }
+      let vc = segue.destination as! ListViewController
+      vc.configure(list: list)
+      
+    default: break
+    }
+  }
+
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     guard let list: List = try? tableView.rx.model(indexPath) else { return [] }
     

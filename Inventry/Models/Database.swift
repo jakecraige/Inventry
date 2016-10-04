@@ -150,6 +150,13 @@ struct Database {
     }
   }
 
+  static func observe<Model: Modelable>(
+    _ eventType: FIRDataEventType = .value,
+    model: Model
+  ) -> Observable<Model> where Model == Model.DecodedType {
+    return observe(eventType, ref: model.childRef)
+  }
+
   static func observe<T: Decodable>(
     _ eventType: FIRDataEventType = .value,
     ref: FIRDatabaseQuery

@@ -67,6 +67,7 @@
 		E7444C771CF6097C006D7159 /* OrderChooseProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */; };
 		E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C801CF8C1BF006D7159 /* LineItem.swift */; };
 		E7444C831CF8E26E006D7159 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C821CF8E26E006D7159 /* Swift.swift */; };
+		E78D28A71DA3FEA80087D040 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D28A61DA3FEA80087D040 /* ListViewController.swift */; };
 		E7A57F6A1D919DC400729640 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A57F691D919DC400729640 /* Dictionary.swift */; };
 		E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */; };
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
@@ -189,6 +190,7 @@
 		E7444C761CF6097C006D7159 /* OrderChooseProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderChooseProductsTableViewController.swift; sourceTree = "<group>"; };
 		E7444C801CF8C1BF006D7159 /* LineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		E7444C821CF8E26E006D7159 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
+		E78D28A61DA3FEA80087D040 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E7A57F681D91815A00729640 /* Inventry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Inventry.entitlements; path = ../../Inventry.entitlements; sourceTree = "<group>"; };
 		E7A57F691D919DC400729640 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPaymentViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */,
 				E72B55DE1D9F0C67004C0344 /* CreateListViewController.swift */,
 				E72B55E61DA01897004C0344 /* ListsViewController.swift */,
+				E78D28A61DA3FEA80087D040 /* ListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -850,6 +853,7 @@
 				E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */,
 				E7005D021CFF397400B88483 /* UpdateCurrentOrder.swift in Sources */,
 				E72D66501CFFF36E0097FEB5 /* CreateUser.swift in Sources */,
+				E78D28A71DA3FEA80087D040 /* ListViewController.swift in Sources */,
 				E7005CE31CFCFDAE00B88483 /* DateFormatter.swift in Sources */,
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
