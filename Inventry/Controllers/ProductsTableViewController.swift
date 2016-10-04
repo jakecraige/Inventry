@@ -3,7 +3,7 @@ import Firebase
 import RxSwift
 
 class ProductsTableViewController: UITableViewController {
-  var groupedProducts: [PublicUser: [Product]] = [:] {
+  var products: [Product] = [] {
     didSet {
       tableView.reloadData()
     }
@@ -15,9 +15,9 @@ class ProductsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    ProductsGroupedByUserQuery(user: store.user).build()
+    ProductsQuery(user: store.user).build()
       .subscribe(onNext: { [weak self] in
-        self?.groupedProducts = $0
+        self?.products = $0
       })
       .addDisposableTo(disposeBag)
 
@@ -44,11 +44,11 @@ class ProductsTableViewController: UITableViewController {
 // MARK: UITableViewDataSource
 extension ProductsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return groupedProducts.keys.count
+    return 1
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return products(atSection: section).count
+    return products.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,10 +57,6 @@ extension ProductsTableViewController {
     cell.textLabel?.text = product(atIndexPath: indexPath).name
 
     return cell
-  }
-
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return user(atSection: section).name
   }
 }
 
@@ -90,15 +86,7 @@ extension ProductsTableViewController {
 }
 
 private extension ProductsTableViewController {
-  func user(atSection section: Int) -> PublicUser {
-    return Array(groupedProducts.keys)[section]
-  }
-
-  func products(atSection section: Int) -> [Product] {
-    return groupedProducts[user(atSection: section)] ?? []
-  }
-
   func product(atIndexPath indexPath: IndexPath) -> Product {
-    return groupedProducts[user(atSection: indexPath.section)]![indexPath.row]
+    return products[indexPath.row]
   }
 }

@@ -3,7 +3,6 @@ import Firebase
 import MessageUI
 
 private enum Cell: Int {
-    case inventorySharing
     case feedback
 }
 
@@ -35,7 +34,6 @@ extension SettingsViewController {
 
     switch cellType {
     case .feedback: presentFeedbackForm()
-    case .inventorySharing: break
     }
   }
 }

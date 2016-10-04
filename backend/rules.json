@@ -2,8 +2,8 @@
   "rules": {
     "Products": {
       "$product_id": {
-        ".read": "(auth !== null && data.child('user_id').val() === auth.uid) || root.child('PublicUsers/'+data.child('user_id').val()+'/inventorySharedWith/'+auth.uid).exists()",
-        ".write": "!data.exists() || ((auth !== null && data.child('user_id').val() === auth.uid) || root.child('PublicUsers/'+data.child('user_id').val()+'/inventorySharedWith/'+auth.uid).exists())"
+        ".read": "(auth !== null && data.child('user_id').val() === auth.uid)",
+        ".write": "!data.exists() || (auth !== null && data.child('user_id').val() === auth.uid)"
       }
     },
     "Orders": {
@@ -24,10 +24,7 @@
     "PublicUsers": {
       ".read": "auth !== null",
       "$uid": {
-        ".write": "!data.exists() || $uid === auth.uid",
-        "inventorySharedFrom": {
-          ".write": "auth !== null && root.child('PublicUsers/'+auth.uid+'/inventorySharedWith/'+$uid).exists()"
-        }
+        ".write": "!data.exists() || $uid === auth.uid"
       }
     }
   }

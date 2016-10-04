@@ -104,7 +104,7 @@
             <objects>
                 <navigationController id="4XZ-Qn-EZt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Products" image="tab-inventory" id="BcE-Na-wkV"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pGJ-HI-YrS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pGJ-HI-YrS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -186,31 +186,8 @@
                         <sections>
                             <tableViewSection id="z3t-4j-GSl">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fAj-At-nYe" style="IBUITableViewCellStyleDefault" id="Gra-up-hoZ">
-                                        <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gra-up-hoZ" id="oUP-39-VsY">
-                                            <frame key="frameInset" width="342" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Inventory Sharing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fAj-At-nYe">
-                                                    <frame key="frameInset" minX="15" width="325" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="ilr-kl-y97" kind="show" identifier="showInventorySharing" id="lEV-AE-7gB">
-                                                <segue key="commit" inheritsFrom="parent" id="XK8-Rg-Nyc"/>
-                                                <segue key="preview" inheritsFrom="commit" id="Wvv-r9-lwA"/>
-                                            </segue>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="sMu-Rl-rnx" style="IBUITableViewCellStyleDefault" id="Efk-8C-pzV">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Efk-8C-pzV" id="4Ge-VK-qb4">
                                             <frame key="frameInset" width="342" height="43"/>
@@ -251,7 +228,7 @@
             <objects>
                 <navigationController id="rmF-k1-sXn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="tab-order" id="hWQ-zc-bgq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNb-gD-HL1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mNb-gD-HL1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -262,44 +239,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNv-FD-Bwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1382" y="1181"/>
-        </scene>
-        <!--Inventory Sharing-->
-        <scene sceneID="VDc-9o-Pl7">
-            <objects>
-                <tableViewController id="ilr-kl-y97" customClass="InventorySharingViewController" customModule="Inventry" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g0P-jl-qrc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InventorySharingCell" textLabel="oLR-4S-fgR" style="IBUITableViewCellStyleDefault" id="IAH-ba-Xz0">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IAH-ba-Xz0" id="Ikc-CZ-gQb">
-                                    <frame key="frameInset" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Alex Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oLR-4S-fgR">
-                                            <frame key="frameInset" minX="15" width="345" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ilr-kl-y97" id="bdA-FK-CSF"/>
-                            <outlet property="delegate" destination="ilr-kl-y97" id="g9X-jZ-B58"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Inventory Sharing" id="QLL-6A-Y2v"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qRO-uC-VNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1255" y="1933"/>
         </scene>
         <!--Your Lists-->
         <scene sceneID="xhR-3f-5zF">
@@ -350,7 +289,7 @@
             <objects>
                 <navigationController id="dKB-ky-JMy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Lists" image="tab-inventory" id="mXD-R4-Z7z"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OOD-lA-YiK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OOD-lA-YiK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -388,7 +327,7 @@
             <objects>
                 <navigationController title="New Product Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="wVl-py-Mbp" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sya-Dc-hB3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sya-Dc-hB3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -467,7 +406,7 @@
         <scene sceneID="QY8-T7-0zK">
             <objects>
                 <navigationController id="srt-mY-TPo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fhw-dT-Z4F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fhw-dT-Z4F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -630,7 +569,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ScanBarcode" automaticallyAdjustsScrollViewInsets="NO" id="0qL-i3-QmO" userLabel="Scan Barcode Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7H-O0-uJn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="a7H-O0-uJn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -665,7 +604,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c19-h0-YBt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="tab-settings" id="feH-DM-cvl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cyT-2W-Tds">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cyT-2W-Tds">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -686,9 +625,8 @@
         <image name="tab-settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lEV-AE-7gB"/>
+        <segue reference="GKi-db-WCd"/>
         <segue reference="F13-Du-eHW"/>
         <segue reference="Vs6-Wx-eTS"/>
-        <segue reference="GKi-db-WCd"/>
     </inferredMetricsTieBreakers>
 </document>

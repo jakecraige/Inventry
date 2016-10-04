@@ -58,7 +58,6 @@
 		E72D66521CFFF3A10097FEB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66511CFFF3A10097FEB5 /* User.swift */; };
 		E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66531CFFFED20097FEB5 /* SaveProduct.swift */; };
 		E72D66591D01D9B30097FEB5 /* SaveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D66581D01D9B30097FEB5 /* SaveOrder.swift */; };
-		E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */; };
 		E73B3E141D7DF593001C19B5 /* PublicUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E131D7DF593001C19B5 /* PublicUser.swift */; };
 		E73B3E161D7DFBD0001C19B5 /* ToggleInventoryPartner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */; };
 		E7444C6F1CF4A433006D7159 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C6E1CF4A433006D7159 /* Database.swift */; };
@@ -69,7 +68,6 @@
 		E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C801CF8C1BF006D7159 /* LineItem.swift */; };
 		E7444C831CF8E26E006D7159 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C821CF8E26E006D7159 /* Swift.swift */; };
 		E7A57F6A1D919DC400729640 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A57F691D919DC400729640 /* Dictionary.swift */; };
-		E7A57F6C1D96B6C300729640 /* ProductsGroupedByUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A57F6B1D96B6C300729640 /* ProductsGroupedByUserQuery.swift */; };
 		E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */; };
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
 		E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */; };
@@ -182,7 +180,6 @@
 		E72D66511CFFF3A10097FEB5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E72D66531CFFFED20097FEB5 /* SaveProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProduct.swift; sourceTree = "<group>"; };
 		E72D66581D01D9B30097FEB5 /* SaveOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveOrder.swift; sourceTree = "<group>"; };
-		E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventorySharingViewController.swift; sourceTree = "<group>"; };
 		E73B3E131D7DF593001C19B5 /* PublicUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicUser.swift; sourceTree = "<group>"; };
 		E73B3E151D7DFBD0001C19B5 /* ToggleInventoryPartner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleInventoryPartner.swift; sourceTree = "<group>"; };
 		E7444C6E1CF4A433006D7159 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -194,7 +191,6 @@
 		E7444C821CF8E26E006D7159 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		E7A57F681D91815A00729640 /* Inventry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Inventry.entitlements; path = ../../Inventry.entitlements; sourceTree = "<group>"; };
 		E7A57F691D919DC400729640 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
-		E7A57F6B1D96B6C300729640 /* ProductsGroupedByUserQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsGroupedByUserQuery.swift; sourceTree = "<group>"; };
 		E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPaymentViewController.swift; sourceTree = "<group>"; };
 		E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderReviewViewController.swift; sourceTree = "<group>"; };
 		E7B7C8EF1CF923700019BA0D /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
@@ -393,7 +389,6 @@
 				E72000161D0384B6009BAF12 /* StripeAuthenticationController.swift */,
 				E720001C1D039D98009BAF12 /* AccountSetupController.swift */,
 				E72000221D047DF8009BAF12 /* SettingsViewController.swift */,
-				E73B3E111D7DF469001C19B5 /* InventorySharingViewController.swift */,
 				E7C0429C1D982B75000A02AB /* ApplicationController.swift */,
 				E7C0429E1D982B84000A02AB /* ApplicationViewController.swift */,
 				E72B55DE1D9F0C67004C0344 /* CreateListViewController.swift */,
@@ -536,7 +531,6 @@
 				E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */,
 				E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */,
 				E7EB3BE31D8E1F30007A463B /* PublicUserQuery.swift */,
-				E7A57F6B1D96B6C300729640 /* ProductsGroupedByUserQuery.swift */,
 				E72B55E41DA013BC004C0344 /* ListsQuery.swift */,
 			);
 			path = Queries;
@@ -839,7 +833,6 @@
 				E7DA839D1CF2B388001320D2 /* ProductsTableViewController.swift in Sources */,
 				E7005CF61CFDFC4B00B88483 /* IncrementCurrentOrder.swift in Sources */,
 				E7C0429B1D981604000A02AB /* UpdateAuthUser.swift in Sources */,
-				E73B3E121D7DF469001C19B5 /* InventorySharingViewController.swift in Sources */,
 				E7B7C9031CFA0A900019BA0D /* Swish.swift in Sources */,
 				E7C042A11D982C86000A02AB /* NSError.swift in Sources */,
 				E7C0429F1D982B84000A02AB /* ApplicationViewController.swift in Sources */,
@@ -861,7 +854,6 @@
 				E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */,
 				E7444C751CF608EB006D7159 /* Order.swift in Sources */,
 				E72B55DF1D9F0C67004C0344 /* CreateListViewController.swift in Sources */,
-				E7A57F6C1D96B6C300729640 /* ProductsGroupedByUserQuery.swift in Sources */,
 				E7DA839F1CF2D606001320D2 /* ProductViewController.swift in Sources */,
 				E7B7C9101CFA47160019BA0D /* PriceFormatter.swift in Sources */,
 				E7C042991D9815FA000A02AB /* UpdateAuthFIRUser.swift in Sources */,

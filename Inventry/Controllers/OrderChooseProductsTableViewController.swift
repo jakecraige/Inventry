@@ -8,22 +8,15 @@ class OrderChooseProductsTableViewController: UITableViewController {
   let disposeBag = DisposeBag()
   let searchController = UISearchController(searchResultsController: nil)
 
-  var _groupedProducts: [PublicUser: [Product]] = [:] {
+  var _products: [Product] = [] {
     didSet { tableView.reloadData() }
   }
-  var filteredGroupedProducts: [PublicUser: [Product]]  {
+  var filteredProducts: [Product]  {
     if let query = searchQuery, !query.isEmpty {
-      return _groupedProducts.reduce([:]) { acc, keyValue in
-        let (key, value) = keyValue
-        let products = value.filter { $0.name.lowercased().contains(query.lowercased()) }
-        return acc + [key: products]
-      }
+      return _products.filter { $0.name.lowercased().contains(query.lowercased()) }
     } else {
-      return _groupedProducts
+      return _products
     }
-  }
-  var products: [Product] {
-    return Array(filteredGroupedProducts.map { $0.value }.joined())
   }
 
   var searchControllerActive: Bool {
@@ -41,10 +34,8 @@ class OrderChooseProductsTableViewController: UITableViewController {
       self.updateNavigationTitle()
     }).addDisposableTo(disposeBag)
 
-    ProductsGroupedByUserQuery(user: store.user).build()
-      .subscribe(onNext: { [weak self] in
-        self?._groupedProducts = $0
-      })
+    ProductsQuery(user: store.user).build()
+      .subscribe(onNext: { [weak self] in self?._products = $0 })
       .addDisposableTo(disposeBag)
 
     definesPresentationContext = true
@@ -76,7 +67,7 @@ class OrderChooseProductsTableViewController: UITableViewController {
   }
 
   fileprivate func addOrIncrementProduct(withBarcode barcode: String) {
-    if let product = products.find({$0.barcode == barcode}) {
+    if let product = filteredProducts.find({$0.barcode == barcode}) {
       addOrIncrementProduct(product)
     } else {
       print("Couldn't find product with code: \(barcode)")
@@ -106,15 +97,11 @@ class OrderChooseProductsTableViewController: UITableViewController {
 // MARK: UITableViewDataSource
 extension OrderChooseProductsTableViewController {
   override func numberOfSections(in tableView: UITableView) -> Int {
-    return filteredGroupedProducts.keys.count
+    return 1
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return products(atSection: section).count
-  }
-
-  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return user(atSection: section).name
+    return filteredProducts.count
   }
 }
 
@@ -183,15 +170,7 @@ extension OrderChooseProductsTableViewController: UIViewControllerPreviewingDele
 }
 
 private extension OrderChooseProductsTableViewController {
-  func user(atSection section: Int) -> PublicUser {
-    return Array(filteredGroupedProducts.keys)[section]
-  }
-
-  func products(atSection section: Int) -> [Product] {
-    return filteredGroupedProducts[user(atSection: section)] ?? []
-  }
-
   func product(atIndexPath indexPath: IndexPath) -> Product {
-    return filteredGroupedProducts[user(atSection: indexPath.section)]![indexPath.row]
+    return filteredProducts[indexPath.row]
   }
 }
