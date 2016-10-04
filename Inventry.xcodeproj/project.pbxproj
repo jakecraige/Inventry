@@ -68,6 +68,8 @@
 		E7444C811CF8C1BF006D7159 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C801CF8C1BF006D7159 /* LineItem.swift */; };
 		E7444C831CF8E26E006D7159 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7444C821CF8E26E006D7159 /* Swift.swift */; };
 		E78D28A71DA3FEA80087D040 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D28A61DA3FEA80087D040 /* ListViewController.swift */; };
+		E78D28A91DA403AC0087D040 /* ListProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D28A81DA403AC0087D040 /* ListProductsViewController.swift */; };
+		E78D28AB1DA406000087D040 /* ListProductsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D28AA1DA406000087D040 /* ListProductsQuery.swift */; };
 		E7A57F6A1D919DC400729640 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A57F691D919DC400729640 /* Dictionary.swift */; };
 		E7B7C8EC1CF912C70019BA0D /* OrderPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */; };
 		E7B7C8EE1CF91C4B0019BA0D /* OrderReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B7C8ED1CF91C4B0019BA0D /* OrderReviewViewController.swift */; };
@@ -191,6 +193,8 @@
 		E7444C801CF8C1BF006D7159 /* LineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		E7444C821CF8E26E006D7159 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
 		E78D28A61DA3FEA80087D040 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		E78D28A81DA403AC0087D040 /* ListProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductsViewController.swift; sourceTree = "<group>"; };
+		E78D28AA1DA406000087D040 /* ListProductsQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductsQuery.swift; sourceTree = "<group>"; };
 		E7A57F681D91815A00729640 /* Inventry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Inventry.entitlements; path = ../../Inventry.entitlements; sourceTree = "<group>"; };
 		E7A57F691D919DC400729640 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		E7B7C8EB1CF912C70019BA0D /* OrderPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderPaymentViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				E72B55DE1D9F0C67004C0344 /* CreateListViewController.swift */,
 				E72B55E61DA01897004C0344 /* ListsViewController.swift */,
 				E78D28A61DA3FEA80087D040 /* ListViewController.swift */,
+				E78D28A81DA403AC0087D040 /* ListProductsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */,
 				E7EB3BE31D8E1F30007A463B /* PublicUserQuery.swift */,
 				E72B55E41DA013BC004C0344 /* ListsQuery.swift */,
+				E78D28AA1DA406000087D040 /* ListProductsQuery.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -894,6 +900,7 @@
 				E718E2071CFBB2390086E2C4 /* Config.swift in Sources */,
 				E7B7C9071CFA11AD0019BA0D /* OrderProcessor.swift in Sources */,
 				E7B7C9011CFA096C0019BA0D /* RequestFactory.swift in Sources */,
+				E78D28A91DA403AC0087D040 /* ListProductsViewController.swift in Sources */,
 				E73B3E141D7DF593001C19B5 /* PublicUser.swift in Sources */,
 				E7B7C90B1CFA265E0019BA0D /* Customer.swift in Sources */,
 				E7EA96DE1CFCCABA008B47D4 /* Timestamps.swift in Sources */,
@@ -906,6 +913,7 @@
 				E7444C831CF8E26E006D7159 /* Swift.swift in Sources */,
 				E7C0429D1D982B75000A02AB /* ApplicationController.swift in Sources */,
 				E7005CFA1CFDFD9400B88483 /* DecrementFromCurrentOrder.swift in Sources */,
+				E78D28AB1DA406000087D040 /* ListProductsQuery.swift in Sources */,
 				E73B3E161D7DFBD0001C19B5 /* ToggleInventoryPartner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

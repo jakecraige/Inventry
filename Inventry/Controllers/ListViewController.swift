@@ -21,6 +21,18 @@ final class ListViewController: UITableViewController {
       })
   }
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else { return }
+
+    switch identifier {
+    case "showListProducts":
+      let vc = segue.destination as! ListProductsViewController
+      vc.configure(list: list.value)
+      
+    default: break
+    }
+  }
+
   func updateView(list: List) {
     title = list.name
   }

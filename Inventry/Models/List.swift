@@ -2,6 +2,11 @@ import Argo
 import Curry
 import Runes
 
+struct PopulatedListProduct {
+  let product: Product
+  let quantity: Int
+}
+
 struct ListProduct: FIRNestedArray {
   let product: String
   var quantity: Int
