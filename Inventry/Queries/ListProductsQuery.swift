@@ -9,7 +9,7 @@ struct ListProductsQuery: Query {
     let products: Observable<[Product]> = Database.observe(refs: productRefs)
     let listProducts = Observable.just(list.products)
 
-    return Observable.zip(products, listProducts) { (lhs: [Product], rhs: [ListProduct]) -> [PopulatedListProduct] in
+    return Observable.combineLatest(products, listProducts) { (lhs: [Product], rhs: [ListProduct]) -> [PopulatedListProduct] in
       return zip(lhs, rhs).map { product, listProduct in
         return PopulatedListProduct(product: product, quantity: listProduct.quantity)
       }

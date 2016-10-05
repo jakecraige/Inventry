@@ -537,7 +537,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="Dal-ds-tfY" style="IBUITableViewCellStyleDefault" id="uuQ-o8-em7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="userCell" textLabel="Dal-ds-tfY" style="IBUITableViewCellStyleDefault" id="uuQ-o8-em7">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uuQ-o8-em7" id="hWW-KZ-z4b">
@@ -575,11 +575,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="productCell" textLabel="jzd-SU-LI2" detailTextLabel="Tjx-gS-SVg" style="IBUITableViewCellStyleSubtitle" id="Xh6-4i-Z8N">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="productCell" textLabel="jzd-SU-LI2" detailTextLabel="Tjx-gS-SVg" style="IBUITableViewCellStyleSubtitle" id="Xh6-4i-Z8N">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xh6-4i-Z8N" id="HnP-Dq-BL5">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jzd-SU-LI2">
@@ -598,6 +598,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="wVj-xd-CV3" kind="show" identifier="viewProduct" id="lvu-96-hfA">
+                                        <segue key="commit" inheritsFrom="parent" id="Vio-eD-SjA"/>
+                                        <segue key="preview" inheritsFrom="commit" id="jNa-8D-7bG"/>
+                                    </segue>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -834,11 +840,11 @@
         <image name="tab-settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F13-Du-eHW"/>
+        <segue reference="Uko-X5-Njl"/>
+        <segue reference="rYI-rr-FtF"/>
+        <segue reference="4qy-aZ-xCr"/>
+        <segue reference="lvu-96-hfA"/>
         <segue reference="Vs6-Wx-eTS"/>
         <segue reference="GKi-db-WCd"/>
-        <segue reference="Uko-X5-Njl"/>
-        <segue reference="4qy-aZ-xCr"/>
-        <segue reference="rYI-rr-FtF"/>
     </inferredMetricsTieBreakers>
 </document>

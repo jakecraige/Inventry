@@ -27,4 +27,19 @@ final class ListProductsViewController: UITableViewController {
         cell.detailTextLabel?.text = "Quantity: \(product.quantity)"
       }
   }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier,
+          let indexPath = (sender as? UITableViewCell).flatMap(tableView.indexPath)
+      else { return }
+
+    switch identifier {
+    case "viewProduct":
+      let listProduct: PopulatedListProduct = try! tableView.rx.model(indexPath)
+      let vc = segue.destination as! ProductViewController
+      vc.product = listProduct.product
+
+    default: break
+    }
+  }
 }
