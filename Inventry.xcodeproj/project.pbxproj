@@ -113,6 +113,8 @@
 		E7EB3BDE1D8CC936007A463B /* ProductQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */; };
 		E7EB3BE01D8CC9F8007A463B /* ProductsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */; };
 		E7EB3BE41D8E1F30007A463B /* PublicUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB3BE31D8E1F30007A463B /* PublicUserQuery.swift */; };
+		E7F7D5C61DA5472300DFB2FB /* ListUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7D5C51DA5472300DFB2FB /* ListUsersViewController.swift */; };
+		E7F7D5C81DA5477D00DFB2FB /* ListUsersQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7D5C71DA5477D00DFB2FB /* ListUsersQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +241,8 @@
 		E7EB3BDD1D8CC936007A463B /* ProductQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductQuery.swift; sourceTree = "<group>"; };
 		E7EB3BDF1D8CC9F8007A463B /* ProductsQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsQuery.swift; sourceTree = "<group>"; };
 		E7EB3BE31D8E1F30007A463B /* PublicUserQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicUserQuery.swift; sourceTree = "<group>"; };
+		E7F7D5C51DA5472300DFB2FB /* ListUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListUsersViewController.swift; sourceTree = "<group>"; };
+		E7F7D5C71DA5477D00DFB2FB /* ListUsersQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListUsersQuery.swift; sourceTree = "<group>"; };
 		EFDB3D4EB5EF167B9E1FB228 /* Pods_Inventry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inventry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F455F480F9A35395CB1D85A7 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F60E73EFEB8C37CE4B6B4CA8 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				E72B55E61DA01897004C0344 /* ListsViewController.swift */,
 				E78D28A61DA3FEA80087D040 /* ListViewController.swift */,
 				E78D28A81DA403AC0087D040 /* ListProductsViewController.swift */,
+				E7F7D5C51DA5472300DFB2FB /* ListUsersViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				E7EB3BE31D8E1F30007A463B /* PublicUserQuery.swift */,
 				E72B55E41DA013BC004C0344 /* ListsQuery.swift */,
 				E78D28AA1DA406000087D040 /* ListProductsQuery.swift */,
+				E7F7D5C71DA5477D00DFB2FB /* ListUsersQuery.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -872,6 +878,7 @@
 				E72B55E31D9FFEFD004C0344 /* CreateList.swift in Sources */,
 				E7B7C9121CFA4EF10019BA0D /* SelectProductTableViewCell.swift in Sources */,
 				E72D66541CFFFED20097FEB5 /* SaveProduct.swift in Sources */,
+				E7F7D5C81DA5477D00DFB2FB /* ListUsersQuery.swift in Sources */,
 				E7EA96DA1CFCC718008B47D4 /* Timestampable.swift in Sources */,
 				E7EB3BD81D8CC5B3007A463B /* OrdersQuery.swift in Sources */,
 				E7005CF11CFDF77700B88483 /* AppState.swift in Sources */,
@@ -884,6 +891,7 @@
 				E7EA96DC1CFCCA9E008B47D4 /* NSDate.swift in Sources */,
 				E72D66521CFFF3A10097FEB5 /* User.swift in Sources */,
 				E72B55E11D9FFD37004C0344 /* List.swift in Sources */,
+				E7F7D5C61DA5472300DFB2FB /* ListUsersViewController.swift in Sources */,
 				E7B7C9091CFA15240019BA0D /* Currency.swift in Sources */,
 				E7DA83951CF2A735001320D2 /* EditProductViewController.swift in Sources */,
 				E7B7C8F01CF923700019BA0D /* BarcodeScannerViewController.swift in Sources */,

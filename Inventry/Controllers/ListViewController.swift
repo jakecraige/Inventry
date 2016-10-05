@@ -28,6 +28,9 @@ final class ListViewController: UITableViewController {
     case "showListProducts":
       let vc = segue.destination as! ListProductsViewController
       vc.configure(list: list.value)
+    case "showListUsers":
+      let vc = segue.destination as! ListUsersViewController
+      vc.configure(list: list.value)
       
     default: break
     }
